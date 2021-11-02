@@ -1,0 +1,31 @@
+rootProject.name = 'RNBecrux'
+include ':@react-native-community_geolocation'
+project(':@react-native-community_geolocation').projectDir = new File(rootProject.projectDir, '../node_modules/@react-native-community/geolocation/android')
+include ':react-native-device-info'
+project(':react-native-device-info').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-device-info/android')
+include ':@faisalali19_react-native-paytm'
+project(':@faisalali19_react-native-paytm').projectDir = new File(rootProject.projectDir, '../node_modules/@faisalali19/react-native-paytm/android')
+include ':react-native-google-signin', ':app'
+project(':react-native-google-signin').projectDir = new File(rootProject.projectDir, '../node_modules/@react-native-community/google-signin/android')
+include ':react-native-paypal-lib'
+project(':react-native-paypal-lib').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-paypal-lib/android')
+include ':@react-native-community_viewpager'
+project(':@react-native-community_viewpager').projectDir = new File(rootProject.projectDir, '../node_modules/@react-native-community/viewpager/android')
+include ':react-native-fbsdk'
+project(':react-native-fbsdk').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fbsdk/android')
+include ':react-native-onesignal'
+project(':react-native-onesignal').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-onesignal/android')
+include ':react-native-maps'
+project(':react-native-maps').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-maps/lib/android')
+include ':rn-range-slider'
+project(':rn-range-slider').projectDir = new File(rootProject.projectDir, '../node_modules/rn-range-slider/android')
+include ':react-native-inappbrowser-reborn'
+project(':react-native-inappbrowser-reborn').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-inappbrowser-reborn/android')
+include ':react-native-webview'
+project(':react-native-webview').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-webview/android')
+include ':react-native-razorpay'
+project(':react-native-razorpay').projectDir = new File(rootProject.projectDir,   '../node_modules/react-native-razorpay/android')
+include ':react-native-splash-screen'
+project(':react-native-splash-screen').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-splash-screen/android')
+apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
+include ':app'

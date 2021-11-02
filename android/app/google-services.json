@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "525656277362",
+    "project_id": "star-mart-48498",
+    "storage_bucket": "star-mart-48498.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:525656277362:android:6ea2f3dc68859376cd9deb",
+        "android_client_info": {
+          "package_name": "com.app.rnbecruxBoy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "525656277362-uhimqv63papb0lghvaj5qrsnh8iqa8ss.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA123IeRit2IQTY0ck6vhViwwGaNXvDHuU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "525656277362-uhimqv63papb0lghvaj5qrsnh8iqa8ss.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
