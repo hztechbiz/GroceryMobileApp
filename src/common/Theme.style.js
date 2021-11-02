@@ -47,7 +47,8 @@ export default {
   primaryContrast: '#ffffff',
   // backgroundColor: '#F2F2F2',// color for card style 11
   // backgroundColor: '#fdfcfa',
-  backgroundColor: '#fdfdfd',
+  backgroundColor: '#F5FAFE',
+  // backgroundColor: '#fdfdfd',
   textColor: '#000',
   textContrast: '#000',
 
