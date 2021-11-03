@@ -856,7 +856,8 @@ class orderScreen extends Component {
               style={{
                 paddingLeft: 1,
                 flexDirection: 'column',
-                paddingRight: 2
+                paddingRight: 2,
+                // backgroundColor:'red'
               }}>
               <FlatList
                 data={this.state.paymentMethods}
@@ -919,9 +920,8 @@ class orderScreen extends Component {
               {this.state.buttonEnable ? (
                 <TouchableOpacity
                   style={{
-                    margin: 10,
-                    marginBottom: 20,
-                    marginTop: 5
+                    backgroundColor: '#f5fafe',
+        
                   }}
                   onPress={() => {
                     if (
@@ -969,20 +969,24 @@ class orderScreen extends Component {
                     style={{
                       borderColor: '#fff',
                       alignItems: 'center',
-                      height: 38,
-                      backgroundColor: themeStyle.otherBtnsColor,
+                      alignSelf: 'center',
+                      height: 55,
+                      width: 290,
+                      marginVertical: 25,
+                      backgroundColor: '#2d79be',
+                      borderRadius: 5,
                       flex: 1,
                       justifyContent: 'center',
-                      elevation: 5,
-                      shadowOffset: { width: 1, height: 1 },
-                      shadowColor: themeStyle.textColor,
-                      shadowOpacity: 0.5
+                      // // elevation: 5,
+                      // shadowOffset: { width: 1, height: 1 },
+                      // shadowColor: themeStyle.textColor,
+                      // shadowOpacity: 0.5
                     }}>
                     <Text
                       style={{
-                        color: themeStyle.otherBtnsText,
+                        color: '#FFF',
                         fontSize: themeStyle.mediumSize,
-                        fontWeight: '500'
+                        fontWeight: '500',
                       }}>
                       {this.props.cartItems2.Config.languageJson.Continue}
                     </Text>
@@ -1006,32 +1010,32 @@ class orderScreen extends Component {
               }}>
               <View
                 style={{
-                  backgroundColor: themeStyle.backgroundColor,
+                  backgroundColor: '#f5fafe',
                   justifyContent: 'space-between',
                   shadowOffset: { width: 1, height: 1 },
                   shadowColor: themeStyle.textColor,
                   shadowOpacity: 0.5,
                   flex: 1,
-                  margin: 10,
-                  marginTop: 10,
-                  marginBottom: 5,
-                  elevation: 5
+                  marginTop: 0,
+                  marginBottom: 0,
+                  borderBottomWidth: 3,
+                  borderBottomColor: '#e4ecf2'
                 }}>
                 <View
                   style={{
                     justifyContent: 'space-between',
-
                     flex: 1
                   }}>
                   <Text
                     style={{
                       justifyContent: 'space-between',
-                      padding: 10,
                       flex: 1,
-                      backgroundColor: '#d3d3d3',
+                      backgroundColor: '#f5fafe',
                       fontSize: themeStyle.largeSize,
-                      fontWeight: '500',
-                      color: themeStyle.textContrast
+                      fontWeight: 'bold',
+                      color: themeStyle.textContrast,
+                      paddingHorizontal: 10,
+                      paddingTop: 14,
                     }}>
                     {
                       this.props.cartItems2.Config.languageJson[
@@ -1063,16 +1067,16 @@ class orderScreen extends Component {
 
               <View
                 style={{
-                  backgroundColor: themeStyle.backgroundColor,
+                  backgroundColor: '#f5fafe',
                   justifyContent: 'space-between',
                   shadowOffset: { width: 1, height: 1 },
                   shadowColor: themeStyle.textColor,
                   shadowOpacity: 0.5,
                   flex: 1,
-                  margin: 10,
-                  marginTop: 10,
-                  marginBottom: 5,
-                  elevation: 5
+                  // margin: 10,
+                  marginBottom: 0,
+                  borderBottomWidth: 3,
+                  borderBottomColor: '#e4ecf2'
                 }}>
                 <View
                   style={{
@@ -1083,11 +1087,12 @@ class orderScreen extends Component {
                   <Text
                     style={{
                       justifyContent: 'space-between',
-                      padding: 10,
                       flex: 1,
-                      backgroundColor: '#d3d3d3',
+                      backgroundColor: '#f5fafe',
                       fontSize: themeStyle.largeSize,
-                      fontWeight: '500',
+                      fontWeight: 'bold',
+                      paddingHorizontal: 10,
+                      paddingTop: 14,
                       color: themeStyle.textContrast
                     }}>
                     {
@@ -1120,16 +1125,16 @@ class orderScreen extends Component {
 
               <View
                 style={{
-                  backgroundColor: themeStyle.backgroundColor,
+                  backgroundColor: '#f5fafe',
                   justifyContent: 'space-between',
                   shadowOffset: { width: 1, height: 1 },
                   shadowColor: themeStyle.textColor,
                   shadowOpacity: 0.5,
                   flex: 1,
-                  margin: 10,
-                  marginTop: 10,
-                  marginBottom: 5,
-                  elevation: 5
+                  // margin: 10,
+                  borderBottomWidth: 3,
+                  borderBottomColor: '#e4ecf2',
+                  marginBottom: 0,
                 }}>
                 <View
                   style={{
@@ -1139,11 +1144,12 @@ class orderScreen extends Component {
                   <Text
                     style={{
                       justifyContent: 'space-between',
-                      padding: 10,
+                      paddingHorizontal: 10,
+                      paddingTop: 14,
                       flex: 1,
-                      backgroundColor: '#d3d3d3',
+                      backgroundColor: '#f5fafe',
                       fontSize: themeStyle.largeSize,
-                      fontWeight: '500',
+                      fontWeight: 'bold',
                       color: themeStyle.textContrast
                     }}>
                     {
@@ -1175,9 +1181,7 @@ class orderScreen extends Component {
                   shadowOpacity: 0.5,
                   elevation: 5,
                   flex: 1,
-                  margin: 10,
-                  marginTop: 10,
-                  marginBottom: 5
+                  marginBottom: 0
                 }}>
                 <View
                   style={{
@@ -1190,9 +1194,9 @@ class orderScreen extends Component {
                       justifyContent: 'space-between',
                       padding: 10,
                       flex: 1,
-                      backgroundColor: '#d3d3d3',
+                      backgroundColor: '#f5fafe',
                       fontSize: themeStyle.largeSize,
-                      fontWeight: '500',
+                      fontWeight: 'bold',
                       color: themeStyle.textContrast
                     }}>
                     {this.props.cartItems2.Config.languageJson.Products}
@@ -1214,9 +1218,10 @@ class orderScreen extends Component {
                             paddingLeft: 6,
                             fontSize: themeStyle.mediumSize
                           }}>
-                          <Text style={{ color: themeStyle.textColor }}>
-                            {item.item.products_name}
-                          </Text>
+                          {/* <Text style={{ color: themeStyle.textColor }}>
+                            {item.item.products_name} ---Product name
+                          </Text> */}
+                          {/* Product name */}
                         </View>
 
                         <View
@@ -1290,8 +1295,7 @@ class orderScreen extends Component {
 
                                 <Text style={{
                                   paddingTop: 0,
-                                  color:
-                                themeStyle.textColor
+                                  color: themeStyle.textColor
                                 }}>
                                   {Number(item.item.price).toFixed(2)}
                                 </Text>
@@ -1404,31 +1408,26 @@ class orderScreen extends Component {
                   padding: 10,
                   flex: 1,
                   // backgroundColor: '#d3d3d3',
-                  backgroundColor: 'blue',
+                  backgroundColor: '#f5fafe',
                   fontSize: themeStyle.largeSize,
-                  fontWeight: '500',
+                  fontWeight: 'bold',
                   color: themeStyle.textContrast,
-                  margin: 10,
+                  // margin: 10,
                   marginBottom: -3,
-                  shadowOffset: { width: 1, height: 0 },
-                  shadowColor: 'themeStyle.textColor',
-                  shadowOpacity: 0.5,
-                  elevation: 5
+                  // shadowOffset: { width: 1, height: 0 },
+                  // shadowColor: 'themeStyle.textColor',
+                  // shadowOpacity: 0.5,
+                  // elevation: 5
                 }}>
                 {this.props.cartItems2.Config.languageJson.SubTotal}
               </Text>
               <View
                 style={{
-                  backgroundColor: themeStyle.backgroundColor,
+                  backgroundColor: '#f5fafe',
                   justifyContent: 'space-between',
-                  shadowOffset: { width: 1, height: 1 },
-                  shadowColor: themeStyle.textColor,
-                  shadowOpacity: 0.5,
                   flex: 1,
-                  margin: 10,
-                  marginTop: 2,
-                  elevation: 4,
-                  marginBottom: 13
+                  borderBottomWidth: 3,
+                  borderBottomColor: '#e4ecf2',
                 }}>
                 <View
                   style={{
@@ -1548,7 +1547,6 @@ class orderScreen extends Component {
                       justifyContent: 'space-between',
                       padding: 15,
                       paddingTop: 1,
-
                       flexDirection: 'row',
                       flex: 1
                     }}>
@@ -1589,12 +1587,11 @@ class orderScreen extends Component {
                     justifyContent: 'space-between',
                     padding: 15,
                     paddingTop: 1,
-
                     flexDirection: 'row',
                     flex: 1
                   }}>
                   <Text
-                    style={{ color: themeStyle.textColor, fontSize: themeStyle.mediumSize }}>
+                    style={{ color: themeStyle.textColor, fontWeight: 'bold', fontSize: themeStyle.mediumSize }}>
                     {this.props.cartItems2.Config.languageJson.Total}
                   </Text>
                   <View
@@ -1607,13 +1604,14 @@ class orderScreen extends Component {
                       html={SyncStorage.get('currency')}
                       baseFontStyle={{
                         fontSize: themeStyle.mediumSize,
-                        color: themeStyle.textColor
+                        color: themeStyle.textColor,
+                        fontWeight: 'bold',
                       }}
                     />
                     <Text
                       style={{
                         fontSize: themeStyle.mediumSize,
-                        fontWeight: '400',
+                        fontWeight: 'bold',
                         color: themeStyle.textColor
                       }}>
                       {Number(this.state.totalAmountWithDisocunt).toFixed(2)}
@@ -1625,16 +1623,11 @@ class orderScreen extends Component {
               <View
                 style={{
                   height: 110,
-                  backgroundColor: themeStyle.backgroundColor,
+                  backgroundColor: '#f5fafe',
                   justifyContent: 'space-between',
-                  shadowOffset: { width: 1, height: 1 },
-                  shadowColor: themeStyle.textColor,
-                  shadowOpacity: 0.5,
-                  elevation: 5,
                   flex: 1,
-                  margin: 10,
-                  marginTop: 5,
-                  marginBottom: 5
+                  borderBottomWidth: 3,
+                  borderBottomColor: '#e4ecf2',
                 }}>
                 <TouchableOpacity
                   style={{ paddingTop: 5 }}
@@ -1941,25 +1934,24 @@ class orderScreen extends Component {
                   shadowColor: themeStyle.textColor,
                   shadowOpacity: 0.5,
                   flex: 1,
-                  margin: 10,
-                  marginTop: 10,
-                  marginBottom: 5,
-                  elevation: 5
+                  // marginBottom: 5,
                 }}>
                 <View
                   style={{
                     justifyContent: 'space-between',
-
+                    backgroundColor: '#f5fafe',
+                    borderBottomWidth: 3,
+                    borderBottomColor: '#e4ecf2',
                     flex: 1
                   }}>
                   <Text
                     style={{
                       justifyContent: 'space-between',
-                      padding: 10,
+                      paddingHorizontal: 15,
+                      paddingVertical: 15,
                       flex: 1,
-                      backgroundColor: '#d3d3d3',
                       fontSize: themeStyle.largeSize,
-                      fontWeight: '500',
+                      fontWeight: 'bold',
                       color: themeStyle.textContrast
                     }}>
                     {this.props.cartItems2.Config.languageJson['Order Notes']}
@@ -1967,16 +1959,25 @@ class orderScreen extends Component {
 
                   <TextInput
                     style={{
-                      height: 38,
+                      height: 60,
                       borderColor: '#c1c1c1',
                       borderWidth: 1,
-                      paddingLeft: 4,
+                      paddingLeft: 12,
+                      marginHorizontal:13,
+                      marginBottom: 25,
                       textAlign: I18nManager.isRTL ? 'right' : 'left',
-                      color: themeStyle.textColor
+                      color: themeStyle.textColor,
+                      borderRadius: 10,
+                      backgroundColor: '#ffffff',
+                      borderColor: '#ffffff',
+                      shadowOffset: { width: 1, height: 0 },
+                      shadowColor: 'themeStyle.textColor',
+                      shadowOpacity: 0.5,
+                      elevation: 5
                     }}
                     selectionColor={'#c1c1c1'}
                     placeholder={`${this.props.cartItems2.Config.languageJson['Note to the buyer']}`}
-                    placeholderTextColor={'#c1c1c1'}
+                    placeholderTextColor={'#000'}
                     onChangeText={customerNotes => {
                       this.setState({ customerNotes })
                     }}
@@ -2002,20 +2003,20 @@ class orderScreen extends Component {
                     shadowColor: themeStyle.textColor,
                     shadowOpacity: 0.5,
                     flex: 1,
-                    margin: 10,
-                    marginTop: 10,
-                    marginBottom: 10,
-                    elevation: 5
+                    // marginBottom: 15,
                   }}>
                   <View
                     style={{
                       justifyContent: 'space-between',
-                      flex: 1
+                      flex: 1,
+                      backgroundColor: '#f5fafe',
+                      paddingVertical:7,
+                      paddingHorizontal: 7,
                     }}>
                     <View
                       style={{
                         justifyContent: 'space-between',
-                        flex: 1
+                        flex: 1,
                       }}>
                       {this.singaleRow(
                         this.props.cartItems2.Config.languageJson.Payment,
