@@ -1208,9 +1208,17 @@ class orderScreen extends Component {
                     listKey={'products'}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={item => (
+                      <View style={{
+                        backgroundColor: '#f5fafe',
+                      }}>
                       <View
                         style={{
-                          backgroundColor: themeStyle.backgroundColor
+                          backgroundColor: '#FFF',
+                          // backgroundColor: 'green',
+                          margin: 20,
+                          borderRadius: 20,
+                          padding: 6,
+                          elevation: 8,
                         }}>
                         <View
                           style={{
@@ -1221,7 +1229,7 @@ class orderScreen extends Component {
                           {/* <Text style={{ color: themeStyle.textColor }}>
                             {item.item.products_name} ---Product name
                           </Text> */}
-                          {/* Product name */}
+          
                         </View>
 
                         <View
@@ -1397,6 +1405,7 @@ class orderScreen extends Component {
                             alignItems: 'flex-end'
                           }}
                         />
+                      </View>
                       </View>
                     )}
                   />
