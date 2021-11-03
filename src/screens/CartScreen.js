@@ -26,6 +26,8 @@ import ImageLoad from '../common/RnImagePlaceH';
 import ShoppingCartIcon from '../common/ShoppingCartIcon';
 import themeStyle from '../common/Theme.style';
 import {createSelector} from 'reselect';
+import Iconone from 'react-native-vector-icons/FontAwesome5';
+
 const WIDTH = Dimensions.get('window').width;
 class Cart extends Component {
   static navigationOptions = ({navigation}) => {
@@ -339,6 +341,7 @@ class Cart extends Component {
           alignItems: 'center',
           alignSelf: 'center',
           backgroundColor: themeStyle.backgroundColor,
+          // backgroundColor: '#F5FAFE',
         }}>
         <UIActivityIndicator
           size={27}
@@ -443,7 +446,7 @@ class Cart extends Component {
         />
       </View>
     ) : (
-      <View style={{flex: 1, backgroundColor: themeStyle.backgroundColor}}>
+      <View style={{flex: 1, backgroundColor: '#F5FAFE'}}>
         {SyncStorage.get('bottom') ? (
           <BottomNav
             active={3}
@@ -477,13 +480,13 @@ class Cart extends Component {
             this.totalPrice();
           }}
         />
-        <Spinner
+        {/* <Spinner
           visible={this.state.SpinnerTemp}
           textStyle={{
             color: themeStyle.loadingIndicatorColor,
             backgroundColor: themeStyle.loadingIndicatorColor,
           }}
-        />
+        /> */}
 
         <FlatList
           showsVerticalScrollIndicator={false}
@@ -505,29 +508,38 @@ class Cart extends Component {
                 ? this.checkFun()
                 : null}
 
+              {/* Main View */}
+
               <View
                 style={{
-                  backgroundColor: themeStyle.backgroundColor,
-                  justifyContent: 'space-between',
-                  shadowOffset: {width: 1, height: 1},
-                  shadowColor: themeStyle.textColor,
-                  shadowOpacity: 0.5,
+                  // backgroundColor: themeStyle.backgroundColor,
+                  // backgroundColor: 'green',
+
+                  // justifyContent: 'space-between',
+                  // flexDirection: 'row',
+                  // shadowOffset: {width: 1, height: 1},
+                  // shadowColor: themeStyle.textColor,
+                  // shadowOpacity: 0.5,
                   flex: 1,
-                  margin: 10,
-                  marginTop: 5,
-                  marginBottom: 2,
-                  elevation: 5,
+                  // margin: 10,
+                  // marginTop: 10,
+                  // marginBottom: 2,
+                  padding: 12,
+                  // elevation: 5,
                   borderWidth: 1,
                   borderColor:
                     this.props.productDeleteId === item.item.products_id
                       ? 'red'
                       : 'white',
                 }}>
-                <View
+                {/* <View
                   style={{
                     padding: 3,
                     color: themeStyle.textColor,
                     paddingLeft: 6,
+                    backgroundColor: 'yellow',
+                    flexDirection: 'row',
+                    display: 'flex',
                   }}>
                   <Text
                     style={{
@@ -537,57 +549,149 @@ class Cart extends Component {
                     }}>
                     {item.item.products_name}
                   </Text>
-                </View>
+                </View> */}
 
                 <View
                   style={{
                     height: 1,
-                    backgroundColor: '#d9d9d9',
+                    backgroundColor: '#F5FAFE',
                   }}
                 />
 
                 <View
                   style={{
-                    padding: 4,
+                    // padding: 7,
                     flexDirection: 'row',
+                    backgroundColor: 'white',
+                    borderRadius: 20,
+                    padding: 6,
+                    elevation: 8,
                   }}>
-                  <ImageLoad
-                    key={item.item.id}
-                    style={{height: 100, width: 100}}
-                    loadingStyle={{
-                      size: 'large',
-                      color: themeStyle.loadingIndicatorColor,
-                    }}
-                    placeholder={false}
-                    ActivityIndicator={true}
-                    placeholderStyle={{width: 0, height: 0}}
-                    source={{
-                      uri: themeStyle.url + '/' + item.item.image,
-                    }}
-                  />
+                  <View style={{justifyContent: 'center'}}>
+                    <ImageLoad
+                      key={item.item.id}
+                      style={{
+                        height: 80,
+                        width: 100,
+                        borderRadius: 10,
+                        marginTop: 8,
+                        marginHorizontal: 5,
+                      }}
+                      loadingStyle={{
+                        size: 'large',
+                        color: themeStyle.loadingIndicatorColor,
+                      }}
+                      placeholder={false}
+                      ActivityIndicator={true}
+                      placeholderStyle={{width: 0, height: 0}}
+                      source={{
+                        uri: themeStyle.url + '/' + item.item.image,
+                      }}
+                    />
+                  </View>
                   <View
                     style={{
                       padding: 3,
                       paddingLeft: 8,
                       flexDirection: 'column',
                       flex: 1,
+                      // backgroundColor: 'red',
                     }}>
+                    {/* Top Box */}
+
+                    <View
+                      style={{
+                        justifyContent: 'flex-end',
+                        padding: 3,
+                        paddingLeft: 8,
+                        flexDirection: 'row',
+                        // backgroundColor: 'orange',
+                        flex: 1,
+                      }}>
+                      <TouchableOpacity
+                        style={{
+                          opacity: !this.state.addToHomePageValue ? null : 0.6,
+                          backgroundColor: 'pink',
+                          // marginTop: 8,
+                        }}
+                        onPress={() => {
+                          this.removeCart(item.item.cart_id);
+                          for (
+                            let i = 0;
+                            i <
+                            this.props.cartProductArrayViewedProducts.length;
+                            i++
+                          ) {
+                            this.state.stepperArray[i].setValue(
+                              this.props.cartProductArrayViewedProducts[i]
+                                .customers_basket_quantity,
+                            );
+                          }
+                        }}>
+                        <View
+                          style={{
+                            borderColor: '#fff',
+                            alignItems: 'center',
+                            height: 36,
+                            width: '100%',
+                            justifyContent: 'center',
+                            backgroundColor: 'white',
+                            marginTop: -10,
+                          }}>
+                          <Text
+                            style={{
+                              // color: themeStyle.outOfStockBtnColor,
+                              fontSize: themeStyle.mediumSize + 1,
+                              fontWeight: '500',
+                              color: 'white',
+                            }}>
+                            {this.props.language.REMOVE}
+                          </Text>
+                          <Iconone
+                            name="times"
+                            size={20}
+                            style={{position: 'absolute', right: 20}}
+                            color="red"
+                          />
+                        </View>
+                      </TouchableOpacity>
+                    </View>
+
                     <View
                       style={{
                         justifyContent: 'space-between',
                         padding: 3,
                         paddingLeft: 8,
                         flexDirection: 'row',
+                        // backgroundColor: 'pink',
                       }}>
-                      <Text
+                      <View>
+                        {/* <Text
+                          style={{
+                            fontSize: themeStyle.mediumSize,
+                            fontWeight: 'normal',
+                            color: themeStyle.textColor,
+                          }}>
+                          {this.props.language.Price} :{'        '}
+                        </Text> */}
+                        <Text
+                          style={{
+                            textAlign: 'left',
+                            // fontSize: themeStyle.smallSize,
+                            fontSize: 16,
+                            color: themeStyle.textColor,
+                            fontWeight: 'bold',
+                          }}>
+                          {item.item.products_name}
+                        </Text>
+                      </View>
+                      {/* <View
                         style={{
-                          fontSize: themeStyle.mediumSize,
-                          fontWeight: 'normal',
-                          color: themeStyle.textColor,
+                          flexDirection: 'row',
+                          padding: 5,
+                          backgroundColor: 'orange',
+                          // marginTop: -10,
                         }}>
-                        {this.props.language.Price} :{'        '}
-                      </Text>
-                      <View style={{flexDirection: 'row', paddingRight: 5}}>
                         <HTML
                           html={SyncStorage.get('currency')}
                           baseFontStyle={{
@@ -602,7 +706,7 @@ class Cart extends Component {
                           }}>
                           {Number(item.item.price).toFixed(2)}
                         </Text>
-                      </View>
+                      </View> */}
                     </View>
 
                     <View
@@ -613,57 +717,113 @@ class Cart extends Component {
                         flexDirection: 'row',
                         flex: 1,
                         paddingTop: 8,
+                        // backgroundColor: 'yellow',
                       }}>
-                      <Text
-                        style={{
-                          fontSize: themeStyle.mediumSize,
-                          fontWeight: 'normal',
-                          color: themeStyle.textColor,
-                          paddingTop: 1,
-                        }}>
-                        {this.props.language.Quantity} :{' '}
-                      </Text>
-                      <Counter
-                        width={24}
-                        height={1}
-                        minimumValue={1}
-                        innerRef={(stepper) => {
-                          this.state.stepperArray[item.index] = stepper;
-                        }}
-                        initialValue={item.item.customers_basket_quantity}
-                        onIncrement={() => {
-                          this.qunatityPlus(item.item);
-                        }}
-                        onDecrement={() => {
-                          this.qunatityMinus(item.item);
-                        }}
-                      />
+                      <View>
+                        {/* <Text
+                          style={{
+                            fontSize: themeStyle.mediumSize,
+                            fontWeight: 'normal',
+                            color: themeStyle.textColor,
+                            paddingTop: 1,
+                          }}>
+                          {this.props.language.Quantity} :{' '}
+                        </Text> */}
+                        <View
+                          style={{
+                            flexDirection: 'row',
+                            paddingRight: 5,
+                            // backgroundColor: 'orange',
+                          }}>
+                          <HTML
+                            html={SyncStorage.get('currency')}
+                            baseFontStyle={{
+                              fontSize: themeStyle.mediumSize - 1,
+                              color: themeStyle.textColor,
+                            }}
+                          />
+                          <Text
+                            style={{
+                              color: themeStyle.textColor,
+                              fontSize: themeStyle.mediumSize - 1,
+                            }}>
+                            {Number(item.item.price).toFixed(2)}
+                          </Text>
+                        </View>
+                      </View>
+
+                      <View>
+                        {/* <Counter
+                          // style={{backgroundColor: 'orange'}}
+                          width={32}
+                          height={1}
+                          minimumValue={1}
+                          innerRef={(stepper) => {
+                            this.state.stepperArray[item.index] = stepper;
+                          }}
+                          initialValue={item.item.customers_basket_quantity}
+                          onIncrement={() => {
+                            this.qunatityPlus(item.item);
+                          }}
+                          onDecrement={() => {
+                            this.qunatityMinus(item.item);
+                          }}
+                        /> */}
+                      </View>
                     </View>
 
                     <View
                       style={{
                         justifyContent: 'space-between',
-                        padding: 3,
+                        padding: 4,
                         paddingLeft: 8,
                         flexDirection: 'row',
                         flex: 1,
-                        paddingTop: 0,
+                        // paddingTop: 0,
+                        // backgroundColor: 'pink',
+                        // width: '100%',
                       }}>
-                      <Text
+                      <View
                         style={{
-                          fontSize: themeStyle.mediumSize + 1,
-                          fontWeight: 'bold',
-                          color: themeStyle.textColor,
+                          // backgroundColor: 'purple',
+                          justifyContent: 'center',
                         }}>
-                        {this.props.language['Sub Total']} :{' '}
-                      </Text>
+                        {/* <Text
+                          style={{
+                            fontSize: themeStyle.mediumSize + 1,
+                            fontWeight: 'bold',
+                            color: themeStyle.textColor,
+                          }}>
+                          {this.props.language['Sub Total']} :{' '}
+                        </Text> */}
+
+                        <Counter
+                          // style={{backgroundColor: 'orange'}}
+                          width={32}
+                          height={1}
+                          minimumValue={1}
+                          innerRef={(stepper) => {
+                            this.state.stepperArray[item.index] = stepper;
+                          }}
+                          initialValue={item.item.customers_basket_quantity}
+                          onIncrement={() => {
+                            this.qunatityPlus(item.item);
+                          }}
+                          onDecrement={() => {
+                            this.qunatityMinus(item.item);
+                          }}
+                        />
+                      </View>
                       <View
                         style={{
                           justifyContent: 'flex-end',
                           flexDirection: 'row',
-                          flex: 1,
+                          // flex: 1,
+                          // backgroundColor: 'grey',
+                          padding: 1,
+                          // marginTop: 10,
                         }}>
-                        <HTML
+                        {/* <HTML
                           html={SyncStorage.get('currency')}
                           baseFontStyle={{
                             fontSize: themeStyle.mediumSize + 1,
@@ -676,16 +836,26 @@ class Cart extends Component {
                             color: themeStyle.textColor,
                           }}>
                           {`${item.item.total.toFixed(2)}`}
-                        </Text>
+                        </Text> */}
+
+                        <Button
+                          sty
+                          onPress={() => {
+                            this.gotoNextPage(item.item);
+                          }}
+                          title={' ' + this.props.language.View + ' '}
+                          color={themeStyle.otherBtnsColor}
+                        />
                       </View>
                     </View>
                   </View>
                 </View>
                 <View
                   style={{
-                    width: '100%',
-                    height: 1,
-                    backgroundColor: '#d9d9d9',
+                    // width: '100%',
+                    // height: 1,
+                    // backgroundColor: '#d9d9d9',
+                    backgroundColor: '#F5FAFE',
                   }}
                 />
 
@@ -733,32 +903,44 @@ class Cart extends Component {
                     </View>
                   ) : null
                 ) : null}
+                {/* Last Box */}
 
-                <View
+                {/* <View
                   style={{
                     padding: 3,
                     paddingLeft: 8,
                     flexDirection: 'row',
-                    justifyContent: 'flex-start',
+                    justifyContent: 'space-evenly',
                     flex: 1,
-                    alignItems: 'flex-start',
+                    // alignItems: 'flex-start',
                     paddingTop: 5,
+                    backgroundColor: 'orange',
                   }}>
-                  <Button
-                    onPress={() => {
-                      this.gotoNextPage(item.item);
-                    }}
-                    title={' ' + this.props.language.View + ' '}
-                    color={themeStyle.otherBtnsColor}
-                  />
+                  <View style={{backgroundColor: 'red', padding: 10}}>
+                    <Button
+                      onPress={() => {
+                        this.gotoNextPage(item.item);
+                      }}
+                      title={' ' + this.props.language.View + ' '}
+                      color={themeStyle.otherBtnsColor}
+                    />
+                  </View>
+
                   <View
                     style={{
                       marginLeft: 18,
                       marginTop: Platform.OS === 'ios' ? 2 : 0,
+                      backgroundColor: 'blue',
+                      // display: 'flex',
+                      // justifyContent: 'flex-end',
+                      // marginLeft: 120,
+                      // flexDirection: 'flex-end',
                     }}>
                     <TouchableOpacity
                       style={{
                         opacity: !this.state.addToHomePageValue ? null : 0.6,
+                        backgroundColor: 'pink',
+                        marginTop: 8,
                       }}
                       onPress={() => {
                         this.removeCart(item.item.cart_id);
@@ -779,38 +961,45 @@ class Cart extends Component {
                           alignItems: 'center',
                           height: 36,
                           justifyContent: 'center',
-                          backgroundColor: 'transparent',
+                          backgroundColor: 'white',
                         }}>
                         <Text
                           style={{
-                            color: themeStyle.outOfStockBtnColor,
+                            // color: themeStyle.outOfStockBtnColor,
                             fontSize: themeStyle.mediumSize + 1,
                             fontWeight: '500',
+                            color: 'white',
                           }}>
                           {this.props.language.REMOVE}
                         </Text>
                       </View>
                     </TouchableOpacity>
                   </View>
-                </View>
+                </View> */}
               </View>
             </View>
           )}
           ListFooterComponent={
             <View
               style={{
-                backgroundColor: themeStyle.backgroundColor,
+                // backgroundColor: themeStyle.backgroundColor,
+                backgroundColor: '#F5FAFE',
                 justifyContent: 'space-between',
-                shadowOffset: {width: 1, height: 1},
-                shadowColor: themeStyle.textColor,
-                shadowOpacity: 0.5,
+                // shadowOffset: {width: 1, height: 1},
+                // shadowColor: themeStyle.textColor,
+                // shadowOpacity: 0.5,
                 flex: 1,
-                margin: 10,
+                // margin: 10,
                 marginTop: 5,
-                elevation: 4,
+                // elevation: 4,
                 marginBottom: 13,
                 borderWidth: 1,
                 borderColor: themeStyle.primaryContrast,
+                width: '100%',
+                borderBottomColor: '#d9d9d9',
+                borderBottomWidth: 0.5,
+                borderTopColor: '#d9d9d9',
+                borderTopWidth: 0.5,
               }}>
               <View
                 style={{
@@ -848,6 +1037,7 @@ class Cart extends Component {
           style={{
             marginBottom: SyncStorage.get('bottom') ? 50 : 20,
             alignItems: 'center',
+            // backgroundColor: 'white',
             // marginBottom: 50,
           }}
           onPress={() => this.proceedToCheckOut()}>
@@ -857,14 +1047,23 @@ class Cart extends Component {
               alignItems: 'center',
               justifyContent: 'center',
               backgroundColor: themeStyle.otherBtnsColor,
-              elevation: 2,
-              width: WIDTH / 2,
+              // backgroundColor: 'green',
+
+              // width: WIDTH / 2,
+              width: '80%',
+              height: 60,
+              borderRadius: 12,
             }}>
             <Text
               style={{
                 color: themeStyle.otherBtnsText,
-                fontSize: themeStyle.mediumSize,
+                // fontSize: themeStyle.mediumSize,
+                fontSize: 18,
                 padding: 10,
+                fontWeight: 'bold',
+                alignItems: 'center',
+                justifyContent: 'center',
+                // backgroundColor:themeStyle.otherBtnsColor
               }}>
               {this.props.language.Proceed}
             </Text>

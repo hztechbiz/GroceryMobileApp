@@ -777,15 +777,13 @@ class ShippingAddress extends Component {
               style={{position: 'absolute', right: 20}}
               color="red"
             />
-          ) : name === 'Country' ? (
+          ) : (
             <Iconone
               name="map"
               size={20}
               style={{position: 'absolute', right: 20}}
               color="red"
             />
-          ) : (
-            <> </>
           )}
         </View>
       </TouchableOpacity>
