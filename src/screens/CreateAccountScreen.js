@@ -181,6 +181,16 @@ class CreateAccount extends PureComponent {
             }}
           />
 
+          <Image
+            source={require('./../images/logo.png')}
+            style={{
+              height: 130,
+              width: 270,
+              resizeMode: 'stretch',
+              marginTop: 20,
+              marginBottom: 15,
+            }}
+          />
           <View
             style={{
               flex: 1,
@@ -751,6 +761,7 @@ class CreateAccount extends PureComponent {
                 justifyContent: 'center',
                 display: 'flex',
                 marginTop: 15,
+                marginBottom: 30,
               }}>
               <Text
                 style={{
@@ -763,19 +774,20 @@ class CreateAccount extends PureComponent {
                 }}>
                 Already have an account?{'  '}
               </Text>
-
-              <Text
-                style={{
-                  fontFamily: 'Lato-Regular',
-                  fontSize: 15,
-                  color: 'black',
-                  textDecorationLine: 'underline',
-                  fontWeight: 'bold',
-                  // marginLeft: 8,
-                  // marginTop: 10,
-                }}>
-                Sign in
-              </Text>
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate('LoginScreen')}>
+                <Text
+                  style={{
+                    fontFamily: 'Lato-Regular',
+                    fontSize: 15,
+                    color: 'black',
+                    textDecorationLine: 'underline',
+                    fontWeight: 'bold',
+                    marginTop: 10,
+                  }}>
+                  Sign in
+                </Text>
+              </TouchableOpacity>
             </Text>
           </View>
         </View>
