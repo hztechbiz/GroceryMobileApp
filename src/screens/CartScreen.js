@@ -565,7 +565,7 @@ class Cart extends Component {
                     backgroundColor: 'white',
                     borderRadius: 20,
                     padding: 6,
-                    elevation: 8,
+                    elevation: 16,
                   }}>
                   <View style={{justifyContent: 'center'}}>
                     <ImageLoad
@@ -599,13 +599,13 @@ class Cart extends Component {
                     }}>
                     {/* Top Box */}
 
-                    <View
+                    {/* <View
                       style={{
                         justifyContent: 'flex-end',
                         padding: 3,
                         paddingLeft: 8,
                         flexDirection: 'row',
-                        // backgroundColor: 'orange',
+                        backgroundColor: 'orange',
                         flex: 1,
                       }}>
                       <TouchableOpacity
@@ -655,12 +655,12 @@ class Cart extends Component {
                           />
                         </View>
                       </TouchableOpacity>
-                    </View>
+                    </View> */}
 
                     <View
                       style={{
                         justifyContent: 'space-between',
-                        padding: 3,
+                        // padding: 3,
                         paddingLeft: 8,
                         flexDirection: 'row',
                         // backgroundColor: 'pink',
@@ -680,19 +680,69 @@ class Cart extends Component {
                             // fontSize: themeStyle.smallSize,
                             fontSize: 16,
                             color: themeStyle.textColor,
+                            marginTop: 12,
                             fontWeight: 'bold',
                           }}>
                           {item.item.products_name}
                         </Text>
                       </View>
-                      {/* <View
+                      <View
                         style={{
                           flexDirection: 'row',
                           padding: 5,
-                          backgroundColor: 'orange',
+                          // backgroundColor: 'orange',
                           // marginTop: -10,
                         }}>
-                        <HTML
+                        <TouchableOpacity
+                          style={{
+                            opacity: !this.state.addToHomePageValue
+                              ? null
+                              : 0.6,
+                            backgroundColor: 'pink',
+                            // marginTop: 8,
+                          }}
+                          onPress={() => {
+                            this.removeCart(item.item.cart_id);
+                            for (
+                              let i = 0;
+                              i <
+                              this.props.cartProductArrayViewedProducts.length;
+                              i++
+                            ) {
+                              this.state.stepperArray[i].setValue(
+                                this.props.cartProductArrayViewedProducts[i]
+                                  .customers_basket_quantity,
+                              );
+                            }
+                          }}>
+                          <View
+                            style={{
+                              borderColor: '#fff',
+                              alignItems: 'center',
+                              height: 36,
+                              width: '100%',
+                              justifyContent: 'center',
+                              backgroundColor: 'white',
+                              marginTop: -10,
+                            }}>
+                            <Text
+                              style={{
+                                // color: themeStyle.outOfStockBtnColor,
+                                fontSize: themeStyle.mediumSize + 1,
+                                fontWeight: '500',
+                                color: 'white',
+                              }}>
+                              {this.props.language.REMOVE}
+                            </Text>
+                            <Iconone
+                              name="times"
+                              size={15}
+                              style={{position: 'absolute', right: 20}}
+                              color="red"
+                            />
+                          </View>
+                        </TouchableOpacity>
+                        {/* <HTML
                           html={SyncStorage.get('currency')}
                           baseFontStyle={{
                             fontSize: themeStyle.mediumSize - 1,
@@ -705,8 +755,8 @@ class Cart extends Component {
                             fontSize: themeStyle.mediumSize - 1,
                           }}>
                           {Number(item.item.price).toFixed(2)}
-                        </Text>
-                      </View> */}
+                        </Text> */}
+                      </View>
                     </View>
 
                     <View
@@ -1007,6 +1057,7 @@ class Cart extends Component {
                   padding: 15,
                   flexDirection: 'row',
                   flex: 1,
+                  alignItems: 'center',
                 }}>
                 <Text
                   style={{color: '#707070', fontSize: themeStyle.mediumSize}}>
@@ -1016,7 +1067,9 @@ class Cart extends Component {
                   <HTML
                     html={SyncStorage.get('currency')}
                     baseFontStyle={{
-                      fontSize: themeStyle.mediumSize + 1,
+                      // fontSize: themeStyle.mediumSize + 1,
+                      fontWeight: 'bold',
+                      fontSize: 25,
                       color: '#707070',
                     }}
                   />
@@ -1024,7 +1077,9 @@ class Cart extends Component {
                     style={{
                       color: '#707070',
                       paddingTop: 1,
-                      fontSize: themeStyle.mediumSize,
+                      // fontSize: themeStyle.mediumSize,
+                      fontSize: 25,
+                      fontWeight: 'bold',
                     }}>
                     {Number(this.state.total).toFixed(2)}
                   </Text>
