@@ -814,6 +814,7 @@ class orderScreen extends Component {
                 style={{
                   textAlign: 'center',
                   fontSize: themeStyle.mediumSize,
+                  // color: themeStyle.textColor,
                   color: themeStyle.textColor,
                   fontWeight: '600'
                 }}>
@@ -1402,14 +1403,15 @@ class orderScreen extends Component {
                   justifyContent: 'space-between',
                   padding: 10,
                   flex: 1,
-                  backgroundColor: '#d3d3d3',
+                  // backgroundColor: '#d3d3d3',
+                  backgroundColor: 'blue',
                   fontSize: themeStyle.largeSize,
                   fontWeight: '500',
                   color: themeStyle.textContrast,
                   margin: 10,
                   marginBottom: -3,
                   shadowOffset: { width: 1, height: 0 },
-                  shadowColor: themeStyle.textColor,
+                  shadowColor: 'themeStyle.textColor',
                   shadowOpacity: 0.5,
                   elevation: 5
                 }}>

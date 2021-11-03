@@ -8,6 +8,7 @@ import {
   I18nManager,
   Platform,
   Alert,
+  Image,
   ScrollView,
 } from 'react-native';
 import WooComFetch, {getUrl, postHttp, getHttp} from '../common/WooComFetch';
@@ -250,7 +251,7 @@ class Login extends PureComponent {
               color: themeStyle.loadingIndicatorColor,
             }}
           />
-          <View style={{opacity: 0.2}}>
+          {/* <View style={{opacity: 0.1}}>
             <ImageLoad
               key={1}
               style={{marginTop: 30, width: 150, height: 150}}
@@ -263,7 +264,12 @@ class Login extends PureComponent {
               placeholderStyle={{width: 0, height: 0}}
               source={require('../images/icons_stripe.png')}
             />
-          </View>
+          </View> */}
+
+          <Image
+            source={require('./../images/logo.png')}
+            style={{height: 130, width: 270, resizeMode: 'stretch', marginVertical: 30}}
+          />
 
           <View
             style={{
