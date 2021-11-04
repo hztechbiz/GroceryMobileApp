@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react';
 import {
   StyleSheet, // CSS-like styles
   View,
@@ -7,28 +7,28 @@ import {
   FlatList,
   Platform,
   Linking,
-  TouchableOpacity
-} from 'react-native'
-import { UIActivityIndicator } from 'react-native-indicators'
-import SyncStorage from 'sync-storage'
-import { CardStyleInterpolators } from 'react-navigation-stack'
-import BottomNav from '../common/BottomNav'
-import { NavigationEvents, withNavigation } from 'react-navigation'
-import Spinner from 'react-native-loading-spinner-overlay'
-import FlatListView from '../common/FlatListView'
-import { getUrl, postHttp } from '../common/WooComFetch'
+  TouchableOpacity,
+} from 'react-native';
+import {UIActivityIndicator} from 'react-native-indicators';
+import SyncStorage from 'sync-storage';
+import {CardStyleInterpolators} from 'react-navigation-stack';
+import BottomNav from '../common/BottomNav';
+import {NavigationEvents, withNavigation} from 'react-navigation';
+import Spinner from 'react-native-loading-spinner-overlay';
+import FlatListView from '../common/FlatListView';
+import {getUrl, postHttp} from '../common/WooComFetch';
 
-import { Icon } from 'native-base'
-import ShoppingCartIcon from '../common/ShoppingCartIcon'
-import MenuIcon from '../common/MenuIcon'
-import Banner from '../common/Banner'
-import { connect } from 'react-redux'
-import themeStyle from '../common/Theme.style'
+import {Icon} from 'native-base';
+import ShoppingCartIcon from '../common/ShoppingCartIcon';
+import MenuIcon from '../common/MenuIcon';
+import Banner from '../common/Banner';
+import {connect} from 'react-redux';
+import themeStyle from '../common/Theme.style';
 
-const { width } = Dimensions.get('window')
-const pageNumbers = [1]
+const {width} = Dimensions.get('window');
+const pageNumbers = [1];
 class Home1 extends Component {
-  static navigationOptions = ({ navigation }) => ({
+  static navigationOptions = ({navigation}) => ({
     headerLeft: () => <MenuIcon navigation={navigation} />,
     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
     headerTitle: themeStyle.homeTitle,
@@ -36,90 +36,93 @@ class Home1 extends Component {
     headerTitleAlign: 'center',
     headerTintColor: themeStyle.headerTintColor,
     headerStyle: {
-      backgroundColor: themeStyle.primary
+      backgroundColor: themeStyle.primary,
     },
     headerTitleStyle: {
-      fontWeight: Platform.OS === 'android' ? 'bold' : 'normal'
+      fontWeight: Platform.OS === 'android' ? 'bold' : 'normal',
     },
-    headerForceInset: { top: 'never', vertical: 'never' },
-    gestureEnabled: true
-  })
+    headerForceInset: {top: 'never', vertical: 'never'},
+    gestureEnabled: true,
+  });
 
-  getOneProduct = async value => {
-    const formData = new FormData()
-    formData.append('language_id', '1')
-    formData.append('products_id', value)
-    formData.append('currency_code', '1')
+  getOneProduct = async (value) => {
+    const formData = new FormData();
+    formData.append('language_id', '1');
+    formData.append('products_id', value);
+    formData.append('currency_code', '1');
     formData.append(
       'currency_code',
-      this.props.isLoading.Config.productsArguments.currency
-    )
-    const json = await postHttp(getUrl() + '/api/' + 'getallproducts', formData)
-    this.setState({ SpinnerTemp: false }, () => {
-      this.navigate(json.product_data[0])
-    })
-  }
+      this.props.isLoading.Config.productsArguments.currency,
+    );
+    const json = await postHttp(
+      getUrl() + '/api/' + 'getallproducts',
+      formData,
+    );
+    this.setState({SpinnerTemp: false}, () => {
+      this.navigate(json.product_data[0]);
+    });
+  };
 
-  handleOpenURL = event => {
+  handleOpenURL = (event) => {
     // D
     if (event.url !== '' && event.url !== undefined && event.url !== null) {
-      const route = event.url.replace(/.*?:\/\//g, '')
-      const id = route.match(/\/([^/]+)\/?$/)[1]
+      const route = event.url.replace(/.*?:\/\//g, '');
+      const id = route.match(/\/([^/]+)\/?$/)[1];
       if (id !== '' && id !== undefined && id !== null) {
-        this.setState({ SpinnerTemp: true }, () => {
-          this.getOneProduct(id)
-        })
+        this.setState({SpinnerTemp: true}, () => {
+          this.getOneProduct(id);
+        });
       }
     }
-  }
+  };
 
-  navigate = json => {
+  navigate = (json) => {
     if (json !== '' && json !== undefined && json !== null) {
-      Linking.removeEventListener('url', this.handleOpenURL)
-      this.props.navigation.navigate('ProductDetails', { objectArray: json })
+      Linking.removeEventListener('url', this.handleOpenURL);
+      this.props.navigation.navigate('ProductDetails', {objectArray: json});
     }
-  }
+  };
 
-  componentDidMount () {
+  componentDidMount() {
     setTimeout(() => {
-      this.setState({ activityIndicatorTemp: false })
-    }, 1000)
+      this.setState({activityIndicatorTemp: false});
+    }, 1000);
     this.props.navigation.setParams({
-      headerTitle: this.props.isLoading.Config.languageJson.Home
-    })
+      headerTitle: this.props.isLoading.Config.languageJson.Home,
+    });
     if (!this.props.isLoading.sharedData.deepTemp) {
-      this.props.isLoading.sharedData.deepTemp = true
+      this.props.isLoading.sharedData.deepTemp = true;
       if (Platform.OS === 'android') {
-        const NativeLinking = require('react-native/Libraries/Linking/NativeLinking')
-          .default
-        NativeLinking.getInitialURL().then(url => {
+        const NativeLinking =
+          require('react-native/Libraries/Linking/NativeLinking').default;
+        NativeLinking.getInitialURL().then((url) => {
           if (url !== '' && url !== undefined && url !== null) {
-            const route = url.replace(/.*?:\/\//g, '')
-            const id = route.match(/\/([^/]+)\/?$/)[1]
+            const route = url.replace(/.*?:\/\//g, '');
+            const id = route.match(/\/([^/]+)\/?$/)[1];
             if (id !== '' && id !== undefined && id !== null) {
-              this.setState({ SpinnerTemp: true }, () => {
-                this.getOneProduct(id)
-              })
+              this.setState({SpinnerTemp: true}, () => {
+                this.getOneProduct(id);
+              });
             }
           }
-        })
+        });
       } else {
-        Linking.addEventListener('url', this.handleOpenURL)
+        Linking.addEventListener('url', this.handleOpenURL);
       }
     }
   }
 
-  static getDerivedStateFromProps (props) {
+  static getDerivedStateFromProps(props) {
     return {
       length:
         props.isLoading.cartItems.recentViewedProducts.length !== undefined
           ? props.isLoading.cartItems.recentViewedProducts.length
-          : 0
-    }
+          : 0,
+    };
   }
 
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       scrollEnable: true,
       images: [],
@@ -131,23 +134,23 @@ class Home1 extends Component {
       length: this.props.isLoading.cartItems.recentViewedProducts.length,
       recent: false,
       activityIndicatorTemp: true,
-      SpinnerTemp: false
-    }
+      SpinnerTemp: false,
+    };
   }
 
-  componentWillUnmount () {
-    clearInterval(this.state.activityIndicatorTemp)
-    Linking.removeEventListener('url', this.handleOpenURL)
+  componentWillUnmount() {
+    clearInterval(this.state.activityIndicatorTemp);
+    Linking.removeEventListener('url', this.handleOpenURL);
   }
 
-  render () {
+  render() {
     return this.state.activityIndicatorTemp ? (
       <View
         style={{
           flex: 1,
           justifyContent: 'center',
           alignItems: 'center',
-          backgroundColor: themeStyle.backgroundColor
+          backgroundColor: themeStyle.backgroundColor,
         }}>
         <UIActivityIndicator
           size={27}
@@ -156,7 +159,7 @@ class Home1 extends Component {
       </View>
     ) : (
       <View
-        style={{ flex: 1, paddingBottom: SyncStorage.get('bottom') ? 50 : 0 }}>
+        style={{flex: 1, paddingBottom: SyncStorage.get('bottom') ? 50 : 0}}>
         {SyncStorage.get('bottom') ? <BottomNav active={0}></BottomNav> : null}
         {this.props.isLoading.Config.appInProduction ? (
           <TouchableOpacity
@@ -172,44 +175,40 @@ class Home1 extends Component {
               alignSelf: 'center',
               justifyContent: 'center',
               backgroundColor: themeStyle.primary,
-              elevation: 10
+              elevation: 10,
             }}
             onPress={() => {
-              this.props.navigation.navigate('DemoScreen')
+              this.props.navigation.navigate('DemoScreen');
             }}>
-
             <Icon
               name={'md-settings'}
               style={{
                 color: themeStyle.primaryContrast,
                 paddingTop: Platform.OS === 'ios' ? 2 : 0,
-                fontSize: 22
+                fontSize: 22,
               }}
             />
-
           </TouchableOpacity>
         ) : null}
         <FlatList
           data={pageNumbers}
           showsVerticalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
-
           windowSize={50}
           initialNumToRender={6}
           removeClippedSubviews={true}
           legacyImplementation={true}
           maxToRenderPerBatch={10}
           updateCellsBatchingPeriod={10}
-
           contentContainerStyle={{
             backgroundColor:
               this.props.isLoading.Config.card_style === 11 ||
               this.props.isLoading.Config.card_style === 12 ||
               this.props.isLoading.Config.card_style === 15
                 ? themeStyle.backgroundColor
-                : themeStyle.backgroundColor
+                : themeStyle.backgroundColor,
           }}
-          keyExtractor={pageNumber => pageNumber.toString()}
+          keyExtractor={(pageNumber) => pageNumber.toString()}
           extraData={this.state}
           renderItem={() => (
             <View
@@ -221,7 +220,7 @@ class Home1 extends Component {
                     this.props.isLoading.Config.card_style === 12 ||
                     this.props.isLoading.Config.card_style === 15
                       ? themeStyle.backgroundColor
-                      : themeStyle.backgroundColor
+                      : themeStyle.backgroundColor,
                 })
               }>
               <Spinner visible={this.state.SpinnerTemp} />
@@ -231,20 +230,18 @@ class Home1 extends Component {
                   this.props.navigation.setParams({
                     headerRight: () => (
                       <ShoppingCartIcon navigation={this.props.navigation} />
-                    )
-                  })
-                  this.setState({})
+                    ),
+                  });
+                  this.setState({});
                 }}
               />
               <View>
                 <Banner
                   navigation={this.props.navigation}
-                  bannerSelect={
-                    this.props.isLoading.Config.banner_style
-                  }
+                  bannerSelect={this.props.isLoading.Config.banner_style}
                 />
               </View>
-              <View style={{ flex: 1 }}>
+              <View style={{flex: 1}}>
                 <View
                   style={{
                     flexDirection: 'row',
@@ -254,7 +251,7 @@ class Home1 extends Component {
                       this.props.isLoading.Config.card_style === 15
                         ? themeStyle.backgroundColor
                         : themeStyle.backgroundColor,
-                    marginLeft: 10
+                    marginLeft: 10,
                   }}>
                   <Icon
                     name={'time'}
@@ -264,7 +261,7 @@ class Home1 extends Component {
                       paddingTop: 10,
                       padding: 10,
                       paddingLeft: 0,
-                      paddingBottom: 4
+                      paddingBottom: 4,
                     }}
                   />
                   <Text
@@ -276,67 +273,67 @@ class Home1 extends Component {
                       paddingTop: Platform.OS === 'android' ? 8 : 10,
                       paddingLeft: 0,
                       paddingRight: 5,
-                      paddingBottom: 2
+                      paddingBottom: 2,
                     }}>
                     {this.props.isLoading.Config.languageJson['Flash Sale']}{' '}
                   </Text>
                 </View>
                 {this.props.isLoading.sharedData.flashSaleProducts !==
                 undefined ? (
-                    <FlatListView
-                      vertical
-                      viewButton
-                      navigation={this.props.navigation}
-                      dataName={'Flash'}
-                      tabArray={
-                        this.props.isLoading.sharedData.flashSaleProducts !==
+                  <FlatListView
+                    vertical
+                    viewButton
+                    navigation={this.props.navigation}
+                    dataName={'Flash'}
+                    tabArray={
+                      this.props.isLoading.sharedData.flashSaleProducts !==
                         undefined &&
                       this.props.isLoading.sharedData.flashSaleProducts !== null
-                          ? this.props.isLoading.sharedData.flashSaleProducts
-                          : []
-                      }
-                    />
-                  ) : (
+                        ? this.props.isLoading.sharedData.flashSaleProducts
+                        : []
+                    }
+                  />
+                ) : (
+                  <View
+                    style={{
+                      flex: 1,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      alignSelf: 'center',
+                      alignContent: 'center',
+                    }}>
                     <View
                       style={{
                         flex: 1,
-                        justifyContent: 'center',
                         alignItems: 'center',
+                        justifyContent: 'center',
+                        marginTop: 40,
                         alignSelf: 'center',
-                        alignContent: 'center'
                       }}>
-                      <View
-                        style={{
-                          flex: 1,
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          marginTop: 40,
-                          alignSelf: 'center'
-                        }}>
-                        <Icon
-                          name={'logo-dropbox'}
-                          style={{ color: 'gray', fontSize: 80 }}
-                        />
+                      <Icon
+                        name={'logo-dropbox'}
+                        style={{color: 'gray', fontSize: 80}}
+                      />
 
-                        <Text
-                          style={{
-                            fontSize: themeStyle.largeSize + 2,
-                            color: themeStyle.textColor
-                          }}>
-                          {
-                            this.props.isLoading.Config.languageJson[
-                              'No Products Found'
-                            ]
-                          }
-                        </Text>
-                      </View>
+                      <Text
+                        style={{
+                          fontSize: themeStyle.largeSize + 2,
+                          color: themeStyle.textColor,
+                        }}>
+                        {
+                          this.props.isLoading.Config.languageJson[
+                            'No Products Found'
+                          ]
+                        }
+                      </Text>
                     </View>
-                  )}
+                  </View>
+                )}
                 <View
                   style={{
                     flexDirection: 'row',
                     justifyContent: 'flex-start',
-                    alignItems: 'center'
+                    alignItems: 'center',
                   }}>
                   <Icon
                     name={'albums'}
@@ -345,7 +342,7 @@ class Home1 extends Component {
                       fontSize: 14,
                       paddingTop: 10,
                       padding: 10,
-                      paddingBottom: 4
+                      paddingBottom: 4,
                     }}
                   />
                   <Text
@@ -356,7 +353,7 @@ class Home1 extends Component {
                       paddingTop: Platform.OS === 'android' ? 7 : 8,
                       paddingLeft: 0,
                       paddingRight: 0,
-                      paddingBottom: 2
+                      paddingBottom: 2,
                     }}>
                     {this.props.isLoading.Config.languageJson['Top Seller'] +
                       ' ' +
@@ -383,7 +380,7 @@ class Home1 extends Component {
                       justifyContent: 'center',
                       alignItems: 'center',
                       alignSelf: 'center',
-                      alignContent: 'center'
+                      alignContent: 'center',
                     }}>
                     <View
                       style={{
@@ -391,17 +388,17 @@ class Home1 extends Component {
                         alignItems: 'center',
                         justifyContent: 'center',
                         marginTop: 40,
-                        alignSelf: 'center'
+                        alignSelf: 'center',
                       }}>
                       <Icon
                         name={'logo-dropbox'}
-                        style={{ color: 'gray', fontSize: 80 }}
+                        style={{color: 'gray', fontSize: 80}}
                       />
 
                       <Text
                         style={{
                           fontSize: themeStyle.largeSize + 2,
-                          color: themeStyle.textColor
+                          color: themeStyle.textColor,
                         }}>
                         {
                           this.props.isLoading.Config.languageJson[
@@ -417,7 +414,7 @@ class Home1 extends Component {
                   style={{
                     flexDirection: 'row',
                     justifyContent: 'flex-start',
-                    alignItems: 'center'
+                    alignItems: 'center',
                   }}>
                   <Icon
                     name={'bookmark'}
@@ -426,7 +423,7 @@ class Home1 extends Component {
                       fontSize: 14,
                       paddingTop: 10,
                       padding: 10,
-                      paddingBottom: 4
+                      paddingBottom: 4,
                     }}
                   />
                   <Text
@@ -437,7 +434,7 @@ class Home1 extends Component {
                       paddingTop: Platform.OS === 'android' ? 7 : 8,
                       paddingLeft: 0,
                       paddingRight: 0,
-                      paddingBottom: 2
+                      paddingBottom: 2,
                     }}>
                     {this.props.isLoading.Config.languageJson.Deals +
                       ' ' +
@@ -465,7 +462,7 @@ class Home1 extends Component {
                       justifyContent: 'center',
                       alignItems: 'center',
                       alignSelf: 'center',
-                      alignContent: 'center'
+                      alignContent: 'center',
                     }}>
                     <View
                       style={{
@@ -473,17 +470,17 @@ class Home1 extends Component {
                         alignItems: 'center',
                         justifyContent: 'center',
                         marginTop: 40,
-                        alignSelf: 'center'
+                        alignSelf: 'center',
                       }}>
                       <Icon
                         name={'logo-dropbox'}
-                        style={{ color: 'gray', fontSize: 80 }}
+                        style={{color: 'gray', fontSize: 80}}
                       />
 
                       <Text
                         style={{
                           fontSize: themeStyle.largeSize + 2,
-                          color: themeStyle.textColor
+                          color: themeStyle.textColor,
                         }}>
                         {
                           this.props.isLoading.Config.languageJson[
@@ -499,7 +496,7 @@ class Home1 extends Component {
                   style={{
                     flexDirection: 'row',
                     justifyContent: 'flex-start',
-                    alignItems: 'center'
+                    alignItems: 'center',
                   }}>
                   <Icon
                     name={'star'}
@@ -509,7 +506,7 @@ class Home1 extends Component {
                       paddingTop: 10,
                       padding: 10,
                       paddingBottom: 4,
-                      paddingRight: 5
+                      paddingRight: 5,
                     }}
                   />
                   <Text
@@ -520,7 +517,7 @@ class Home1 extends Component {
                       paddingTop: Platform.OS === 'android' ? 8 : 8,
                       paddingLeft: 0,
                       paddingRight: 0,
-                      paddingBottom: 2
+                      paddingBottom: 2,
                     }}>
                     {this.props.isLoading.Config.languageJson['Most Liked'] +
                       ' ' +
@@ -546,7 +543,7 @@ class Home1 extends Component {
                       justifyContent: 'center',
                       alignItems: 'center',
                       alignSelf: 'center',
-                      alignContent: 'center'
+                      alignContent: 'center',
                     }}>
                     <View
                       style={{
@@ -554,17 +551,17 @@ class Home1 extends Component {
                         alignItems: 'center',
                         justifyContent: 'center',
                         marginTop: 40,
-                        alignSelf: 'center'
+                        alignSelf: 'center',
                       }}>
                       <Icon
                         name={'logo-dropbox'}
-                        style={{ color: 'gray', fontSize: 80 }}
+                        style={{color: 'gray', fontSize: 80}}
                       />
 
                       <Text
                         style={{
                           fontSize: themeStyle.largeSize + 2,
-                          color: themeStyle.textColor
+                          color: themeStyle.textColor,
                         }}>
                         {
                           this.props.isLoading.Config.languageJson[
@@ -583,7 +580,7 @@ class Home1 extends Component {
                     style={{
                       flexDirection: 'row',
                       justifyContent: 'flex-start',
-                      alignItems: 'center'
+                      alignItems: 'center',
                     }}>
                     <Icon
                       name={'list'}
@@ -592,7 +589,7 @@ class Home1 extends Component {
                         fontSize: 19,
                         paddingTop: 10,
                         padding: 10,
-                        paddingBottom: 4
+                        paddingBottom: 4,
                       }}
                     />
                     <Text
@@ -603,7 +600,7 @@ class Home1 extends Component {
                         paddingTop: Platform.OS === 'android' ? 8 : 8,
                         paddingLeft: 0,
                         paddingRight: 0,
-                        paddingBottom: 2
+                        paddingBottom: 2,
                       }}>
                       {
                         this.props.isLoading.Config.languageJson[
@@ -619,21 +616,21 @@ class Home1 extends Component {
           )}
         />
       </View>
-    )
+    );
   }
 }
-const mapStateToProps = state => ({
-  isLoading: state
-})
-export default connect(mapStateToProps, null)(withNavigation(Home1))
+const mapStateToProps = (state) => ({
+  isLoading: state,
+});
+export default connect(mapStateToProps, null)(withNavigation(Home1));
 
 const styles = StyleSheet.create({
   container1: {
     flex: 1,
-    width
+    width,
   },
   container: {
     justifyContent: 'center',
-    alignItems: 'center'
-  }
-})
+    alignItems: 'center',
+  },
+});

@@ -1,48 +1,48 @@
-import React, { PureComponent } from 'react'
+import React, {PureComponent} from 'react';
 import {
   View,
   StyleSheet,
   TouchableOpacity,
   Dimensions,
-  I18nManager
-} from 'react-native'
-import ImageLoad from './RnImagePlaceH'
-import theme from './Theme.style'
-import { connect } from 'react-redux'
-import { withNavigation } from 'react-navigation'
-import { postHttp, getUrl } from './WooComFetch'
-import SyncStorage from 'sync-storage'
-import { Text, Icon } from 'native-base'
-import Spinner from 'react-native-loading-spinner-overlay'
-import HTML from 'react-native-render-html'
-const WIDTH = Dimensions.get('window').width
+  I18nManager,
+} from 'react-native';
+import ImageLoad from './RnImagePlaceH';
+import theme from './Theme.style';
+import {connect} from 'react-redux';
+import {withNavigation} from 'react-navigation';
+import {postHttp, getUrl} from './WooComFetch';
+import SyncStorage from 'sync-storage';
+import {Text, Icon} from 'native-base';
+import Spinner from 'react-native-loading-spinner-overlay';
+import HTML from 'react-native-render-html';
+const WIDTH = Dimensions.get('window').width;
 class CardTemplate extends PureComponent {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       dataSource: [],
       isLoading: false,
       page: 11,
       refreshing: false,
-      temp1: 0
-    }
-    global.SampleVar = false
+      temp1: 0,
+    };
+    global.SampleVar = false;
   }
 
-  checkProductNew = props => {
-    const pDate = new Date(props.objectArray.date_created)
+  checkProductNew = (props) => {
+    const pDate = new Date(props.objectArray.date_created);
     const date =
       pDate.getTime() +
-      this.props.cartItems2.Config.newProductDuration * 86400000
-    const todayDate = new Date().getTime()
+      this.props.cartItems2.Config.newProductDuration * 86400000;
+    const todayDate = new Date().getTime();
     if (date > todayDate) {
-      return true
+      return true;
     }
-    return false
-  }
+    return false;
+  };
 
   SingleComponent = (props, widthBtn, t, s) => (
-    <View style={{ marginTop: 6 }}>
+    <View style={{marginTop: 6}}>
       {t.newMethod3(props, t) === 1 ? (
         <View
           style={{
@@ -50,11 +50,11 @@ class CardTemplate extends PureComponent {
             flexDirection: 'row',
             width: WIDTH,
             backgroundColor: theme.backgroundColor,
-            shadowOffset: { width: 1, height: 1 },
+            shadowOffset: {width: 1, height: 1},
             shadowColor: theme.textColor,
             shadowOpacity: 0.2,
             elevation: 2,
-            padding: 5
+            padding: 5,
           }}>
           <View
             style={{
@@ -65,26 +65,26 @@ class CardTemplate extends PureComponent {
               alignSelf: 'center',
               alignItems: 'center',
               zIndex: 6,
-              position: 'absolute'
+              position: 'absolute',
             }}>
             <Icon
               style={{
-                color: 'green'
+                color: 'green',
               }}
-              name='checkmark-circle'
+              name="checkmark-circle"
               size={40}
               onPress={() =>
                 props.navigation.push('ProductDetails', {
-                  objectArray: props.objectArray //
+                  objectArray: props.objectArray, //
                 })
               }
             />
           </View>
           <TouchableOpacity
-            style={{ flex: 1, opacity: 0.1 }}
+            style={{flex: 1, opacity: 0.1}}
             onPress={() =>
               props.navigation.push('ProductDetails', {
-                objectArray: props.objectArray //
+                objectArray: props.objectArray, //
               })
             }>
             <ImageLoad
@@ -94,14 +94,14 @@ class CardTemplate extends PureComponent {
               style={{
                 height: 106,
                 width: 105,
-                backgroundColor: 'rgb(236, 236, 236)'
+                backgroundColor: 'rgb(236, 236, 236)',
               }}
               loadingStyle={{
                 size: 'large',
-                color: theme.loadingIndicatorColor
+                color: theme.loadingIndicatorColor,
               }}
-              placeholderStyle={{ width: 0, height: 0 }}
-              source={{ uri: props.objectArray.images[0].src }}>
+              placeholderStyle={{width: 0, height: 0}}
+              source={{uri: props.objectArray.images[0].src}}>
               {this.checkProductNew(props) ? (
                 <Text
                   style={{
@@ -114,7 +114,7 @@ class CardTemplate extends PureComponent {
 
                     backgroundColor: theme.newBackgroundColor,
                     color: theme.newTextColor,
-                    position: 'absolute'
+                    position: 'absolute',
                   }}>
                   {this.props.cartItems2.Config.languageJson.New}
                 </Text>
@@ -128,14 +128,14 @@ class CardTemplate extends PureComponent {
               justifyContent: 'space-between',
               padding: 8,
               paddingLeft: 1,
-              paddingBottom: 0
+              paddingBottom: 0,
             }}>
             <View
               style={{
                 flex: 1,
                 flexDirection: 'row',
                 justifyContent: 'space-between',
-                opacity: 0.1
+                opacity: 0.1,
               }}>
               <Text
                 style={{
@@ -144,7 +144,7 @@ class CardTemplate extends PureComponent {
                   width:
                     props.objectArray.on_sale || props.objectArray.featured
                       ? WIDTH * 0.48
-                      : WIDTH
+                      : WIDTH,
                 }}
                 numberOfLines={1}>
                 {props.objectArray.products_name}
@@ -152,7 +152,7 @@ class CardTemplate extends PureComponent {
               <View
                 style={{
                   alignContent: 'flex-end',
-                  alignItems: 'flex-end'
+                  alignItems: 'flex-end',
                 }}>
                 {props.objectArray.on_sale ? (
                   <Text
@@ -163,7 +163,7 @@ class CardTemplate extends PureComponent {
                       margin: 1,
                       padding: 2,
                       zIndex: 3,
-                      position: 'absolute'
+                      position: 'absolute',
                     }}>
                     {this.props.cartItems2.Config.languageJson.SALE}
                   </Text>
@@ -178,7 +178,7 @@ class CardTemplate extends PureComponent {
                       padding: 2,
                       zIndex: 3,
                       position: 'absolute',
-                      marginTop: props.objectArray.on_sale ? 25 : 0
+                      marginTop: props.objectArray.on_sale ? 25 : 0,
                     }}>
                     {this.props.cartItems2.Config.languageJson.Featured}
                   </Text>
@@ -190,14 +190,14 @@ class CardTemplate extends PureComponent {
               style={{
                 alignSelf: I18nManager.allowRTL ? 'flex-start' : 'flex-end',
                 marginTop: 8,
-                opacity: 0.1
+                opacity: 0.1,
               }}>
               <HTML
                 html={s}
                 baseFontStyle={{
                   fontSize: theme.mediumSize,
                   fontWeight: '400',
-                  color: theme.priceColor
+                  color: theme.priceColor,
                 }}
               />
             </View>
@@ -211,7 +211,7 @@ class CardTemplate extends PureComponent {
                 paddingTop: 18,
                 paddingBottom: 0,
                 margin: 0,
-                opacity: 0.1
+                opacity: 0.1,
               }}>
               {props.removeButton ? (
                 <TouchableOpacity
@@ -223,12 +223,12 @@ class CardTemplate extends PureComponent {
                       height: 28,
                       width: widthBtn,
                       backgroundColor: theme.removeBtnColor,
-                      justifyContent: 'center'
+                      justifyContent: 'center',
                     }}>
                     <Text
                       style={{
                         color: theme.removeBtnTextColor,
-                        fontSize: theme.mediumSize
+                        fontSize: theme.mediumSize,
                       }}>
                       {this.props.cartItems2.Config.languageJson.Remove}
                     </Text>
@@ -239,109 +239,109 @@ class CardTemplate extends PureComponent {
                   style={{
                     width: widthBtn,
                     backgroundColor: theme.backgroundColor,
-                    paddingTop: 5
+                    paddingTop: 5,
                   }}>
                   {this.props.cartItems2.cartItems.recentViewedProducts &&
                   props.recent ? (
-                      <TouchableOpacity
-                        disabled
-                        onPress={() => t.removeRecent(props, t)}>
-                        <View
+                    <TouchableOpacity
+                      disabled
+                      onPress={() => t.removeRecent(props, t)}>
+                      <View
+                        style={{
+                          alignItems: 'center',
+                          height: 28,
+                          width: widthBtn,
+                          backgroundColor: theme.removeBtnColor,
+                          justifyContent: 'center',
+                        }}>
+                        <Text
                           style={{
-                            alignItems: 'center',
-                            height: 28,
-                            width: widthBtn,
-                            backgroundColor: theme.removeBtnColor,
-                            justifyContent: 'center'
+                            color: theme.removeBtnTextColor,
+                            fontSize: theme.mediumSize,
                           }}>
-                          <Text
-                            style={{
-                              color: theme.removeBtnTextColor,
-                              fontSize: theme.mediumSize
-                            }}>
-                            {this.props.cartItems2.Config.languageJson.Remove}
-                          </Text>
-                        </View>
-                      </TouchableOpacity>
-                    ) : props.objectArray.products_type === 0 &&
+                          {this.props.cartItems2.Config.languageJson.Remove}
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
+                  ) : props.objectArray.products_type === 0 &&
                     props.objectArray.defaultStock <= 0 &&
                     // eslint-disable-next-line eqeqeq
                     props.cartItems2.Config.inventory == 1 ? (
-                        <TouchableOpacity disabled>
-                          <View
-                            style={{
-                              alignItems: 'center',
-                              height: 28,
-                              width: widthBtn,
-                              backgroundColor: theme.outOfStockBtnColor,
-                              justifyContent: 'center'
-                            }}>
-                            <Text
-                              style={{
-                                color: theme.outOfStockBtnTextColor,
-                                fontSize: theme.mediumSize
-                              }}>
-                              {
-                                this.props.cartItems2.Config.languageJson[
-                                  'Out of Stock'
-                                ]
-                              }
-                            </Text>
-                          </View>
-                        </TouchableOpacity>
-                      ) : props.objectArray.type === 'simple' ? (
-                        <TouchableOpacity
-                          disabled
-                          onPress={() => t.newMethod6(props, t)}>
-                          <View
-                            style={{
-                              alignItems: 'center',
-                              height: 28,
-                              width: widthBtn,
-                              backgroundColor: theme.addToCartBtnColor,
-                              justifyContent: 'center'
-                            }}>
-                            <Text
-                              style={{
-                                color: theme.addToCartBtnTextColor,
-                                fontSize: theme.mediumSize
-                              }}>
-                              {
-                                this.props.cartItems2.Config.languageJson[
-                                  'Add to Cart'
-                                ]
-                              }
-                            </Text>
-                          </View>
-                        </TouchableOpacity>
-                      ) : props.objectArray.type === 'external' ||
+                    <TouchableOpacity disabled>
+                      <View
+                        style={{
+                          alignItems: 'center',
+                          height: 28,
+                          width: widthBtn,
+                          backgroundColor: theme.outOfStockBtnColor,
+                          justifyContent: 'center',
+                        }}>
+                        <Text
+                          style={{
+                            color: theme.outOfStockBtnTextColor,
+                            fontSize: theme.mediumSize,
+                          }}>
+                          {
+                            this.props.cartItems2.Config.languageJson[
+                              'Out of Stock'
+                            ]
+                          }
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
+                  ) : props.objectArray.type === 'simple' ? (
+                    <TouchableOpacity
+                      disabled
+                      onPress={() => t.newMethod6(props, t)}>
+                      <View
+                        style={{
+                          alignItems: 'center',
+                          height: 28,
+                          width: widthBtn,
+                          backgroundColor: theme.addToCartBtnColor,
+                          justifyContent: 'center',
+                        }}>
+                        <Text
+                          style={{
+                            color: theme.addToCartBtnTextColor,
+                            fontSize: theme.mediumSize,
+                          }}>
+                          {
+                            this.props.cartItems2.Config.languageJson[
+                              'Add to Cart'
+                            ]
+                          }
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
+                  ) : props.objectArray.type === 'external' ||
                     props.objectArray.type === 'grouped' ||
                     props.objectArray.type === 'variable' ? (
-                          <TouchableOpacity
-                            disabled
-                            onPress={() =>
-                              props.navigation.push('ProductDetails', {
-                                objectArray: props.objectArray //
-                              })
-                            }>
-                            <View
-                              style={{
-                                alignItems: 'center',
-                                height: 28,
-                                width: widthBtn,
-                                backgroundColor: theme.detailsBtnColor,
-                                justifyContent: 'center'
-                              }}>
-                              <Text
-                                style={{
-                                  color: theme.detailsBtnTextColor,
-                                  fontSize: theme.mediumSize
-                                }}>
-                                {this.props.cartItems2.Config.languageJson.DETAILS}
-                              </Text>
-                            </View>
-                          </TouchableOpacity>
-                        ) : null}
+                    <TouchableOpacity
+                      disabled
+                      onPress={() =>
+                        props.navigation.push('ProductDetails', {
+                          objectArray: props.objectArray, //
+                        })
+                      }>
+                      <View
+                        style={{
+                          alignItems: 'center',
+                          height: 28,
+                          width: widthBtn,
+                          backgroundColor: theme.detailsBtnColor,
+                          justifyContent: 'center',
+                        }}>
+                        <Text
+                          style={{
+                            color: theme.detailsBtnTextColor,
+                            fontSize: theme.mediumSize,
+                          }}>
+                          {this.props.cartItems2.Config.languageJson.DETAILS}
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
+                  ) : null}
                 </View>
               ) : null}
 
@@ -351,7 +351,7 @@ class CardTemplate extends PureComponent {
                     disabled
                     style={styles.iconStyle2}
                     active
-                    name='heart'
+                    name="heart"
                     onPress={() => t.removeWishlist(props, t)}
                   />
                 ) : (
@@ -359,7 +359,7 @@ class CardTemplate extends PureComponent {
                     style={styles.iconStyle2}
                     active
                     disabled
-                    name='heart'
+                    name="heart"
                     onPress={() => t.removeWishlist(props, t)}
                   />
                 )
@@ -368,7 +368,7 @@ class CardTemplate extends PureComponent {
                   disabled
                   style={styles.iconStyle}
                   active
-                  name='heart'
+                  name="heart"
                   onPress={() => t.addWishlist(props, t)}
                 />
               )}
@@ -382,17 +382,17 @@ class CardTemplate extends PureComponent {
             flexDirection: 'row',
             width: WIDTH,
             backgroundColor: theme.backgroundColor,
-            shadowOffset: { width: 1, height: 1 },
+            shadowOffset: {width: 1, height: 1},
             shadowColor: theme.textColor,
             shadowOpacity: 0.2,
             elevation: 2,
-            padding: 5
+            padding: 5,
           }}>
           <TouchableOpacity
-            style={{ flex: 1 }}
+            style={{flex: 1}}
             onPress={() =>
               props.navigation.push('ProductDetails', {
-                objectArray: props.objectArray //
+                objectArray: props.objectArray, //
               })
             }>
             <ImageLoad
@@ -402,14 +402,14 @@ class CardTemplate extends PureComponent {
               style={{
                 height: 106,
                 width: 105,
-                backgroundColor: 'rgb(236, 236, 236)'
+                backgroundColor: 'rgb(236, 236, 236)',
               }}
               loadingStyle={{
                 size: 'large',
-                color: theme.loadingIndicatorColor
+                color: theme.loadingIndicatorColor,
               }}
-              placeholderStyle={{ width: 0, height: 0 }}
-              source={{ uri: props.objectArray.images[0].src }}>
+              placeholderStyle={{width: 0, height: 0}}
+              source={{uri: props.objectArray.images[0].src}}>
               {this.checkProductNew(props) ? (
                 <Text
                   style={{
@@ -422,7 +422,7 @@ class CardTemplate extends PureComponent {
 
                     backgroundColor: theme.newBackgroundColor,
                     color: theme.newTextColor,
-                    position: 'absolute'
+                    position: 'absolute',
                   }}>
                   {this.props.cartItems2.Config.languageJson.New}
                 </Text>
@@ -436,13 +436,13 @@ class CardTemplate extends PureComponent {
               justifyContent: 'space-between',
               padding: 8,
               paddingLeft: 1,
-              paddingBottom: 0
+              paddingBottom: 0,
             }}>
             <View
               style={{
                 flex: 1,
                 flexDirection: 'row',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
               }}>
               <Text
                 style={{
@@ -451,7 +451,7 @@ class CardTemplate extends PureComponent {
                   width:
                     props.objectArray.on_sale || props.objectArray.featured
                       ? WIDTH * 0.48
-                      : WIDTH
+                      : WIDTH,
                 }}
                 numberOfLines={1}>
                 {props.objectArray.products_name}
@@ -459,7 +459,7 @@ class CardTemplate extends PureComponent {
               <View
                 style={{
                   alignContent: 'flex-end',
-                  alignItems: 'flex-end'
+                  alignItems: 'flex-end',
                 }}>
                 {props.objectArray.on_sale ? (
                   <Text
@@ -470,7 +470,7 @@ class CardTemplate extends PureComponent {
                       margin: 1,
                       padding: 2,
                       zIndex: 3,
-                      position: 'absolute'
+                      position: 'absolute',
                     }}>
                     {this.props.cartItems2.Config.languageJson.SALE}
                   </Text>
@@ -485,7 +485,7 @@ class CardTemplate extends PureComponent {
                       padding: 2,
                       zIndex: 3,
                       position: 'absolute',
-                      marginTop: props.objectArray.on_sale ? 25 : 0
+                      marginTop: props.objectArray.on_sale ? 25 : 0,
                     }}>
                     {this.props.cartItems2.Config.languageJson.Featured}
                   </Text>
@@ -496,14 +496,14 @@ class CardTemplate extends PureComponent {
             <View
               style={{
                 alignSelf: I18nManager.allowRTL ? 'flex-start' : 'flex-end',
-                marginTop: 8
+                marginTop: 8,
               }}>
               <HTML
                 html={s}
                 baseFontStyle={{
                   fontSize: theme.mediumSize,
                   fontWeight: '400',
-                  color: theme.priceColor
+                  color: theme.priceColor,
                 }}
               />
             </View>
@@ -516,7 +516,7 @@ class CardTemplate extends PureComponent {
                 paddingRight: 0,
                 paddingTop: 18,
                 paddingBottom: 0,
-                margin: 0
+                margin: 0,
               }}>
               {props.removeButton ? (
                 <TouchableOpacity onPress={() => t.removeWishlist(props, t)}>
@@ -526,12 +526,12 @@ class CardTemplate extends PureComponent {
                       height: 28,
                       width: widthBtn,
                       backgroundColor: theme.removeBtnColor,
-                      justifyContent: 'center'
+                      justifyContent: 'center',
                     }}>
                     <Text
                       style={{
                         color: theme.removeBtnTextColor,
-                        fontSize: theme.mediumSize
+                        fontSize: theme.mediumSize,
                       }}>
                       {this.props.cartItems2.Config.languageJson.Remove}
                     </Text>
@@ -542,104 +542,104 @@ class CardTemplate extends PureComponent {
                   style={{
                     width: widthBtn,
                     backgroundColor: theme.backgroundColor,
-                    paddingTop: 5
+                    paddingTop: 5,
                   }}>
                   {this.props.cartItems2.cartItems.recentViewedProducts &&
                   props.recent ? (
-                      <TouchableOpacity onPress={() => t.removeRecent(props, t)}>
-                        <View
+                    <TouchableOpacity onPress={() => t.removeRecent(props, t)}>
+                      <View
+                        style={{
+                          alignItems: 'center',
+                          height: 28,
+                          width: widthBtn,
+                          backgroundColor: theme.removeBtnColor,
+                          justifyContent: 'center',
+                        }}>
+                        <Text
                           style={{
-                            alignItems: 'center',
-                            height: 28,
-                            width: widthBtn,
-                            backgroundColor: theme.removeBtnColor,
-                            justifyContent: 'center'
+                            color: theme.removeBtnTextColor,
+                            fontSize: theme.mediumSize,
                           }}>
-                          <Text
-                            style={{
-                              color: theme.removeBtnTextColor,
-                              fontSize: theme.mediumSize
-                            }}>
-                            {this.props.cartItems2.Config.languageJson.Remove}
-                          </Text>
-                        </View>
-                      </TouchableOpacity>
-                    ) : props.objectArray.products_type === 0 &&
+                          {this.props.cartItems2.Config.languageJson.Remove}
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
+                  ) : props.objectArray.products_type === 0 &&
                     props.objectArray.defaultStock <= 0 &&
                     // eslint-disable-next-line eqeqeq
                     props.cartItems2.Config.inventory == 1 ? (
-                        <TouchableOpacity>
-                          <View
-                            style={{
-                              alignItems: 'center',
-                              height: 28,
-                              width: widthBtn,
-                              backgroundColor: theme.outOfStockBtnColor,
-                              justifyContent: 'center'
-                            }}>
-                            <Text
-                              style={{
-                                color: theme.outOfStockBtnTextColor,
-                                fontSize: theme.mediumSize
-                              }}>
-                              {
-                                this.props.cartItems2.Config.languageJson[
-                                  'Out of Stock'
-                                ]
-                              }
-                            </Text>
-                          </View>
-                        </TouchableOpacity>
-                      ) : props.objectArray.type === 'simple' ? (
-                        <TouchableOpacity onPress={() => t.newMethod6(props, t)}>
-                          <View
-                            style={{
-                              alignItems: 'center',
-                              height: 28,
-                              width: widthBtn,
-                              backgroundColor: theme.addToCartBtnColor,
-                              justifyContent: 'center'
-                            }}>
-                            <Text
-                              style={{
-                                color: theme.addToCartBtnTextColor,
-                                fontSize: theme.mediumSize
-                              }}>
-                              {
-                                this.props.cartItems2.Config.languageJson[
-                                  'Add to Cart'
-                                ]
-                              }
-                            </Text>
-                          </View>
-                        </TouchableOpacity>
-                      ) : props.objectArray.type === 'external' ||
+                    <TouchableOpacity>
+                      <View
+                        style={{
+                          alignItems: 'center',
+                          height: 28,
+                          width: widthBtn,
+                          backgroundColor: theme.outOfStockBtnColor,
+                          justifyContent: 'center',
+                        }}>
+                        <Text
+                          style={{
+                            color: theme.outOfStockBtnTextColor,
+                            fontSize: theme.mediumSize,
+                          }}>
+                          {
+                            this.props.cartItems2.Config.languageJson[
+                              'Out of Stock'
+                            ]
+                          }
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
+                  ) : props.objectArray.type === 'simple' ? (
+                    <TouchableOpacity onPress={() => t.newMethod6(props, t)}>
+                      <View
+                        style={{
+                          alignItems: 'center',
+                          height: 28,
+                          width: widthBtn,
+                          backgroundColor: theme.addToCartBtnColor,
+                          justifyContent: 'center',
+                        }}>
+                        <Text
+                          style={{
+                            color: theme.addToCartBtnTextColor,
+                            fontSize: theme.mediumSize,
+                          }}>
+                          {
+                            this.props.cartItems2.Config.languageJson[
+                              'Add to Cart'
+                            ]
+                          }
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
+                  ) : props.objectArray.type === 'external' ||
                     props.objectArray.type === 'grouped' ||
                     props.objectArray.type === 'variable' ? (
-                          <TouchableOpacity
-                            onPress={() =>
-                              props.navigation.push('ProductDetails', {
-                                objectArray: props.objectArray //
-                              })
-                            }>
-                            <View
-                              style={{
-                                alignItems: 'center',
-                                height: 28,
-                                width: widthBtn,
-                                backgroundColor: theme.detailsBtnColor,
-                                justifyContent: 'center'
-                              }}>
-                              <Text
-                                style={{
-                                  color: theme.detailsBtnTextColor,
-                                  fontSize: theme.mediumSize
-                                }}>
-                                {this.props.cartItems2.Config.languageJson.DETAILS}
-                              </Text>
-                            </View>
-                          </TouchableOpacity>
-                        ) : null}
+                    <TouchableOpacity
+                      onPress={() =>
+                        props.navigation.push('ProductDetails', {
+                          objectArray: props.objectArray, //
+                        })
+                      }>
+                      <View
+                        style={{
+                          alignItems: 'center',
+                          height: 28,
+                          width: widthBtn,
+                          backgroundColor: theme.detailsBtnColor,
+                          justifyContent: 'center',
+                        }}>
+                        <Text
+                          style={{
+                            color: theme.detailsBtnTextColor,
+                            fontSize: theme.mediumSize,
+                          }}>
+                          {this.props.cartItems2.Config.languageJson.DETAILS}
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
+                  ) : null}
                 </View>
               ) : null}
 
@@ -648,14 +648,14 @@ class CardTemplate extends PureComponent {
                   <Icon
                     style={styles.iconStyle2}
                     active
-                    name='heart'
+                    name="heart"
                     onPress={() => t.removeWishlist(props, t)}
                   />
                 ) : (
                   <Icon
                     style={styles.iconStyle2}
                     active
-                    name='heart'
+                    name="heart"
                     onPress={() => t.removeWishlist(props, t)}
                   />
                 )
@@ -663,7 +663,7 @@ class CardTemplate extends PureComponent {
                 <Icon
                   style={styles.iconStyle}
                   active
-                  name='heart'
+                  name="heart"
                   onPress={() => t.addWishlist(props, t)}
                 />
               )}
@@ -672,133 +672,133 @@ class CardTemplate extends PureComponent {
         </View>
       )}
     </View>
-  )
+  );
 
   /// ///////////////////////////////////////////////////////////
   removeWishlist = async (props, t) => {
     t.setState({
       isLoading: true,
       wishListId: props.objectArray.products_id,
-      wishListValue: '0'
-    })
-    const data = {}
-    data.liked_customers_id = SyncStorage.get('customerData').customers_id
-    data.liked_products_id = props.objectArray.products_id
-    const data2 = await postHttp(getUrl() + '/api/' + 'unlikeproduct', data)
+      wishListValue: '0',
+    });
+    const data = {};
+    data.liked_customers_id = SyncStorage.get('customerData').customers_id;
+    data.liked_products_id = props.objectArray.products_id;
+    const data2 = await postHttp(getUrl() + '/api/' + 'unlikeproduct', data);
 
     if (data2.success == 1) {
-      props.objectArray.isLiked = '0'
+      props.objectArray.isLiked = '0';
       setTimeout(() => {
-        props.removeWishListProduct(props.objectArray)
-        this.setState({ isLoading: false })
-      }, Math.floor(100 / 360000))
+        props.removeWishListProduct(props.objectArray);
+        this.setState({isLoading: false});
+      }, Math.floor(100 / 360000));
     }
     setTimeout(() => {
-      props.removeWishListProduct(props.objectArray)
-      this.setState({ isLoading: false })
-    }, Math.floor(100 / 360000))
-  }
+      props.removeWishListProduct(props.objectArray);
+      this.setState({isLoading: false});
+    }, Math.floor(100 / 360000));
+  };
 
   /// ////////////////////////////////////////////////////////////
   addWishlist = async (props, t) => {
     if (SyncStorage.get('customerData') === '') {
-      props.navigation.navigate('LOGIN')
+      props.navigation.navigate('LOGIN');
     } else {
       t.setState({
         isLoading: true,
         wishListId: props.objectArray.products_id,
-        wishListValue: '1'
-      })
-      const data = {}
-      data.liked_customers_id = SyncStorage.get('customerData').customers_id
-      data.liked_products_id = props.objectArray.products_id
-      const data2 = await postHttp(getUrl() + '/api/' + 'likeproduct', data)
+        wishListValue: '1',
+      });
+      const data = {};
+      data.liked_customers_id = SyncStorage.get('customerData').customers_id;
+      data.liked_products_id = props.objectArray.products_id;
+      const data2 = await postHttp(getUrl() + '/api/' + 'likeproduct', data);
       if (data2.success == 1) {
-        props.objectArray.isLiked = '1'
+        props.objectArray.isLiked = '1';
         setTimeout(() => {
-          props.addWishlistProduct(props.objectArray)
-          this.setState({ isLoading: false })
-        }, Math.floor(100 / 360000))
+          props.addWishlistProduct(props.objectArray);
+          this.setState({isLoading: false});
+        }, Math.floor(100 / 360000));
       }
       if (data2.success == 0) {
         setTimeout(() => {
-          this.setState({ isLoading: false })
-        }, Math.floor(100 / 360000))
+          this.setState({isLoading: false});
+        }, Math.floor(100 / 360000));
       }
       setTimeout(() => {
-        this.setState({ isLoading: false })
-      }, Math.floor(100 / 360000))
+        this.setState({isLoading: false});
+      }, Math.floor(100 / 360000));
     }
-  }
+  };
 
   /// ///////////////////////////////////////////////////////////
   removeRecent = (props, t) => {
-    t.setState({ isLoading: true })
+    t.setState({isLoading: true});
     setTimeout(() => {
-      props.removeRecentItems(props.objectArray)
-      this.setState({ isLoading: false })
-    }, Math.floor(100 / 360000))
-  }
+      props.removeRecentItems(props.objectArray);
+      this.setState({isLoading: false});
+    }, Math.floor(100 / 360000));
+  };
 
   /// //////////////////////////////////////////////////////////
   newMethod6 = (props, t) => {
-    t.setState({ isLoading: true })
+    t.setState({isLoading: true});
     setTimeout(() => {
-      t.setTimePassed(props)
-    }, Math.floor(100 / 360000))
-  }
+      t.setTimePassed(props);
+    }, Math.floor(100 / 360000));
+  };
 
   /// ////////////////////////////////////////////////////////////
-  setTimePassed (props) {
-    props.addItemToCart(props.objectArray, 1)
-    this.setState({ isLoading: false })
+  setTimePassed(props) {
+    props.addItemToCart(props.objectArray, 1);
+    this.setState({isLoading: false});
   }
 
   /// //////////////////////////////////////////////////////////////
   newMethod3 = (props, t) => {
-    let temp = 0
-    props.cartItems2.cartItems.cartProductArray.map(row => {
+    let temp = 0;
+    props.cartItems2.cartItems.cartProductArray.map((row) => {
       if (row.product_id == props.objectArray.id) {
-        temp = 1
+        temp = 1;
       }
-    })
+    });
     if (temp === 1) {
-      return 1
+      return 1;
     }
-    temp = 0
-    return 0
-  }
+    temp = 0;
+    return 0;
+  };
 
   /// ////////////////////////////////////////////////////////////
-  checkWishList = props => {
-    let temp = 0
-    let temp2 = 0
-    props.cartItems2.cartItems.wishListProducts.map(row => {
+  checkWishList = (props) => {
+    let temp = 0;
+    let temp2 = 0;
+    props.cartItems2.cartItems.wishListProducts.map((row) => {
       if (row.id === props.objectArray.id) {
-        temp2 = 1
+        temp2 = 1;
       }
-    })
+    });
     if (props.objectArray.isLiked == '1') {
-      temp = 1
+      temp = 1;
     }
 
     if (temp === 1 || temp2 === 1) {
-      return 1
+      return 1;
     }
-    temp = 0
-    temp2 = 0
-    return 0
-  }
+    temp = 0;
+    temp2 = 0;
+    return 0;
+  };
 
   /// /////////////////////////////////////////////////////////////
-  componentWillUnmount () {
-    clearInterval(this.state.isLoading)
+  componentWillUnmount() {
+    clearInterval(this.state.isLoading);
   }
 
-  render () {
-    let s = this.props.objectArray.price_html
-    s = s.replace(/<del>/, '<s>')
-    s = s.replace(/<\/del>/, '</s>')
+  render() {
+    let s = this.props.objectArray.price_html;
+    s = s.replace(/<del>/, '<s>');
+    s = s.replace(/<\/del>/, '</s>');
     return (
       <View>
         <Spinner
@@ -809,35 +809,35 @@ class CardTemplate extends PureComponent {
           ? this.SingleComponent(this.props, 100, this, s)
           : this.SingleComponent(this.props, 100, this, s)}
       </View>
-    )
+    );
   }
 }
 
-const mapStateToProps = state => ({
-  cartItems2: state
-})
+const mapStateToProps = (state) => ({
+  cartItems2: state,
+});
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   addItemToCart: (productObject, productQuantity) => {
     dispatch({
       type: 'ADD_TO_CARTS',
       product: productObject,
       cartProductQuantity: productQuantity,
       variation: null,
-      metaData: null
-    })
+      metaData: null,
+    });
   },
-  removeRecentItems: productArray =>
-    dispatch({ type: 'REMOVE_RECENT', product: productArray }),
-  addWishlistProduct: productArray =>
-    dispatch({ type: 'ADD_WISHLIST_PRODUCTS', product: productArray }),
-  removeWishListProduct: productArray =>
-    dispatch({ type: 'REMOVE_WISHLIST_PRODUCTS', product: productArray })
-})
+  removeRecentItems: (productArray) =>
+    dispatch({type: 'REMOVE_RECENT', product: productArray}),
+  addWishlistProduct: (productArray) =>
+    dispatch({type: 'ADD_WISHLIST_PRODUCTS', product: productArray}),
+  removeWishListProduct: (productArray) =>
+    dispatch({type: 'REMOVE_WISHLIST_PRODUCTS', product: productArray}),
+});
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
-)(withNavigation(CardTemplate))
+  mapDispatchToProps,
+)(withNavigation(CardTemplate));
 
 const styles = StyleSheet.create({
   iconStyle: {
@@ -845,13 +845,13 @@ const styles = StyleSheet.create({
     color: '#cccccc',
     marginTop: 3,
     marginBottom: 0,
-    paddingBottom: 0
+    paddingBottom: 0,
   },
   iconStyle2: {
     paddingLeft: 16,
     color: theme.wishHeartBtnColor,
     marginTop: 3,
     marginBottom: 0,
-    paddingBottom: 0
-  }
-})
+    paddingBottom: 0,
+  },
+});

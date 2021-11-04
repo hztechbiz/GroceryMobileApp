@@ -1,55 +1,55 @@
-import React, { PureComponent } from 'react'
-import { View, Text, Platform } from 'react-native'
-import { Icon } from 'native-base'
-import { UIActivityIndicator } from 'react-native-indicators'
-import { CardStyleInterpolators } from 'react-navigation-stack'
-import BottomNav from '../common/BottomNav'
-import { connect } from 'react-redux'
-import CategoryFlatList from '../common/CategoriesFlatList'
-import ShoppingCartIcon from '../common/ShoppingCartIcon'
-import themeStyle from '../common/Theme.style'
-import SyncStorage from 'sync-storage'
+import React, {PureComponent} from 'react';
+import {View, Text, Platform} from 'react-native';
+import {Icon} from 'native-base';
+import {UIActivityIndicator} from 'react-native-indicators';
+import {CardStyleInterpolators} from 'react-navigation-stack';
+import BottomNav from '../common/BottomNav';
+import {connect} from 'react-redux';
+import CategoryFlatList from '../common/CategoriesFlatList';
+import ShoppingCartIcon from '../common/ShoppingCartIcon';
+import themeStyle from '../common/Theme.style';
+import SyncStorage from 'sync-storage';
 class Category2 extends PureComponent {
-  static navigationOptions = ({ navigation }) => {
-    const headerStyle = navigation.getParam('headerTitle')
+  static navigationOptions = ({navigation}) => {
+    const headerStyle = navigation.getParam('headerTitle');
     return {
       headerTitle: headerStyle,
       headerTintColor: themeStyle.headerTintColor,
       headerRight: () => <ShoppingCartIcon navigation={navigation} />,
       headerStyle: {
-        backgroundColor: themeStyle.primary
+        backgroundColor: themeStyle.primary,
       },
       headerTitleStyle: {
-        fontWeight: Platform.OS === 'android' ? 'bold' : 'normal'
+        fontWeight: Platform.OS === 'android' ? 'bold' : 'normal',
       },
-      headerForceInset: { top: 'never', vertical: 'never' },
+      headerForceInset: {top: 'never', vertical: 'never'},
       cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-      headerTitleAlign: 'center'
-    }
-  }
+      headerTitleAlign: 'center',
+    };
+  };
 
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
-      activityIndicatorTemp: true
-    }
+      activityIndicatorTemp: true,
+    };
   }
 
-  componentDidMount () {
-    this.setState({ activityIndicatorTemp: false })
+  componentDidMount() {
+    this.setState({activityIndicatorTemp: false});
     this.props.navigation.setParams({
-      headerTitle: this.props.cartItems2.Config.languageJson.Categories
-    })
+      headerTitle: this.props.cartItems2.Config.languageJson.Categories,
+    });
   }
 
-  render () {
+  render() {
     return this.state.activityIndicatorTemp ? (
       <View
         style={{
           flex: 1,
           justifyContent: 'center',
           alignItems: 'center',
-          alignSelf: 'center'
+          alignSelf: 'center',
         }}>
         <UIActivityIndicator
           size={27}
@@ -57,11 +57,12 @@ class Category2 extends PureComponent {
         />
       </View>
     ) : (
-      <View style={{
-        flex: 1,
-        paddingBottom: SyncStorage.get('bottom') ? 50 : 0,
-        backgroundColor: themeStyle.backgroundColor
-      }}>
+      <View
+        style={{
+          flex: 1,
+          paddingBottom: SyncStorage.get('bottom') ? 50 : 0,
+          backgroundColor: themeStyle.backgroundColor,
+        }}>
         {SyncStorage.get('bottom') ? (
           <BottomNav
             active={2}
@@ -69,22 +70,22 @@ class Category2 extends PureComponent {
               this.props.cartItems2.Config.homePage === 1
                 ? 'Home1Screen'
                 : this.props.cartItems2.Config.homePage === 2
-                  ? 'Home2Screen'
-                  : this.props.cartItems2.Config.homePage === 3
-                    ? 'Home3Screen'
-                    : this.props.cartItems2.Config.homePage === 4
-                      ? 'Home4Screen'
-                      : this.props.cartItems2.Config.homePage === 5
-                        ? 'Home5Screen'
-                        : this.props.cartItems2.Config.homePage === 6
-                          ? 'Home6Screen'
-                          : this.props.cartItems2.Config.homePage === 7
-                            ? 'Home7Screen'
-                            : this.props.cartItems2.Config.homePage === 8
-                              ? 'Home8Screen'
-                              : this.props.cartItems2.Config.homePage === 9
-                                ? 'Home9Screen'
-                                : 'Home10Screen'
+                ? 'Home2Screen'
+                : this.props.cartItems2.Config.homePage === 3
+                ? 'Home3Screen'
+                : this.props.cartItems2.Config.homePage === 4
+                ? 'Home4Screen'
+                : this.props.cartItems2.Config.homePage === 5
+                ? 'Home5Screen'
+                : this.props.cartItems2.Config.homePage === 6
+                ? 'Home6Screen'
+                : this.props.cartItems2.Config.homePage === 7
+                ? 'Home7Screen'
+                : this.props.cartItems2.Config.homePage === 8
+                ? 'Home8Screen'
+                : this.props.cartItems2.Config.homePage === 9
+                ? 'Home9Screen'
+                : 'Home10Screen'
             }></BottomNav>
         ) : null}
         {this.props.cartItems2.cartItems.categories.length === 0 ? (
@@ -94,7 +95,7 @@ class Category2 extends PureComponent {
               justifyContent: 'center',
               alignItems: 'center',
               alignSelf: 'center',
-              alignContent: 'center'
+              alignContent: 'center',
             }}>
             <View
               style={{
@@ -102,14 +103,18 @@ class Category2 extends PureComponent {
                 alignItems: 'center',
                 justifyContent: 'center',
                 marginBottom: 40,
-                alignSelf: 'center'
+                alignSelf: 'center',
               }}>
               <Icon
                 name={'logo-dropbox'}
-                style={{ color: 'gray', fontSize: 80 }}
+                style={{color: 'gray', fontSize: 80}}
               />
 
-              <Text style={{ fontSize: themeStyle.largeSize + 2, color: themeStyle.textColor }}>
+              <Text
+                style={{
+                  fontSize: themeStyle.largeSize + 2,
+                  color: themeStyle.textColor,
+                }}>
                 {this.props.cartItems2.Config.languageJson['No Products Found']}
               </Text>
             </View>
@@ -126,12 +131,12 @@ class Category2 extends PureComponent {
           />
         )}
       </View>
-    )
+    );
   }
 }
 /// ///////////////////////////////////////////////
-const mapStateToProps = state => ({
-  cartItems2: state
-})
+const mapStateToProps = (state) => ({
+  cartItems2: state,
+});
 /// //////////////////////////////////////////
-export default connect(mapStateToProps, null)(Category2)
+export default connect(mapStateToProps, null)(Category2);
