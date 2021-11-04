@@ -118,9 +118,12 @@ export default class FlatListView extends PureComponent {
         numColumns={!this.props.viewButton ? this.props.noOfCol : 2}
         numColumns={this.props.noOfCol}
         contentContainerStyle={{backgroundColor: theme.backgroundColor}}
-        ListFooterComponentStyle={{
-          backgroundColor: theme.backgroundColor,
-        }}
+        ListFooterComponentStyle={
+          {
+            // backgroundColor: theme.backgroundColor,
+            // backgroundColor: 'red',
+          }
+        }
         style={
           this.props.noOfCol === 3
             ? {

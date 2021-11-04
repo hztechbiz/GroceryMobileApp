@@ -393,14 +393,19 @@ class ProductDetail extends PureComponent {
     <View
       style={{
         flexDirection: 'row',
+        // backgrounddColor: 'green',
+
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+        // marginHorizontal: 8,
       }}>
       <HTML
         html={SyncStorage.get('currency')}
         baseFontStyle={{
           fontSize:
             decoration === 'line-through'
-              ? themeStyle.mediumSize + 2
-              : themeStyle.mediumSize + 5,
+              ? themeStyle.mediumSize - 2
+              : themeStyle.mediumSize - 2,
           color:
             decoration === 'line-through' ? '#707070' : themeStyle.textColor,
           marginTop: decoration === 'line-through' ? 2 : 0,
@@ -409,14 +414,18 @@ class ProductDetail extends PureComponent {
       />
       <Text
         style={{
+          // textAlign: 'left'
+          justifyContent: 'flex-start',
+          marginLeft: 2,
+          alignItems: 'flex-start',
           color:
             decoration === 'line-through' ? '#707070' : themeStyle.textColor,
           fontSize:
             decoration === 'line-through'
-              ? themeStyle.mediumSize + 2
-              : themeStyle.mediumSize + 5,
+              ? themeStyle.mediumSize - 2
+              : themeStyle.mediumSize - 2,
           textDecorationLine: decoration,
-          marginTop: decoration === 'line-through' ? 2 : 0,
+          marginTop: decoration === 'line-through' ? 0 : 0,
         }}>
         {price && price.toFixed(2) + ' '}
       </Text>
@@ -429,15 +438,19 @@ class ProductDetail extends PureComponent {
         flex: 1,
         backgroundColor: themeStyle.backgroundColor,
         padding: 8,
+        // alignItems: 'flex-start',
+        // alignSelf: 'flex-start',
         paddingBottom: 2,
       }}>
       <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'flex-start',
-          alignItems: 'center',
-        }}>
-        <Icon
+        style={
+          {
+            // flexDirection: 'row',
+            // justifyContent: 'flex-start',
+            // alignItems: 'flex-start',
+          }
+        }>
+        {/* <Icon
           name={'list'}
           style={{
             color: themeStyle.primary,
@@ -445,11 +458,13 @@ class ProductDetail extends PureComponent {
             paddingRight: 5,
             paddingTop: 3,
           }}
-        />
+        /> */}
         <Text
           style={{
             fontSize: themeStyle.smallSize,
-            color: themeStyle.primary,
+            // color: themeStyle.primary,
+            color: '#000',
+            fontWeight: 'bold',
             textAlign:
               Platform.OS === 'ios'
                 ? 'left'
@@ -580,7 +595,13 @@ class ProductDetail extends PureComponent {
 
   /// ///////////////////////////////////////////////
   btnFun = (press, text) => (
-    <View style={{width: WIDTH, position: 'absolute', bottom: 0}}>
+    <View
+      style={{
+        width: '70%',
+        position: 'absolute',
+        bottom: 10,
+        left: 50,
+      }}>
       <TouchableOpacity
         style={{
           opacity: !this.state.addToCartButtonValue ? null : 0.6,
@@ -602,7 +623,9 @@ class ProductDetail extends PureComponent {
           style={{
             borderColor: '#fff',
             alignItems: 'center',
-            height: 42,
+            height: 52,
+            borderRadius: 10,
+
             justifyContent: 'center',
             backgroundColor:
               press === 'outOfStock'
@@ -614,6 +637,7 @@ class ProductDetail extends PureComponent {
               color: themeStyle.otherBtnsText,
               fontSize: themeStyle.mediumSize,
               fontWeight: '500',
+              textTransform: 'capitalize',
             }}>
             {text}
           </Text>
@@ -655,8 +679,9 @@ class ProductDetail extends PureComponent {
         style={{
           flex: 1,
           backgroundColor: themeStyle.backgroundColor,
+          // backgroundColor: 'red',
         }}>
-        <View style={{paddingBottom: 42}}>
+        <View style={{paddingBottom: 42, paddingTop: 25}}>
           {this.props.navigation.state.params.objectArray.flash_start_date &&
           !this.state.is_upcomming ? (
             <View
@@ -684,6 +709,7 @@ class ProductDetail extends PureComponent {
             textStyle={styles.spinnerTextStyle}
           />
           <FlatList
+            style={{margin: 15}}
             showsVerticalScrollIndicator={false}
             data={pageNumbers}
             vertical
@@ -696,6 +722,7 @@ class ProductDetail extends PureComponent {
                     flexDirection: 'row',
                     zIndex: 12,
                     right: 0,
+                    // left: 0,
                     position: 'absolute',
                     top:
                       this.props.navigation.state.params.objectArray
@@ -709,7 +736,7 @@ class ProductDetail extends PureComponent {
                       style={{
                         width: 33,
                         height: 30,
-                        backgroundColor: themeStyle.backgroundColor,
+                        // backgroundColor: themeStyle.backgroundColor,
                         alignItems: 'center',
                         justifyContent: 'center',
                       }}>
@@ -717,7 +744,7 @@ class ProductDetail extends PureComponent {
                         this.props.cartItems2.Config.removeButton ? (
                           <Icon
                             style={{
-                              color: themeStyle.textColor,
+                              color: themeStyle.iconColor,
                               fontSize: 19,
                               paddingLeft: 1,
                               paddingRight: 1,
@@ -732,7 +759,7 @@ class ProductDetail extends PureComponent {
                         ) : (
                           <Icon
                             style={{
-                              color: themeStyle.textColor,
+                              color: themeStyle.iconColor,
                               fontSize: 19,
                               paddingLeft: 1,
                               paddingRight: 1,
@@ -748,7 +775,7 @@ class ProductDetail extends PureComponent {
                       ) : (
                         <Ionicons
                           style={{
-                            color: themeStyle.textColor,
+                            color: themeStyle.iconColor,
                             fontSize: 19,
                             marginBottom: -2,
                             marginLeft: -1,
@@ -763,7 +790,46 @@ class ProductDetail extends PureComponent {
                       )}
                     </TouchableOpacity>
                   ) : null}
-                  <TouchableOpacity
+
+                  <View
+                    style={{
+                      flex: 1,
+                      // backgroundColor: themeStyle.backgroundColor,
+                      // backgroundColor: 'red',
+
+                      flexDirection: 'row',
+                      padding: 8,
+                      paddingTop: 14,
+                    }}>
+                    {this.props.navigation.state.params.objectArray !== null ? (
+                      this.props.navigation.state.params.objectArray
+                        .discount_price != null ? (
+                        <View
+                          style={{
+                            backgroundColor: themeStyle.otherBtnsColor,
+                            height: 27,
+                            zIndex: 2,
+                            left: 10,
+                            top: -16,
+                            position: 'absolute',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                          }}>
+                          <Text
+                            style={{
+                              color: themeStyle.otherBtnsText,
+                              padding: 5,
+                              zIndex: 2,
+                            }}>
+                            {this.pDiscount() +
+                              ' ' +
+                              this.props.cartItems2.Config.languageJson.OFF}
+                          </Text>
+                        </View>
+                      ) : null
+                    ) : null}
+                  </View>
+                  {/* <TouchableOpacity
                     onPress={this.onShare}
                     style={{
                       width: 33,
@@ -781,7 +847,7 @@ class ProductDetail extends PureComponent {
                         paddingRight: 5,
                       }}
                     />
-                  </TouchableOpacity>
+                  </TouchableOpacity> */}
                 </View>
 
                 <ProductsBanner
@@ -791,7 +857,99 @@ class ProductDetail extends PureComponent {
                   objectArray={this.props.navigation.state.params.objectArray}
                 />
 
-                <View>
+                <View
+                  style={{
+                    // backgroundColor: themeStyle.backgroundColor,
+                    // backgroundColor: 'green',
+                    padding: 8,
+                    paddingTop: 1,
+                    paddingBottom: 0,
+                    // alignItems: 'flex-start',
+                    // justifyContent: '',
+                    // flexDirection: 'row',
+                  }}>
+                  <Text
+                    style={{
+                      fontSize: themeStyle.largeSize - 1,
+                      color: themeStyle.productTextColor,
+                      fontWeight: Platform.OS === 'android' ? 'bold' : '400',
+                      // backgroundColor: 'red',
+                    }}>
+                    {
+                      this.props.navigation.state.params.objectArray
+                        .products_name
+                    }
+                  </Text>
+                  {/* <View style={{flexDirection: 'row'}}> */}
+                  {this.props.navigation.state.params.objectArray !== null &&
+                  this.props.navigation.state.params.objectArray !==
+                    undefined ? (
+                    this.props.navigation.state.params.objectArray
+                      .categories !== null &&
+                    this.props.navigation.state.params.objectArray
+                      .categories !== undefined ? (
+                      <View
+                        style={{
+                          flexDirection: 'row',
+                          backgroundColor: themeStyle.backgroundColor,
+                          justifyContent: 'space-between',
+                          // backgroundColor: 'red',
+                          // padding: 8,
+                          // justifyContent: 'center',
+                          // alignItems: 'center',
+                          // paddingTop: 1,
+                          paddingBottom: 0,
+                        }}>
+                        {this.props.navigation.state.params.objectArray.categories.map(
+                          (item) => (
+                            <Text
+                              style={{
+                                fontSize: themeStyle.smallSize - 1,
+                                color: themeStyle.categoryTextColor,
+                                fontWeight:
+                                  Platform.OS === 'android' ? '600' : '400',
+                                // alignSelf: 'flex-start',
+                              }}>
+                              {item.categories_name + ', '}
+                            </Text>
+                          ),
+                        )}
+
+                        {this.state.cartButton === 'outOfStock' ? (
+                          <Text
+                            style={{
+                              color: themeStyle.textColor,
+
+                              fontWeight: '100',
+                            }}>
+                            {
+                              this.props.cartItems2.Config.languageJson[
+                                'Out of Stock'
+                              ]
+                            }
+                          </Text>
+                        ) : null}
+                        {this.state.cartButton === 'addToCart' ? (
+                          <Text
+                            style={{
+                              color: '#2d79be',
+
+                              fontWeight: '100',
+                            }}>
+                            {
+                              this.props.cartItems2.Config.languageJson[
+                                'In Stock'
+                              ]
+                            }
+                          </Text>
+                        ) : null}
+                      </View>
+                    ) : null
+                  ) : null}
+                </View>
+                {/* </View> */}
+
+                {/* <View>
                   {this.state.cartButton === 'outOfStock' ? (
                     <Text
                       style={{
@@ -816,45 +974,14 @@ class ProductDetail extends PureComponent {
                       {this.props.cartItems2.Config.languageJson['In Stock']}
                     </Text>
                   ) : null}
-                </View>
+                </View> */}
 
                 <View
                   style={{
-                    flex: 1,
-                    // backgroundColor: themeStyle.backgroundColor,
-                    // backgroundColor: 'red',
-
                     flexDirection: 'row',
-                    padding: 8,
-                    paddingTop: 14,
+                    alignItems: 'center',
+                    // justifyContent: 'flex-start',
                   }}>
-                  {this.props.navigation.state.params.objectArray !== null ? (
-                    this.props.navigation.state.params.objectArray
-                      .discount_price != null ? (
-                      <View
-                        style={{
-                          backgroundColor: themeStyle.otherBtnsColor,
-                          height: 27,
-                          zIndex: 2,
-                          left: 10,
-                          top: -16,
-                          position: 'absolute',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                        }}>
-                        <Text
-                          style={{
-                            color: themeStyle.otherBtnsText,
-                            padding: 5,
-                            zIndex: 2,
-                          }}>
-                          {this.pDiscount() +
-                            ' ' +
-                            this.props.cartItems2.Config.languageJson.OFF}
-                        </Text>
-                      </View>
-                    ) : null
-                  ) : null}
                   {!this.props.navigation.state.params.objectArray
                     .flash_start_date ? (
                     <View
@@ -863,7 +990,9 @@ class ProductDetail extends PureComponent {
                         justifyContent: 'flex-start',
                         alignItems: 'flex-start',
                         flexDirection: 'row',
-                        marginTop: 4,
+                        // backgroundColor: 'red',
+                        // width: '30%',
+                        // marginTop: 4,
                       }}>
                       {this.props.navigation.state.params.objectArray
                         .discount_price !== null
@@ -872,6 +1001,7 @@ class ProductDetail extends PureComponent {
                             'line-through',
                           )
                         : null}
+
                       {this.props.navigation.state.params.objectArray
                         .discount_price === null
                         ? this.priceFun(this.state.products_price, 'none')
@@ -898,158 +1028,94 @@ class ProductDetail extends PureComponent {
                     </View>
                   ) : null}
 
-                  <View>
-                    {this.state.cartButton === 'outOfStock' ? (
-                      <Text
-                        style={{
-                          color: themeStyle.textColor,
-
-                          fontWeight: '100',
-                        }}>
-                        {
-                          this.props.cartItems2.Config.languageJson[
-                            'Out of Stock'
-                          ]
-                        }
-                      </Text>
-                    ) : null}
-                    {this.state.cartButton === 'addToCart' ? (
-                      <Text
-                        style={{
-                          color: themeStyle.textColor,
-
-                          fontWeight: '100',
-                        }}>
-                        {this.props.cartItems2.Config.languageJson['In Stock']}
-                      </Text>
-                    ) : null}
-                  </View>
-                </View>
-
-                <View
-                  style={{
-                    backgroundColor: themeStyle.backgroundColor,
-                    padding: 8,
-                    paddingTop: 1,
-                    paddingBottom: 0,
-                  }}>
-                  <Text
-                    style={{
-                      fontSize: themeStyle.largeSize - 1,
-                      color: themeStyle.textColor,
-                      fontWeight: Platform.OS === 'android' ? 'bold' : '400',
-                      // backgroundColor: 'red',
-                    }}>
-                    {
-                      this.props.navigation.state.params.objectArray
-                        .products_name
-                    }
-                  </Text>
-                </View>
-                {this.props.navigation.state.params.objectArray !== null &&
-                this.props.navigation.state.params.objectArray !== undefined ? (
-                  this.props.navigation.state.params.objectArray.categories !==
-                    null &&
-                  this.props.navigation.state.params.objectArray.categories !==
-                    undefined ? (
+                  <TouchableOpacity
+                    style={{}}
+                    onPress={() =>
+                      this.props.navigation.navigate('RatingAndReviewScreen', {
+                        ratingCountArray:
+                          this.props.navigation.state.params.objectArray
+                            .reviewed_customers === undefined ||
+                          this.props.navigation.state.params.objectArray
+                            .reviewed_customers === null
+                            ? 0
+                            : this.props.navigation.state.params.objectArray
+                                .reviewed_customers.length,
+                        averageRatingArray:
+                          this.props.navigation.state.params.objectArray.rating,
+                        objectArray:
+                          this.props.navigation.state.params.objectArray,
+                      })
+                    }>
                     <View
                       style={{
                         flexDirection: 'row',
-                        backgroundColor: themeStyle.backgroundColor,
                         padding: 8,
-                        paddingTop: 1,
-                        paddingBottom: 0,
+                        paddingBottom: 2,
+                        paddingTop: 0,
+                        marginTop: 7,
+                        alignItems: 'flex-end',
                       }}>
-                      {this.props.navigation.state.params.objectArray.categories.map(
-                        (item) => (
-                          <Text
-                            style={{
-                              fontSize: themeStyle.smallSize - 1,
-                              color: '#707070',
-                              fontWeight:
-                                Platform.OS === 'android' ? '600' : '400',
-                            }}>
-                            {item.categories_name + ', '}
-                          </Text>
-                        ),
+                      {this.props.navigation.state.params.objectArray
+                        .reviewed_customers === undefined ||
+                      this.props.navigation.state.params.objectArray
+                        .reviewed_customers === null ? null : (
+                        <Text
+                          style={{
+                            // padding: 6,
+                            paddingHorizontal: 4,
+                            fontSize: themeStyle.largeSize - 5,
+                            // color: themeStyle.primaryDark,
+                            color: themeStyle.categoryTextColor,
+                            // paddingTop: 7,
+                            fontWeight:
+                              Platform.OS === 'android' ? 'bold' : '400',
+                          }}>
+                          {'('}
+                          {
+                            this.props.navigation.state.params.objectArray
+                              .reviewed_customers.length
+                          }
+                          {') '}
+                          {
+                            this.props.cartItems2.Config.languageJson2[
+                              'Ratings & Reviews'
+                            ]
+                          }
+                        </Text>
                       )}
-                    </View>
-                  ) : null
-                ) : null}
-                <TouchableOpacity
-                  style={{backgroundColor: themeStyle.backgroundColor}}
-                  onPress={() =>
-                    this.props.navigation.navigate('RatingAndReviewScreen', {
-                      ratingCountArray:
-                        this.props.navigation.state.params.objectArray
-                          .reviewed_customers === undefined ||
-                        this.props.navigation.state.params.objectArray
-                          .reviewed_customers === null
-                          ? 0
-                          : this.props.navigation.state.params.objectArray
-                              .reviewed_customers.length,
-                      averageRatingArray:
-                        this.props.navigation.state.params.objectArray.rating,
-                      objectArray:
-                        this.props.navigation.state.params.objectArray,
-                    })
-                  }>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      padding: 8,
-                      paddingBottom: 2,
-                      paddingTop: 0,
-                      marginTop: 7,
-                    }}>
-                    <Stars
-                      disabled
-                      default={parseFloat(
-                        this.props.navigation.state.params.objectArray.rating,
-                      )}
-                      count={5}
-                      starSize={50}
-                      half
-                      fullStar={
-                        <Icon name={'star'} style={[styles.myStarStyle]} />
-                      }
-                      emptyStar={
-                        <Icon
-                          name={'star-outline'}
-                          style={[styles.myStarStyle, styles.myEmptyStarStyle]}
-                        />
-                      }
-                      halfStar={
-                        <Icon name={'star-half'} style={[styles.myStarStyle]} />
-                      }
-                    />
-                    {this.props.navigation.state.params.objectArray
-                      .reviewed_customers === undefined ||
-                    this.props.navigation.state.params.objectArray
-                      .reviewed_customers === null ? null : (
-                      <Text
-                        style={{
-                          padding: 6,
-                          fontSize: themeStyle.largeSize - 2,
-                          color: themeStyle.primaryDark,
-                          paddingTop: 7,
-                          fontWeight: Platform.OS === 'android' ? '600' : '400',
-                        }}>
-                        {
-                          this.props.navigation.state.params.objectArray
-                            .reviewed_customers.length
-                        }{' '}
-                        {
-                          this.props.cartItems2.Config.languageJson2[
-                            'Ratings & Reviews'
-                          ]
-                        }
-                      </Text>
-                    )}
-                  </View>
-                </TouchableOpacity>
 
-                <View
+                      <Stars
+                        disabled
+                        default={parseFloat(
+                          this.props.navigation.state.params.objectArray.rating,
+                        )}
+                        count={5}
+                        starSize={50}
+                        half
+                        fullStar={
+                          <Icon name={'star'} style={[styles.myStarStyle]} />
+                        }
+                        emptyStar={
+                          <Icon
+                            name={'star-outline'}
+                            style={[
+                              styles.myStarStyle,
+                              styles.myEmptyStarStyle,
+                            ]}
+                          />
+                        }
+                        halfStar={
+                          <Icon
+                            name={'star-half'}
+                            style={[styles.myStarStyle]}
+                          />
+                        }
+                      />
+                    </View>
+                  </TouchableOpacity>
+                </View>
+
+                {/* <View
                   style={{
                     backgroundColor: themeStyle.backgroundColor,
                     padding: 8,
@@ -1066,8 +1132,14 @@ class ProductDetail extends PureComponent {
                     {this.props.navigation.state.params.objectArray
                       .products_liked + ')'}
                   </Text>
-                </View>
-
+                </View> */}
+                <View
+                  style={{
+                    borderBottomColor: '#e2e2e2',
+                    borderBottomWidth: 1,
+                    // width: '75%',
+                    marginVertical: 5,
+                  }}></View>
                 {this.props.navigation.state.params.objectArray
                   .products_description !== undefined &&
                 this.props.navigation.state.params.objectArray
@@ -1276,8 +1348,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     textShadowOffset: {width: 1, height: 1},
     textShadowRadius: 2,
+    fontSize: 20,
   },
   myEmptyStarStyle: {
     color: '#cccccc',
+    fontSize: 20,
   },
 });

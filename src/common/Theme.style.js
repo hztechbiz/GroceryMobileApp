@@ -34,7 +34,7 @@ export default {
   autoplayDelay: 2,
   autoplayLoop: true,
   // StatusBarColor: '#374e02',
-  StatusBarColor: '#374e02',
+  StatusBarColor: '#205a8e',
 
   // --ion-color-primary-shade: #374e02;
   barStyle: 'light-content', // dark-content, default
@@ -42,12 +42,15 @@ export default {
   headerTintColor: 'rgb(255, 255, 255)',
   headerIconsColor: 'rgb(255, 255, 255)',
 
-  primaryDark: '#374e02',
-  primary: '#3e5902',
+  primaryDark: '#205a8e',
+  primary: '#205a8e',
   primaryContrast: '#ffffff',
   // backgroundColor: '#F2F2F2',// color for card style 11
   // backgroundColor: '#fdfcfa',
-  backgroundColor: 'red',
+  backgroundColor: '#f5fafe',
+  productTextColor: '#404040',
+  categoryTextColor: '#808080',
+  iconColor: '#ed1c24',
   // backgroundColor: '#fdfdfd',
   textColor: '#000',
   textContrast: '#000',

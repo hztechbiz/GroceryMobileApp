@@ -45,6 +45,10 @@ class Category extends PureComponent {
   }
 
   render() {
+    console.log(
+      this.props.mystore.Config.categoryPage,
+      'this.props.mystore.Config.categoryPage',
+    );
     return this.props.mystore.Config.categoryPage === 1 ? (
       <Category1Screen
         navigation={this.props.navigation}

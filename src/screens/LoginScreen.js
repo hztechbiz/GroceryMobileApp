@@ -268,7 +268,12 @@ class Login extends PureComponent {
 
           <Image
             source={require('./../images/logo.png')}
-            style={{height: 130, width: 270, resizeMode: 'stretch', marginVertical: 30}}
+            style={{
+              height: 130,
+              width: 270,
+              resizeMode: 'stretch',
+              marginVertical: 30,
+            }}
           />
 
           <View

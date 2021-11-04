@@ -116,6 +116,7 @@ class App extends PureComponent {
   };
 
   navCatFun = (item) => {
+    console.log(item, 'test');
     const string = item;
     const newString = string.replace(/\s+/g, ''); // "thiscontainsspaces"
     this.props.navigation.navigate(newString);
