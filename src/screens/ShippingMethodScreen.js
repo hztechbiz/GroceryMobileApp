@@ -216,17 +216,20 @@ class ShippingMethod extends Component {
             style={{
               borderColor: themeStyle.otherBtnsColor,
               alignItems: 'center',
-              height: 40,
-              width: wp('100%'),
-              backgroundColor: themeStyle.otherBtnsColor,
+              alignSelf: 'center',
+              height: 60,
+              width: wp('80%'),
+              backgroundColor: '#2d79be',
               justifyContent: 'center',
               opacity: this.state.buttonEnable ? 0.4 : 0.9,
+              marginBottom: 30,
+              borderRadius: 10,
             }}>
             <Text
               style={{
                 textAlign: 'center',
                 color: themeStyle.otherBtnsText,
-                fontSize: themeStyle.mediumSize,
+                fontSize: 18,
                 fontWeight: '500',
               }}>
               {this.props.cartItems2.Config.languageJson.Next}
