@@ -1933,6 +1933,7 @@ class ShippingAddress extends Component {
                   width: WIDTH * 0.8,
                   backgroundColor: themeStyle.otherBtnsColor,
                   justifyContent: 'center',
+                  marginBottom: 30,
                 }}>
                 <Text
                   style={{
