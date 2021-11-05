@@ -907,49 +907,54 @@ class ProductDetail extends PureComponent {
                           // paddingTop: 1,
                           paddingBottom: 0,
                         }}>
-                        {this.props.navigation.state.params.objectArray.categories.map(
-                          (item) => (
+                        <View>
+                          {this.props.navigation.state.params.objectArray.categories.map(
+                            (item) => (
+                              <Text
+                                style={{
+                                  fontSize: themeStyle.smallSize - 1,
+                                  color: themeStyle.categoryTextColor,
+                                  fontWeight:
+                                    Platform.OS === 'android' ? '600' : '400',
+                                  // alignSelf: 'flex-start',
+                                }}>
+                                {item.categories_name + ', '}
+                              </Text>
+                            ),
+                          )}
+                        </View>
+                        <View>
+                          {this.state.cartButton === 'outOfStock' ? (
                             <Text
                               style={{
-                                fontSize: themeStyle.smallSize - 1,
-                                color: themeStyle.categoryTextColor,
-                                fontWeight:
-                                  Platform.OS === 'android' ? '600' : '400',
-                                // alignSelf: 'flex-start',
+                                color: themeStyle.textColor,
+
+                                fontWeight: '100',
                               }}>
-                              {item.categories_name + ', '}
+                              {
+                                this.props.cartItems2.Config.languageJson[
+                                  'Out of Stock'
+                                ]
+                              }
                             </Text>
-                          ),
-                        )}
+                          ) : null}
+                        </View>
+                        <View>
+                          {this.state.cartButton === 'addToCart' ? (
+                            <Text
+                              style={{
+                                color: '#2d79be',
 
-                        {this.state.cartButton === 'outOfStock' ? (
-                          <Text
-                            style={{
-                              color: themeStyle.textColor,
-
-                              fontWeight: '100',
-                            }}>
-                            {
-                              this.props.cartItems2.Config.languageJson[
-                                'Out of Stock'
-                              ]
-                            }
-                          </Text>
-                        ) : null}
-                        {this.state.cartButton === 'addToCart' ? (
-                          <Text
-                            style={{
-                              color: '#2d79be',
-
-                              fontWeight: 'bold',
-                            }}>
-                            {
-                              this.props.cartItems2.Config.languageJson[
-                                'In Stock'
-                              ]
-                            }
-                          </Text>
-                        ) : null}
+                                fontWeight: 'bold',
+                              }}>
+                              {
+                                this.props.cartItems2.Config.languageJson[
+                                  'In Stock'
+                                ]
+                              }
+                            </Text>
+                          ) : null}
+                        </View>
                       </View>
                     ) : null
                   ) : null}
