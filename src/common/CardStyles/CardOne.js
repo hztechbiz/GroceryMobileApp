@@ -11,6 +11,7 @@ import Timer from '../Timer';
 import {Icon} from 'native-base';
 import Ionicons from 'react-native-vector-icons/FontAwesome';
 import theme from '../Theme.style';
+import ThemeStyle from '../Theme.style';
 export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
   // 1st View
   <View
@@ -162,19 +163,20 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
               justifyContent: 'center',
               alignItems: 'center',
               alignSelf: 'center',
-              elevation: 3,
+              elevation: 4,
               width: 140,
               // padding: 5,
               borderRadius: 10,
               height: 100,
+
               // paddingVertical: 20,
             }}>
             <ImageLoad
               style={{
                 // height: widthPic,
                 // width: widthPic,
-                height: 90,
-                width: 100,
+                height: 100,
+                width: 140,
                 backgroundColor: 'rgb(236, 236, 236)',
                 borderRadius: 5,
                 alignSelf: 'center',
@@ -280,12 +282,13 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
             marginTop: 0,
             width: widthPic,
             // backgroundColor: '#f5fafe',
-            backgroundColor: '#f5fafe',
+            backgroundColor: ThemeStyle.backgroundColor,
           }}>
           {/* ................................Product Name View */}
           <View
             style={{
               // backgroundColor: 'yellow',
+              // backgroundColor: ThemeStyle.backgroundColor,
               justifyContent: 'center',
               alignItems: 'center',
               width: '100%',

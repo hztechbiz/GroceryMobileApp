@@ -585,7 +585,7 @@ class Newest extends Component {
                   />
                   <Text
                     style={{
-                      color: themeStyle.primary,
+                      color: themeStyle.productTextColor,
                       fontSize: themeStyle.smallSize + 1,
                       fontWeight: '400',
                       padding: 10,
@@ -920,7 +920,7 @@ class Newest extends Component {
                       />
                       <Text
                         style={{
-                          color: themeStyle.primary,
+                          color: themeStyle.productTextColor,
                           fontSize: themeStyle.smallSize + 1,
                           fontWeight: '400',
                           padding: 10,

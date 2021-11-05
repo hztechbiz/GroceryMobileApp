@@ -1,5 +1,11 @@
 import React, {PureComponent} from 'react';
-import {Dimensions, StyleSheet, View, TouchableOpacity} from 'react-native';
+import {
+  Dimensions,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Text,
+} from 'react-native';
 import Loader from 'react-native-easy-content-loader';
 import {createSelector} from 'reselect';
 import SwiperBanner2 from '../common/SwiperBanner2';
@@ -11,6 +17,7 @@ import Toast from 'react-native-easy-toast';
 import theme from './Theme.style';
 import SwiperFlatList from 'react-native-swiper-flatlist';
 import Image from 'react-native-scalable-image';
+import ThemeStyle from './Theme.style';
 const WIDTH = Dimensions.get('window').width;
 class SwiperBanner extends PureComponent {
   constructor(props) {
@@ -66,7 +73,7 @@ class SwiperBanner extends PureComponent {
   bannersRender() {
     return this.props.banners.length > 0
       ? this.props.banners.map((val, key) => (
-          <TouchableOpacity onPress={this.onClickFun.bind(this, val)}>
+          <View>
             <Image
               placeholder={false}
               key={key}
@@ -83,12 +90,27 @@ class SwiperBanner extends PureComponent {
                     : '',
               }}
             />
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                position: 'absolute',
+                bottom: 20,
+                left: 140,
+                backgroundColor: ThemeStyle.iconColor,
+                // padding: 15,
+                paddingVertical: 10,
+                paddingHorizontal: 17,
+                borderRadius: 10,
+              }}
+              onPress={this.onClickFun.bind(this, val)}>
+              <Text style={{color: '#fff'}}>Shop Now</Text>
+            </TouchableOpacity>
+          </View>
         ))
       : null;
   }
 
   render() {
+    console.log('banner =============');
     let {loading} = this.state;
     if (this.props.banners !== undefined) {
       if (this.props.banners.length > 0) {
