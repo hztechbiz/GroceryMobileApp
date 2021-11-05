@@ -212,6 +212,7 @@ class Banner extends PureComponent {
                         // alignSelf: 'center',
                         alignItems: 'center',
                         justifyContent: 'center',
+                        // backgroundColor: 'red',
                         // height: height,
                         // width: width / 0.5,
                         width: width,

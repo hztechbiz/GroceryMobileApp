@@ -407,7 +407,7 @@ class ProductDetail extends PureComponent {
               ? themeStyle.mediumSize - 2
               : themeStyle.mediumSize - 2,
           color:
-            decoration === 'line-through' ? '#707070' : themeStyle.textColor,
+            decoration === 'line-through' ? '#707070' : themeStyle.iconColor,
           marginTop: decoration === 'line-through' ? 2 : 0,
           textDecorationLine: decoration,
         }}
@@ -419,7 +419,7 @@ class ProductDetail extends PureComponent {
           marginLeft: 2,
           alignItems: 'flex-start',
           color:
-            decoration === 'line-through' ? '#707070' : themeStyle.textColor,
+            decoration === 'line-through' ? '#707070' : themeStyle.iconColor,
           fontSize:
             decoration === 'line-through'
               ? themeStyle.mediumSize - 2
@@ -636,8 +636,8 @@ class ProductDetail extends PureComponent {
             style={{
               color: themeStyle.otherBtnsText,
               fontSize: themeStyle.mediumSize,
-              fontWeight: '500',
-              textTransform: 'capitalize',
+              fontWeight: 'bold',
+              textTransform: 'uppercase',
             }}>
             {text}
           </Text>
@@ -709,7 +709,11 @@ class ProductDetail extends PureComponent {
             textStyle={styles.spinnerTextStyle}
           />
           <FlatList
-            style={{margin: 15}}
+            style={{
+              margin: 15,
+              // backgroundColor: 'red',
+              // justifyContent: 'center',
+            }}
             showsVerticalScrollIndicator={false}
             data={pageNumbers}
             vertical
@@ -721,8 +725,9 @@ class ProductDetail extends PureComponent {
                   style={{
                     flexDirection: 'row',
                     zIndex: 12,
-                    right: 0,
-                    // left: 0,
+                    // right: 20,
+                    // right: -100,
+                    // backgroundColor: 'red',
                     position: 'absolute',
                     top:
                       this.props.navigation.state.params.objectArray
@@ -730,15 +735,55 @@ class ProductDetail extends PureComponent {
                         ? 50
                         : 10,
                   }}>
+                  <View
+                    style={{
+                      flex: 1,
+                      backgroundColor: themeStyle.backgroundColor,
+                      // backgroundColor: 'green',
+
+                      flexDirection: 'row',
+                      padding: 8,
+                      paddingTop: 14,
+                    }}>
+                    {this.props.navigation.state.params.objectArray !== null ? (
+                      this.props.navigation.state.params.objectArray
+                        .discount_price != null ? (
+                        <View
+                          style={{
+                            backgroundColor: themeStyle.iconColor,
+                            height: 27,
+                            zIndex: 2,
+                            left: 10,
+                            top: 0,
+                            position: 'absolute',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            borderRadius: 5,
+                          }}>
+                          <Text
+                            style={{
+                              color: themeStyle.otherBtnsText,
+                              padding: 5,
+                              zIndex: 2,
+                            }}>
+                            {this.pDiscount() +
+                              ' ' +
+                              this.props.cartItems2.Config.languageJson.OFF}
+                          </Text>
+                        </View>
+                      ) : null
+                    ) : null}
+                  </View>
+
                   {this.props.navigation.state.params.objectArray
                     .flash_price === undefined ? (
                     <TouchableOpacity
                       style={{
                         width: 33,
                         height: 30,
-                        // backgroundColor: themeStyle.backgroundColor,
-                        alignItems: 'center',
-                        justifyContent: 'center',
+                        // backgroundColor: 'red',
+                        alignItems: 'flex-start',
+                        justifyContent: 'flex-start',
                       }}>
                       {this.checkWishList(this.props, this) === 1 ? (
                         this.props.cartItems2.Config.removeButton ? (
@@ -791,44 +836,6 @@ class ProductDetail extends PureComponent {
                     </TouchableOpacity>
                   ) : null}
 
-                  <View
-                    style={{
-                      flex: 1,
-                      // backgroundColor: themeStyle.backgroundColor,
-                      // backgroundColor: 'red',
-
-                      flexDirection: 'row',
-                      padding: 8,
-                      paddingTop: 14,
-                    }}>
-                    {this.props.navigation.state.params.objectArray !== null ? (
-                      this.props.navigation.state.params.objectArray
-                        .discount_price != null ? (
-                        <View
-                          style={{
-                            backgroundColor: themeStyle.iconColor,
-                            height: 27,
-                            zIndex: 2,
-                            right: 10,
-                            top: -16,
-                            position: 'absolute',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                          }}>
-                          <Text
-                            style={{
-                              color: themeStyle.otherBtnsText,
-                              padding: 5,
-                              zIndex: 2,
-                            }}>
-                            {this.pDiscount() +
-                              ' ' +
-                              this.props.cartItems2.Config.languageJson.OFF}
-                          </Text>
-                        </View>
-                      ) : null
-                    ) : null}
-                  </View>
                   {/* <TouchableOpacity
                     onPress={this.onShare}
                     style={{
@@ -934,7 +941,7 @@ class ProductDetail extends PureComponent {
                             style={{
                               color: '#2d79be',
 
-                              fontWeight: '100',
+                              fontWeight: 'bold',
                             }}>
                             {
                               this.props.cartItems2.Config.languageJson[
