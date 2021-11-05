@@ -3,32 +3,39 @@ import {View, TouchableOpacity, Text, Dimensions} from 'react-native';
 import ImageLoad from './RnImagePlaceH';
 import theme from './Theme.style';
 const WIDTH = Dimensions.get('window').width;
-const Width2 = WIDTH * 0.5;
+const Width2 = WIDTH * 0.42;
 export default Category1 = (props) => (
   <TouchableOpacity
     style={{
       justifyContent: 'center',
       alignItems: 'center',
       // backgroundColor: theme.backgroundColor,
-      backgroundColor: 'red',
+      // backgroundColor: '#fff',
+      // margin: 5,
+      marginHorizontal: 13,
+      marginVertical: 10,
+      height: 120,
       width: Width2,
-      padding: 16,
+      // padding: 16,
+
       // borderColor: 'gray',
       // borderWidth: 0.2,
       shadowOffset: {width: 1, height: 1},
       shadowColor: theme.textColor,
       shadowOpacity: 0.2,
-      elevation: 4,
-      borderRadius: 1,
+      // elevation: 4,
+      borderRadius: 10,
     }}
     onPress={() => props.openSubCategories(props.item, props.item.name)}>
     <ImageLoad
       key={props.id}
       style={{
-        height: 100,
-        width: 120,
+        height: 120,
+        width: Width2,
         overflow: 'hidden',
+        borderRadius: 10,
       }}
+      // resizeMethod="contain"
       loadingStyle={{size: 'large', color: theme.loadingIndicatorColor}}
       placeholder={false}
       ActivityIndicator={true}
@@ -40,17 +47,20 @@ export default Category1 = (props) => (
 
     <View
       style={{
-        paddingTop: 15,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backfaceVisibility: 'hidden',
-        backgroundColor: theme.backgroundColor,
-        alignContent: 'center',
+        position: 'absolute',
+        top: 40,
+        // paddingTop: 15,
+        // justifyContent: 'center',
+        // alignItems: 'center',
+        // backfaceVisibility: 'hidden',
+        // backgroundColor: theme.backgroundColor,
+        // alignContent: 'center',
       }}>
       <Text
         style={{
           fontWeight: 'bold',
-          color: theme.textColor,
+          // color: theme.textColor,
+          color: '#fff',
           fontSize: theme.mediumSize,
           textAlign: 'center',
         }}>
@@ -58,7 +68,8 @@ export default Category1 = (props) => (
       </Text>
       <Text
         style={{
-          color: theme.textColor,
+          // color: theme.textColor,
+          color: '#fff',
           fontSize: theme.smallSize,
           textAlign: 'center',
         }}>{`${props.item.total_products} ${props.products}`}</Text>

@@ -33,9 +33,10 @@ class Login extends PureComponent {
     return {
       headerTitle: headerStyle,
       headerRight: null,
+      headerLeft: null,
       gestureEnabled: false,
-      drawerLockMode: 'locked-closed',
-      headerTitleAlign: 'center',
+      // drawerLockMode: 'locked-closed',
+      // headerTitleAlign: 'center',
       headerTintColor: themeStyle.headerTintColor,
       headerStyle: {
         backgroundColor: themeStyle.primary,
