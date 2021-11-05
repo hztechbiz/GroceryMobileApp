@@ -8,6 +8,7 @@ import {
   ScrollView,
   Platform,
   I18nManager,
+  Image,
   Linking,
 } from 'react-native';
 import {UIActivityIndicator} from 'react-native-indicators';
@@ -572,7 +573,7 @@ class Newest extends Component {
                         : themeStyle.backgroundColor,
                     marginLeft: 10,
                   }}>
-                  <Icon
+                  {/* <Icon
                     name={'time'}
                     style={{
                       color: themeStyle.primary,
@@ -582,7 +583,17 @@ class Newest extends Component {
                       paddingLeft: 0,
                       paddingBottom: 4,
                     }}
+                  /> */}
+                  <Image
+                    source={require('./../images/magic-wand.png')}
+                    style={{
+                      height: 15,
+                      width: 20,
+                      resizeMode: 'contain',
+                      marginTop: 10,
+                    }}
                   />
+
                   <Text
                     style={{
                       color: themeStyle.primary,
@@ -590,7 +601,7 @@ class Newest extends Component {
                       fontWeight: '400',
                       padding: 10,
                       paddingTop: Platform.OS === 'android' ? 8 : 10,
-                      paddingLeft: 0,
+                      paddingLeft: 5,
                       paddingRight: 5,
                       paddingBottom: 2,
                     }}>
@@ -680,7 +691,7 @@ class Newest extends Component {
                           ? themeStyle.singleRowCardWidth * 1.838
                           : themeStyle.singleRowCardWidth * 1.738,
                     }}
-                    tabBarActiveTextColor={themeStyle.primaryDark}
+                    tabBarActiveTextColor={'#404040'}
                     locked={!!I18nManager.isRTL}
                     renderTabBar={() => (
                       <TabBar
@@ -688,13 +699,14 @@ class Newest extends Component {
                           alignItems: 'center',
                           flexDirection: 'column',
                         }}
-                        underlineColor={themeStyle.primaryDark}
+                        underlineColor={'#ed1c24'}
                         inactiveTextColor="#707070"
                         backgroundColor={themeStyle.backgroundColor}
                         tabBarStyle={{
                           height: 46,
                           marginTop: 0,
                           paddingTop: 12,
+                          backgroundColor: '#e6eff7',
                           justifyContent: 'center',
                           alignItems: 'center',
                           marginLeft: -16,
