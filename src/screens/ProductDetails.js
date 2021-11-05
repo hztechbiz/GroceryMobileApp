@@ -806,10 +806,10 @@ class ProductDetail extends PureComponent {
                         .discount_price != null ? (
                         <View
                           style={{
-                            backgroundColor: themeStyle.otherBtnsColor,
+                            backgroundColor: themeStyle.iconColor,
                             height: 27,
                             zIndex: 2,
-                            left: 10,
+                            right: 10,
                             top: -16,
                             position: 'absolute',
                             alignItems: 'center',
