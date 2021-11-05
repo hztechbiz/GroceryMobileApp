@@ -142,7 +142,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
           // backgroundColor: 'purple',
           backgroundColor: '#ffffff',
           // borderRadius: 5,
-            // elevation: 3,
+          // elevation: 3,
           // padding: 10,
           opacity: t.newMethod3(props, t) === 1 ? 0.1 : 1,
         }}>
@@ -159,14 +159,15 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
               // RED-
               backgroundColor: 'red',
               backgroundColor: '#FFF',
-              // justifyContent: 'center',
-              // alignItems: 'center',
+              justifyContent: 'center',
+              alignItems: 'center',
               alignSelf: 'center',
-               elevation: 3,
-               width: 140,
+              elevation: 3,
+              width: 140,
               // padding: 5,
               borderRadius: 10,
-              paddingVertical: 20
+              height: 100,
+              // paddingVertical: 20,
             }}>
             <ImageLoad
               style={{
@@ -312,7 +313,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
             style={{
               // backgroundColor: 'transparent',
               // backgroundColor: 'purple',
-              justifyContent: 'space-between',
+              justifyContent: 'center',
               alignItems: 'center',
               flexDirection: 'row',
               marginTop: 0,
@@ -369,7 +370,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
                   : null}
               </View>
             ) : null}
-            {props.objectArray.flash_price === undefined ? (
+            {/* {props.objectArray.flash_price === undefined ? (
               // Recently Viewed Cart Icon View
               <View>
                 {t.checkWishList(props, t) === 1 ? (
@@ -420,7 +421,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
                   />
                 )}
               </View>
-            ) : null}
+            ) : null} */}
           </View>
           {props.removeButton ? (
             <TouchableOpacity
