@@ -119,7 +119,7 @@ export default class Timer extends Component {
     hoursString = hours < 10 ? '0' + hours : hours.toString();
     minutesString = minutes < 10 ? '0' + minutes : minutes.toString();
     secondsString = seconds < 10 ? '0' + seconds : seconds.toString();
-    return hoursString + 'h:' + minutesString + 'm:' + secondsString + 's';
+    return hoursString + 'h | ' + minutesString + 'm | ' + secondsString + 's';
   };
 
   render() {
@@ -145,17 +145,19 @@ export default class Timer extends Component {
           shadowOpacity: 0.5,
           elevation: 3,
         }}>
+
+    {/* Timer.js- TimeBackground Color */}
         <View
           style={{
             padding: this.props.text !== null ? 12 : 5,
             margin: 5,
             width: this.props.btnWidth,
-            backgroundColor:
-              this.props.text !== null
-                ? theme.otherBtnsColor
-                : this.props.color === false
-                ? theme.primaryDark
-                : theme.primary,
+            // backgroundColor:
+            //   this.props.text !== null
+            //     ? theme.otherBtnsColor
+            //     : this.props.color === false
+            //     ? theme.primaryDark
+            //     : theme.primary,
             justifyContent: 'center',
             alignItems: 'center',
             alignSelf: 'center',
@@ -198,9 +200,9 @@ export default class Timer extends Component {
           ) : (
             <Text
               style={{
-                color: theme.addToCartBtnTextColor,
+                color: '#2d79be',
                 fontSize: theme.mediumSize + 1,
-                fontWeight: '500',
+                fontWeight: 'bold',
               }}>
               {this.state.timer.displayTime}
             </Text>
