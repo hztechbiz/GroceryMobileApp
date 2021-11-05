@@ -18,22 +18,25 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
       // backgroundColor: theme.backgroundColor,
       width: widthPic,
       // width: '100%',
-      shadowOffset: {width: 1, height: 1},
-      shadowColor: theme.textColor,
-      shadowOpacity: 0.3,
+      // shadowOffset: {width: 1, height: 1},
+      // shadowColor: theme.textColor,
+      // shadowOpacity: 0.3,
       // height: '20%',
-      elevation: 3,
+      // elevation: 3,
       margin: 5,
       marginBottom: 8,
       padding: 6,
-      backgroundColor: 'red',
+      // backgroundColor: 'red',
+      backgroundColor: 'transparent',
       justifyContent: 'center',
     }}>
     {/* /// ///////////////////////////////////////////////////// 2nd View*/}
     <View
       style={{
+        // YELLOW-
         // backgroundColor: theme.backgroundColor,
-        backgroundColor: 'yellow',
+        // backgroundColor: 'yellow',
+        backgroundColor: '#FFF',
         padding: 5,
         // ZZwidth: '100%',
       }}>
@@ -134,9 +137,13 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
       {/* Third View */}
       <View
         style={{
+          // PURPLE-
           // backgroundColor: theme.backgroundColor,
-          backgroundColor: 'purple',
-          padding: 10,
+          // backgroundColor: 'purple',
+          backgroundColor: '#ffffff',
+          // borderRadius: 5,
+            // elevation: 3,
+          // padding: 10,
           opacity: t.newMethod3(props, t) === 1 ? 0.1 : 1,
         }}>
         <TouchableOpacity
@@ -149,20 +156,27 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
           {/* Image View */}
           <View
             style={{
+              // RED-
               backgroundColor: 'red',
-              justifyContent: 'center',
-              alignItems: 'center',
-              padding: 5,
+              backgroundColor: '#FFF',
+              // justifyContent: 'center',
+              // alignItems: 'center',
+              alignSelf: 'center',
+               elevation: 3,
+               width: 140,
+              // padding: 5,
+              borderRadius: 10,
+              paddingVertical: 20
             }}>
             <ImageLoad
               style={{
                 // height: widthPic,
                 // width: widthPic,
-                height: 100,
-
-                width: '100%',
+                height: 90,
+                width: 100,
                 backgroundColor: 'rgb(236, 236, 236)',
-                borderRadius: 10,
+                borderRadius: 5,
+                alignSelf: 'center',
               }}
               source={{
                 uri: theme.url + '/' + props.objectArray.products_image,
@@ -264,24 +278,27 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
             paddingTop: 5,
             marginTop: 0,
             width: widthPic,
-            backgroundColor: 'orange',
+            // backgroundColor: '#f5fafe',
+            backgroundColor: '#f5fafe',
           }}>
           {/* ................................Product Name View */}
           <View
             style={{
-              backgroundColor: 'yellow',
+              // backgroundColor: 'yellow',
               justifyContent: 'center',
               alignItems: 'center',
               width: '100%',
             }}>
             <Text
               style={{
-                fontSize: theme.mediumSize - 2,
+                fontSize: 15,
                 fontFamily: 'Roboto',
                 writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr',
                 color: theme.textColor,
                 margin: 0,
                 padding: 5,
+                fontWeight: 'bold',
+                color: '#404040',
                 paddingTop: Platform.OS === 'android' ? 1 : 2,
                 paddingBottom: 1,
                 marginBottom: 0,
@@ -294,7 +311,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
           <View
             style={{
               // backgroundColor: 'transparent',
-              backgroundColor: 'purple',
+              // backgroundColor: 'purple',
               justifyContent: 'space-between',
               alignItems: 'center',
               flexDirection: 'row',
@@ -308,7 +325,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
               <View
                 style={{
                   flexDirection: 'row',
-                  backgroundColor: 'pink',
+                  // backgroundColor: 'pink',
                   width: '100%',
                   justifyContent: 'center',
                 }}>
