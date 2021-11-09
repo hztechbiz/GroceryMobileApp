@@ -186,8 +186,8 @@ class CreateAccount extends PureComponent {
             style={{
               height: 130,
               width: 270,
-              resizeMode: 'stretch',
-              marginTop: 20,
+              resizeMode: 'contain',
+              marginTop: 35,
               marginBottom: 15,
             }}
           />
@@ -221,7 +221,7 @@ class CreateAccount extends PureComponent {
                 shadowOpacity: 0.29,
                 shadowRadius: 4.65,
 
-                elevation: 5,
+                elevation: 3,
               }}>
               <TextInput
                 style={{
@@ -287,7 +287,7 @@ class CreateAccount extends PureComponent {
                 shadowOpacity: 0.29,
                 shadowRadius: 4.65,
 
-                elevation: 5,
+                elevation: 3,
               }}>
               <TextInput
                 style={{
@@ -345,7 +345,7 @@ class CreateAccount extends PureComponent {
                 shadowOpacity: 0.29,
                 shadowRadius: 4.65,
 
-                elevation: 5,
+                elevation: 3,
               }}>
               <TextInput
                 style={{
@@ -429,7 +429,7 @@ class CreateAccount extends PureComponent {
                 shadowOpacity: 0.29,
                 shadowRadius: 4.65,
 
-                elevation: 5,
+                elevation: 3,
               }}>
               <TextInput
                 style={{
@@ -510,7 +510,7 @@ class CreateAccount extends PureComponent {
                 shadowOpacity: 0.29,
                 shadowRadius: 4.65,
 
-                elevation: 5,
+                elevation: 3,
               }}>
               <TextInput
                 style={{
@@ -590,7 +590,8 @@ class CreateAccount extends PureComponent {
                   this.props.navigation.navigate('TermAndServiceScreen');
                 }}
                 style={{
-                  color: '#00F',
+                  color: themeStyle.productTextColor,
+                  fontWeight: 'bold',
                   fontSize: themeStyle.mediumSize,
                   textDecorationLine: 'underline',
                 }}>
@@ -602,7 +603,8 @@ class CreateAccount extends PureComponent {
                   this.props.navigation.navigate('PrivacyPolicyScreen');
                 }}
                 style={{
-                  color: '#00F',
+                  color: themeStyle.productTextColor,
+                  fontWeight: 'bold',
                   fontSize: themeStyle.mediumSize,
                   textDecorationLine: 'underline',
                 }}>
@@ -614,7 +616,8 @@ class CreateAccount extends PureComponent {
                   this.props.navigation.navigate('RefundPolicy');
                 }}
                 style={{
-                  color: '#00F',
+                  color: themeStyle.productTextColor,
+                  fontWeight: 'bold',
                   fontSize: themeStyle.mediumSize,
                   textDecorationLine: 'underline',
                 }}>
@@ -658,7 +661,7 @@ class CreateAccount extends PureComponent {
               </View>
             </TouchableOpacity>
 
-            <View style={{flexDirection: 'row', width: '100%'}}>
+            <View style={{flexDirection: 'row', width: '100%', marginTop: 10}}>
               <TouchableOpacity
                 style={{
                   backgroundColor: '#174791',
@@ -755,13 +758,12 @@ class CreateAccount extends PureComponent {
               </TouchableOpacity>
             </View>
 
-            <Text
+            <View
               style={{
-                textAlign: 'center',
+                alignItems: 'center',
+                flexDirection: 'row',
                 justifyContent: 'center',
-                display: 'flex',
-                marginTop: 15,
-                marginBottom: 30,
+                marginVertical: 15,
               }}>
               <Text
                 style={{
@@ -783,12 +785,11 @@ class CreateAccount extends PureComponent {
                     color: 'black',
                     textDecorationLine: 'underline',
                     fontWeight: 'bold',
-                    marginTop: 10,
                   }}>
                   Sign in
                 </Text>
               </TouchableOpacity>
-            </Text>
+            </View>
           </View>
         </View>
       </ScrollView>

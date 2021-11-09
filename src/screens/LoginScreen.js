@@ -272,8 +272,8 @@ class Login extends PureComponent {
             style={{
               height: 130,
               width: 270,
-              resizeMode: 'stretch',
-              marginVertical: 30,
+              resizeMode: 'contain',
+              marginVertical: 65,
             }}
           />
 
@@ -478,7 +478,7 @@ class Login extends PureComponent {
               </TouchableOpacity>
             ) : null}
 
-            <View style={{flexDirection: 'row', width: '100%'}}>
+            <View style={{flexDirection: 'row', width: '100%', marginTop: 15}}>
               <TouchableOpacity
                 style={{
                   backgroundColor: '#174791',
@@ -623,12 +623,19 @@ class Login extends PureComponent {
               </Text>
             ) : null} */}
 
-            <Text
+            {/* <Text
               style={{
                 textAlign: 'center',
                 justifyContent: 'center',
                 display: 'flex',
-                marginTop: 15,
+                // marginTop: 15,
+              }}> */}
+            <View
+              style={{
+                alignItems: 'center',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                marginVertical: 10,
               }}>
               <Text
                 style={{
@@ -654,12 +661,13 @@ class Login extends PureComponent {
                     textDecorationLine: 'underline',
                     fontWeight: 'bold',
                     // marginLeft: 8,
-                    marginTop: 10,
+                    // marginTop: 10,
                   }}>
                   Register
                 </Text>
               </TouchableOpacity>
-            </Text>
+            </View>
+            {/* </Text> */}
 
             {this.props.isLoading.Config.fbButton === 1 ? (
               <FBLoginButton

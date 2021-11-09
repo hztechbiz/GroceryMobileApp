@@ -988,7 +988,7 @@ class ProductDetail extends PureComponent {
                   ) : null}
                 </View> */}
 
-                <View
+                {/* <View
                   style={{
                     flexDirection: 'row',
                     alignItems: 'center',
@@ -1125,7 +1125,7 @@ class ProductDetail extends PureComponent {
                       />
                     </View>
                   </TouchableOpacity>
-                </View>
+                </View> */}
 
                 {/* <View
                   style={{

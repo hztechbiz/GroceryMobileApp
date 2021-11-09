@@ -202,13 +202,13 @@ class App extends PureComponent {
           backgroundColor={theme.StatusBarColor}
           barStyle={theme.barStyle}
         />
-        <View
+        {/* <View
           style={{
             height: Platform.OS === 'ios' ? Height * 0.067 : 56,
             backgroundColor: theme.primary,
             borderWidth: Platform.OS === 'ios' ? 0.3 : 0,
-          }}>
-          <View
+          }}> */}
+        {/* <View
             style={{
               flex: 1,
               flexDirection: 'row',
@@ -268,8 +268,8 @@ class App extends PureComponent {
                 </TouchableOpacity>
               ) : null}
             </View>
-          </View>
-        </View>
+          </View> */}
+        {/* </View> */}
 
         <TouchableOpacity
           onPress={() => {
