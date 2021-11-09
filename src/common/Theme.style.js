@@ -8,6 +8,7 @@ const cardWidth = WIDTH * 0.3991;
 // cardWidth= WIDTH * 0.42
 const cIp = '192.168.1.' + Math.floor(Math.random() * 99) + 1; // default
 const cDid = uuid.v4();
+
 export default {
   /// /////////////////////////////
 
@@ -18,11 +19,11 @@ export default {
   webClientIdForGoogleSign:
     '525656277362-uhimqv63papb0lghvaj5qrsnh8iqa8ss.apps.googleusercontent.com', // webClientId For Google SignIn
   /// //// navigation
-  homeTitle: 'Becrux',
+  homeTitle: 'StarMart',
   bottomNavigation: false,
   // please reset app cache after changing these five values
-  defaultCurrencySymbol: '&#36;',
-  defaultCurrencyCode: 'USD',
+  defaultCurrencySymbol: 'RS',
+  defaultCurrencyCode: 'PKR',
   priceDecimals: 2,
   // by default language for ltr
   ltrlanguageCode: 'en',

@@ -157,7 +157,8 @@ class ShippingMethod extends Component {
             extraData={this.state}
             keyExtractor={(item, index) => index.toString()}
             renderItem={(item) => (
-              <View style={{borderBottomWidth: 1.7, borderBottomColor: '#d9d9d9'}}>
+              <View
+                style={{borderBottomWidth: 1.7, borderBottomColor: '#d9d9d9'}}>
                 <View
                   style={{
                     justifyContent: 'center',
@@ -168,7 +169,12 @@ class ShippingMethod extends Component {
                     backgroundColor: '#f5fafe',
                   }}>
                   {item.item.services.length != 0 ? (
-                    <Text style={{color: themeStyle.textColor, fontSize: 13, paddingLeft: 12}}>
+                    <Text
+                      style={{
+                        color: themeStyle.textColor,
+                        fontSize: 13,
+                        paddingLeft: 12,
+                      }}>
                       {item.item.name}
                     </Text>
                   ) : null}
@@ -197,7 +203,7 @@ class ShippingMethod extends Component {
                         </View>
                       </Body>
                       <CheckBox
-                        style={{borderRadius: 15, marginTop: -16}}
+                        style={{borderRadius: 15, marginBottom: 20}}
                         onPress={() => this.setMethod(v, item.index)}
                         checked={this.state.tick[item.index]}
                       />

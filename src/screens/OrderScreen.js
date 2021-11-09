@@ -944,7 +944,9 @@ class orderScreen extends Component {
                     if (
                       SyncStorage.get('orderDetails').payment_method ===
                         'stripe' ||
-                      SyncStorage.get('orderDetails').payment_method === 'cod'
+                      SyncStorage.get('orderDetails').payment_method ===
+                        'cod' ||
+                      SyncStorage.get('orderDetails').payment_method === 'card'
                     ) {
                       this.setState({SpinnerTemp: true}, () => this.addOrder());
                     }

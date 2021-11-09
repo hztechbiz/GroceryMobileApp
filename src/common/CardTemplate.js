@@ -655,6 +655,8 @@ class CardTemplate extends Component {
 
   /// //////////////////////////////////////////////////////////
   newMethod6 = (props, t) => {
+    console.log('hello');
+    // console.log(counter)
     t.setState({isLoading: true, counter: t.state.counter + 1});
     if (props.cardStyleE === 22) {
       if (
@@ -671,6 +673,7 @@ class CardTemplate extends Component {
         });
       } else {
         props.cartProductArrayViewedProducts.map((val, key) => {
+          console.log(val.quantity, 'quantity');
           if (val.products_id === props.objectArray.id) {
             val.quantity = val.quantity + 1;
             props.objectArray.quantity = val.quantity;
