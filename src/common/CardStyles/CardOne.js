@@ -290,7 +290,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
               // backgroundColor: 'yellow',
               // backgroundColor: ThemeStyle.backgroundColor,
               justifyContent: 'center',
-              alignItems: 'center',
+              alignItems: 'flex-start',
               width: '100%',
             }}>
             <Text
@@ -300,7 +300,8 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
                 writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr',
                 color: theme.textColor,
                 margin: 0,
-                padding: 5,
+                // padding: 5,
+                paddingLeft: 12,
                 fontWeight: 'bold',
                 color: '#404040',
                 paddingTop: Platform.OS === 'android' ? 1 : 2,
@@ -319,11 +320,11 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
               justifyContent: 'center',
               alignItems: 'center',
               flexDirection: 'row',
-              marginTop: 0,
               marginBottom: props.objectArray.flash_price === undefined ? 0 : 2,
               padding: 5,
               paddingTop: 0,
               paddingBottom: 1,
+              marginTop: 10,
             }}>
             {props.objectArray.flash_price !== undefined ? (
               <View
@@ -476,17 +477,16 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
               props.inventory == 1 ? (
               <TouchableOpacity
                 style={{
-                  margin: 5,
+                  // margin: 5,
                   width: btnWidth,
                   marginBottom: 3,
                   marginTop: 0,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  alignSelf: 'center',
-                  shadowOffset: {width: 1, height: 1},
-                  shadowColor: theme.textColor,
-                  shadowOpacity: 0.5,
-                  elevation: 3,
+                  top: -3,
+                  borderRadius: 5,
+                  // justifyContent: 'center',
+                  alignItems: 'flex-end',
+                  right: 7,
+                  position: 'absolute',
                 }}>
                 {/* Out of Stock Button View */}
                 <View
@@ -494,19 +494,20 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
                     padding: 6,
                     margin: 5,
                     width: btnWidth,
-
-                    justifyContent: 'center',
+                    width: 90,
+                    // justifyContent: 'center',
                     alignItems: 'center',
-                    alignSelf: 'center',
-                    marginTop: 0,
+                    // alignSelf: 'center',
                     marginBottom: 0,
+                    borderRadius: 5,
                     // backgroundColor: theme.outOfStockBtnColor,
-                    backgroundColor: 'green',
+                    backgroundColor: 'red',
                   }}>
                   <Text
                     style={{
                       color: theme.outOfStockBtnTextColor,
-                      fontSize: theme.mediumSize + 1,
+                      // fontSize: theme.mediumSize + 1,
+                      fontSize: 10,
                       fontWeight: '500',
                     }}>
                     {t.props.language['OUT OF STOCK']}
@@ -526,17 +527,23 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
             ) : props.objectArray.products_type === 0 ? (
               <TouchableOpacity
                 style={{
-                  margin: 5,
-                  width: btnWidth,
+                  // margin: 5,
+                  // width: btnWidth,
+                  width: 70,
                   marginBottom: 3,
                   marginTop: 0,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  alignSelf: 'center',
-                  shadowOffset: {width: 1, height: 1},
-                  shadowColor: theme.textColor,
-                  shadowOpacity: 0.5,
-                  elevation: 3,
+                  top: -1,
+                  right: 7,
+                  borderRadius: 5,
+                  // justifyContent: 'center',
+                  alignItems: 'flex-end',
+                  // backgroundColor:'yellow',
+                  // alignSelf: 'center',
+                  // shadowOffset: {width: 1, height: 1},
+                  // shadowColor: theme.textColor,
+                  // shadowOpacity: 0.5,
+                  // elevation: 3,
+                  position: 'absolute',
                 }}
                 onPress={() => {
                   if (t.newMethod3(props, t) !== 1) {
@@ -547,19 +554,22 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
                   style={{
                     padding: 5,
                     margin: 5,
-                    width: btnWidth,
+                    // width: btnWidth,
+                    width: 80,
                     // backgroundColor: theme.addToCartBtnColor,
-                    backgroundColor: 'red',
-                    justifyContent: 'center',
+                    backgroundColor: 'green',
+                    // justifyContent: 'center',
                     alignItems: 'center',
-                    alignSelf: 'center',
-                    marginTop: 0,
+                    // alignSelf: 'center',
+                    // marginTop: -27,
+                    borderRadius: 5,
                     marginBottom: 0,
                   }}>
                   <Text
                     style={{
                       color: theme.addToCartBtnTextColor,
-                      fontSize: theme.mediumSize + 1,
+                      // fontSize: theme.mediumSize + 1,
+                      fontSize: 12,
                       fontWeight: '500',
                     }}>
                     {t.props.language['Add to Cart']}
@@ -620,36 +630,40 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
           {t.props.recentViewedProducts && props.recent ? (
             <TouchableOpacity
               style={{
-                margin: 5,
+                // margin: 5,
                 width: btnWidth,
                 marginBottom: 3,
                 marginTop: 0,
-                justifyContent: 'center',
-                alignItems: 'center',
-                alignSelf: 'center',
-                shadowOffset: {width: 1, height: 1},
-                shadowColor: theme.textColor,
-                shadowOpacity: 0.5,
+                top: 3,
+                right: 0,
+                // justifyContent: 'center',
+                alignItems: 'flex-end',
+                // alignSelf: 'center',
+                // shadowOffset: {width: 1, height: 1},
+                // shadowColor: theme.textColor,
+                // shadowOpacity: 0.5,
                 elevation: 3,
+                position: 'absolute',
               }}
               onPress={() => t.removeRecent(props, t)}>
               <View
                 style={{
                   padding: 5,
                   margin: 5,
-                  width: btnWidth,
+                  width: 80,
 
-                  justifyContent: 'center',
+                  // justifyContent: 'center',
                   alignItems: 'center',
-                  alignSelf: 'center',
+                  // alignSelf: 'center',
                   marginTop: 0,
+                  borderRadius: 5,
                   marginBottom: 0,
                   backgroundColor: theme.removeBtnColor,
                 }}>
                 <Text
                   style={{
                     color: theme.removeBtnTextColor,
-                    fontSize: theme.mediumSize + 1,
+                    fontSize: 12,
                     fontWeight: '500',
                   }}>
                   {t.props.language.Remove}
