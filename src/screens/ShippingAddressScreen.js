@@ -534,6 +534,7 @@ class ShippingAddress extends Component {
 
   /// ///////////////////////////////////////
   searchFilterFun(text, name, selection, nav) {
+    console.log(nav, 'on nav');
     return (
       <TouchableOpacity
         onPress={() =>
@@ -603,20 +604,22 @@ class ShippingAddress extends Component {
             }}>
             {name}
           </Text>
-          {name === 'Country' ? (
+          {nav == 'SearchFilterClass' ? (
             <Iconone
               name="globe"
               size={20}
               style={{position: 'absolute', right: 20}}
               color="red"
             />
-          ) : (
+          ) : nav == 'SearchFilterZone' ? (
             <Iconone
               name="map"
               size={20}
               style={{position: 'absolute', right: 20}}
               color="red"
             />
+          ) : (
+            <></>
           )}
         </View>
       </TouchableOpacity>
@@ -701,6 +704,7 @@ class ShippingAddress extends Component {
   }
 
   searchFilterFun2(text, name, selection, nav) {
+    console.log(name, 'name');
     return (
       <TouchableOpacity
         onPress={() =>

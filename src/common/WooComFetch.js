@@ -1,9 +1,17 @@
-import axios from 'axios'
-import theme from './Theme.style'
-import md5 from 'react-native-md5'
+import axios from 'axios';
+import theme from './Theme.style';
+import md5 from 'react-native-md5';
 // Get Request
 export const getHeaders = () => {
-  const d = new Date()
+  const d = new Date();
+  // console.log(
+  //   d.getMilliseconds().toString() +
+  //     d.getTime().toString() +
+  //     '-' +
+  //     Math.floor(Math.random() * 999) +
+  //     1,
+  //   'nonce',
+  // );
   return {
     headers: {
       'consumer-key': md5.hex_md5(theme.consumerKey).toString(),
@@ -16,64 +24,64 @@ export const getHeaders = () => {
         1,
       'consumer-device-id': theme.deviceId,
       'consumer-ip': theme.ipAdress + '.' + d.getMilliseconds().toString(),
-      'Content-Type': 'application/json'
-    }
-  }
-}
+      'Content-Type': 'application/json',
+    },
+  };
+};
 
 export const postHttp = async (url, body) => {
   try {
-    const res = await axios.post(url, body, getHeaders())
-    return res.data
+    const res = await axios.post(url, body, getHeaders());
+    return res.data;
   } catch (err) {
-    return err
+    return err;
   }
-}
+};
 
 // Get Request
 export const getHttp = async (url, body) => {
   try {
-    const res = await axios.get(url, getHeaders())
-    return res
+    const res = await axios.get(url, getHeaders());
+    return res;
   } catch (err) {
-    return err
+    return err;
   }
-}
+};
 
 // Get Request
 export const getUrl = () => {
   if (theme.url.startsWith('https')) {
-    return theme.url
+    return theme.url;
   } else {
-    return theme.url.replace('http', 'https')
+    return theme.url.replace('http', 'https');
   }
-}
+};
 
 const WooComFetch = {
   postHttp: async (url, body) => {
-    const returnObject = {}
+    const returnObject = {};
     try {
-      const res = await axios.post(url, body, getHeaders())
-      returnObject.success = res.data.success
-      returnObject.data = res.data
-      return returnObject
+      const res = await axios.post(url, body, getHeaders());
+      returnObject.success = res.data.success;
+      returnObject.data = res.data;
+      return returnObject;
     } catch (err) {
-      return err
+      return err;
     }
   },
 
-  getAllBanners: async type => {
+  getAllBanners: async (type) => {
     try {
       const response = await getHttp(
         theme.url.startsWith('https')
           ? theme.url + '/api/' + type
           : theme.url.replace('http', 'https') + '/api/' + type,
-        {}
-      )
-      return response
+        {},
+      );
+      return response;
     } catch (err) {
-      return err
+      return err;
     }
-  }
-}
-export default WooComFetch
+  },
+};
+export default WooComFetch;
