@@ -168,7 +168,6 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
               // padding: 5,
               borderRadius: 10,
               height: 100,
-
               // paddingVertical: 20,
             }}>
             <ImageLoad
@@ -193,13 +192,13 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
               key={props.objectArray.id}
               style={{
                 height: 38,
-                zIndex: 6,
+                // zIndex: 2,
                 width: 38,
                 fontSize: 13,
                 left: 0,
                 top: 0,
                 color: '#fff',
-                position: 'absolute',
+                // position: 'absolute',
                 backgroundColor: 'rgb(236, 236, 236)',
               }}
               backgroundColor={'transparent'}
@@ -221,13 +220,14 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
             <View
               style={{
                 backgroundColor: theme.otherBtnsColor,
-                zIndex: 16,
+                zIndex: 1,
                 textAlign: 'center',
                 padding: 3,
                 paddingBottom: 1,
                 paddingTop: 1,
-                right: 0,
-                top: 0,
+                right: 5,
+                top: 3,
+                // top: 0,
                 alignItems: 'center',
                 justifyContent: 'center',
                 position: 'absolute',
@@ -301,7 +301,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
                 color: theme.textColor,
                 margin: 0,
                 // padding: 5,
-                paddingLeft: 12,
+                paddingLeft: 13,
                 fontWeight: 'bold',
                 color: '#404040',
                 paddingTop: Platform.OS === 'android' ? 1 : 2,
@@ -481,7 +481,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
                   width: btnWidth,
                   marginBottom: 3,
                   marginTop: 0,
-                  top: -3,
+                  top: 0,
                   borderRadius: 5,
                   // justifyContent: 'center',
                   alignItems: 'flex-end',
@@ -494,7 +494,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
                     padding: 6,
                     margin: 5,
                     width: btnWidth,
-                    width: 90,
+                    width: 70,
                     // justifyContent: 'center',
                     alignItems: 'center',
                     // alignSelf: 'center',
@@ -507,7 +507,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
                     style={{
                       color: theme.outOfStockBtnTextColor,
                       // fontSize: theme.mediumSize + 1,
-                      fontSize: 10,
+                      fontSize: 8,
                       fontWeight: '500',
                     }}>
                     {t.props.language['OUT OF STOCK']}
@@ -532,8 +532,8 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
                   width: 70,
                   marginBottom: 3,
                   marginTop: 0,
-                  top: -1,
-                  right: 7,
+                  top: 4,
+                  right: 10,
                   borderRadius: 5,
                   // justifyContent: 'center',
                   alignItems: 'flex-end',
@@ -553,9 +553,9 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
                 <View
                   style={{
                     padding: 5,
-                    margin: 5,
+                    // margin: 5,
                     // width: btnWidth,
-                    width: 80,
+                    width: 70,
                     // backgroundColor: theme.addToCartBtnColor,
                     backgroundColor: 'green',
                     // justifyContent: 'center',
@@ -569,7 +569,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
                     style={{
                       color: theme.addToCartBtnTextColor,
                       // fontSize: theme.mediumSize + 1,
-                      fontSize: 12,
+                      fontSize: 10,
                       fontWeight: '500',
                     }}>
                     {t.props.language['Add to Cart']}
@@ -649,8 +649,8 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
               <View
                 style={{
                   padding: 5,
-                  margin: 5,
-                  width: 80,
+                  // margin: 5,
+                  width: 70,
 
                   // justifyContent: 'center',
                   alignItems: 'center',
@@ -663,7 +663,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
                 <Text
                   style={{
                     color: theme.removeBtnTextColor,
-                    fontSize: 12,
+                    fontSize: 10,
                     fontWeight: '500',
                   }}>
                   {t.props.language.Remove}

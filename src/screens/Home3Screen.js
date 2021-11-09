@@ -968,13 +968,13 @@ class Newest extends Component {
                     horizontal
                     style={{
                       borderColor: themeStyle.textColor,
-                      backgroundColor: themeStyle.backgroundColor,
+                      backgroundColor: '#e6eff7',
                       elevation: 5,
                       shadowOffset: {width: 5, height: 1},
                       shadowColor: '#000',
                       shadowOpacity: 0.8,
                       marginTop: 5,
-                      paddingTop: 3,
+                      // paddingTop: 3,
                     }}
                     ListHeaderComponent={
                       this.props.cartItems2.cartItems.allCategories !== null ? (
@@ -1000,6 +1000,7 @@ class Newest extends Component {
                               textDecorationLine:
                                 this.state.selectedTab === '' ? 'none' : 'none',
                               padding: 10,
+                              height: 43,
                               color:
                                 this.state.selectedTab === ''
                                   ? themeStyle.primaryDark
@@ -1017,7 +1018,7 @@ class Newest extends Component {
                           borderBottomColor:
                             this.state.selectedTab === item.item.id ||
                             this.state.selectedTab === undefined
-                              ? themeStyle.primary
+                              ? '#ed1c24'
                               : themeStyle.textColor,
                           borderBottomWidth:
                             this.state.selectedTab === item.item.id ||
@@ -1036,7 +1037,7 @@ class Newest extends Component {
                             padding: 10,
                             color:
                               this.state.selectedTab === item.item.id
-                                ? themeStyle.primaryDark
+                                ? '#404040'
                                 : '#707070',
                           }}>
                           {item.item.name}
