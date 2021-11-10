@@ -609,6 +609,7 @@ class CreateAccount extends PureComponent {
                   textDecorationLine: 'underline',
                 }}>
                 {` ${this.props.isLoading.Config.languageJson['Privacy Policy']}`}
+                {' & '}
               </Text>
               {''} {this.props.isLoading.Config.languageJson.and} {''}
               <Text
