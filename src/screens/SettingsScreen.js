@@ -610,13 +610,13 @@ class CreateAccount extends Component {
                   'AboutScreen',
                 )
               : null}
-            {this.props.isLoading.Config.newsPage
+            {/* {this.props.isLoading.Config.newsPage
               ? this.categoryFun(
                   this.props.isLoading.Config.languageJson.News,
                   'paper',
                   'NewsScreen',
                 )
-              : null}
+              : null} */}
             {this.props.isLoading.Config.introPage
               ? this.categoryFun(
                   this.props.isLoading.Config.languageJson.Intro,
