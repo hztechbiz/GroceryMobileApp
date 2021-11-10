@@ -143,6 +143,15 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+        signingConfigs {
+    release {
+      storeFile file('my-test-key.keystore')
+      storePassword 'vectorcoder2020'
+      keyAlias 'test-alias'
+      keyPassword 'vectorcoder2020'
+    }
+  }
+
     defaultConfig {
         applicationId "com.app.rnbecruxBoy"
         minSdkVersion rootProject.ext.minSdkVersion

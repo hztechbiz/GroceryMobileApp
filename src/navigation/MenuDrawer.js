@@ -486,7 +486,7 @@ class App extends PureComponent {
                       this.props.isLoading.Config.languageJson['Contact Us'],
                     )
                   : null}
-                {this.props.isLoading.Config.aboutUsPage
+                {/* {this.props.isLoading.Config.aboutUsPage
                   ? this.categoryFun(
                       'ABOUT',
                       'alert',
@@ -494,9 +494,9 @@ class App extends PureComponent {
                       require('../images/LeftMenuIcon/alert.png'),
                       this.props.isLoading.Config.languageJson['About Us'],
                     )
-                  : null}
+                  : null} */}
 
-                {this.props.isLoading.Config.newsPage
+                {/* {this.props.isLoading.Config.newsPage
                   ? this.categoryFun(
                       'NEWS',
                       'paper',
@@ -504,8 +504,8 @@ class App extends PureComponent {
                       require('../images/LeftMenuIcon/paper.png'),
                       this.props.isLoading.Config.languageJson.News,
                     )
-                  : null}
-                {this.props.isLoading.Config.introPage
+                  : null} */}
+                {/* {this.props.isLoading.Config.introPage
                   ? this.categoryFun(
                       'INTRO',
                       'reorder',
@@ -513,8 +513,8 @@ class App extends PureComponent {
                       require('../images/LeftMenuIcon/reorder.png'),
                       this.props.isLoading.Config.languageJson.Intro,
                     )
-                  : null}
-                {this.props.isLoading.Config.shareApp ? (
+                  : null} */}
+                {/* {this.props.isLoading.Config.shareApp ? (
                   <ShareAppButton
                     packageName={this.props.isLoading.Config.packgeName}
                     value="menu"
@@ -530,8 +530,8 @@ class App extends PureComponent {
                     }}
                     appleId={this.props.isLoading.Config.packgeName}
                   />
-                ) : null}
-                {this.props.isLoading.Config.rateApp ? (
+                ) : null} */}
+                {/* {this.props.isLoading.Config.rateApp ? (
                   <RateUsButton
                     value="menu"
                     imageTemp={require('../images/LeftMenuIcon/star.png')}
@@ -541,7 +541,7 @@ class App extends PureComponent {
                     defaultIcons={this.props.isLoading.Config.defaultIcons}
                     appleId={this.props.isLoading.Config.packgeName}
                   />
-                ) : null}
+                ) : null} */}
                 {this.props.isLoading.Config.settingPage
                   ? this.categoryFun(
                       'SETTINGS',
