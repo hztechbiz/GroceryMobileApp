@@ -14,7 +14,7 @@ class ShippingMethod extends Component {
     return {
       headerTitle: headerStyle,
       cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-      headerTitleAlign: 'center',
+      headerTitleAlign: 'left',
       headerTintColor: themeStyle.headerTintColor,
       headerStyle: {
         backgroundColor: themeStyle.primary,
@@ -203,7 +203,7 @@ class ShippingMethod extends Component {
                         </View>
                       </Body>
                       <CheckBox
-                        style={{borderRadius: 15, marginBottom: 20}}
+                        style={{borderRadius: 15, marginBottom: 20, }}
                         onPress={() => this.setMethod(v, item.index)}
                         checked={this.state.tick[item.index]}
                       />

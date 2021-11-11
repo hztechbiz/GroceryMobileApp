@@ -22,7 +22,7 @@ class Home extends PureComponent {
     headerTitle: theme.homeTitle,
 
     headerRight: () => <ShoppingCartIcon navigation={navigation} />,
-    headerTitleAlign: 'center',
+    headerTitleAlign: 'left',
     headerTintColor: theme.headerTintColor,
     headerStyle: {
       backgroundColor: theme.primary,

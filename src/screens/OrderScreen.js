@@ -41,7 +41,7 @@ class orderScreen extends Component {
     return {
       headerTitle: headerStyle,
       cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-      headerTitleAlign: 'center',
+      headerTitleAlign: 'left',
       headerTintColor: themeStyle.headerTintColor,
       headerStyle: {
         backgroundColor: themeStyle.primary,
@@ -1351,7 +1351,7 @@ class orderScreen extends Component {
                                     }{' '}
                                     :
                                   </Text>
-                                  <Text style={{paddingLeft: 3}}>
+                                  <Text style={{paddingLeft: 3, color: '#000'}}>
                                     {item.item.customers_basket_quantity}
                                   </Text>
                                 </View>
@@ -1420,7 +1420,7 @@ class orderScreen extends Component {
                 style={{
                   justifyContent: 'space-between',
                   padding: 10,
-                  paddingHorizontal: 20,
+                  paddingHorizontal: 24,
                   flex: 1,
                   backgroundColor: '#f5fafe',
                   fontSize: themeStyle.largeSize,

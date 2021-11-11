@@ -38,7 +38,7 @@ class ShippingAddress extends Component {
       headerTitle: headerStyle,
       headerRight: () => <ShoppingCartIcon navigation={navigation} />,
       cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-      headerTitleAlign: 'center',
+      headerTitleAlign: 'left',
       headerTintColor: themeStyle.headerTintColor,
       headerStyle: {
         backgroundColor: themeStyle.primary,
@@ -1601,14 +1601,15 @@ class ShippingAddress extends Component {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            <Text
+              {/* SHIPPING ADDRESS HEADER */}
+            {/* <Text
               style={{
                 fontSize: themeStyle.largeSize + 1,
                 color: themeStyle.textColor,
                 paddingTop: 10,
               }}>
               {this.props.cartItems2.Config.languageJson['Shipping Address']}
-            </Text>
+            </Text> */}
 
             <FlatList
               data={this.state.placeholderArray}
