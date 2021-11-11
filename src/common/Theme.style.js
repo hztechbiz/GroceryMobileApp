@@ -96,7 +96,8 @@ export default {
   /// //////// cartWidth
   singleRowCardWidth: cardWidth,
   twoRowCardWIdth: 0.465,
-  loadingIndicatorColor: '#3e5902',
+  // loadingIndicatorColor: '#3e5902',
+  loadingIndicatorColor: '#205a8e',
   ipAdress: cIp,
   deviceId: cDid,
 };
