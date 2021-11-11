@@ -19,7 +19,7 @@ export default {
   webClientIdForGoogleSign:
     '525656277362-uhimqv63papb0lghvaj5qrsnh8iqa8ss.apps.googleusercontent.com', // webClientId For Google SignIn
   /// //// navigation
-  homeTitle: 'StarMart',
+  homeTitle: 'Star Mart Store',
   bottomNavigation: false,
   // please reset app cache after changing these five values
   defaultCurrencySymbol: 'RS',
@@ -32,7 +32,7 @@ export default {
 
   // Banners props
   autoplay: true,
-  autoplayDelay: 2,
+  autoplayDelay: 5,
   autoplayLoop: true,
   // StatusBarColor: '#374e02',
   StatusBarColor: '#205a8e',
