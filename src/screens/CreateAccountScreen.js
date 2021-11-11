@@ -470,6 +470,7 @@ class CreateAccount extends PureComponent {
                 size={15}
                 style={{position: 'absolute', right: 20}}
                 color="red"
+                solid
               />
             </View>
 

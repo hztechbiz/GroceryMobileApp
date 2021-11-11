@@ -36,7 +36,7 @@ class Newest extends Component {
     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
     headerTitle: themeStyle.homeTitle,
     headerRight: () => <ShoppingCartIcon navigation={navigation} />,
-    headerTitleAlign: 'center',
+    headerTitleAlign: 'left',
     headerTintColor: themeStyle.headerTintColor,
     headerStyle: {
       backgroundColor: themeStyle.primary,
@@ -660,7 +660,7 @@ class Newest extends Component {
                     </View>
                   </View>
                 )}
-                <View>
+                <View style={{marginHorizontal: 9}}>
                   <ScrollableTabView
                     style={{
                       height:
@@ -698,6 +698,8 @@ class Newest extends Component {
                         style={{
                           alignItems: 'center',
                           flexDirection: 'column',
+                          justifyContent: 'center',
+                          // marginHorizontal: 12,
                         }}
                         underlineColor={'#ed1c24'}
                         inactiveTextColor="#707070"
@@ -709,13 +711,18 @@ class Newest extends Component {
                           backgroundColor: '#e6eff7',
                           justifyContent: 'center',
                           alignItems: 'center',
-                          marginLeft: -16,
-                          width: '109%',
+                          // marginLeft: -16,
+                          width: '100%',
+                          borderRadius: 10,
+                          // marginLeft: 30,
+                          // marginRight: 30,
                         }}
                         tabBarTextStyle={{
                           fontSize: themeStyle.smallSize + 1,
-                          width: WIDTH * 0.4182 - 48,
+                          // fontSize: 12,
+                          width: WIDTH * 0.4182 - 60,
                           textAlign: 'center',
+                          justifyContent: 'center',
                           fontWeight: Platform.OS === 'android' ? '900' : '400',
                         }}
                       />

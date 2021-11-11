@@ -44,6 +44,7 @@ class CardTemplate extends Component {
       stepperArray: [],
       wishListId: 0,
       wishListValue: '0',
+      incdecquantity: 1,
     };
     global.SampleVar = false;
   }
@@ -654,9 +655,16 @@ class CardTemplate extends Component {
   };
 
   /// //////////////////////////////////////////////////////////
-  newMethod6 = (props, t) => {
-    console.log('hello');
-    // console.log(counter)
+  // qunatityPlus = (props, t, inc) => {
+  //   this.setState({incdecquantity: inc + 1});
+  // };
+
+  // qunatityMinus = (props, t, dec) => {
+  //   this.setState({incdecquantity: dec - 1});
+  // };
+
+  newMethod6 = (props, t, incdecquantity) => {
+    console.log(props, incdecquantity, 'newMethod6');
     t.setState({isLoading: true, counter: t.state.counter + 1});
     if (props.cardStyleE === 22) {
       if (
@@ -681,18 +689,23 @@ class CardTemplate extends Component {
         });
       }
       setTimeout(() => {
-        t.setTimePassed(props, props.objectArray.quantity);
+        t.setTimePassed(props, props.objectArray.quantity, incdecquantity);
       }, Math.floor(100 / 360000));
     } else {
       setTimeout(() => {
-        t.setTimePassed(props, 1);
+        t.setTimePassed(props, 1, incdecquantity);
       }, Math.floor(100 / 360000));
     }
   };
 
   /// ////////////////////////////////////////////////////////////
-  setTimePassed(props, q) {
-    props.addItemToCart(props.objectArray, q, this.props.cardStyleE);
+  setTimePassed(props, q, incdecquantity) {
+    props.addItemToCart(
+      props.objectArray,
+      q,
+      this.props.cardStyleE,
+      incdecquantity,
+    );
     this.setState({isLoading: false});
   }
 
@@ -883,13 +896,14 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  addItemToCart: (product, productQuantity, card) => {
+  addItemToCart: (product, productQuantity, card, incdecquantity) => {
     dispatch({
       type: 'ADD_TO_CARTS',
       product,
       attributes: [],
       productQuantity,
       card,
+      incdecquantity,
     });
   },
   removeCardFromCart: (productObject) => {
