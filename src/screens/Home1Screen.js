@@ -33,7 +33,7 @@ class Home1 extends Component {
     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
     headerTitle: themeStyle.homeTitle,
     headerRight: () => <ShoppingCartIcon navigation={navigation} />,
-    headerTitleAlign: 'center',
+    headerTitleAlign: 'left',
     headerTintColor: themeStyle.headerTintColor,
     headerStyle: {
       backgroundColor: themeStyle.primary,

@@ -48,12 +48,13 @@ const ShoppingCartIcon = (props) =>
           style={{
             alignItems: 'center',
             height: 43,
-            marginRight: 5,
+            // marginRight: 5,
             marginTop: 2,
+            // backgroundColor: 'pink',
           }}>
           <View
             style={[
-              {padding: 5},
+              {padding: 8},
               Platform.OS === 'android' ? styles.iconContainer : null,
             ]}>
             <View
@@ -61,11 +62,12 @@ const ShoppingCartIcon = (props) =>
                 position: 'absolute',
                 height: 19,
                 width: 25,
-                borderRadius: 16,
+                borderRadius: 20,
                 // backgroundColor: theme.primaryContrast,
                 backgroundColor: '#ed1c24',
-                right: -8,
-                bottom: 25,
+                right: -12,
+                bottom: 30,
+                // padding: 12,
                 alignItems: 'center',
                 justifyContent: 'center',
                 zIndex: 2000,

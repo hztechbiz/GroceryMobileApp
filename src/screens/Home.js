@@ -20,6 +20,7 @@ class Home extends PureComponent {
     headerLeft: () => <MenuIcon navigation={navigation} />,
     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
     headerTitle: theme.homeTitle,
+
     headerRight: () => <ShoppingCartIcon navigation={navigation} />,
     headerTitleAlign: 'center',
     headerTintColor: theme.headerTintColor,

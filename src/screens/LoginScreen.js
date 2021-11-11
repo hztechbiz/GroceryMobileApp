@@ -266,17 +266,18 @@ class Login extends PureComponent {
               source={require('../images/icons_stripe.png')}
             />
           </View> */}
-
-          <Image
-            source={require('./../images/logo.png')}
-            style={{
-              height: 130,
-              width: 270,
-              resizeMode: 'contain',
-              marginVertical: 65,
-            }}
-          />
-
+          <View style={{marginBottom: -30}}>
+            <Image
+              source={require('./../images/logo.png')}
+              style={{
+                height: 130,
+                width: 270,
+                resizeMode: 'contain',
+                marginVertical: 75,
+                // marginTop: 5,
+              }}
+            />
+          </View>
           <View
             style={{
               flex: 1,
@@ -347,6 +348,7 @@ class Login extends PureComponent {
                 size={15}
                 style={{position: 'absolute', right: 20}}
                 color="red"
+                solid
               />
             </View>
 
