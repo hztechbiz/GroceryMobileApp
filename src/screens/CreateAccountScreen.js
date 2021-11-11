@@ -662,7 +662,7 @@ class CreateAccount extends PureComponent {
               </View>
             </TouchableOpacity>
 
-            <View style={{flexDirection: 'row', width: '100%', marginTop: 10}}>
+            {/* <View style={{flexDirection: 'row', width: '100%', marginTop: 10}}>
               <TouchableOpacity
                 style={{
                   backgroundColor: '#174791',
@@ -686,7 +686,7 @@ class CreateAccount extends PureComponent {
                     marginLeft: 8,
                   }}>
                   Register With
-                </Text>
+                </Text> */}
                 {/* <TextInput
                   style={{
                     fontFamily: 'Lato-Regular',
@@ -703,15 +703,15 @@ class CreateAccount extends PureComponent {
                   // onChangeText={(text) => setCompany(text)}
                 /> */}
 
-                <Icon
+                {/* <Icon
                   name="facebook-f"
                   size={20}
                   style={{position: 'absolute', right: 12}}
                   color="white"
                 />
-              </TouchableOpacity>
+              </TouchableOpacity> */}
 
-              <TouchableOpacity
+              {/* <TouchableOpacity
                 style={{
                   backgroundColor: '#ed1b24',
                   width: '40%',
@@ -733,7 +733,7 @@ class CreateAccount extends PureComponent {
                     marginLeft: 8,
                   }}>
                   Register With
-                </Text>
+                </Text> */}
                 {/* <TextInput
                   style={{
                     fontFamily: 'Lato-Regular',
@@ -750,14 +750,14 @@ class CreateAccount extends PureComponent {
                   // onChangeText={(text) => setCompany(text)}
                 /> */}
 
-                <Icon
+                {/* <Icon
                   name="google"
                   size={20}
                   style={{position: 'absolute', right: 10}}
                   color="white"
                 />
               </TouchableOpacity>
-            </View>
+            </View> */}
 
             <View
               style={{

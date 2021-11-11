@@ -478,8 +478,8 @@ class Login extends PureComponent {
               </TouchableOpacity>
             ) : null}
 
-            <View style={{flexDirection: 'row', width: '100%', marginTop: 15}}>
-              <TouchableOpacity
+            {/* <View style={{flexDirection: 'row', width: '100%', marginTop: 15}}> */}
+              {/* <TouchableOpacity
                 style={{
                   backgroundColor: '#174791',
                   // backgroundColor: '#ed1b24',
@@ -502,7 +502,7 @@ class Login extends PureComponent {
                     marginLeft: 18,
                   }}>
                   Login With
-                </Text>
+                </Text> */}
                 {/* <TextInput
                   style={{
                     fontFamily: 'Lato-Regular',
@@ -519,15 +519,15 @@ class Login extends PureComponent {
                   // onChangeText={(text) => setCompany(text)}
                 /> */}
 
-                <Icon
+                {/* <Icon
                   name="facebook-f"
                   size={20}
                   style={{position: 'absolute', right: 16}}
                   color="white"
                 />
-              </TouchableOpacity>
+              </TouchableOpacity> */}
 
-              <TouchableOpacity
+              {/* <TouchableOpacity
                 style={{
                   backgroundColor: '#ed1b24',
                   width: '40%',
@@ -549,7 +549,7 @@ class Login extends PureComponent {
                     marginLeft: 16,
                   }}>
                   Login With
-                </Text>
+                </Text> */}
                 {/* <TextInput
                   style={{
                     fontFamily: 'Lato-Regular',
@@ -566,14 +566,16 @@ class Login extends PureComponent {
                   // onChangeText={(text) => setCompany(text)}
                 /> */}
 
-                <Icon
+                {/* <Icon
                   name="google"
                   size={20}
                   style={{position: 'absolute', right: 14}}
                   color="white"
                 />
-              </TouchableOpacity>
-            </View>
+              </TouchableOpacity> */}
+            {/* </View> */}
+            
+
 
             {this.props.isLoading.Config.enablePhoneLogin ? (
               <TouchableOpacity
