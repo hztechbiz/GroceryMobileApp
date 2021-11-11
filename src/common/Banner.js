@@ -93,8 +93,9 @@ class SwiperBanner extends PureComponent {
             <TouchableOpacity
               style={{
                 position: 'absolute',
-                bottom: 20,
-                left: 140,
+                bottom: 50,
+                // left: 133,
+                alignSelf: 'center',
                 backgroundColor: ThemeStyle.iconColor,
                 // padding: 15,
                 paddingVertical: 10,

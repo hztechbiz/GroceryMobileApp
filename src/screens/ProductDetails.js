@@ -597,10 +597,10 @@ class ProductDetail extends PureComponent {
   btnFun = (press, text) => (
     <View
       style={{
-        width: '70%',
+        width: '80%',
         position: 'absolute',
         bottom: 10,
-        left: 50,
+        alignSelf: 'center',
       }}>
       <TouchableOpacity
         style={{
@@ -623,14 +623,14 @@ class ProductDetail extends PureComponent {
           style={{
             borderColor: '#fff',
             alignItems: 'center',
-            height: 52,
+            height: 60,
             borderRadius: 10,
 
             justifyContent: 'center',
             backgroundColor:
               press === 'outOfStock'
                 ? themeStyle.removeBtnColor
-                : themeStyle.otherBtnsColor,
+                : '#2d79be',
           }}>
           <Text
             style={{
@@ -738,7 +738,7 @@ class ProductDetail extends PureComponent {
                   <View
                     style={{
                       flex: 1,
-                      backgroundColor: themeStyle.backgroundColor,
+                      // backgroundColor: themeStyle.backgroundColor,
                       // backgroundColor: 'green',
 
                       flexDirection: 'row',
@@ -784,6 +784,7 @@ class ProductDetail extends PureComponent {
                         // backgroundColor: 'red',
                         alignItems: 'flex-start',
                         justifyContent: 'flex-start',
+                        // backgroundColor: 'blue',
                       }}>
                       {this.checkWishList(this.props, this) === 1 ? (
                         this.props.cartItems2.Config.removeButton ? (
@@ -879,6 +880,7 @@ class ProductDetail extends PureComponent {
                     style={{
                       fontSize: themeStyle.largeSize - 1,
                       color: themeStyle.productTextColor,
+                      textTransform: 'capitalize',
                       fontWeight: Platform.OS === 'android' ? 'bold' : '400',
                       // backgroundColor: 'red',
                     }}>

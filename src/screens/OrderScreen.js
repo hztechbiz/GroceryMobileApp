@@ -1649,7 +1649,7 @@ class orderScreen extends Component {
                   borderBottomWidth: 3,
                   borderBottomColor: '#e4ecf2',
                 }}>
-                <TouchableOpacity
+                {/* <TouchableOpacity
                   style={{paddingTop: 5}}
                   onPress={() => this.setState({wrapperCondition: true})}>
                   <View
@@ -1676,7 +1676,7 @@ class orderScreen extends Component {
                       }
                     </Text>
                   </View>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
 
                 <View
                   style={{
@@ -1687,20 +1687,28 @@ class orderScreen extends Component {
                   }}>
                   <TextInput
                     style={{
-                      height: 35,
+                      height: 60,
                       borderColor: '#c1c1c1',
                       borderWidth: 1,
-                      padding: 4,
+                      paddingLeft: 12,
                       flex: 2,
+                      marginHorizontal: 0,
+                      marginBottom: 25,
                       textAlign: I18nManager.isRTL ? 'right' : 'left',
-                      paddingLeft: 10,
                       color: themeStyle.textColor,
+                      borderRadius: 10,
+                      backgroundColor: '#ffffff',
+                      borderColor: '#ffffff',
+                      shadowOffset: {width: 1, height: 0},
+                      shadowColor: 'themeStyle.textColor',
+                      shadowOpacity: 0.5,
+                      // elevation: 0,
                     }}
                     selectionColor="#51688F"
                     placeholder={
                       this.props.cartItems2.Config.languageJson2['coupon code']
                     }
-                    placeholderTextColor={'#c1c1c1'}
+                    placeholderTextColor={'#000'}
                     onChangeText={(couponText) =>
                       this.setState({couponText, errorMessage: ''})
                     }
@@ -1711,9 +1719,13 @@ class orderScreen extends Component {
                     disabled={!this.state.couponText}
                     style={{
                       paddingTop: 0,
-                      height: 35,
-                      width: 60,
+                      height: 50,
+                      width: 100,
                       paddingLeft: 5,
+                      position: 'absolute',
+                      zIndex:2,
+                      right: 13,
+                      top: 17,
                     }}
                     onPress={() => this.getCoupon(this.state.couponText)}>
                     <View
@@ -1721,22 +1733,53 @@ class orderScreen extends Component {
                         flex: 1,
                         alignItems: 'center',
                         opacity: this.state.couponText ? null : 0.4,
-                        backgroundColor: themeStyle.otherBtnsColor,
+                        backgroundColor: '#ffffff',
                         justifyContent: 'center',
                         borderRadius: 10 / 2,
                       }}>
                       <Text
                         style={{
                           textAlign: 'center',
-                          fontSize: themeStyle.mediumSize,
-                          color: themeStyle.otherBtnsText,
-                          fontWeight: '500',
+                          // fontSize: themeStyle.mediumSize,
+                          fontSize: 17,
+                          color: '#ed1c24',
+                          fontWeight: 'bold',
                         }}>
                         {this.props.cartItems2.Config.languageJson.Apply}
                       </Text>
                     </View>
                   </TouchableOpacity>
                 </View>
+
+                <TouchableOpacity
+                  style={{paddingTop: 5}}
+                  onPress={() => this.setState({wrapperCondition: true})}>
+                  <View
+                    style={{
+                      alignItems: 'flex-start',
+                      padding: 10,
+                      backgroundColor: 'transparent',
+                      justifyContent: 'center',
+                      paddingLeft: 13,
+                      paddingBottom: 10,
+                      top: 5,
+                    }}>
+                    <Text
+                      style={{
+                        textAlign: 'center',
+                        fontSize: themeStyle.mediumSize - 2,
+                        color: themeStyle.otherBtnsColor,
+                        textDecorationLine: 'underline',
+                        fontWeight: 'bold',
+                      }}>
+                      {
+                        this.props.cartItems2.Config.languageJson2[
+                          'LIST OF COUPON CODES'
+                        ]
+                      }
+                    </Text>
+                  </View>
+                </TouchableOpacity>
               </View>
 
               {this.state.couponArray.length > 0 ? (
