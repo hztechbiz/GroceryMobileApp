@@ -204,7 +204,8 @@ class Banner extends PureComponent {
                       backgroundColor: '#fff',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      elevation: 3,
+                      // elevation: 3,
+                      // backgroundColor: '#fff',
                       borderRadius: 15,
                     }}>
                     <View
@@ -230,7 +231,7 @@ class Banner extends PureComponent {
                           // elevation: 6,
                           // borderRadius: 15,
 
-                          backgroundColor: 'rgb(236, 236, 236)',
+                          // backgroundColor: 'rgb(236, 236, 236)',
                           height:
                             Platform.OS === 'ios'
                               ? theme.singleRowCardWidth + 100
