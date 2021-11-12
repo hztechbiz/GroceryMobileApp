@@ -31,7 +31,7 @@ import {AsYouType, parsePhoneNumberFromString} from 'libphonenumber-js';
 import Iconone from 'react-native-vector-icons/FontAwesome5';
 const WIDTH = Dimensions.get('window').width;
 class ShippingAddress extends Component {
-  /// /////////////////////////////////////////////////////////
+  /// ////////////////////////////////////////////////////
   static navigationOptions = ({navigation}) => {
     const headerStyle = navigation.getParam('headerTitle');
     return {
