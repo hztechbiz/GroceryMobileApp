@@ -24,6 +24,7 @@ import {connect} from 'react-redux';
 import ImageLoad from '../common/RnImagePlaceH';
 import themeStyle from '../common/Theme.style';
 import stripe from 'tipsi-stripe';
+import FIcon from 'react-native-vector-icons/FontAwesome5';
 import RazorpayCheckout from 'react-native-razorpay';
 import CardTextFieldScreen from '../PaymentMethods/Stripe/scenes/CardTextFieldScreen';
 import {StackActions, NavigationActions} from 'react-navigation';
@@ -1684,6 +1685,7 @@ class orderScreen extends Component {
                     padding: 12,
                     flexDirection: 'row',
                     flex: 1,
+                    elevation: 9,
                   }}>
                   <TextInput
                     style={{
@@ -1702,7 +1704,7 @@ class orderScreen extends Component {
                       shadowOffset: {width: 1, height: 0},
                       shadowColor: 'themeStyle.textColor',
                       shadowOpacity: 0.5,
-                      // elevation: 0,
+                      // elevation: 5,
                     }}
                     selectionColor="#51688F"
                     placeholder={
@@ -1718,35 +1720,41 @@ class orderScreen extends Component {
                   <TouchableOpacity
                     disabled={!this.state.couponText}
                     style={{
-                      paddingTop: 0,
-                      height: 50,
-                      width: 100,
+                      height: '100%',
+                      width: '30%',
                       paddingLeft: 5,
                       position: 'absolute',
-                      zIndex:2,
-                      right: 13,
-                      top: 17,
+                      zIndex: 2,
+                      right: 25,
+                      top: 30,
                     }}
                     onPress={() => this.getCoupon(this.state.couponText)}>
-                    <View
-                      style={{
-                        flex: 1,
-                        alignItems: 'center',
-                        opacity: this.state.couponText ? null : 0.4,
-                        backgroundColor: '#ffffff',
-                        justifyContent: 'center',
-                        borderRadius: 10 / 2,
-                      }}>
-                      <Text
+                    <View style={{flexDirection: 'row'}}>
+                      <View
                         style={{
-                          textAlign: 'center',
-                          // fontSize: themeStyle.mediumSize,
-                          fontSize: 17,
-                          color: '#ed1c24',
-                          fontWeight: 'bold',
+                          flex: 1,
+                          alignItems: 'center',
+                          opacity: this.state.couponText ? null : 0.4,
+                          backgroundColor: '#ffff',
+                          justifyContent: 'center',
+                          borderRadius: 10 / 2,
                         }}>
-                        {this.props.cartItems2.Config.languageJson.Apply}
-                      </Text>
+                        <Text
+                          style={{
+                            textAlign: 'center',
+                            // fontSize: themeStyle.mediumSize,
+                            fontSize: 17,
+                            color: '#ed1c24',
+                            fontWeight: 'bold',
+                            textTransform: 'uppercase',
+                            paddingRight: 10,
+                          }}>
+                          {this.props.cartItems2.Config.languageJson.Apply}
+                        </Text>
+                      </View>
+                      <View style={{left: 0, right: 0, alignItems: 'flex-end', position: 'absolute', top: 0}}>
+                        <FIcon size={20} color="red" name="tag" style={{opacity: this.state.couponText ? null : 0.4,}}/>
+                      </View>
                     </View>
                   </TouchableOpacity>
                 </View>
@@ -1767,9 +1775,9 @@ class orderScreen extends Component {
                     <Text
                       style={{
                         textAlign: 'center',
-                        fontSize: themeStyle.mediumSize - 2,
+                        fontSize: 15,
                         color: themeStyle.otherBtnsColor,
-                        textDecorationLine: 'underline',
+                        // textDecorationLine: 'underline',
                         fontWeight: 'bold',
                       }}>
                       {
@@ -2035,7 +2043,7 @@ class orderScreen extends Component {
                       elevation: 5,
                     }}
                     selectionColor={'#c1c1c1'}
-                    placeholder={`${this.props.cartItems2.Config.languageJson['Note to the buyer']}`}
+                    placeholder={`Type Here`}
                     placeholderTextColor={'#000'}
                     onChangeText={(customerNotes) => {
                       this.setState({customerNotes});

@@ -203,7 +203,7 @@ class ShippingMethod extends Component {
                         </View>
                       </Body>
                       <CheckBox
-                        style={{borderRadius: 15, marginBottom: 20, }}
+                        style={{borderRadius: 15, marginBottom: 20, borderColor: '#404040',}}
                         onPress={() => this.setMethod(v, item.index)}
                         checked={this.state.tick[item.index]}
                       />
