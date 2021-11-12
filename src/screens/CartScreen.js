@@ -43,7 +43,7 @@ class Cart extends Component {
       headerTitleStyle: {
         fontWeight: Platform.OS === 'android' ? 'bold' : 'normal',
       },
-      headerTitleAlign: 'center',
+      headerTitleAlign: 'left',
       cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
     };
   };
@@ -526,10 +526,10 @@ class Cart extends Component {
                   // marginBottom: 2,
                   padding: 12,
                   // elevation: 5,
-                  borderWidth: 1,
+                  // borderWidth: 1,
                   borderColor:
                     this.props.productDeleteId === item.item.products_id
-                      ? 'red'
+                      ? 'white'
                       : 'white',
                 }}>
                 {/* <View
@@ -679,7 +679,7 @@ class Cart extends Component {
                             textAlign: 'left',
                             // fontSize: themeStyle.smallSize,
                             fontSize: 16,
-                            color: themeStyle.textColor,
+                            color: "#707070",
                             marginTop: 12,
                             fontWeight: 'bold',
                           }}>
@@ -790,20 +790,21 @@ class Cart extends Component {
                             flexDirection: 'row',
                             paddingRight: 5,
                             // backgroundColor: 'orange',
+                            justifyContent:'space-between'
                           }}>
                           <HTML
                             html={SyncStorage.get('currency')}
                             baseFontStyle={{
                               fontSize: themeStyle.mediumSize - 1,
-                              color: themeStyle.textColor,
+                              color: themeStyle.iconColor,
                             }}
                           />
                           <Text
                             style={{
-                              color: themeStyle.textColor,
+                              color: themeStyle.iconColor,
                               fontSize: themeStyle.mediumSize - 1,
                             }}>
-                            {Number(item.item.price).toFixed(2)}
+                            {' '}{Number(item.item.price).toFixed(2)}
                           </Text>
                         </View>
                       </View>
@@ -879,7 +880,7 @@ class Cart extends Component {
                           padding: 1,
                           // marginTop: 10,
                         }}>
-                        {/* <HTML
+                        {/* <HTML 
                           html={SyncStorage.get('currency')}
                           baseFontStyle={{
                             fontSize: themeStyle.mediumSize + 1,
@@ -893,15 +894,25 @@ class Cart extends Component {
                           }}>
                           {`${item.item.total.toFixed(2)}`}
                         </Text> */}
-
-                        <Button
+                        <TouchableOpacity
+                        style={{backgroundColor:themeStyle.otherBtnsColor,paddingHorizontal:10 , borderRadius:5, paddingVertical:5 }}
+                         onPress={() => {
+                          this.gotoNextPage(item.item);
+                        }}>
+                          {/* <View style={{backgroundColor:themeStyle.otherBtnsColor, }}> */}
+                           <Text style={{color:'white'}}>
+                            View                          
+                             </Text>
+                            
+                        </TouchableOpacity>
+                        {/* <Button
                           sty
                           onPress={() => {
                             this.gotoNextPage(item.item);
                           }}
                           title={' ' + this.props.language.View + ' '}
                           color={themeStyle.otherBtnsColor}
-                        />
+                        /> */}
                       </View>
                     </View>
                   </View>
@@ -1040,6 +1051,7 @@ class Cart extends Component {
               style={{
                 // backgroundColor: themeStyle.backgroundColor,
                 backgroundColor: '#F5FAFE',
+                // backgroundColor:'pink',
                 justifyContent: 'space-between',
                 // shadowOffset: {width: 1, height: 1},
                 // shadowColor: themeStyle.textColor,
@@ -1064,12 +1076,13 @@ class Cart extends Component {
                   flexDirection: 'row',
                   flex: 1,
                   alignItems: 'center',
+                 
                 }}>
                 <Text
-                  style={{color: '#707070', fontSize: themeStyle.mediumSize}}>
-                  {this.props.language.Total}
+                  style={{color: '#707070', fontSize: themeStyle.mediumSize, fontWeight:'bold'}}>
+                  {this.props.language.Total} {"Price"}
                 </Text>
-                <View style={{flexDirection: 'row'}}>
+                <View style={{flexDirection: 'row' ,  justifyContent:"center", alignItems:'center'}}>
                   <HTML
                     html={SyncStorage.get('currency')}
                     baseFontStyle={{
@@ -1077,6 +1090,7 @@ class Cart extends Component {
                       fontWeight: 'bold',
                       fontSize: 25,
                       color: '#707070',
+                      
                     }}
                   />
                   <Text
@@ -1120,6 +1134,7 @@ class Cart extends Component {
                 color: themeStyle.otherBtnsText,
                 // fontSize: themeStyle.mediumSize,
                 fontSize: 18,
+                textTransform:'uppercase',
                 padding: 10,
                 fontWeight: 'bold',
                 alignItems: 'center',
