@@ -1,96 +1,100 @@
-import React, { PureComponent } from 'react'
+import React, {PureComponent} from 'react';
 import {
   Text, // Renders text
   TouchableOpacity, // Pressable container
-  View // Container PureComponent
-} from 'react-native'
-import theme from './Theme.style'
+  View, // Container PureComponent
+} from 'react-native';
+import theme from './Theme.style';
 export default class Counter extends PureComponent {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       count: this.props.initialValue,
-      initialValue: this.props.initialValue
-    }
+      initialValue: this.props.initialValue,
+    };
   }
 
-  static getDerivedStateFromProps (nextProps, prevState) {
+  static getDerivedStateFromProps(nextProps, prevState) {
     return {
       count:
         nextProps.initialValue !== prevState.initialValue
           ? nextProps.initialValue
-          : prevState.count
-    }
+          : prevState.count,
+    };
   }
 
-  componentDidMount () {
+  componentDidMount() {
     if (this.props.innerRef !== undefined && this.props.innerRef !== null) {
-      this.props.innerRef(this)
+      this.props.innerRef(this);
     }
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (this.props.innerRef !== undefined && this.props.innerRef !== null) {
-      this.props.innerRef(null)
+      this.props.innerRef(null);
     }
   }
 
-  increment () {
+  increment() {
     this.setState({
-      count: this.state.count + 1
-    })
-    return this.state.count + 1
+      count: this.state.count + 1,
+    });
+    return this.state.count + 1;
   }
 
-  decrement () {
+  decrement() {
     this.setState({
       count:
         this.props.minimumValue < this.state.count
           ? this.state.count - 1
-          : this.state.count
-    })
+          : this.state.count,
+    });
     return this.props.minimumValue < this.state.count
       ? this.state.count - 1
-      : this.state.count
+      : this.state.count;
   }
 
-  resetValue () {
+  resetValue() {
     this.setState({
-      count: this.props.initialValue
-    })
+      count: this.props.initialValue,
+    });
   }
 
-  setValue (value) {
+  setValue(value) {
     this.setState({
-      count: value
-    })
+      count: value,
+    });
   }
 
-  render ({ onIncrement, onDecrement, width, height } = this.props) {
+  render({onIncrement, onDecrement, width, height} = this.props) {
     return (
-      <View style={{ flexDirection: 'row' }}>
+      <View style={{flexDirection: 'row'}}>
         <TouchableOpacity
           style={{
-            width,
+            width: width / 1.25,
             paddingVertical: height,
             paddingTop: 1,
             justifyContent: 'center',
             alignItems: 'center',
             alignSelf: 'center',
-            backgroundColor: theme.otherBtnsColor,
-            borderRadius: 10 / 2,
-            shadowOffset: { width: 1, height: 1 },
+            // backgroundColor: theme.otherBtnsColor,
+            backgroundColor: '#9eacba',
+            borderRadius: 12,
+            shadowOffset: {width: 1, height: 1},
             shadowColor: theme.textColor,
             shadowOpacity: 0.3,
-            elevation: 3
+            elevation: 3,
           }}
           onPress={() => {
-            if (this.props.minimumValue < this.state.count) { onDecrement(this.decrement()) }
+            if (this.props.minimumValue < this.state.count) {
+              onDecrement(this.decrement());
+            }
           }}>
           <Text
             style={{
               color: theme.otherBtnsText,
-              fontSize: theme.largeSize + 1
+              fontSize: theme.largeSize,
+              fontWeight: 'bold',
             }}>
             {'-'}
           </Text>
@@ -101,12 +105,12 @@ export default class Counter extends PureComponent {
             width: width + 6,
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: theme.backgroundColor
+            backgroundColor: theme.backgroundColor,
           }}>
           <Text
             style={{
               color: theme.textColor,
-              fontSize: theme.mediumSize
+              fontSize: theme.mediumSize,
             }}>
             {this.state.count}
           </Text>
@@ -114,31 +118,34 @@ export default class Counter extends PureComponent {
         {/* /////////////////// */}
         <TouchableOpacity
           style={{
-            width,
+            width: width / 1.25,
             paddingVertical: height,
             paddingTop: 1,
             justifyContent: 'center',
             alignItems: 'center',
             alignSelf: 'center',
             backgroundColor: theme.otherBtnsColor,
-            borderRadius: 10 / 2,
-            shadowOffset: { width: 1, height: 1 },
+            // borderRadius: 10 / 2,
+            borderRadius: 12,
+
+            shadowOffset: {width: 1, height: 1},
             shadowColor: theme.textColor,
             shadowOpacity: 0.3,
-            elevation: 3
+            elevation: 3,
           }}
           onPress={() => {
-            onIncrement(this.increment())
+            onIncrement(this.increment());
           }}>
           <Text
             style={{
               color: theme.otherBtnsText,
-              fontSize: theme.largeSize + 1
+              fontSize: theme.largeSize + 1,
+              fontWeight: 'bold',
             }}>
             {'+'}
           </Text>
         </TouchableOpacity>
       </View>
-    )
+    );
   }
 }

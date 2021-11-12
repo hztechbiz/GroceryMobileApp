@@ -102,15 +102,16 @@ class CardTemplate extends Component {
         html={SyncStorage.get('currency')}
         baseFontStyle={{
           fontSize: size,
-          color: temp === false ? '#A20000' : theme.textColor,
+          color: temp === false ? '#A20000' : theme.iconColor,
           textDecorationLine,
         }}
       />
       <Text
         style={{
-          color: temp === false ? '#A20000' : theme.textColor,
+          color: temp === false ? '#A20000' : theme.iconColor,
           fontSize: size,
           textDecorationLine,
+          fontWeight: '800',
         }}>
         {name.toFixed(2)}
       </Text>
@@ -664,7 +665,7 @@ class CardTemplate extends Component {
   // };
 
   newMethod6 = (props, t, incdecquantity) => {
-    console.log(props, incdecquantity, 'newMethod6');
+    // console.log(props, incdecquantity, 'newMethod6');
     t.setState({isLoading: true, counter: t.state.counter + 1});
     if (props.cardStyleE === 22) {
       if (
@@ -681,7 +682,7 @@ class CardTemplate extends Component {
         });
       } else {
         props.cartProductArrayViewedProducts.map((val, key) => {
-          console.log(val.quantity, 'quantity');
+          // console.log(val.quantity, 'quantity');
           if (val.products_id === props.objectArray.id) {
             val.quantity = val.quantity + 1;
             props.objectArray.quantity = val.quantity;

@@ -228,13 +228,13 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
               <View
                 style={{
                   backgroundColor: theme.otherBtnsColor,
-                  zIndex: 16,
+                  zIndex: 1,
                   textAlign: 'center',
                   padding: 3,
                   paddingBottom: 1,
                   paddingTop: 1,
                   right: -8,
-                  top: 0,
+                  top: 10,
                   alignItems: 'center',
                   justifyContent: 'center',
                   position: 'absolute',
@@ -292,12 +292,18 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
               backgroundColor: ThemeStyle.backgroundColor,
             }}>
             {/* ................................Product Name View */}
-            <View
+            <TouchableOpacity
+              onPress={() =>
+                props.navigation.push('ProductDetails', {
+                  objectArray: props.objectArray, //
+                })
+              }
               style={{
                 // backgroundColor: 'yellow',
                 // backgroundColor: ThemeStyle.backgroundColor,
                 justifyContent: 'center',
                 alignItems: 'flex-start',
+                // backgroundColor: 'red',
                 width: '100%',
               }}>
               <Text
@@ -318,7 +324,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                 numberOfLines={1}>
                 {props.objectArray.products_name}
               </Text>
-            </View>
+            </TouchableOpacity>
             {/* .......................Product Price View */}
             <View
               style={{
@@ -499,7 +505,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                   {/* Out of Stock Button View */}
                   <View
                     style={{
-                      padding: 6,
+                      padding: 5,
                       // margin: 5,
                       // width: btnWidth,
                       width: 90,
@@ -517,7 +523,8 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                         // fontSize: theme.mediumSize + 1,
                         fontSize: 10,
                         fontWeight: '500',
-                      }}>
+                      }}
+                      numberOfLines={1}>
                       {t.props.language['OUT OF STOCK']}
                     </Text>
                   </View>
@@ -588,6 +595,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                     <View
                       style={{
                         alignItems: 'center',
+                        // backgroundColor: 'red',
                       }}>
                       <Counter
                         width={32}
@@ -680,7 +688,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                 <View
                   style={{
                     padding: 5,
-                    width: 70,
+                    width: 60,
 
                     // justifyContent: 'center',
                     alignItems: 'center',
