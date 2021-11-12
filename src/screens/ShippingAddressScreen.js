@@ -38,7 +38,7 @@ class ShippingAddress extends Component {
       headerTitle: headerStyle,
       headerRight: () => <ShoppingCartIcon navigation={navigation} />,
       cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-      headerTitleAlign: 'center',
+      headerTitleAlign: 'left',
       headerTintColor: themeStyle.headerTintColor,
       headerStyle: {
         backgroundColor: themeStyle.primary,
@@ -562,7 +562,7 @@ class ShippingAddress extends Component {
             // backgroundColor: 'pink',
 
             backgroundColor: '#fff',
-            width: '86%',
+            width: '90%',
             height: 60,
             borderColor: '#fff',
             borderWidth: 1,
@@ -570,8 +570,8 @@ class ShippingAddress extends Component {
             flexDirection: 'row',
             alignItems: 'center',
             alignSelf: 'center',
-            marginBottom: 15,
-            marginTop: 20,
+            marginBottom: 12,
+            marginTop: 5,
             // shadowColor: '#000',
             shadowOffset: {
               width: 0,
@@ -648,15 +648,16 @@ class ShippingAddress extends Component {
           style={{
             marginRight: 20,
             marginLeft: 20,
-            marginTop: 20,
+            marginTop: 5,
+            marginBottom: 12,
             paddingTop: 10,
             paddingBottom: 10,
             paddingLeft: 4,
             height: 60,
             width: wp('90%'),
-            // borderRadius: 1,
-            // borderBottomWidth: 1,
-            // borderColor: '#c0c0c0',
+            // borderRadius: 1,       
+            // borderBottomWidth: 1,  
+            // borderColor: '#c0c0c0', 
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
@@ -739,8 +740,8 @@ class ShippingAddress extends Component {
             flexDirection: 'row',
             alignItems: 'center',
             alignSelf: 'center',
-            marginBottom: 15,
-            marginTop: 20,
+            marginBottom: 12,
+            marginTop: 5,
             // shadowColor: '#000',
             shadowOffset: {
               width: 0,
@@ -836,7 +837,7 @@ class ShippingAddress extends Component {
         <View
           style={{
             backgroundColor: '#fff',
-            width: '86%',
+            width: '90%',
             height: 60,
             borderColor: '#fff',
             borderWidth: 1,
@@ -844,8 +845,8 @@ class ShippingAddress extends Component {
             flexDirection: 'row',
             alignItems: 'center',
             alignSelf: 'center',
-            marginBottom: 15,
-            marginTop: 20,
+            marginBottom: 12,
+            marginTop: 5,
             shadowColor: '#000',
             shadowOffset: {
               width: 0,
@@ -1008,8 +1009,8 @@ class ShippingAddress extends Component {
             flexDirection: 'row',
             alignItems: 'center',
             alignSelf: 'center',
-            marginBottom: 15,
-            marginTop: 20,
+            marginBottom: 12,
+            marginTop: 5,
             shadowColor: '#000',
             shadowOffset: {
               width: 0,
@@ -1600,14 +1601,15 @@ class ShippingAddress extends Component {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            <Text
+              {/* SHIPPING ADDRESS HEADER */}
+            {/* <Text
               style={{
                 fontSize: themeStyle.largeSize + 1,
                 color: themeStyle.textColor,
                 paddingTop: 10,
               }}>
               {this.props.cartItems2.Config.languageJson['Shipping Address']}
-            </Text>
+            </Text> */}
 
             <FlatList
               data={this.state.placeholderArray}
@@ -1646,7 +1648,7 @@ class ShippingAddress extends Component {
 
                 backgroundColor: '#fff',
                 // backgroundColor: 'green',
-                width: '86%',
+                width: '90%',
                 height: 60,
                 borderColor: '#fff',
                 borderWidth: 1,
@@ -1655,7 +1657,7 @@ class ShippingAddress extends Component {
                 alignItems: 'center',
                 alignSelf: 'center',
                 marginBottom: 15,
-                marginTop: 20,
+                marginTop: 5,
                 shadowColor: '#000',
                 shadowOffset: {
                   width: 0,
@@ -1832,7 +1834,7 @@ class ShippingAddress extends Component {
                 alignItems: 'center',
                 alignSelf: 'center',
                 marginBottom: 15,
-                marginTop: 20,
+                marginTop: 5,
                 shadowColor: '#000',
                 shadowOffset: {
                   width: 0,
@@ -1943,7 +1945,7 @@ class ShippingAddress extends Component {
                   style={{
                     textAlign: 'center',
                     color: themeStyle.otherBtnsText,
-                    fontSize: themeStyle.mediumSize,
+                    fontSize: 25,
                     fontWeight: '500',
                   }}>
                   {this.props.cartItems2.Config.languageJson.Next}
