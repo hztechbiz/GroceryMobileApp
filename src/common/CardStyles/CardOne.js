@@ -500,8 +500,8 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                   <View
                     style={{
                       padding: 6,
-                      margin: 5,
-                      width: btnWidth,
+                      // margin: 5,
+                      // width: btnWidth,
                       width: 90,
                       // justifyContent: 'center',
                       alignItems: 'center',

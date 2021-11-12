@@ -9,13 +9,14 @@ export default Category1 = (props) => (
     style={{
       justifyContent: 'center',
       alignItems: 'center',
-      // backgroundColor: theme.backgroundColor,
+      // backgroundColor: 'red',
       // backgroundColor: '#fff',
       // margin: 5,
       marginHorizontal: 13,
-      marginVertical: 10,
+      marginVertical: 5,
       height: 120,
       width: Width2,
+      opacity: 15,
       // padding: 16,
 
       // borderColor: 'gray',

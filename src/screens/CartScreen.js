@@ -698,7 +698,7 @@ class Cart extends Component {
                             opacity: !this.state.addToHomePageValue
                               ? null
                               : 0.6,
-                            backgroundColor: 'pink',
+                            // backgroundColor: 'pink',
                             // marginTop: 8,
                           }}
                           onPress={() => {
@@ -715,17 +715,17 @@ class Cart extends Component {
                               );
                             }
                           }}>
-                          <View
+                          {/* <View
                             style={{
                               borderColor: '#fff',
                               alignItems: 'center',
                               height: 36,
                               width: '100%',
                               justifyContent: 'center',
-                              backgroundColor: 'white',
-                              marginTop: -10,
-                            }}>
-                            <Text
+                              backgroundColor: 'red',
+                              // marginTop: -10,
+                            }}> */}
+                          {/* <Text
                               style={{
                                 // color: themeStyle.outOfStockBtnColor,
                                 fontSize: themeStyle.mediumSize + 1,
@@ -733,14 +733,20 @@ class Cart extends Component {
                                 color: 'white',
                               }}>
                               {this.props.language.REMOVE}
-                            </Text>
-                            <Iconone
-                              name="times"
-                              size={15}
-                              style={{position: 'absolute', right: 20}}
-                              color="red"
-                            />
-                          </View>
+                            </Text> */}
+                          {/* <TouchableOpacity> */}
+                          <Iconone
+                            name="times"
+                            size={15}
+                            style={
+                              {
+                                // position: 'absolute',
+                                // right: 20,
+                              }
+                            }
+                            color="red"
+                          />
+                          {/* </View> */}
                         </TouchableOpacity>
                         {/* <HTML
                           html={SyncStorage.get('currency')}
