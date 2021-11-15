@@ -310,6 +310,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                 // backgroundColor: ThemeStyle.backgroundColor,
                 justifyContent: 'center',
                 alignItems: 'flex-start',
+                marginHorizontal: 10,
                 // backgroundColor: 'red',
                 width: '100%',
               }}>
