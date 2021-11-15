@@ -399,7 +399,7 @@ var a2 = {
   by: 'By',
   View: 'View',
   'Start Now': 'Start Now',
-  'LIST OF COUPON CODES': 'Coupo Code List',
+  'LIST OF COUPON CODES': 'Coupon Code List',
   Quantity: 'Quantity',
   QUANTITY: 'QUANTITY',
   Proceed: 'Proceed',
