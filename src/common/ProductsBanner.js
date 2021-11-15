@@ -204,7 +204,7 @@ class Banner extends PureComponent {
                       backgroundColor: '#fff',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      // elevation: 3,
+                      elevation: 3,
                       // backgroundColor: '#fff',
                       borderRadius: 15,
                     }}>

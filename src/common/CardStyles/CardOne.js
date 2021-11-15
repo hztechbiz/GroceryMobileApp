@@ -9,7 +9,9 @@ import {
 import ImageLoad from '../RnImagePlaceH';
 import Timer from '../Timer';
 import {Icon} from 'native-base';
-import Ionicons from 'react-native-vector-icons/FontAwesome';
+import Font_Cart from 'react-native-vector-icons/FontAwesome5';
+import Out_Of_Stock from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon2 from 'react-native-vector-icons/Ionicons';
 import theme from '../Theme.style';
 import ThemeStyle from '../Theme.style';
 import Counter from '../Counter';
@@ -48,7 +50,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
         }}>
         {t.newMethod3(props, t) === 1 ? (
           t.props.recentViewedProducts && props.recent ? (
-            <TouchableOpacity
+            <View
               style={{
                 width: btnWidth,
                 shadowOffset: {width: 1, height: 1},
@@ -60,7 +62,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                 left: 5,
               }}
               onPress={() => t.removeRecent(props, t)}>
-              <View
+              <TouchableOpacity
                 style={{
                   alignItems: 'center',
                   height: Platform.OS === 'android' ? 30 : 28,
@@ -69,7 +71,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                   // backgroundColor: 'theme.removeBtnColor',
                   padding: 15,
                 }}>
-                <Text
+                {/* <Text
                   style={{
                     color: theme.removeBtnTextColor,
                     fontSize: theme.mediumSize + 1,
@@ -77,9 +79,14 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                     fontWeight: '500',
                   }}>
                   {t.props.language.Remove}
-                </Text>
-              </View>
-            </TouchableOpacity>
+                </Text> */}
+                {/* <Remove_Icon
+                  name="close"
+                  size={18}
+                  color={ThemeStyle.iconColor}
+                /> */}
+              </TouchableOpacity>
+            </View>
           ) : props.removeButton ? (
             <TouchableOpacity
               style={{
@@ -303,6 +310,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                 // backgroundColor: ThemeStyle.backgroundColor,
                 justifyContent: 'center',
                 alignItems: 'flex-start',
+                marginHorizontal: 10,
                 // backgroundColor: 'red',
                 width: '100%',
               }}>
@@ -469,8 +477,8 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                     alignSelf: 'center',
                     marginTop: 0,
                     marginBottom: 0,
-                    backgroundColor: theme.removeBtnColor,
-                    // backgroundColor: 'yellow',
+                    // backgroundColor: theme.removeBtnColor,
+                    backgroundColor: 'yellow',
                   }}>
                   <Text
                     style={{
@@ -490,7 +498,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                 props.objectArray.defaultStock <= 0 &&
                 // eslint-disable-next-line eqeqeq
                 props.inventory == 1 ? (
-                <TouchableOpacity
+                <View
                   style={{
                     // margin: 5,
                     width: btnWidth,
@@ -500,25 +508,27 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                     borderRadius: 5,
                     // justifyContent: 'center',
                     alignItems: 'flex-end',
-                    right: 7,
+                    right: 15,
                     position: 'absolute',
+                    // backgroundColor: 'yellow',
                   }}>
                   {/* Out of Stock Button View */}
-                  <View
+                  <TouchableOpacity
                     style={{
-                      padding: 5,
-                      // margin: 5,
-                      // width: btnWidth,
-                      width: 90,
-                      // justifyContent: 'center',
+                      // padding: 5,
+                      justifyContent: 'center',
+                      // backgroundColor: 'green',
                       alignItems: 'center',
                       // alignSelf: 'center',
-                      marginBottom: 0,
-                      borderRadius: 5,
-                      // backgroundColor: theme.outOfStockBtnColor,
-                      backgroundColor: 'red',
+                      // marginTop: -27,
+                      // borderRadius: 5,
                     }}>
-                    <Text
+                    <Out_Of_Stock
+                      name="cart-off"
+                      color={ThemeStyle.iconColor}
+                      size={22}
+                    />
+                    {/* <Text
                       style={{
                         color: theme.outOfStockBtnTextColor,
                         // fontSize: theme.mediumSize + 1,
@@ -527,10 +537,11 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                       }}
                       numberOfLines={1}>
                       {t.props.language['OUT OF STOCK']}
-                    </Text>
-                  </View>
-                </TouchableOpacity>
-              ) : t.props.dataName === 'Flash' ? (
+                    </Text> */}
+                  </TouchableOpacity>
+                </View>
+              ) : // <></>
+              t.props.dataName === 'Flash' ? (
                 <Timer
                   props={t.props}
                   languageJson2={t.props.language2}
@@ -553,8 +564,9 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                       right: 7,
                       borderRadius: 5,
                       // justifyContent: 'center',
-                      alignItems: 'flex-end',
-                      // backgroundColor:'yellow',
+                      // alignItems: 'flex-end',
+                      alignItems: 'center',
+                      // backgroundColor: 'yellow',
                       // alignSelf: 'center',
                       // shadowOffset: {width: 1, height: 1},
                       // shadowColor: theme.textColor,
@@ -569,19 +581,27 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                     }}>
                     <View
                       style={{
-                        padding: 5,
+                        // padding: 5,
+                        paddingVertical: 5,
+                        justifyContent: 'center',
+                        // backgroundColor: 'red',
                         //margin: 5,
                         // width: btnWidth,
-                        width: 80,
+                        // width: 80,
                         // backgroundColor: theme.addToCartBtnColor,
-                        backgroundColor: 'green',
+                        // backgroundColor: 'green',
                         // justifyContent: 'center',
                         alignItems: 'center',
                         // alignSelf: 'center',
                         // marginTop: -27,
                         borderRadius: 5,
                       }}>
-                      <Text
+                      <Font_Cart
+                        name="cart-plus"
+                        size={18}
+                        color={ThemeStyle.StatusBarColor}
+                      />
+                      {/* <Text
                         style={{
                           color: theme.addToCartBtnTextColor,
                           // fontSize: theme.mediumSize + 1,
@@ -589,7 +609,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                           fontWeight: '500',
                         }}>
                         {t.props.language['Add to Cart']}
-                      </Text>
+                      </Text> */}
                     </View>
                   </TouchableOpacity>
                   {t.newMethod3(props, t) !== 1 ? (
@@ -675,7 +695,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                   marginBottom: 3,
                   marginTop: 0,
                   top: 3,
-                  right: 0,
+                  right: 10,
                   // justifyContent: 'center',
                   alignItems: 'flex-end',
                   // alignSelf: 'center',
@@ -686,10 +706,10 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                   position: 'absolute',
                 }}
                 onPress={() => t.removeRecent(props, t)}>
-                <View
+                {/* <View
                   style={{
                     padding: 5,
-                    width: 60,
+                    // width: 60,
 
                     // justifyContent: 'center',
                     alignItems: 'center',
@@ -697,17 +717,17 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                     marginTop: 0,
                     borderRadius: 5,
                     marginBottom: 0,
-                    backgroundColor: theme.removeBtnColor,
-                  }}>
-                  <Text
+                  }}> */}
+                <Icon2 name="md-close" size={18} color={ThemeStyle.iconColor} />
+                {/* <Text
                     style={{
                       color: theme.removeBtnTextColor,
                       fontSize: 10,
                       fontWeight: '500',
                     }}>
                     {t.props.language.Remove}
-                  </Text>
-                </View>
+                  </Text> */}
+                {/* </View> */}
               </TouchableOpacity>
             ) : null}
           </View>
