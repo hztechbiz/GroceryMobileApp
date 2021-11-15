@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, {PureComponent} from 'react';
 import {
   Dimensions, // Detects screen dimensions
   Platform, // Detects platform running the app
@@ -8,23 +8,23 @@ import {
   I18nManager,
   TouchableOpacity,
   Text,
-  StatusBar
-} from 'react-native'
-import themeStyle from './Theme.style'
-import SyncStorage from 'sync-storage'
-import { connect } from 'react-redux'
+  StatusBar,
+} from 'react-native';
+import themeStyle from './Theme.style';
+import SyncStorage from 'sync-storage';
+import {connect} from 'react-redux';
 
-const { width, height } = Dimensions.get('window')
-let condition = 1
+const {width, height} = Dimensions.get('window');
+let condition = 1;
 class OnboardingScreens extends PureComponent {
   static navigationOptions = {
     headerStyle: {
       backgroundColor: '#16a085',
-      elevation: null
-    }
-  }
+      elevation: null,
+    },
+  };
 
-  condition = 1
+  condition = 1;
   // Props for ScrollView component
   static defaultProps = {
     // Arrange screens horizontally
@@ -43,27 +43,27 @@ class OnboardingScreens extends PureComponent {
     // Do not adjust content behind nav-, tab- or toolbars automatically
     automaticallyAdjustContentInsets: false,
     // Fisrt is screen is active
-    index: 0
-  }
+    index: 0,
+  };
 
-  state = this.initState(this.props)
+  state = this.initState(this.props);
   /**
    * Initialize the state
    */
-  initState (props) {
+  initState(props) {
     // Get the total number of slides passed as children
 
-    const total = props.children ? props.children.length || 1 : 0
+    const total = props.children ? props.children.length || 1 : 0;
     // Current index
     const index =
-        this.props.type === 'Home'
-          ? total > 1
-            ? 0
-            : 0
-          : total > 1
-            ? Math.min(props.index, total - 1)
-            : 0
-    const offset = width * (index - 1)
+      this.props.type === 'Home'
+        ? total > 1
+          ? 0
+          : 0
+        : total > 1
+        ? Math.min(props.index, total - 1)
+        : 0;
+    const offset = width * (index - 1);
 
     const state = {
       total,
@@ -72,17 +72,17 @@ class OnboardingScreens extends PureComponent {
       width,
       height,
       timer: null,
-      temp: -1
-    }
+      temp: -1,
+    };
 
     // Component internals as a class property,
     // and not state to avoid component re-renders when updated
     this.internals = {
       isScrolling: false,
-      offset
-    }
+      offset,
+    };
 
-    return state
+    return state;
   }
 
   /**
@@ -91,36 +91,36 @@ class OnboardingScreens extends PureComponent {
    */
   onScrollBegin = () => {
     // Update internal isScrolling state
-    this.internals.isScrolling = true
-  }
+    this.internals.isScrolling = true;
+  };
 
   /**
    * Scroll end handler
    * @param {object} e native event
    */
-  onScrollEnd = e => {
+  onScrollEnd = (e) => {
     // Update internal isScrolling state
-    this.internals.isScrolling = false
+    this.internals.isScrolling = false;
 
     // Update index
     this.updateIndex(
       e.nativeEvent.contentOffset
         ? e.nativeEvent.contentOffset.x
-        : e.nativeEvent.position * this.state.width
-    )
-  }
+        : e.nativeEvent.position * this.state.width,
+    );
+  };
 
   /*
    * Drag end handler
    * @param {object} e native event
    */
-  onScrollEndDrag = e => {
+  onScrollEndDrag = (e) => {
     const {
-      contentOffset: { x: newOffset }
-    } = e.nativeEvent
-    const { children } = this.props
-    const { index } = this.state
-    const { offset } = this.internals
+      contentOffset: {x: newOffset},
+    } = e.nativeEvent;
+    const {children} = this.props;
+    const {index} = this.state;
+    const {offset} = this.internals;
 
     // Update internal isScrolling state
     // if swiped right on the last slide
@@ -129,34 +129,34 @@ class OnboardingScreens extends PureComponent {
       offset === newOffset &&
       (index - 1 === 0 || index - 1 === children.length - 1)
     ) {
-      this.internals.isScrolling = false
+      this.internals.isScrolling = false;
     }
-  }
+  };
 
   /**
    * Update index after scroll
    * @param {object} offset content offset
    */
-  updateIndex = offset => {
-    const state = this.state
-    const diff = offset - this.internals.offset
-    const step = state.width
-    let index = state.temp
+  updateIndex = (offset) => {
+    const state = this.state;
+    const diff = offset - this.internals.offset;
+    const step = state.width;
+    let index = state.temp;
     // Do nothing if offset didn't change
     if (!diff) {
-      return
+      return;
     }
 
     // Make sure index is always an integer
-    index = parseInt(index + Math.round(diff / step), 10)
+    index = parseInt(index + Math.round(diff / step), 10);
     // Update internal offset
-    this.internals.offset = offset
+    this.internals.offset = offset;
     // Update index in the state
     this.setState({
       temp: index,
-      index
-    })
-  }
+      index,
+    });
+  };
 
   /**
    * Swipe one slide forward
@@ -164,40 +164,41 @@ class OnboardingScreens extends PureComponent {
   swipe = () => {
     // Ignore if already scrolling or if there is less than 2 slides
     if (this.internals.isScrolling || this.state.total < 2) {
-      return
+      return;
     }
 
-    const state = this.state
-    const diff = this.state.index + 1
-    const x = diff * state.width
-    const y = 0
+    const state = this.state;
+    const diff = this.state.index + 1;
+    const x = diff * state.width;
+    const y = 0;
 
     // Call scrollTo on scrollView component to perform the swipe
-    this.scrollView && this.scrollView.scrollTo({ x, y, animated: true, useNativeDriver: true })
+    this.scrollView &&
+      this.scrollView.scrollTo({x, y, animated: true, useNativeDriver: true});
 
     // Update internal scroll state
-    this.internals.isScrolling = true
+    this.internals.isScrolling = true;
 
     // Trigger onScrollEnd manually on android
     if (Platform.OS === 'android') {
       setImmediate(() => {
         this.onScrollEnd({
           nativeEvent: {
-            position: diff
-          }
-        })
-      })
+            position: diff,
+          },
+        });
+      });
     }
-  }
+  };
 
   /**
    * Render ScrollView component
    * @param {array} slides to swipe through
    */
-  renderScrollView = pages => (
+  renderScrollView = (pages) => (
     <ScrollView
-      ref={component => {
-        this.scrollView = component
+      ref={(component) => {
+        this.scrollView = component;
       }}
       {...this.props}
       contentContainerStyle={[styles.wrapper, this.props.style]}
@@ -211,10 +212,10 @@ class OnboardingScreens extends PureComponent {
         </View>
       ))}
     </ScrollView>
-  )
+  );
 
-  componentDidMount () {
-    condition = 1
+  componentDidMount() {
+    condition = 1;
   }
 
   /**
@@ -222,7 +223,7 @@ class OnboardingScreens extends PureComponent {
    */
   renderPagination = () => {
     if (this.state.total <= 1) {
-      return null
+      return null;
     }
 
     const ActiveDot = (
@@ -233,86 +234,84 @@ class OnboardingScreens extends PureComponent {
             : [styles.dot, styles.activeDot]
         }
       />
-    )
+    );
     const Dot = (
-      <View
-        style={this.props.type === 'Home' ? styles.dotHome : styles.dot}
-      />
-    )
+      <View style={this.props.type === 'Home' ? styles.dotHome : styles.dot} />
+    );
     // let temp =0;
-    const dots = []
+    const dots = [];
     for (let key = 0; key < this.state.total; key++) {
       dots.push(
         key == this.state.index
-          ? React.cloneElement(ActiveDot, { key })
-          : React.cloneElement(Dot, { key })
-      )
+          ? React.cloneElement(ActiveDot, {key})
+          : React.cloneElement(Dot, {key}),
+      );
     }
     if (this.props.type === 'Home') {
       if (this.state.index !== 0) {
-        condition = 0
+        condition = 0;
       }
       return (
         <View
-          pointerEvents='none'
+          pointerEvents="none"
           style={{
             flexDirection:
               condition === 1 && this.state.total - 1 !== this.state.index
                 ? 'row'
                 : Platform.OS === 'android'
-                  ? I18nManager.isRTL
-                    ? 'row-reverse'
-                    : 'row'
-                  : 'row',
+                ? I18nManager.isRTL
+                  ? 'row-reverse'
+                  : 'row'
+                : 'row',
             justifyContent: 'center',
             alignItems: 'flex-end',
             flex: 1,
-            backgroundColor: themeStyle.textColor
+            backgroundColor: themeStyle.textColor,
           }}>
           {dots}
         </View>
-      )
+      );
     }
 
     return (
       <View
-        pointerEvents='none'
+        pointerEvents="none"
         style={[styles.pagination, styles.fullScreen2]}>
         {dots}
       </View>
-    )
-  }
+    );
+  };
 
-  FUN = nav => {
-    StatusBar.setBackgroundColor(themeStyle.StatusBarColor)
-    StatusBar.setHidden(false)
+  FUN = (nav) => {
+    StatusBar.setBackgroundColor(themeStyle.StatusBarColor);
+    StatusBar.setHidden(false);
     if (SyncStorage.get('showIntroPage') === '0') {
-      nav.navigate('Home1Screen')
+      nav.navigate('Home1Screen');
     } else {
-      nav.navigate('App')
+      nav.navigate('App');
     }
-  }
+  };
 
   /**
    * Render Continue or Done button
    */
-  renderButton = nav => {
+  renderButton = (nav) => {
     // this.state = this.initState(this.props);
-    const lastScreen = this.state.index === this.state.total - 1
+    const lastScreen = this.state.index === this.state.total - 1;
     if (lastScreen) {
-      this.state = this.initState(this.props)
+      this.state = this.initState(this.props);
       // this.setState({index:0})
     }
     return (
       <View
-        pointerEvents='box-none'
+        pointerEvents="box-none"
         style={[styles.buttonWrapper, styles.fullScreen2]}>
         {this.props.type === 'Home' ? null : lastScreen ? (
           <TouchableOpacity
-            style={{ paddingTop: 5 }}
+            style={{paddingTop: 5}}
             onPress={() => {
               if (this.props.cartItems2.Config.languageJson !== '') {
-                this.FUN(nav)
+                this.FUN(nav);
               }
             }}>
             <View
@@ -323,14 +322,14 @@ class OnboardingScreens extends PureComponent {
                 backgroundColor: 'transparent',
                 justifyContent: 'center',
                 borderColor: themeStyle.primary,
-                borderWidth: 2
+                borderWidth: 2,
               }}>
               <Text
                 style={{
                   textAlign: 'center',
                   color: themeStyle.primary,
                   fontSize: 13,
-                  fontWeight: '500'
+                  fontWeight: '500',
                 }}>
                 {'Start Now'}
               </Text>
@@ -338,7 +337,7 @@ class OnboardingScreens extends PureComponent {
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
-            style={{ paddingTop: 5 }}
+            style={{paddingTop: 5}}
             onPress={() => this.swipe(nav)}>
             <View
               style={{
@@ -348,14 +347,14 @@ class OnboardingScreens extends PureComponent {
                 backgroundColor: 'transparent',
                 justifyContent: 'center',
                 borderColor: themeStyle.primary,
-                borderWidth: 2
+                borderWidth: 2,
               }}>
               <Text
                 style={{
                   textAlign: 'center',
                   color: themeStyle.primary,
                   fontSize: 13,
-                  fontWeight: '500'
+                  fontWeight: '500',
                 }}>
                 {'Continue'}
               </Text>
@@ -363,73 +362,73 @@ class OnboardingScreens extends PureComponent {
           </TouchableOpacity>
         )}
       </View>
-    )
-  }
+    );
+  };
 
   /**
    * Render the component
    */
 
-  render = ({ children } = this.props) => (
+  render = ({children} = this.props) => (
     <View>
       {
         <View>
           {this.props.type === 'Home' &&
           this.props.type2 !== 'ProductDetails' ? (
-              <View
-                style={[
-                  styles.container,
-                  {
-                    width,
-                    // height: this.props.news === true ? height * 0.246 : Platform.OS === 'ios' ? height * 0.260 : height * 0.266,
-                    height: 200,
-                    backgroundColor: 'transparent'
-                  }
-                ]}>
-                {/* Render screens */}
-                {this.renderScrollView(children)}
-                {/* Render pagination */}
-                {this.renderPagination()}
-                {/* Render Continue or Done button */}
-                {this.renderButton(this.props.navigation)}
-              </View>
-            ) : this.props.type2 === 'ProductDetails' ? (
-              <View style={[styles.container, styles.fullScreen3]}>
-                {/* Render screens */}
-                {this.renderScrollView(children)}
-                {/* Render pagination */}
-                {this.renderPagination()}
-                {/* Render Continue or Done button */}
-                {this.renderButton(this.props.navigation)}
-              </View>
-            ) : (
+            <View
+              style={[
+                styles.container,
+                {
+                  width,
+                  // height: this.props.news === true ? height * 0.246 : Platform.OS === 'ios' ? height * 0.260 : height * 0.266,
+                  height: 200,
+                  backgroundColor: 'transparent',
+                },
+              ]}>
+              {/* Render screens */}
+              {this.renderScrollView(children)}
+              {/* Render pagination */}
+              {this.renderPagination()}
+              {/* Render Continue or Done button */}
+              {this.renderButton(this.props.navigation)}
+            </View>
+          ) : this.props.type2 === 'ProductDetails' ? (
+            <View style={[styles.container, styles.fullScreen3]}>
+              {/* Render screens */}
+              {this.renderScrollView(children)}
+              {/* Render pagination */}
+              {this.renderPagination()}
+              {/* Render Continue or Done button */}
+              {this.renderButton(this.props.navigation)}
+            </View>
+          ) : (
             // IntroScreen
-              <View style={[styles.container, styles.fullScreen2]}>
-                {/* Render screens */}
-                {this.renderScrollView(children)}
-                {/* Render pagination */}
-                {this.renderPagination()}
-                {/* Render Continue or Done button */}
-                {this.renderButton(this.props.navigation)}
-              </View>
-            )}
+            <View style={[styles.container, styles.fullScreen2]}>
+              {/* Render screens */}
+              {this.renderScrollView(children)}
+              {/* Render pagination */}
+              {this.renderPagination()}
+              {/* Render Continue or Done button */}
+              {this.renderButton(this.props.navigation)}
+            </View>
+          )}
         </View>
       }
     </View>
-  )
+  );
 }
 
 /// ///////////////////////////////////////////////
-const mapStateToProps = state => ({
-  cartItems2: state
-})
-export default connect(mapStateToProps, null)(OnboardingScreens)
+const mapStateToProps = (state) => ({
+  cartItems2: state,
+});
+export default connect(mapStateToProps, null)(OnboardingScreens);
 
 const styles = StyleSheet.create({
   // Set width and height to the screen size
   fullScreen2: {
     width,
-    height
+    height,
   },
   // fullScreen: {
   //   width,
@@ -443,16 +442,16 @@ const styles = StyleSheet.create({
       Platform.OS === 'ios'
         ? themeStyle.singleRowCardWidth + 240
         : themeStyle.singleRowCardWidth + 240,
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
   // Main container
   container: {
     backgroundColor: 'transparent',
-    position: 'relative'
+    position: 'relative',
   },
   // Slide
   slide: {
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
     // width: width - 1,
     // height: 208,
   },
@@ -466,13 +465,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'flex-end',
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
   paginationHome: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'flex-end',
-    backgroundColor: themeStyle.textColor
+    backgroundColor: themeStyle.textColor,
   },
   // Pagination dot
   dotHome: {
@@ -483,7 +482,7 @@ const styles = StyleSheet.create({
     marginLeft: 3,
     marginRight: 3,
     marginTop: 3,
-    marginBottom: 3
+    marginBottom: 3,
   },
   // Pagination dot
   dot: {
@@ -492,11 +491,11 @@ const styles = StyleSheet.create({
     height: 8,
     borderRadius: 4,
     marginLeft: 3,
-    marginRight: 3
+    marginRight: 3,
   },
   // Active dot
   activeDot: {
-    backgroundColor: themeStyle.otherBtnsColor
+    backgroundColor: themeStyle.otherBtnsColor,
   },
   buttonWrapper: {
     backgroundColor: 'transparent',
@@ -504,6 +503,6 @@ const styles = StyleSheet.create({
     bottom: 45,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    zIndex: 1
-  }
-})
+    zIndex: 1,
+  },
+});

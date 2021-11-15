@@ -337,14 +337,15 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                   props.objectArray.flash_price === undefined ? 0 : 2,
                 //padding: 5,
                 paddingTop: 0,
-                paddingBottom: 2,
-                marginTop: 2,
+                // paddingBottom: 2,
+                marginVertical: 9,
+                // marginTop: 2,
               }}>
               {props.objectArray.flash_price !== undefined ? (
                 <View
                   style={{
                     flexDirection: 'row',
-                    // backgroundColor: 'pink',
+                    // backgroundColor: 'red',
                     width: '100%',
                     justifyContent: 'center',
                   }}>

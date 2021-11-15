@@ -393,11 +393,11 @@ class ProductDetail extends PureComponent {
     <View
       style={{
         flexDirection: 'row',
-        // backgrounddColor: 'green',
+        backgrounddColor: 'red',
 
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
-        // marginHorizontal: 8,
+        marginLeft: 8,
       }}>
       <HTML
         html={SyncStorage.get('currency')}
@@ -415,6 +415,7 @@ class ProductDetail extends PureComponent {
       <Text
         style={{
           // textAlign: 'left'
+          // backgroundColor: 'green',
           justifyContent: 'flex-start',
           marginLeft: 2,
           alignItems: 'flex-start',
@@ -711,7 +712,7 @@ class ProductDetail extends PureComponent {
           <FlatList
             style={{
               margin: 15,
-              // backgroundColor: 'red',
+              // backgroundColor: themeStyle.backgroundColor,
               // justifyContent: 'center',
             }}
             showsVerticalScrollIndicator={false}
@@ -738,8 +739,8 @@ class ProductDetail extends PureComponent {
                   <View
                     style={{
                       flex: 1,
-                      backgroundColor: themeStyle.backgroundColor,
-                      // backgroundColor: 'green',
+                      // backgroundColor: themeStyle.backgroundColor,
+                      backgroundColor: 'transparent',
 
                       flexDirection: 'row',
                       padding: 8,
@@ -927,9 +928,12 @@ class ProductDetail extends PureComponent {
                           {this.state.cartButton === 'outOfStock' ? (
                             <Text
                               style={{
-                                color: themeStyle.textColor,
+                                // color: themeStyle.textColor,
 
-                                fontWeight: '100',
+                                // fontWeight: '100',
+                                color: '#2d79be',
+
+                                fontWeight: 'bold',
                               }}>
                               {
                                 this.props.cartItems2.Config.languageJson[
@@ -959,6 +963,59 @@ class ProductDetail extends PureComponent {
                     ) : null
                   ) : null}
                 </View>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    // justifyContent: 'flex-start',
+                  }}>
+                  {!this.props.navigation.state.params.objectArray
+                    .flash_start_date ? (
+                    <View
+                      style={{
+                        flex: 1,
+                        justifyContent: 'flex-start',
+                        alignItems: 'flex-start',
+                        flexDirection: 'row',
+                        // backgroundColor: 'red',
+                        // width: '30%',
+                        // marginTop: 4,
+                      }}>
+                      {this.props.navigation.state.params.objectArray
+                        .discount_price !== null
+                        ? this.priceFun(
+                            this.state.products_price,
+                            'line-through',
+                          )
+                        : null}
+
+                      {this.props.navigation.state.params.objectArray
+                        .discount_price === null
+                        ? this.priceFun(this.state.products_price, 'none')
+                        : null}
+                      {this.props.navigation.state.params.objectArray
+                        .discount_price !== null
+                        ? this.priceFun(this.state.discount_price, 'none')
+                        : null}
+                    </View>
+                  ) : null}
+
+                  {this.props.navigation.state.params.objectArray
+                    .flash_start_date ? (
+                    <View
+                      style={{
+                        flex: 1,
+                        justifyContent: 'flex-start',
+                        alignItems: 'flex-start',
+                        flexDirection: 'row',
+                      }}>
+                      {this.priceFun(this.state.products_price, 'line-through')}
+
+                      {this.priceFun(this.state.flash_price, 'none')}
+                    </View>
+                  ) : null}
+                </View>
+
                 {/* </View> */}
 
                 {/* <View>
