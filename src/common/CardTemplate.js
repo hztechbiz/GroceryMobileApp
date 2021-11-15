@@ -113,6 +113,7 @@ class CardTemplate extends Component {
           textDecorationLine,
           fontWeight: '800',
         }}>
+        {' '}
         {name.toFixed(2)}
       </Text>
     </View>

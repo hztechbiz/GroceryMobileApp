@@ -33,9 +33,11 @@ const WIDTH = Dimensions.get('window').width;
 class ShippingAddress extends Component {
   /// ////////////////////////////////////////////////////
   static navigationOptions = ({navigation}) => {
-    const headerStyle = navigation.getParam('headerTitle');
+    // const headerStyle = navigation.getParam('headerTitle');
     return {
-      headerTitle: headerStyle,
+      // headerTitle: headerStyle,
+      headerTitle: 'Shipping Address',
+
       headerRight: () => <ShoppingCartIcon navigation={navigation} />,
       cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       headerTitleAlign: 'left',
@@ -655,9 +657,9 @@ class ShippingAddress extends Component {
             paddingLeft: 4,
             height: 60,
             width: wp('90%'),
-            // borderRadius: 1,       
-            // borderBottomWidth: 1,  
-            // borderColor: '#c0c0c0', 
+            // borderRadius: 1,
+            // borderBottomWidth: 1,
+            // borderColor: '#c0c0c0',
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
@@ -1600,8 +1602,10 @@ class ShippingAddress extends Component {
               flexDirection: 'column',
               justifyContent: 'center',
               alignItems: 'center',
+              // backgroundColor: 'red',
+              marginVertical: 25,
             }}>
-              {/* SHIPPING ADDRESS HEADER */}
+            {/* SHIPPING ADDRESS HEADER */}
             {/* <Text
               style={{
                 fontSize: themeStyle.largeSize + 1,
