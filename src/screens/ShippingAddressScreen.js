@@ -734,7 +734,7 @@ class ShippingAddress extends Component {
             // borderColor: '#c0c0c0',
             // backgroundColor: 'green',
             backgroundColor: '#fff',
-            width: '92%',
+            width: '95%',
             height: 60,
             borderColor: '#fff',
             borderWidth: 1,
@@ -1003,7 +1003,7 @@ class ShippingAddress extends Component {
         <View
           style={{
             backgroundColor: '#fff',
-            width: '92%',
+            width: '95%',
             height: 60,
             borderColor: '#fff',
             borderWidth: 1,
@@ -1828,8 +1828,7 @@ class ShippingAddress extends Component {
                 // alignItems: 'center',
 
                 backgroundColor: '#fff',
-                // backgroundColor: 'green',
-                width: '86%',
+                width: '90%',
                 height: 60,
                 borderColor: '#fff',
                 borderWidth: 1,
@@ -1837,7 +1836,7 @@ class ShippingAddress extends Component {
                 flexDirection: 'row',
                 alignItems: 'center',
                 alignSelf: 'center',
-                marginBottom: 15,
+                marginBottom: 12,
                 marginTop: 5,
                 shadowColor: '#000',
                 shadowOffset: {
