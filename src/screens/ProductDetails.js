@@ -38,7 +38,7 @@ class ProductDetail extends PureComponent {
       gestureEnabled: false,
       drawerLockMode: 'locked-closed',
       cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-      headerTitleAlign: 'center',
+      headerTitleAlign: 'left',
       headerTintColor: themeStyle.headerTintColor,
       headerStyle: {
         backgroundColor: themeStyle.primary,
