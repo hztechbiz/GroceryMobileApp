@@ -721,6 +721,7 @@ class Newest extends Component {
                           fontSize: themeStyle.smallSize + 1,
                           // fontSize: 12,
                           width: WIDTH * 0.4182 - 60,
+                          textTransform: 'uppercase',
                           textAlign: 'center',
                           justifyContent: 'center',
                           fontWeight: Platform.OS === 'android' ? '900' : '400',

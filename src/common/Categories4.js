@@ -35,6 +35,8 @@ export default Category1 = (props) => (
         width: Width2,
         overflow: 'hidden',
         borderRadius: 10,
+        backgroundColor: 'black',
+        opacity: 0.6,
       }}
       // resizeMethod="contain"
       loadingStyle={{size: 'large', color: theme.loadingIndicatorColor}}

@@ -22,7 +22,7 @@ class Category extends PureComponent {
       headerStyle: {
         backgroundColor: theme.primary,
       },
-      headerTitleAlign: 'center',
+      headerTitleAlign: 'left',
       cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       gestureEnabled: true,
       gesturesDirection: 'inverted',
