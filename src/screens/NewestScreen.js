@@ -808,6 +808,7 @@ class Newest extends PureComponent {
                 alignItems: 'center',
                 height: 44,
                 backgroundColor: themeStyle.backgroundColor,
+                // backgroundColor: 'red',
                 flexDirection: 'row',
                 justifyContent: 'space-between',
               }}>
@@ -841,7 +842,7 @@ class Newest extends PureComponent {
             </View>
           </View>
 
-          <View>
+          <View style={{marginBottom: 30}}>
             <FlatListViewShop
               dataSource={this.state.products}
               products={this.props.language.Products}

@@ -35,7 +35,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
         marginBottom: 8,
         padding: 6,
         // backgroundColor: 'red',
-        backgroundColor: 'transparent',
+        // backgroundColor: ThemeStyle.backgroundColor,
         justifyContent: 'center',
       }}>
       {/* /// ///////////////////////////////////////////////////// 2nd View*/}
@@ -44,8 +44,9 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
           // YELLOW-
           // backgroundColor: theme.backgroundColor,
           // backgroundColor: 'yellow',
-          backgroundColor: '#FFF',
-          padding: 5,
+          width: widthPic,
+          // backgroundColor: 'green',
+          // padding: 5,
           // ZZwidth: '100%',
         }}>
         {t.newMethod3(props, t) === 1 ? (
@@ -240,7 +241,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                   padding: 3,
                   paddingBottom: 1,
                   paddingTop: 1,
-                  right: 0,
+                  right: 10,
                   top: 10,
                   // alignItems: 'center',
                   // justifyContent: 'center',

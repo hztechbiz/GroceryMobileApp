@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, {PureComponent} from 'react';
 import {
   TouchableOpacity,
   View,
@@ -6,18 +6,18 @@ import {
   Dimensions,
   Text,
   I18nManager,
-  Platform
-} from 'react-native'
-import { UIActivityIndicator } from 'react-native-indicators'
-import CardTem from './CardTemplate'
-import { Icon } from 'native-base'
-import theme from './Theme.style'
-import { connect } from 'react-redux'
-const Width = Dimensions.get('window').width
+  Platform,
+} from 'react-native';
+import {UIActivityIndicator} from 'react-native-indicators';
+import CardTem from './CardTemplate';
+import {Icon} from 'native-base';
+import theme from './Theme.style';
+import {connect} from 'react-redux';
+const Width = Dimensions.get('window').width;
 
 class Fetch extends PureComponent {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       dataSource: [],
       isLoading: true,
@@ -27,11 +27,11 @@ class Fetch extends PureComponent {
       fabB: false,
       productView: this.props.productView,
       applyFilter: false,
-      tempBox: []
-    }
+      tempBox: [],
+    };
   }
 
-  static getDerivedStateFromProps (props, state) {
+  static getDerivedStateFromProps(props, state) {
     if (props.dataSource.length === 0 && props.productView === 'list') {
       return {
         dataSource: props.dataSource,
@@ -39,8 +39,8 @@ class Fetch extends PureComponent {
         finalCon: false,
         productView: 'list',
         applyFilter: props.applyFilter,
-        tempBox: []
-      }
+        tempBox: [],
+      };
     }
     if (props.dataSource.length === 0 && props.productView === 'grid') {
       return {
@@ -49,8 +49,8 @@ class Fetch extends PureComponent {
         finalCon: false,
         productView: 'grid',
         applyFilter: props.applyFilter,
-        tempBox: []
-      }
+        tempBox: [],
+      };
     }
     if (
       props.dataSource.length != 0 &&
@@ -63,8 +63,8 @@ class Fetch extends PureComponent {
         finalCon: false,
         productView: 'grid',
         applyFilter: props.applyFilter,
-        tempBox: []
-      }
+        tempBox: [],
+      };
     } else if (
       props.dataSource.length === 0 &&
       props.page == 1 &&
@@ -76,8 +76,8 @@ class Fetch extends PureComponent {
         finalCon: false,
         productView: 'grid',
         applyFilter: props.applyFilter,
-        tempBox: []
-      }
+        tempBox: [],
+      };
     } else if (
       props.dataSource.length === 0 &&
       props.page > 1 &&
@@ -88,8 +88,8 @@ class Fetch extends PureComponent {
         finalCon: true,
         productView: 'grid',
         applyFilter: props.applyFilter,
-        tempBox: []
-      }
+        tempBox: [],
+      };
     }
     if (
       props.dataSource.length != 0 &&
@@ -102,8 +102,8 @@ class Fetch extends PureComponent {
         finalCon: false,
         productView: 'list',
         applyFilter: props.applyFilter,
-        tempBox: []
-      }
+        tempBox: [],
+      };
     } else if (
       props.dataSource.length === 0 &&
       props.page == 1 &&
@@ -115,8 +115,8 @@ class Fetch extends PureComponent {
         finalCon: false,
         productView: 'list',
         applyFilter: props.applyFilter,
-        tempBox: []
-      }
+        tempBox: [],
+      };
     } else if (
       props.dataSource.length === 0 &&
       props.page > 1 &&
@@ -127,53 +127,53 @@ class Fetch extends PureComponent {
         finalCon: true,
         productView: 'list',
         applyFilter: props.applyFilter,
-        tempBox: []
-      }
+        tempBox: [],
+      };
     }
-    return null
+    return null;
   }
 
-  static get options () {
+  static get options() {
     return {
       topBar: {
         title: {
-          text: 'Fetch'
-        }
-      }
-    }
+          text: 'Fetch',
+        },
+      },
+    };
   }
 
-  componentDidMount () {
-    this.props.onRef(this)
+  componentDidMount() {
+    this.props.onRef(this);
   }
 
-  componentWillUnmount () {
-    this.props.onRef(null)
-    clearInterval(this.state.gridCheck)
+  componentWillUnmount() {
+    this.props.onRef(null);
+    clearInterval(this.state.gridCheck);
   }
 
   showAlert = () => {
     if (this.state.productView === 'list') {
-      this.setState({ productView: 'grid', gridCheck: true }, () => {
+      this.setState({productView: 'grid', gridCheck: true}, () => {
         setTimeout(() => {
-          this.setState({ gridCheck: false })
-        }, Math.floor(100 / 360000))
-      })
+          this.setState({gridCheck: false});
+        }, Math.floor(100 / 360000));
+      });
     } else {
-      this.setState({ productView: 'list', gridCheck: true }, () => {
+      this.setState({productView: 'list', gridCheck: true}, () => {
         setTimeout(() => {
-          this.setState({ gridCheck: false })
-        }, Math.floor(100 / 360000))
-      })
+          this.setState({gridCheck: false});
+        }, Math.floor(100 / 360000));
+      });
     }
-  }
+  };
 
-  renderItem = item =>
+  renderItem = (item) =>
     this.state.productView === 'grid' ? (
       <View
         style={{
           marginBottom: 0,
-          marginTop: 0
+          marginTop: 0,
         }}>
         <CardTem
           objectArray={item.item}
@@ -191,36 +191,36 @@ class Fetch extends PureComponent {
         addToCart={true}
         width={Width * 0.96}
       />
-    )
+    );
 
   renderSeparator = () => (
-    <View style={{ height: 1, width: '100%', backgroundColor: '#ddd' }} />
-  )
+    <View style={{height: 1, width: '100%', backgroundColor: '#ddd'}} />
+  );
 
   handleLoadMore = () => {
     if (!this.state.finalCon && this.state.dataSource.length % 10 === 0) {
       this.setState(
         {
           refreshing: true,
-          fabB: this.props.dataSource.length > 10
+          fabB: this.props.dataSource.length > 10,
         },
         () => {
           if (this.state.tempBox.includes(this.props.page)) {
           } else {
-            this.state.tempBox.push(this.props.page)
-            this.props.functionPropNameHere()
+            this.state.tempBox.push(this.props.page);
+            this.props.functionPropNameHere();
           }
-        }
-      )
+        },
+      );
     } else if (
       !this.state.finalCon &&
       this.state.dataSource.length % 10 !== 0
     ) {
       this.setState({
-        refreshing: false
-      })
+        refreshing: false,
+      });
     }
-  }
+  };
 
   renderFooter = () => {
     return (
@@ -230,10 +230,10 @@ class Fetch extends PureComponent {
           marginTop: 2,
           alignItems: 'center',
           alignSelf: 'center',
-          alignContent: 'center'
+          alignContent: 'center',
         }}>
         {this.state.refreshing && this.state.dataSource.length > 9 ? (
-          <View style={{ height: 20, marginTop: 30, marginBottom: 20 }}>
+          <View style={{height: 20, marginTop: 30, marginBottom: 20}}>
             <UIActivityIndicator
               size={27}
               count={12}
@@ -242,20 +242,20 @@ class Fetch extends PureComponent {
           </View>
         ) : null}
       </View>
-    )
-  }
+    );
+  };
 
-  handleScroll (event) {
+  handleScroll(event) {
     if (
       this.state.fabB &&
       event.nativeEvent.contentOffset.y >= 0 &&
       event.nativeEvent.contentOffset.y < 300
     ) {
-      this.setState({ fabB: false })
+      this.setState({fabB: false});
     }
   }
 
-  render () {
+  render() {
     return this.state.applyFilter && this.state.dataSource.length === 0 ? (
       <View
         style={{
@@ -264,7 +264,7 @@ class Fetch extends PureComponent {
           alignItems: 'center',
           alignSelf: 'center',
           alignContent: 'center',
-          marginLeft: !I18nManager.isRTL ? Width * 0.28 : Width * 0.25
+          marginLeft: !I18nManager.isRTL ? Width * 0.28 : Width * 0.25,
         }}>
         <View
           style={{
@@ -272,11 +272,11 @@ class Fetch extends PureComponent {
             alignItems: 'center',
             justifyContent: 'center',
             marginBottom: 40,
-            alignSelf: 'center'
+            alignSelf: 'center',
           }}>
-          <Icon name={'logo-dropbox'} style={{ color: 'gray', fontSize: 80 }} />
+          <Icon name={'logo-dropbox'} style={{color: 'gray', fontSize: 80}} />
 
-          <Text style={{ fontSize: theme.largeSize + 2, color: theme.textColor }}>
+          <Text style={{fontSize: theme.largeSize + 2, color: theme.textColor}}>
             {this.props.isLoading.Config.languageJson['No Products Found']}
           </Text>
         </View>
@@ -288,33 +288,36 @@ class Fetch extends PureComponent {
           justifyContent: 'center',
           alignContent: 'center',
           alignSelf: 'center',
-          alignItems: 'center'
+          alignItems: 'center',
         }}>
         <UIActivityIndicator
-          style={{ paddingLeft: Dimensions.get('window').width * 0.46 }}
+          style={{paddingLeft: Dimensions.get('window').width * 0.46}}
           size={27}
           color={theme.loadingIndicatorColor}
         />
       </View>
     ) : (
-      <View style={{ flex: 1, width: Width }}>
+      <View style={{flex: 1, width: Width}}>
         {this.state.fabB && this.state.dataSource.length > 9 ? (
           <TouchableOpacity
             style={{
               zIndex: 5,
               position: 'absolute',
               right: 22,
-              bottom: 60
+              bottom: 60,
             }}
             onPress={() => {
-              this.flatListRef.scrollToOffset({
-                animated: true,
-                offset: 0,
-                useNativeDriver: true
-              }, {
-                useNativeDriver: true
-              })
-              this.setState({ fabB: false })
+              this.flatListRef.scrollToOffset(
+                {
+                  animated: true,
+                  offset: 0,
+                  useNativeDriver: true,
+                },
+                {
+                  useNativeDriver: true,
+                },
+              );
+              this.setState({fabB: false});
             }}>
             <View
               style={{
@@ -324,14 +327,14 @@ class Fetch extends PureComponent {
                 borderRadius: 400,
                 alignSelf: 'center',
                 justifyContent: 'center',
-                backgroundColor: theme.primary
+                backgroundColor: theme.primary,
               }}>
               <Icon
                 name={'md-arrow-up'}
                 style={{
                   color: theme.primaryContrast,
                   paddingTop: Platform.OS === 'ios' ? 2 : 0,
-                  fontSize: 22
+                  fontSize: 22,
                 }}
               />
             </View>
@@ -344,8 +347,8 @@ class Fetch extends PureComponent {
           renderItem={this.renderItem}
           extraData={this.state}
           key={this.state.productView}
-          ref={ref => {
-            this.flatListRef = ref
+          ref={(ref) => {
+            this.flatListRef = ref;
           }}
           style={{
             backgroundColor:
@@ -353,7 +356,7 @@ class Fetch extends PureComponent {
               this.props.isLoading.Config.card_style === 12 ||
               this.props.isLoading.Config.card_style === 15
                 ? theme.backgroundColor
-                : theme.backgroundColor
+                : theme.backgroundColor,
           }}
           contentContainerStyle={{
             marginLeft: 0,
@@ -368,33 +371,35 @@ class Fetch extends PureComponent {
               this.props.isLoading.Config.card_style === 15
                 ? theme.backgroundColor
                 : theme.backgroundColor,
+            //   'red'
+            // : 'green',
             paddingLeft:
               Width >= 375
                 ? Width * 0.006
                 : Width >= 360 && Width <= 75
-                  ? Width * 0.005
-                  : Width * 0.004
+                ? Width * 0.005
+                : Width * 0.004,
           }}
           keyExtractor={(item, index) => index.toString()}
           numColumns={this.state.productView === 'grid' ? 2 : 1}
           ListFooterComponent={() => this.renderFooter()}
           onMomentumScrollBegin={() => {
-            this.onEndReachedCalledDuringMomentum = false
+            this.onEndReachedCalledDuringMomentum = false;
           }}
           onEndReached={() => {
             if (!this.onEndReachedCalledDuringMomentum) {
-              this.handleLoadMore()
-              this.onEndReachedCalledDuringMomentum = true
+              this.handleLoadMore();
+              this.onEndReachedCalledDuringMomentum = true;
             }
           }}
           onEndReachedThreshold={0.5}
         />
       </View>
-    )
+    );
   }
 }
-const mapStateToProps = state => ({
-  isLoading: state
-})
+const mapStateToProps = (state) => ({
+  isLoading: state,
+});
 
-export default connect(mapStateToProps, null)(Fetch)
+export default connect(mapStateToProps, null)(Fetch);

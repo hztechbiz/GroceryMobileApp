@@ -571,7 +571,8 @@ class Newest extends Component {
                       this.props.cartItems2.Config.card_style === 15
                         ? themeStyle.backgroundColor
                         : themeStyle.backgroundColor,
-                    marginLeft: 10,
+                    marginHorizontal: 10,
+                    // marginLeft: 10,
                   }}>
                   {/* <Icon
                     name={'time'}
