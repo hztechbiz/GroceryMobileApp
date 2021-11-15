@@ -117,7 +117,13 @@ export default class FlatListView extends PureComponent {
         horizontal={this.props.vertical}
         numColumns={!this.props.viewButton ? this.props.noOfCol : 2}
         numColumns={this.props.noOfCol}
-        contentContainerStyle={{backgroundColor: theme.backgroundColor}}
+        contentContainerStyle={{
+          // backgroundColor: theme.backgroundColor,
+          // backgroundColor: 'red',
+          // justifyContent: 'center',
+          alignSelf: 'center',
+          // alignItems: 'center',
+        }}
         ListFooterComponentStyle={
           {
             // backgroundColor: theme.backgroundColor,
@@ -129,10 +135,18 @@ export default class FlatListView extends PureComponent {
             ? {
                 backgroundColor: theme.backgroundColor,
                 paddingBottom: this.props.viewButton ? 0 : 10,
+                marginTop: 10,
+                // padding: 10,
+                // alignItems: 'center',
               }
             : {
                 backgroundColor: theme.backgroundColor,
                 paddingBottom: this.props.viewButton ? 0 : 10,
+                marginTop: 10,
+                // padding: 10,
+                // marginHorizontal: 15,
+
+                // alignItems: 'center',
               }
         }
         ItemSeparatorComponent={
