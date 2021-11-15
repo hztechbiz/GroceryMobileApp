@@ -34,7 +34,7 @@ class Newest extends PureComponent {
       headerStyle: {
         backgroundColor: themeStyle.primary,
       },
-      headerTitleAlign: 'center',
+      headerTitleAlign: 'left',
       headerForceInset: {top: 'never', vertical: 'never'},
       headerTintColor: themeStyle.headerTintColor,
       gesturesEnabled: false,

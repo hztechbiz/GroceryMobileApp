@@ -1729,7 +1729,15 @@ class orderScreen extends Component {
                       top: 30,
                     }}
                     onPress={() => this.getCoupon(this.state.couponText)}>
-                    <View style={{flexDirection: 'row'}}>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        // backgroundColor: 'green',
+                        // marginHorizontal: 20,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        // paddingHorizontal: 60,
+                      }}>
                       <View
                         style={{
                           flex: 1,
@@ -1749,11 +1757,24 @@ class orderScreen extends Component {
                             textTransform: 'uppercase',
                             paddingRight: 10,
                           }}>
-                          {this.props.cartItems2.Config.languageJson.Apply}
+                          {this.props.cartItems2.Config.languageJson.Apply}{' '}
                         </Text>
                       </View>
-                      <View style={{left: 0, right: 0, alignItems: 'flex-end', position: 'absolute', top: 0}}>
-                        <FIcon size={20} color="red" name="tag" style={{opacity: this.state.couponText ? null : 0.4,}}/>
+                      <View
+                        style={{
+                          left: 0,
+                          right: 0,
+                          alignItems: 'flex-end',
+                          position: 'absolute',
+                          top: 0,
+                          marginVertical: 3,
+                        }}>
+                        <FIcon
+                          size={20}
+                          color="red"
+                          name="tag"
+                          style={{opacity: this.state.couponText ? null : 0.4}}
+                        />
                       </View>
                     </View>
                   </TouchableOpacity>
