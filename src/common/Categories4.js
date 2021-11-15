@@ -12,11 +12,11 @@ export default Category1 = (props) => (
       // backgroundColor: 'red',
       // backgroundColor: '#fff',
       // margin: 5,
-      marginHorizontal: 13,
+      marginHorizontal: 5,
       marginVertical: 5,
       height: 120,
       width: Width2,
-      opacity: 15,
+      // opacity: 15,
       // padding: 16,
 
       // borderColor: 'gray',
@@ -36,7 +36,7 @@ export default Category1 = (props) => (
         overflow: 'hidden',
         borderRadius: 10,
         backgroundColor: 'black',
-        opacity: 0.6,
+        opacity: 0.7,
       }}
       // resizeMethod="contain"
       loadingStyle={{size: 'large', color: theme.loadingIndicatorColor}}
