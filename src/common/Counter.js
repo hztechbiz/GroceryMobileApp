@@ -105,7 +105,7 @@ export default class Counter extends PureComponent {
             width: width + 6,
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: theme.backgroundColor,
+            backgroundColor: '#f5fafe',
           }}>
           <Text
             style={{

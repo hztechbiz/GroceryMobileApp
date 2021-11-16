@@ -208,7 +208,7 @@ class Banner extends PureComponent {
                       // backgroundColor: '#fff',
                       borderRadius: 15,
                     }}>
-                    <View
+                    {/* <View
                       style={{
                         // alignSelf: 'center',
                         alignItems: 'center',
@@ -219,35 +219,38 @@ class Banner extends PureComponent {
                         width: width,
                         // paddingBottom: 100,
                         // paddingRight: 30,
-                      }}>
-                      <ImageLoad
-                        resizeMode={'cover'}
-                        key={key}
-                        style={{
-                          width: width,
+                      }}> */}
+                    <ImageLoad
+                      resizeMode={'contain'}
+                      key={key}
+                      style={{
+                        // width: width,
 
-                          // height:height *
-                          // height: 20,
-                          // elevation: 6,
-                          // borderRadius: 15,
-
-                          // backgroundColor: 'rgb(236, 236, 236)',
-                          height:
-                            Platform.OS === 'ios'
-                              ? theme.singleRowCardWidth + 100
-                              : theme.singleRowCardWidth + 100,
-                        }}
-                        loadingStyle={{
-                          size: 'large',
-                          color: theme.loadingIndicatorColor,
-                        }}
-                        placeholder={false}
-                        ActivityIndicator={true}
-                        placeholderStyle={{width: 0, height: 0}}
-                        source={{uri: val.url}}
-                      />
-                    </View>
+                        // height:
+                        //   Platform.OS === 'ios'
+                        //     ? theme.singleRowCardWidth + 100
+                        //     : theme.singleRowCardWidth + 100,
+                        height: height * 0.47,
+                        // width:
+                        // alignSelf: 'center',
+                        width: width * 0.89,
+                        backgroundColor: '#fff',
+                        // alignItems: 'center',
+                        // justifyContent: 'center',
+                        elevation: 5,
+                        borderRadius: 10,
+                      }}
+                      loadingStyle={{
+                        size: 'large',
+                        color: theme.loadingIndicatorColor,
+                      }}
+                      placeholder={false}
+                      ActivityIndicator={true}
+                      placeholderStyle={{width: 0, height: 0}}
+                      source={{uri: val.url}}
+                    />
                   </View>
+                  {/* </View> */}
                 </View>
               </View>
             </TouchableHighlight>

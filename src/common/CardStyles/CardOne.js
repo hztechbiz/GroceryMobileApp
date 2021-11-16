@@ -33,7 +33,8 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
         // elevation: 3,
         margin: 5,
         marginBottom: 8,
-        padding: 6,
+        // padding: 16,
+        alignItems: 'center',
         // backgroundColor: 'red',
         // backgroundColor: ThemeStyle.backgroundColor,
         justifyContent: 'center',
@@ -156,7 +157,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
             // PURPLE-
             // backgroundColor: theme.backgroundColor,
             // backgroundColor: 'purple',
-            backgroundColor: '#ffffff',
+            // backgroundColor: '#ffffff',
             // borderRadius: 5,
             // elevation: 3,
             // padding: 10,
@@ -173,16 +174,18 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
             <View
               style={{
                 // RED-
-                backgroundColor: 'red',
-                backgroundColor: '#FFF',
+                // backgroundColor: 'red',
+                // backgroundColor: '#FFF',
                 justifyContent: 'center',
-                alignItems: 'center',
+                // alignItems: 'center',
+                alignItems: 'stretch',
                 alignSelf: 'center',
-                //elevation: 4,
-                width: 140,
+                // elevation: 2,
+                width: 135,
                 // padding: 5,
                 borderRadius: 10,
-                height: 100,
+                height: 135,
+                // a,
 
                 // paddingVertical: 20,
               }}>
@@ -190,12 +193,16 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                 style={{
                   // height: widthPic,
                   // width: widthPic,
-                  height: 100,
-                  width: 140,
-                  backgroundColor: 'rgb(236, 236, 236)',
-                  borderRadius: 5,
+                  elevation: 4,
+
+                  height: 135,
+                  width: 150,
+                  // backgroundColor: 'rgb(256, 256, 256)',
+                  borderRadius: 8,
                   alignSelf: 'center',
+                  resizeMode: 'contain',
                 }}
+                resizeMode={'contain'}
                 source={{
                   uri: theme.url + '/' + props.objectArray.products_image,
                 }}></ImageLoad>
@@ -296,11 +303,88 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
               paddingTop: 5,
               marginTop: 0,
               width: widthPic,
-              // backgroundColor: '#f5fafe',
-              backgroundColor: ThemeStyle.backgroundColor,
+              backgroundColor: '#f5fafe',
+              // backgroundColor: ThemeStyle.backgroundColor,
             }}>
             {/* ................................Product Name View */}
-            <TouchableOpacity
+            {t.props.dataName === 'Flash' ? (
+              <TouchableOpacity
+                onPress={() =>
+                  props.navigation.push('ProductDetails', {
+                    objectArray: props.objectArray, //
+                  })
+                }
+                style={{
+                  // backgroundColor: ThemeStyle.backgroundColor,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  alignSelf: 'center',
+                  backgroundColor: '#f5fafe',
+                  // marginHorizontal: 10,
+                  // backgroundColor: 'red',
+                  width: '100%',
+                }}>
+                <Text
+                  style={{
+                    fontSize: 14,
+                    fontFamily: 'Roboto',
+                    writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr',
+                    color: theme.textColor,
+                    // backgroundColor: 'red',
+                    width: 100,
+                    // padding: 5,
+                    // paddingLeft: 5,
+                    fontWeight: 'bold',
+                    color: '#404040',
+                    textTransform: 'capitalize',
+                    textAlign: 'center',
+                    //paddingTop: Platform.OS === 'android' ? 1 : 2,
+                    // paddingBottom: 1,
+                    // marginBottom: 0,
+                  }}
+                  numberOfLines={1}>
+                  {props.objectArray.products_name}
+                </Text>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                onPress={() =>
+                  props.navigation.push('ProductDetails', {
+                    objectArray: props.objectArray, //
+                  })
+                }
+                style={{
+                  // backgroundColor: 'yellow',
+                  backgroundColor: '#f5fafe',
+                  justifyContent: 'center',
+                  alignItems: 'flex-start',
+                  marginHorizontal: 10,
+                  // backgroundColor: 'red',
+                  width: '100%',
+                }}>
+                <Text
+                  style={{
+                    fontSize: 14,
+                    fontFamily: 'Roboto',
+                    writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr',
+                    color: theme.textColor,
+                    // backgroundColor: 'red',
+                    width: 100,
+                    // padding: 5,
+                    paddingLeft: 5,
+                    fontWeight: 'bold',
+                    color: '#404040',
+                    textTransform: 'capitalize',
+                    //paddingTop: Platform.OS === 'android' ? 1 : 2,
+                    // paddingBottom: 1,
+                    // marginBottom: 0,
+                  }}
+                  numberOfLines={1}>
+                  {props.objectArray.products_name}
+                </Text>
+              </TouchableOpacity>
+            )}
+            {/* <TouchableOpacity
               onPress={() =>
                 props.navigation.push('ProductDetails', {
                   objectArray: props.objectArray, //
@@ -321,6 +405,8 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                   fontFamily: 'Roboto',
                   writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr',
                   color: theme.textColor,
+                  // backgroundColor: 'red',
+                  width: 100,
                   // padding: 5,
                   paddingLeft: 5,
                   fontWeight: 'bold',
@@ -333,7 +419,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                 numberOfLines={1}>
                 {props.objectArray.products_name}
               </Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             {/* .......................Product Price View */}
             <View
               style={{
@@ -343,11 +429,11 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                 alignItems: 'center',
                 flexDirection: 'row',
                 marginBottom:
-                  props.objectArray.flash_price === undefined ? 0 : 2,
+                  props.objectArray.flash_price === undefined ? 8 : 2,
                 //padding: 5,
-                paddingTop: 0,
+                paddingTop: 4,
                 // paddingBottom: 2,
-                marginVertical: 9,
+                // marginVertical: 9,
                 // marginTop: 2,
               }}>
               {props.objectArray.flash_price !== undefined ? (
