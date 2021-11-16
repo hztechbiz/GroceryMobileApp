@@ -174,6 +174,7 @@ class Fetch extends PureComponent {
         style={{
           marginBottom: 0,
           marginTop: 0,
+          backgroundColor: '#f5fafe',
         }}>
         <CardTem
           objectArray={item.item}
@@ -264,6 +265,7 @@ class Fetch extends PureComponent {
           alignItems: 'center',
           alignSelf: 'center',
           alignContent: 'center',
+          // backgroundColor: 'green',
           marginLeft: !I18nManager.isRTL ? Width * 0.28 : Width * 0.25,
         }}>
         <View
@@ -305,6 +307,7 @@ class Fetch extends PureComponent {
               position: 'absolute',
               right: 22,
               bottom: 60,
+              // backgroundColor: 'red',
             }}
             onPress={() => {
               this.flatListRef.scrollToOffset(
@@ -328,6 +331,7 @@ class Fetch extends PureComponent {
                 alignSelf: 'center',
                 justifyContent: 'center',
                 backgroundColor: theme.primary,
+                // backgroundColor: 'red',
               }}>
               <Icon
                 name={'md-arrow-up'}
@@ -355,8 +359,9 @@ class Fetch extends PureComponent {
               this.props.isLoading.Config.card_style === 11 ||
               this.props.isLoading.Config.card_style === 12 ||
               this.props.isLoading.Config.card_style === 15
-                ? theme.backgroundColor
-                : theme.backgroundColor,
+                ? '#f5fafe'
+                : '#f5fafe',
+            // backgroundColor: 'red',
           }}
           contentContainerStyle={{
             marginLeft: 0,
@@ -369,8 +374,8 @@ class Fetch extends PureComponent {
               this.props.isLoading.Config.card_style === 11 ||
               this.props.isLoading.Config.card_style === 12 ||
               this.props.isLoading.Config.card_style === 15
-                ? theme.backgroundColor
-                : theme.backgroundColor,
+                ? '#f5fafe'
+                : '#f5fafe',
             //   'red'
             // : 'green',
             paddingLeft:
