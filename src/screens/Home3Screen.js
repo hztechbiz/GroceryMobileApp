@@ -539,8 +539,10 @@ class Newest extends Component {
               this.props.cartItems2.Config.card_style === 11 ||
               this.props.cartItems2.Config.card_style === 12 ||
               this.props.cartItems2.Config.card_style === 15
-                ? themeStyle.backgroundColor
-                : themeStyle.backgroundColor,
+                ? // ? themeStyle.backgroundColor
+                  // : themeStyle.backgroundColor,
+                  '#f5fafe'
+                : '#f5fafe',
           }}
           extraData={this.state}
           renderItem={this.renderItem}
@@ -569,9 +571,9 @@ class Newest extends Component {
                       this.props.cartItems2.Config.card_style === 11 ||
                       this.props.cartItems2.Config.card_style === 12 ||
                       this.props.cartItems2.Config.card_style === 15
-                        ? themeStyle.backgroundColor
-                        : themeStyle.backgroundColor,
-                    marginHorizontal: 10,
+                        ? '#f5fafe'
+                        : '#f5fafe',
+                    marginHorizontal: 20,
                     // marginLeft: 10,
                   }}>
                   {/* <Icon
@@ -600,11 +602,11 @@ class Newest extends Component {
                       color: themeStyle.productTextColor,
                       fontSize: themeStyle.smallSize + 1,
                       fontWeight: '400',
-                      padding: 10,
-                      paddingTop: Platform.OS === 'android' ? 8 : 10,
-                      paddingLeft: 5,
-                      paddingRight: 5,
-                      paddingBottom: 2,
+                      // paddingVertical: 10,
+                      paddingTop: Platform.OS === 'android' ? 10 : 10,
+                      // paddingLeft: 5,
+                      // paddingRight: 5,
+                      // paddingBottom: 2,
                     }}>
                     {this.props.cartItems2?.Config?.languageJson['Flash Sale']}{' '}
                   </Text>
@@ -735,7 +737,8 @@ class Newest extends Component {
                           this.props.cartItems2.Config.languageJson[
                             'top seller'
                           ],
-                      }}>
+                      }}
+                      style={{backgroundColor: '#f5fafe'}}>
                       {this.props.cartItems2.sharedData.tab1 !== undefined ? (
                         <FlatListView
                           vertical
@@ -791,7 +794,8 @@ class Newest extends Component {
                     <ScrollView
                       tabLabel={{
                         label: this.props.cartItems2.Config.languageJson.Deals,
-                      }}>
+                      }}
+                      style={{backgroundColor: '#f5fafe'}}>
                       {this.props.cartItems2.sharedData.tab2 !== undefined ? (
                         <FlatListView
                           vertical
@@ -850,7 +854,8 @@ class Newest extends Component {
                           this.props.cartItems2.Config.languageJson[
                             'Most Liked'
                           ],
-                      }}>
+                      }}
+                      style={{backgroundColor: '#f5fafe'}}>
                       {this.props.cartItems2.sharedData.tab3 !== undefined ? (
                         <FlatListView
                           vertical
@@ -914,8 +919,8 @@ class Newest extends Component {
                         this.props.cartItems2.Config.card_style === 11 ||
                         this.props.cartItems2.Config.card_style === 12 ||
                         this.props.cartItems2.Config.card_style === 15
-                          ? themeStyle.backgroundColor
-                          : themeStyle.backgroundColor,
+                          ? '#f5fafe'
+                          : '#f5fafe',
                     }}>
                     <View
                       style={{
@@ -924,8 +929,8 @@ class Newest extends Component {
                           this.props.cartItems2.Config.card_style === 11 ||
                           this.props.cartItems2.Config.card_style === 12 ||
                           this.props.cartItems2.Config.card_style === 15
-                            ? themeStyle.backgroundColor
-                            : themeStyle.backgroundColor,
+                            ? '#f5fafe'
+                            : '#f5fafe',
                         marginLeft: 10,
                       }}>
                       <Icon

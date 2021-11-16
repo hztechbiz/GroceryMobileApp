@@ -75,6 +75,7 @@ class SwiperBanner extends PureComponent {
       ? this.props.banners.map((val, key) => (
           <View>
             <Image
+              onPress={this.onClickFun.bind(this, val)}
               placeholder={false}
               key={key}
               resizeMode={'contain'}
@@ -90,7 +91,7 @@ class SwiperBanner extends PureComponent {
                     : '',
               }}
             />
-            <TouchableOpacity
+            {/* <TouchableOpacity
               style={{
                 position: 'absolute',
                 bottom: 50,
@@ -104,7 +105,7 @@ class SwiperBanner extends PureComponent {
               }}
               onPress={this.onClickFun.bind(this, val)}>
               <Text style={{color: '#fff'}}>Shop Now</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
         ))
       : null;
