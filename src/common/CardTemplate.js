@@ -107,7 +107,7 @@ class CardTemplate extends Component {
           //     ? 'black'
           //     : theme.iconColor,
           color:
-            textDecorationLine === 'line-through' ? 'black' : theme.iconColor,
+            textDecorationLine === 'line-through' ? '#606060' : theme.iconColor,
           textDecorationLine,
         }}
       />
@@ -120,7 +120,7 @@ class CardTemplate extends Component {
           //     : theme.iconColor,
           fontSize: size,
           color:
-            textDecorationLine === 'line-through' ? 'black' : theme.iconColor,
+            textDecorationLine === 'line-through' ? '#606060' : theme.iconColor,
           textDecorationLine,
           fontWeight: '800',
         }}>
