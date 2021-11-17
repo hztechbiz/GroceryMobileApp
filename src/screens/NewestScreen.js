@@ -572,7 +572,7 @@ class Newest extends PureComponent {
                       borderBottomColor:
                         this.state.selectedTab === '' ||
                         this.state.selectedTab === undefined
-                          ? themeStyle.primary
+                          ? '#ed1c24'
                           : themeStyle.textColor,
                       borderBottomWidth:
                         this.state.selectedTab === '' ||
@@ -591,8 +591,8 @@ class Newest extends PureComponent {
                         color:
                           this.state.selectedTab === '' ||
                           this.state.selectedTab === undefined
-                            ? themeStyle.primary
-                            : '#4E4E4E',
+                            ? '#404040'
+                            : '#939596',
                       }}>
                       {this.props.language.All}
                     </Text>
@@ -611,7 +611,7 @@ class Newest extends PureComponent {
                   style={{
                     borderBottomColor:
                       this.state.selectedTab === item.item.id
-                        ? themeStyle.primary
+                        ? '#ed1c24'
                         : themeStyle.textColor,
                     borderBottomWidth:
                       this.state.selectedTab === item.item.id ? 2 : 0,
@@ -626,8 +626,8 @@ class Newest extends PureComponent {
                       fontSize: 14,
                       color:
                         this.state.selectedTab === item.item.id
-                          ? themeStyle.primary
-                          : '#4E4E4E',
+                          ? '#404040'
+                          : '#939596',
                     }}>
                     {item.item.name}
                   </Text>
