@@ -466,6 +466,7 @@ class Newest extends PureComponent {
           flexDirection: 'row',
         }}>
         <TouchableOpacity
+          // style={[(backgroundColor: 'red')]}
           onPress={() => {
             this.checkAttributeSelected(
               this.state.idArray[v.value_id],
@@ -510,6 +511,7 @@ class Newest extends PureComponent {
         style={{
           flex: 1,
           justifyContent: 'center',
+
           backgroundColor: themeStyle.backgroundColor,
         }}>
         <UIActivityIndicator
@@ -524,6 +526,7 @@ class Newest extends PureComponent {
             alignItems: 'flex-start',
             flex: 1,
             backgroundColor: themeStyle.backgroundColor,
+            // backgroundColor: 'red',
           }}>
           <Spinner
             visible={this.state.SpinnerTemp}
@@ -531,7 +534,12 @@ class Newest extends PureComponent {
           />
           {/* //////////////DRawer///////// */}
           {/* ///////////////////////////////////////////////////////////////// */}
-          <View style={{height: 45, width: WIDTH, marginBottom: 3}}>
+          <View
+            style={{
+              height: 45,
+              width: WIDTH,
+              marginBottom: 3,
+            }}>
             <FlatList
               showsHorizontalScrollIndicator={false}
               showsVerticalScrollIndicator={false}
@@ -540,7 +548,9 @@ class Newest extends PureComponent {
               horizontal
               style={{
                 borderColor: themeStyle.textColor,
-                backgroundColor: themeStyle.backgroundColor,
+
+                // backgroundColor: themeStyle.backgroundColor,
+                backgroundColor: '#f5fafe',
                 elevation: 5,
                 shadowOffset: {width: 5, height: 6},
                 shadowColor: '#000',
@@ -630,7 +640,9 @@ class Newest extends PureComponent {
             style={{
               alignItems: 'center',
               height: 44,
-              backgroundColor: themeStyle.backgroundColor,
+              // backgroundColor: themeStyle.backgroundColor,
+              // backgroundColor: 'red',
+              backgroundColor: '#f5fafe',
 
               flexDirection: 'row',
               justifyContent: 'space-between',
@@ -641,10 +653,15 @@ class Newest extends PureComponent {
               // elevation: 15,
               width: '100%',
             }}>
-            <View style={{backgroundColor: themeStyle.backgroundColor}}>
+            <View style={{backgroundColor: '#f5fafe'}}>
               <View>
                 {Platform.OS === 'android' ? (
-                  <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      // backgroundColor: 'pink',
+                    }}>
                     <Text
                       style={{
                         fontSize: 13,
@@ -680,8 +697,8 @@ class Newest extends PureComponent {
                         paddingLeft: 1,
                         width: 75,
                         height: 28,
-                        // backgroundColor: themeStyle.backgroundColor,
-                        backgroundColor: 'red',
+                        backgroundColor: themeStyle.backgroundColor,
+                        // backgroundColor: 'yellow',
                       }}
                       itemTextStyle={{color: '#788ad2'}}
                       selectedValue={this.state.selected}
@@ -807,7 +824,7 @@ class Newest extends PureComponent {
                 borderColor: themeStyle.backgroundColor,
                 alignItems: 'center',
                 height: 44,
-                backgroundColor: themeStyle.backgroundColor,
+                // backgroundColor: 'pink',
                 // backgroundColor: 'red',
                 flexDirection: 'row',
                 justifyContent: 'space-between',
@@ -818,7 +835,7 @@ class Newest extends PureComponent {
                     this.state.productView === 'grid' ? 'md-list' : 'md-apps'
                   }
                   size={10}
-                  style={{color: themeStyle.textColor, marginRight: 15}}
+                  style={{color: '#205a8e', marginRight: 15}}
                 />
               </TouchableOpacity>
 
@@ -836,7 +853,7 @@ class Newest extends PureComponent {
                 <Icon
                   name={'md-funnel'}
                   size={10}
-                  style={{color: themeStyle.textColor, marginRight: 9}}
+                  style={{color: '#205a8e', marginRight: 9}}
                 />
               </TouchableOpacity>
             </View>

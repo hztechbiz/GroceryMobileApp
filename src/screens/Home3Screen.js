@@ -554,8 +554,8 @@ class Newest extends Component {
                     this.props.cartItems2.Config.card_style === 11 ||
                     this.props.cartItems2.Config.card_style === 12 ||
                     this.props.cartItems2.Config.card_style === 15
-                      ? themeStyle.backgroundColor
-                      : themeStyle.backgroundColor,
+                      ? '#f5fafe'
+                      : '#f5fafe',
                 }}>
                 <View>
                   <Banner

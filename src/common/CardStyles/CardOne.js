@@ -134,8 +134,8 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
               }}>
               <Icon
                 style={{
-                  paddingTop: 90,
-                  color: 'green',
+                  paddingTop: 60,
+                  color: '#205a8e',
                   fontSize: 30,
                   alignSelf: 'center',
                 }}
@@ -161,6 +161,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
             // borderRadius: 5,
             // elevation: 3,
             // padding: 10,
+
             opacity: t.newMethod3(props, t) === 1 ? 0.1 : 1,
           }}>
           <TouchableOpacity
@@ -175,10 +176,11 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
               style={{
                 // RED-
                 // backgroundColor: 'red',
+
                 // backgroundColor: '#FFF',
                 justifyContent: 'center',
                 // alignItems: 'center',
-                alignItems: 'stretch',
+                alignItems: 'center',
                 alignSelf: 'center',
                 // elevation: 2,
                 width: 135,
@@ -195,8 +197,8 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                   // width: widthPic,
                   elevation: 4,
 
-                  height: 135,
-                  width: 150,
+                  height: 150,
+                  width: widthPic,
                   // backgroundColor: 'rgb(256, 256, 256)',
                   borderRadius: 8,
                   alignSelf: 'center',
@@ -597,18 +599,15 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                     alignItems: 'flex-end',
                     right: 15,
                     position: 'absolute',
+
                     // backgroundColor: 'yellow',
                   }}>
                   {/* Out of Stock Button View */}
                   <TouchableOpacity
                     style={{
-                      // padding: 5,
+                      padding: 5,
                       justifyContent: 'center',
-                      // backgroundColor: 'green',
                       alignItems: 'center',
-                      // alignSelf: 'center',
-                      // marginTop: -27,
-                      // borderRadius: 5,
                     }}>
                     <Out_Of_Stock
                       name="cart-off"
@@ -668,20 +667,10 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                     }}>
                     <View
                       style={{
-                        // padding: 5,
-                        paddingVertical: 5,
+                        padding: 5,
                         justifyContent: 'center',
-                        // backgroundColor: 'red',
-                        //margin: 5,
-                        // width: btnWidth,
-                        // width: 80,
-                        // backgroundColor: theme.addToCartBtnColor,
-                        // backgroundColor: 'green',
-                        // justifyContent: 'center',
+
                         alignItems: 'center',
-                        // alignSelf: 'center',
-                        // marginTop: -27,
-                        borderRadius: 5,
                       }}>
                       <Font_Cart
                         name="cart-plus"
@@ -783,6 +772,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                   marginTop: 0,
                   top: 3,
                   right: 10,
+
                   // justifyContent: 'center',
                   alignItems: 'flex-end',
                   // alignSelf: 'center',

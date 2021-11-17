@@ -679,7 +679,7 @@ class Cart extends Component {
                             textAlign: 'left',
                             // fontSize: themeStyle.smallSize,
                             fontSize: 16,
-                            color: "#707070",
+                            color: '#707070',
                             marginTop: 12,
                             fontWeight: 'bold',
                           }}>
@@ -790,7 +790,7 @@ class Cart extends Component {
                             flexDirection: 'row',
                             paddingRight: 5,
                             // backgroundColor: 'orange',
-                            justifyContent:'space-between'
+                            justifyContent: 'space-between',
                           }}>
                           <HTML
                             html={SyncStorage.get('currency')}
@@ -804,7 +804,8 @@ class Cart extends Component {
                               color: themeStyle.iconColor,
                               fontSize: themeStyle.mediumSize - 1,
                             }}>
-                            {' '}{Number(item.item.price).toFixed(2)}
+                            {' '}
+                            {Number(item.item.price).toFixed(2)}
                           </Text>
                         </View>
                       </View>
@@ -856,6 +857,7 @@ class Cart extends Component {
 
                         <Counter
                           // style={{backgroundColor: 'orange'}}
+                          style={{backgroundColor: '#fff'}}
                           width={32}
                           height={1}
                           minimumValue={1}
@@ -895,15 +897,17 @@ class Cart extends Component {
                           {`${item.item.total.toFixed(2)}`}
                         </Text> */}
                         <TouchableOpacity
-                        style={{backgroundColor:themeStyle.otherBtnsColor,paddingHorizontal:10 , borderRadius:5, paddingVertical:5 }}
-                         onPress={() => {
-                          this.gotoNextPage(item.item);
-                        }}>
+                          style={{
+                            backgroundColor: themeStyle.otherBtnsColor,
+                            paddingHorizontal: 10,
+                            borderRadius: 5,
+                            paddingVertical: 5,
+                          }}
+                          onPress={() => {
+                            this.gotoNextPage(item.item);
+                          }}>
                           {/* <View style={{backgroundColor:themeStyle.otherBtnsColor, }}> */}
-                           <Text style={{color:'white'}}>
-                            View                          
-                             </Text>
-                            
+                          <Text style={{color: 'white'}}>View</Text>
                         </TouchableOpacity>
                         {/* <Button
                           sty
@@ -1076,13 +1080,21 @@ class Cart extends Component {
                   flexDirection: 'row',
                   flex: 1,
                   alignItems: 'center',
-                 
                 }}>
                 <Text
-                  style={{color: '#707070', fontSize: themeStyle.mediumSize, fontWeight:'bold'}}>
-                  {this.props.language.Total} {"Price"}
+                  style={{
+                    color: '#707070',
+                    fontSize: themeStyle.mediumSize,
+                    fontWeight: 'bold',
+                  }}>
+                  {this.props.language.Total} {'Price'}
                 </Text>
-                <View style={{flexDirection: 'row' ,  justifyContent:"center", alignItems:'center'}}>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
                   <HTML
                     html={SyncStorage.get('currency')}
                     baseFontStyle={{
@@ -1090,7 +1102,6 @@ class Cart extends Component {
                       fontWeight: 'bold',
                       fontSize: 25,
                       color: '#707070',
-                      
                     }}
                   />
                   <Text
@@ -1134,7 +1145,7 @@ class Cart extends Component {
                 color: themeStyle.otherBtnsText,
                 // fontSize: themeStyle.mediumSize,
                 fontSize: 18,
-                textTransform:'uppercase',
+                textTransform: 'uppercase',
                 padding: 10,
                 fontWeight: 'bold',
                 alignItems: 'center',

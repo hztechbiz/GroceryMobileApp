@@ -1,34 +1,34 @@
-import React from 'react'
+import React from 'react';
 import {
   View,
   TouchableOpacity,
   Text,
   I18nManager,
   Platform,
-  Dimensions
-} from 'react-native'
-import ImageLoad from '../RnImagePlaceH'
-import { Icon } from 'native-base'
-import Ionicons from 'react-native-vector-icons/FontAwesome'
-import theme from '../Theme.style'
-const WIDTH = Dimensions.get('window').width
-export default CardOne = ({ props, widthPic, t, s, btnWidth }) => (
+  Dimensions,
+} from 'react-native';
+import ImageLoad from '../RnImagePlaceH';
+import {Icon} from 'native-base';
+import Ionicons from 'react-native-vector-icons/FontAwesome';
+import theme from '../Theme.style';
+const WIDTH = Dimensions.get('window').width;
+export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
   <View
     style={{
       backgroundColor: theme.backgroundColor,
       width: widthPic,
-      shadowOffset: { width: 1, height: 1 },
+      shadowOffset: {width: 1, height: 1},
       shadowColor: theme.textColor,
       shadowOpacity: 0.3,
       elevation: 3,
       margin: 5,
-      marginBottom: 8
+      marginBottom: 8,
     }}>
     {/* /// ///////////////////////////////////////////////////// 2nd */}
     <View
       style={{
         backgroundColor: theme.backgroundColor,
-        flexDirection: 'row'
+        flexDirection: 'row',
       }}>
       {t.newMethod3(props, t) === 1 ? (
         <View
@@ -40,17 +40,17 @@ export default CardOne = ({ props, widthPic, t, s, btnWidth }) => (
             alignSelf: 'center',
             alignItems: 'center',
             zIndex: 6,
-            position: 'absolute'
+            position: 'absolute',
           }}>
           <Icon
             style={{
-              color: 'green'
+              color: 'green',
             }}
-            name='checkmark-circle'
+            name="checkmark-circle"
             size={40}
             onPress={() =>
               props.navigation.push('ProductDetails', {
-                objectArray: props.objectArray //
+                objectArray: props.objectArray, //
               })
             }
           />
@@ -62,17 +62,17 @@ export default CardOne = ({ props, widthPic, t, s, btnWidth }) => (
           flexDirection: 'row',
           width: WIDTH,
           backgroundColor: theme.backgroundColor,
-          shadowOffset: { width: 1, height: 1 },
+          shadowOffset: {width: 1, height: 1},
           shadowColor: theme.textColor,
           elevation: 2,
           padding: 5,
-          opacity: t.newMethod3(props, t) === 1 ? 0.1 : 1
+          opacity: t.newMethod3(props, t) === 1 ? 0.1 : 1,
         }}>
         <TouchableOpacity
-          style={{ width: 90, marginRight: 8 }}
+          style={{width: 90, marginRight: 8}}
           onPress={() =>
             props.navigation.push('ProductDetails', {
-              objectArray: props.objectArray //
+              objectArray: props.objectArray, //
             })
           }>
           <ImageLoad
@@ -80,12 +80,12 @@ export default CardOne = ({ props, widthPic, t, s, btnWidth }) => (
             style={{
               height: 90,
               width: 90,
-              backgroundColor: 'rgb(236, 236, 236)'
+              backgroundColor: 'rgb(236, 236, 236)',
             }}
-            loadingStyle={{ size: 'large', color: theme.loadingIndicatorColor }}
-            placeholderStyle={{ width: 0, height: 0 }}
+            loadingStyle={{size: 'large', color: theme.loadingIndicatorColor}}
+            placeholderStyle={{width: 0, height: 0}}
             source={{
-              uri: theme.url + '/' + props.objectArray.products_image
+              uri: theme.url + '/' + props.objectArray.products_image,
             }}></ImageLoad>
         </TouchableOpacity>
 
@@ -94,15 +94,15 @@ export default CardOne = ({ props, widthPic, t, s, btnWidth }) => (
             flex: 2,
             padding: 8,
             paddingLeft: 1,
-            paddingBottom: 0
+            paddingBottom: 0,
           }}>
           <View
             style={{
               flexDirection: 'row',
               justifyContent: 'space-between',
-              marginLeft: -5
+              marginLeft: -5,
             }}>
-            <View style={{ width: WIDTH * 0.54 }}>
+            <View style={{width: WIDTH * 0.54}}>
               <Text
                 style={{
                   fontSize: theme.mediumSize + 1,
@@ -113,7 +113,7 @@ export default CardOne = ({ props, widthPic, t, s, btnWidth }) => (
                   padding: 5,
                   paddingTop: Platform.OS === 'android' ? 1 : 2,
                   paddingBottom: 1,
-                  marginBottom: 0
+                  marginBottom: 0,
                 }}
                 numberOfLines={1}>
                 {props.objectArray.products_name}
@@ -123,7 +123,7 @@ export default CardOne = ({ props, widthPic, t, s, btnWidth }) => (
               <View
                 style={{
                   alignContent: 'flex-end',
-                  alignItems: 'flex-end'
+                  alignItems: 'flex-end',
                 }}>
                 <Text
                   style={{
@@ -133,7 +133,7 @@ export default CardOne = ({ props, widthPic, t, s, btnWidth }) => (
                     margin: 1,
                     padding: 2,
                     zIndex: 3,
-                    position: 'absolute'
+                    position: 'absolute',
                   }}>
                   {t.pDiscount(props) + ' ' + t.props.language.OFF}
                 </Text>
@@ -145,47 +145,47 @@ export default CardOne = ({ props, widthPic, t, s, btnWidth }) => (
               marginTop: 2,
               flexDirection: 'row',
               justifyContent: 'space-between',
-              marginBottom: 14
+              marginBottom: 14,
             }}>
             <View>
               {props.objectArray.flash_price !== undefined ? (
-                <View style={{ flexDirection: 'row' }}>
+                <View style={{flexDirection: 'row'}}>
                   {t.priceFun(
                     theme.mediumSize,
                     props.objectArray.products_price,
-                    'line-through'
+                    'line-through',
                   )}
                   {t.priceFun(
                     theme.mediumSize,
                     props.objectArray.flash_price,
-                    'none'
+                    'none',
                   )}
                 </View>
               ) : null}
 
               {props.objectArray.flash_price === undefined ? (
-                <View style={{ flexDirection: 'row' }}>
+                <View style={{flexDirection: 'row'}}>
                   {props.objectArray.discount_price === null
                     ? t.priceFun(
-                      theme.mediumSize,
-                      props.objectArray.products_price,
-                      'none'
-                    )
+                        theme.mediumSize,
+                        props.objectArray.products_price,
+                        'none',
+                      )
                     : null}
                   {props.objectArray.discount_price !== null
                     ? t.priceFun(
-                      theme.mediumSize,
-                      props.objectArray.products_price,
-                      'line-through'
-                    )
+                        theme.mediumSize,
+                        props.objectArray.products_price,
+                        'line-through',
+                      )
                     : null}
                   {props.objectArray.discount_price !== null &&
                   props.objectArray.discount_price !== undefined
                     ? t.priceFun(
-                      theme.mediumSize,
-                      props.objectArray.discount_price,
-                      'none'
-                    )
+                        theme.mediumSize,
+                        props.objectArray.discount_price,
+                        'none',
+                      )
                     : null}
                 </View>
               ) : null}
@@ -196,13 +196,13 @@ export default CardOne = ({ props, widthPic, t, s, btnWidth }) => (
                   <Icon
                     style={{
                       color: theme.wishHeartBtnColor,
-                      fontSize: 20
+                      fontSize: 20,
                     }}
                     active
-                    name='heart'
+                    name="heart"
                     onPress={() => {
                       if (t.newMethod3(props, t) !== 1) {
-                        t.removeWishlist(props, t)
+                        t.removeWishlist(props, t);
                       }
                     }}
                   />
@@ -210,13 +210,13 @@ export default CardOne = ({ props, widthPic, t, s, btnWidth }) => (
                   <Icon
                     style={{
                       color: theme.wishHeartBtnColor,
-                      fontSize: 20
+                      fontSize: 20,
                     }}
                     active
-                    name='heart'
+                    name="heart"
                     onPress={() => {
                       if (t.newMethod3(props, t) !== 1) {
-                        t.removeWishlist(props, t)
+                        t.removeWishlist(props, t);
                       }
                     }}
                   />
@@ -227,13 +227,13 @@ export default CardOne = ({ props, widthPic, t, s, btnWidth }) => (
                     color: theme.wishHeartBtnColor,
                     fontSize: Platform.OS === 'ios' ? 17 : 18,
                     marginTop: Platform.OS === 'ios' ? 3 : 2,
-                    marginBottom: Platform.OS === 'ios' ? 2 : 2
+                    marginBottom: Platform.OS === 'ios' ? 2 : 2,
                   }}
                   active
-                  name='heart-o'
+                  name="heart-o"
                   onPress={() => {
                     if (t.newMethod3(props, t) !== 1) {
-                      t.addWishlist(props, t)
+                      t.addWishlist(props, t);
                     }
                   }}
                 />
@@ -250,66 +250,116 @@ export default CardOne = ({ props, widthPic, t, s, btnWidth }) => (
               paddingTop: 0,
               paddingBottom: 0,
               marginBottom: -6,
-              margin: 0
+              margin: 0,
             }}>
             {props.objectArray.products_type === 0 &&
             props.objectArray.defaultStock <= 0 &&
             // eslint-disable-next-line eqeqeq
             props.inventory == 1 ? (
-                <TouchableOpacity
+              <TouchableOpacity
+                style={{
+                  margin: 5,
+                  width: btnWidth / 3,
+                  marginBottom: 3,
+                  marginTop: 0,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  alignSelf: 'center',
+                  shadowOffset: {width: 1, height: 1},
+                  shadowColor: theme.textColor,
+                  shadowOpacity: 0.5,
+                  elevation: 3,
+                }}>
+                <View
                   style={{
+                    padding: 5,
                     margin: 5,
-                    width: btnWidth / 3,
-                    marginBottom: 3,
-                    marginTop: 0,
+                    width: btnWidth / 3.5,
+                    backgroundColor: theme.outOfStockBtnColor,
                     justifyContent: 'center',
                     alignItems: 'center',
                     alignSelf: 'center',
-                    shadowOffset: { width: 1, height: 1 },
-                    shadowColor: theme.textColor,
-                    shadowOpacity: 0.5,
-                    elevation: 3
+                    marginTop: -14,
+                    marginBottom: 0,
+                    borderRadius: 5,
                   }}>
-                  <View
+                  <Text
                     style={{
-                      padding: 5,
-                      margin: 5,
-                      width: btnWidth / 3,
-                      backgroundColor: theme.outOfStockBtnColor,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      alignSelf: 'center',
-                      marginTop: -14,
-                      marginBottom: 0
+                      color: theme.outOfStockBtnTextColor,
+                      fontSize: theme.mediumSize - 3,
+                      fontWeight: '500',
+                    }}
+                    numberOfLines={1}>
+                    {t.props.language['OUT OF STOCK']}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            ) : props.objectArray.products_type === 0 && props.addToCart ? (
+              <TouchableOpacity
+                style={{
+                  margin: 5,
+                  width: btnWidth / 3,
+                  marginBottom: 3,
+                  marginTop: 0,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  alignSelf: 'center',
+                  shadowOffset: {width: 1, height: 1},
+                  shadowColor: theme.textColor,
+                  shadowOpacity: 0.5,
+                  elevation: 3,
+                }}
+                onPress={() => {
+                  if (t.newMethod3(props, t) !== 1) {
+                    t.newMethod6(props, t);
+                  }
+                }}>
+                <View
+                  style={{
+                    padding: 5,
+                    margin: 5,
+                    width: btnWidth / 3.5,
+                    backgroundColor: theme.addToCartBtnColor,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    alignSelf: 'center',
+                    marginTop: -14,
+                    marginBottom: 0,
+                    borderRadius: 5,
+                  }}>
+                  <Text
+                    style={{
+                      color: theme.addToCartBtnTextColor,
+                      fontSize: theme.mediumSize - 2,
+                      fontWeight: '500',
                     }}>
-                    <Text
-                      style={{
-                        color: theme.outOfStockBtnTextColor,
-                        fontSize: theme.mediumSize + 1,
-                        fontWeight: '500'
-                      }}>
-                      {t.props.language['OUT OF STOCK']}
-                    </Text>
-                  </View>
-                </TouchableOpacity>
-              ) : props.objectArray.products_type === 0 && props.addToCart ? (
+                    {t.props.language['Add to Cart']}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            ) : t.props.cartButton ? (
+              props.objectArray.products_type === 1 ||
+              props.objectArray.products_type === 2 ||
+              props.objectArray.products_type === 3 ? (
                 <TouchableOpacity
                   style={{
                     margin: 5,
                     width: btnWidth / 3,
-                    marginBottom: 3,
+                    marginBottom: 0,
                     marginTop: 0,
                     justifyContent: 'center',
                     alignItems: 'center',
                     alignSelf: 'center',
-                    shadowOffset: { width: 1, height: 1 },
+                    shadowOffset: {width: 1, height: 1},
                     shadowColor: theme.textColor,
                     shadowOpacity: 0.5,
-                    elevation: 3
+                    elevation: 3,
                   }}
                   onPress={() => {
                     if (t.newMethod3(props, t) !== 1) {
-                      t.newMethod6(props, t)
+                      props.navigation.push('ProductDetails', {
+                        objectArray: props.objectArray, //
+                      });
                     }
                   }}>
                   <View
@@ -317,75 +367,28 @@ export default CardOne = ({ props, widthPic, t, s, btnWidth }) => (
                       padding: 5,
                       margin: 5,
                       width: btnWidth / 3,
-                      backgroundColor: theme.addToCartBtnColor,
+                      backgroundColor: theme.detailsBtnColor,
                       justifyContent: 'center',
                       alignItems: 'center',
                       alignSelf: 'center',
                       marginTop: -14,
-                      marginBottom: 0
+                      marginBottom: 0,
                     }}>
                     <Text
                       style={{
-                        color: theme.addToCartBtnTextColor,
+                        color: theme.detailsBtnTextColor,
                         fontSize: theme.mediumSize + 1,
-                        fontWeight: '500'
+                        fontWeight: '500',
                       }}>
-                      {t.props.language['Add to Cart']}
+                      {t.props.language2.DETAILS}
                     </Text>
                   </View>
                 </TouchableOpacity>
-              ) : t.props.cartButton ? (
-                props.objectArray.products_type === 1 ||
-              props.objectArray.products_type === 2 ||
-              props.objectArray.products_type === 3 ? (
-                    <TouchableOpacity
-                      style={{
-                        margin: 5,
-                        width: btnWidth / 3,
-                        marginBottom: 0,
-                        marginTop: 0,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        alignSelf: 'center',
-                        shadowOffset: { width: 1, height: 1 },
-                        shadowColor: theme.textColor,
-                        shadowOpacity: 0.5,
-                        elevation: 3
-                      }}
-                      onPress={() => {
-                        if (t.newMethod3(props, t) !== 1) {
-                          props.navigation.push('ProductDetails', {
-                            objectArray: props.objectArray //
-                          })
-                        }
-                      }}>
-                      <View
-                        style={{
-                          padding: 5,
-                          margin: 5,
-                          width: btnWidth / 3,
-                          backgroundColor: theme.detailsBtnColor,
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          alignSelf: 'center',
-                          marginTop: -14,
-                          marginBottom: 0
-                        }}>
-                        <Text
-                          style={{
-                            color: theme.detailsBtnTextColor,
-                            fontSize: theme.mediumSize + 1,
-                            fontWeight: '500'
-                          }}>
-                          {t.props.language2.DETAILS}
-                        </Text>
-                      </View>
-                    </TouchableOpacity>
-                  ) : null
-              ) : null}
+              ) : null
+            ) : null}
           </View>
         </View>
       </View>
     </View>
   </View>
-)
+);
