@@ -90,22 +90,22 @@ class News extends PureComponent {
               {this.props.isLoading.Config.languageJson['My Orders']}
             </Text>
           </TouchableOpacity>
-          {/* <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('Home3Screen')}> */}
-          <Text
-            style={{
-              marginTop: -2,
-              fontSize: 15,
-              marginTop: 16,
-              alignSelf: 'center',
-              textTransform: 'uppercase',
-              color: '#ed1c24',
-              borderBottomWidth: 1,
-              borderBottomColor: '#ed1c24',
-            }}>
-            {this.props.isLoading.Config.languageJson['Continue Shopping']}
-          </Text>
-          {/* </TouchableOpacity> */}
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate('Home3Screen')}>
+            <Text
+              style={{
+                marginTop: -2,
+                fontSize: 15,
+                marginTop: 16,
+                alignSelf: 'center',
+                textTransform: 'uppercase',
+                color: '#ed1c24',
+                borderBottomWidth: 1,
+                borderBottomColor: '#ed1c24',
+              }}>
+              {this.props.isLoading.Config.languageJson['Continue Shopping']}
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
