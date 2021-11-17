@@ -206,7 +206,7 @@ class Banner extends PureComponent {
                       justifyContent: 'center',
                       elevation: 3,
                       // backgroundColor: '#fff',
-                      borderRadius: 15,
+                      // borderRadius: 10,
                     }}>
                     {/* <View
                       style={{
@@ -238,7 +238,7 @@ class Banner extends PureComponent {
                         // alignItems: 'center',
                         // justifyContent: 'center',
                         elevation: 5,
-                        borderRadius: 10,
+                        borderRadius: 15,
                       }}
                       loadingStyle={{
                         size: 'large',

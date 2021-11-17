@@ -145,8 +145,7 @@ export default class Timer extends Component {
           shadowOpacity: 0.5,
           elevation: 3,
         }}>
-
-    {/* Timer.js- TimeBackground Color */}
+        {/* Timer.js- TimeBackground Color */}
         <View
           style={{
             padding: this.props.text !== null ? 12 : 5,
@@ -201,7 +200,7 @@ export default class Timer extends Component {
             <Text
               style={{
                 color: '#2d79be',
-                fontSize: theme.mediumSize + 1,
+                fontSize: theme.mediumSize - 2,
                 fontWeight: 'bold',
               }}>
               {this.state.timer.displayTime}

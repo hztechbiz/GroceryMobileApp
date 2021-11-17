@@ -529,7 +529,7 @@ class CreateAccount extends Component {
               />
             </View>
 
-            {!this.props.isLoading.Config.multiLanguage
+            {/* {!this.props.isLoading.Config.multiLanguage
               ? this.categoryFun(
                   SyncStorage.get('backgroundColor') === '#fdfdfd'
                     ? this.props.isLoading.Config.languageJson2['Dark Mode']
@@ -537,7 +537,7 @@ class CreateAccount extends Component {
                   'globe',
                   'LanguageScreen',
                 )
-              : null}
+              : null} */}
 
             {/* {!this.props.isLoading.Config.multiLanguage
             ? this.categoryFun(

@@ -134,7 +134,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
               }}>
               <Icon
                 style={{
-                  paddingTop: 55,
+                  paddingTop: 60,
                   color: '#205a8e',
                   fontSize: 30,
                   alignSelf: 'center',
@@ -605,13 +605,9 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                   {/* Out of Stock Button View */}
                   <TouchableOpacity
                     style={{
-                      // padding: 5,
+                      padding: 5,
                       justifyContent: 'center',
-                      // backgroundColor: 'green',
                       alignItems: 'center',
-                      // alignSelf: 'center',
-                      // marginTop: -27,
-                      // borderRadius: 5,
                     }}>
                     <Out_Of_Stock
                       name="cart-off"
@@ -671,20 +667,10 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                     }}>
                     <View
                       style={{
-                        // padding: 5,
-                        paddingVertical: 5,
+                        padding: 5,
                         justifyContent: 'center',
-                        // backgroundColor: 'red',
-                        //margin: 5,
-                        // width: btnWidth,
-                        // width: 80,
-                        // backgroundColor: theme.addToCartBtnColor,
-                        // backgroundColor: 'green',
-                        // justifyContent: 'center',
+
                         alignItems: 'center',
-                        // alignSelf: 'center',
-                        // marginTop: -27,
-                        borderRadius: 5,
                       }}>
                       <Font_Cart
                         name="cart-plus"
