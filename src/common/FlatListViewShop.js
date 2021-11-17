@@ -264,7 +264,9 @@ class Fetch extends PureComponent {
           alignItems: 'center',
           alignSelf: 'center',
           alignContent: 'center',
-          marginLeft: !I18nManager.isRTL ? Width * 0.28 : Width * 0.25,
+          width: Width,
+          backgroundColor: '#f5fafe',
+          marginLeft: !I18nManager.isRTL ? Width * 0.0 : Width * 0.25,
         }}>
         <View
           style={{
