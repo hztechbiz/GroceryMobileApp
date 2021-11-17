@@ -102,14 +102,25 @@ class CardTemplate extends Component {
         html={SyncStorage.get('currency')}
         baseFontStyle={{
           fontSize: size,
-          color: temp === false ? '#A20000' : theme.iconColor,
+          // color:
+          //   temp === false && textDecorationLine === 'line-through'
+          //     ? 'black'
+          //     : theme.iconColor,
+          color:
+            textDecorationLine === 'line-through' ? 'black' : theme.iconColor,
           textDecorationLine,
         }}
       />
       <Text
         style={{
-          color: temp === false ? '#A20000' : theme.iconColor,
+          // color: temp === false ? '#A20000' : theme.iconColor,
+          // color:
+          //   temp === false && textDecorationLine === 'line-through'
+          //     ? 'black'
+          //     : theme.iconColor,
           fontSize: size,
+          color:
+            textDecorationLine === 'line-through' ? 'black' : theme.iconColor,
           textDecorationLine,
           fontWeight: '800',
         }}>
