@@ -1289,7 +1289,7 @@ class orderScreen extends Component {
                                 style={{
                                   color: themeStyle.textColor,
                                   paddingLeft: 8,
-                                  fontSize: 15,
+                                  fontSize: 12,
                                   fontWeight: 'bold',
                                 }}>
                                 {item.item.products_name}
@@ -1303,7 +1303,7 @@ class orderScreen extends Component {
                                 }}>
                                 <Text
                                   style={{
-                                    fontSize: themeStyle.mediumSize,
+                                    fontSize: 12,
                                     fontWeight: 'normal',
                                     color: themeStyle.textColor,
                                     paddingRight: 3,
@@ -1318,7 +1318,7 @@ class orderScreen extends Component {
                                 <HTML
                                   html={SyncStorage.get('currency')}
                                   baseFontStyle={{
-                                    fontSize: themeStyle.mediumSize,
+                                    fontSize: 12,
                                     color: 'red',
                                   }}
                                 />
@@ -1327,6 +1327,7 @@ class orderScreen extends Component {
                                   style={{
                                     paddingTop: 0,
                                     color: 'red',
+                                    fontSize: 12,
                                   }}>
                                   {Number(item.item.price).toFixed(2)}
                                 </Text>
@@ -1342,7 +1343,7 @@ class orderScreen extends Component {
                                 <View style={{flexDirection: 'row'}}>
                                   <Text
                                     style={{
-                                      fontSize: themeStyle.mediumSize,
+                                      fontSize: 12,
                                       fontWeight: 'normal',
                                       color: themeStyle.textColor,
                                     }}>
@@ -1352,7 +1353,12 @@ class orderScreen extends Component {
                                     }{' '}
                                     :
                                   </Text>
-                                  <Text style={{paddingLeft: 3, color: '#000'}}>
+                                  <Text
+                                    style={{
+                                      paddingLeft: 3,
+                                      color: '#000',
+                                      fontSize: 12,
+                                    }}>
                                     {item.item.customers_basket_quantity}
                                   </Text>
                                 </View>
@@ -1369,7 +1375,7 @@ class orderScreen extends Component {
                                 <View>
                                   <Text
                                     style={{
-                                      fontSize: themeStyle.largeSize,
+                                      fontSize: 11,
                                       fontWeight: 'bold',
                                       color: themeStyle.textColor,
                                       alignSelf: 'flex-end',
@@ -1384,13 +1390,13 @@ class orderScreen extends Component {
                                   <HTML
                                     html={SyncStorage.get('currency')}
                                     baseFontStyle={{
-                                      fontSize: themeStyle.largeSize,
+                                      fontSize: 12,
                                       color: themeStyle.textColor,
                                     }}
                                   />
                                   <Text
                                     style={{
-                                      fontSize: themeStyle.largeSize,
+                                      fontSize: 12,
                                       fontWeight: '400',
                                       color: themeStyle.textColor,
                                     }}>
@@ -1649,6 +1655,7 @@ class orderScreen extends Component {
                   paddingHorizontal: 14,
                   borderBottomWidth: 3,
                   borderBottomColor: '#e4ecf2',
+                  // backgroundColor: 'red',
                 }}>
                 {/* <TouchableOpacity
                   style={{paddingTop: 5}}
@@ -1685,7 +1692,8 @@ class orderScreen extends Component {
                     padding: 12,
                     flexDirection: 'row',
                     flex: 1,
-                    elevation: 9,
+                    // elevation: 9,
+                    // backgroundColor: 'red',
                   }}>
                   <TextInput
                     style={{
@@ -1704,7 +1712,8 @@ class orderScreen extends Component {
                       shadowOffset: {width: 1, height: 0},
                       shadowColor: 'themeStyle.textColor',
                       shadowOpacity: 0.5,
-                      // elevation: 5,
+                      // elevation: 8,
+                      // backgroundColor: 'red',
                     }}
                     selectionColor="#51688F"
                     placeholder={
