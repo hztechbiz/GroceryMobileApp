@@ -13,7 +13,7 @@ export default Category1 = (props) => (
       // backgroundColor: '#fff',
       // margin: 5,
       marginHorizontal: 5,
-      marginVertical: 5,
+      // marginVertical: 1,
       height: 120,
       width: Width2,
       // opacity: 15,
@@ -28,25 +28,34 @@ export default Category1 = (props) => (
       borderRadius: 10,
     }}
     onPress={() => props.openSubCategories(props.item, props.item.name)}>
-    <ImageLoad
-      key={props.id}
+    <View
       style={{
-        height: 120,
-        width: Width2,
-        overflow: 'hidden',
-        borderRadius: 10,
-        backgroundColor: 'black',
-        opacity: 0.7,
-      }}
-      // resizeMethod="contain"
-      loadingStyle={{size: 'large', color: theme.loadingIndicatorColor}}
-      placeholder={false}
-      ActivityIndicator={true}
-      placeholderStyle={{width: 0, height: 0}}
-      backgroundColor="transparent"
-      color="transparent"
-      source={{uri: theme.url + '/' + props.item.image}}
-    />
+        // position: 'absolute',
+        // color: 'black',
+        // top: 0,
+        backgroundColor: 'rgba(0, 0, 0, 1)',
+        borderRadius: 12,
+        // flex: 1,
+      }}>
+      <ImageLoad
+        key={props.id}
+        style={{
+          height: 110,
+          width: Width2,
+          overflow: 'hidden',
+          borderRadius: 12,
+          opacity: 0.5,
+        }}
+        // resizeMethod="contain"
+        loadingStyle={{size: 'large', color: theme.loadingIndicatorColor}}
+        placeholder={false}
+        ActivityIndicator={true}
+        placeholderStyle={{width: 0, height: 0}}
+        backgroundColor="transparent"
+        color="transparent"
+        source={{uri: theme.url + '/' + props.item.image}}
+      />
+    </View>
 
     <View
       style={{
