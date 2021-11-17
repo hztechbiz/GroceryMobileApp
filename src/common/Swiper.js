@@ -285,6 +285,10 @@ class OnboardingScreens extends PureComponent {
   FUN = (nav) => {
     StatusBar.setBackgroundColor(themeStyle.StatusBarColor);
     StatusBar.setHidden(false);
+    console.log(
+      SyncStorage.get('showIntroPage'),
+      'SyncStorage.get()-------------',
+    );
     if (SyncStorage.get('showIntroPage') === '0') {
       nav.navigate('Home1Screen');
     } else {

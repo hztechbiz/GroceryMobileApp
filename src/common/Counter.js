@@ -66,7 +66,7 @@ export default class Counter extends PureComponent {
     });
   }
 
-  render({onIncrement, onDecrement, width, height} = this.props) {
+  render({onIncrement, onDecrement, width, height, style} = this.props) {
     return (
       <View style={{flexDirection: 'row'}}>
         <TouchableOpacity
@@ -101,12 +101,15 @@ export default class Counter extends PureComponent {
         </TouchableOpacity>
         {/* //////////////////// */}
         <View
-          style={{
-            width: width + 6,
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: '#f5fafe',
-          }}>
+          style={[
+            {
+              width: width + 6,
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: '#f5fafe',
+            },
+            style,
+          ]}>
           <Text
             style={{
               color: theme.textColor,

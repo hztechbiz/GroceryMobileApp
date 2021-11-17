@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import theme from '../common/Theme.style';
 import SyncStorage from 'sync-storage';
+
 const MenuIcon = (props) =>
   !SyncStorage.get('bottom') ? (
     <TouchableOpacity
