@@ -707,7 +707,7 @@ class ShippingAddress extends Component {
   }
 
   searchFilterFun2(text, name, selection, nav) {
-    console.log(name, 'name');
+    // console.log(name, 'name');
     return (
       <TouchableOpacity
         onPress={() =>
@@ -1732,7 +1732,7 @@ class ShippingAddress extends Component {
                 value={this.state.shippingData.phonenumber}
                 placeholderTextColor={'#c0c0c0'}
                 keyboardType="phone-pad"
-                placeholder="Enter Phone Number 1"
+                placeholder="Enter Phone Number"
                 textAlign="left"
               />
 

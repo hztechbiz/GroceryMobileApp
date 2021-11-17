@@ -1084,8 +1084,8 @@ class orderScreen extends Component {
                       ', ' +
                       this.state.orderDetail.delivery_city +
                       ', ' +
-                      this.state.orderDetail.delivery_state +
-                      ',' +
+                      this.state.orderDetail.billing_state +
+                      ', ' +
                       this.state.orderDetail.delivery_postcode +
                       ', ' +
                       this.state.orderDetail.delivery_country}

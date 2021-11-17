@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react'
-import { CardStyleInterpolators } from 'react-navigation-stack'
+import React, {PureComponent} from 'react';
+import {CardStyleInterpolators} from 'react-navigation-stack';
 import {
   View,
   FlatList,
@@ -7,18 +7,18 @@ import {
   Linking,
   TouchableOpacity,
   Platform,
-  Dimensions
-} from 'react-native'
-import { Text, Icon } from 'native-base'
-import HTML from 'react-native-render-html'
-import { connect } from 'react-redux'
-import Toast from 'react-native-easy-toast'
-import WooComFetch from '../common/WooComFetch'
-import themeStyle from '../common/Theme.style'
-const { width } = Dimensions.get('window')
+  Dimensions,
+} from 'react-native';
+import {Text, Icon} from 'native-base';
+import HTML from 'react-native-render-html';
+import {connect} from 'react-redux';
+import Toast from 'react-native-easy-toast';
+import WooComFetch from '../common/WooComFetch';
+import themeStyle from '../common/Theme.style';
+const {width} = Dimensions.get('window');
 class orderScreen extends PureComponent {
-  static navigationOptions = ({ navigation }) => {
-    const headerStyle = navigation.getParam('headerTitle')
+  static navigationOptions = ({navigation}) => {
+    const headerStyle = navigation.getParam('headerTitle');
     return {
       headerTitle: headerStyle,
       headerRight: null,
@@ -28,23 +28,25 @@ class orderScreen extends PureComponent {
       headerTitleAlign: 'center',
       headerTintColor: themeStyle.headerTintColor,
       headerStyle: {
-        backgroundColor: themeStyle.primary
+        backgroundColor: themeStyle.primary,
       },
       headerTitleStyle: {
-        fontWeight: Platform.OS === 'android' ? 'bold' : 'normal'
+        fontWeight: Platform.OS === 'android' ? 'bold' : 'normal',
       },
-      headerForceInset: { top: 'never', vertical: 'never' }
-    }
-  }
+      headerForceInset: {top: 'never', vertical: 'never'},
+    };
+  };
 
-  componentDidMount () {
+  componentDidMount() {
+    // console.log(this.props.navigation.state.params.data, 'dataaa ======');
     this.props.navigation.setParams({
-      headerTitle: this.props.cartItems2.Config.languageJson['Order Detail']
-    })
+      headerTitle: this.props.cartItems2.Config.languageJson['Order Detail'],
+    });
   }
 
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
+
     this.state = {
       customerNotes: '',
       discount: 0,
@@ -61,31 +63,31 @@ class orderScreen extends PureComponent {
       radioButton: [],
       paymentText: '',
       paymentShowCondition: true,
-      buttonEnable: false
-    }
+      buttonEnable: false,
+    };
   }
 
   //= ===========================================================================================
   // placing order
 
-  singleRow (header, body) {
+  singleRow(header, body) {
     return (
       <View
         style={{
           backgroundColor: themeStyle.backgroundColor,
           justifyContent: 'space-between',
-          shadowOffset: { width: 1, height: 1 },
+          shadowOffset: {width: 1, height: 1},
           shadowColor: themeStyle.textColor,
           shadowOpacity: 0.5,
           margin: 10,
           marginTop: 10,
           marginBottom: 5,
           elevation: 5,
-          width: '95%'
+          width: '95%',
         }}>
         <View
           style={{
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
           }}>
           <Text
             style={{
@@ -94,7 +96,7 @@ class orderScreen extends PureComponent {
               fontWeight: 'bold',
               fontSize: themeStyle.largeSize,
               backgroundColor: '#d3d3d3',
-              color: themeStyle.textContrast
+              color: themeStyle.textContrast,
             }}>
             {header}
           </Text>
@@ -104,33 +106,33 @@ class orderScreen extends PureComponent {
               justifyContent: 'space-between',
               padding: 10,
               fontSize: themeStyle.mediumSize,
-              color: themeStyle.textColor
+              color: themeStyle.textColor,
             }}>
             {body}
           </Text>
         </View>
       </View>
-    )
+    );
   }
 
-  multipleRow (header, body) {
+  multipleRow(header, body) {
     return (
       <View
         style={{
           backgroundColor: themeStyle.backgroundColor,
           justifyContent: 'space-between',
-          shadowOffset: { width: 1, height: 1 },
+          shadowOffset: {width: 1, height: 1},
           shadowColor: themeStyle.textColor,
           shadowOpacity: 0.5,
           margin: 10,
           marginTop: 10,
           marginBottom: 5,
           elevation: 5,
-          width: '95%'
+          width: '95%',
         }}>
         <View
           style={{
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
           }}>
           <Text
             style={{
@@ -139,7 +141,7 @@ class orderScreen extends PureComponent {
               fontWeight: 'bold',
               backgroundColor: '#d3d3d3',
               fontSize: themeStyle.largeSize,
-              color: themeStyle.textContrast
+              color: themeStyle.textContrast,
             }}>
             {header}
           </Text>
@@ -149,13 +151,13 @@ class orderScreen extends PureComponent {
             listKey={(item, index) => `D${index.toString()}`}
             showsVerticalScrollIndicator={false}
             keyExtractor={(item, index) => ` 1${index.toString()}`}
-            renderItem={item => (
+            renderItem={(item) => (
               <Text
                 style={{
                   justifyContent: 'space-between',
                   padding: 10,
                   fontSize: themeStyle.mediumSize,
-                  color: themeStyle.textColor
+                  color: themeStyle.textColor,
                 }}>
                 {item.item.shipping_method}
               </Text>
@@ -164,27 +166,27 @@ class orderScreen extends PureComponent {
         </View>
         {/* ///////////////////////////////// */}
       </View>
-    )
+    );
   }
 
-  products (header, body) {
+  products(header, body) {
     return (
       <View
         style={{
           backgroundColor: themeStyle.backgroundColor,
           justifyContent: 'space-between',
-          shadowOffset: { width: 1, height: 1 },
+          shadowOffset: {width: 1, height: 1},
           shadowColor: themeStyle.textColor,
           shadowOpacity: 0.5,
           margin: 10,
           marginTop: 10,
           marginBottom: 5,
           elevation: 5,
-          width: '95%'
+          width: '95%',
         }}>
         <View
           style={{
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
           }}>
           <Text
             style={{
@@ -193,7 +195,7 @@ class orderScreen extends PureComponent {
               fontWeight: 'bold',
               fontSize: themeStyle.largeSize,
               backgroundColor: '#d3d3d3',
-              color: themeStyle.textContrast
+              color: themeStyle.textContrast,
             }}>
             {header}
           </Text>
@@ -203,14 +205,14 @@ class orderScreen extends PureComponent {
             listKey={(item, index) => `A${index.toString()}`}
             showsVerticalScrollIndicator={false}
             keyExtractor={(item, index) => `2 ${index.toString()}`}
-            renderItem={item => (
+            renderItem={(item) => (
               <View>
                 <View
                   style={{
                     width: '100%',
                     height: 1,
                     backgroundColor: '#d9d9d9',
-                    marginBottom: 12
+                    marginBottom: 12,
                   }}
                 />
                 <Text
@@ -218,13 +220,13 @@ class orderScreen extends PureComponent {
                     fontSize: themeStyle.mediumSize,
                     color: themeStyle.textColor,
                     paddingLeft: 7,
-                    paddingBottom: 4
+                    paddingBottom: 4,
                   }}>
                   {item.item.products_name}
                 </Text>
                 {this.singleRowDirection(
                   `${this.props.cartItems2.Config.languageJson.Price} :`,
-                  this.addCurrecny(Number(item.item.products_price).toFixed(2))
+                  this.addCurrecny(Number(item.item.products_price).toFixed(2)),
                 )}
 
                 <FlatList
@@ -232,41 +234,43 @@ class orderScreen extends PureComponent {
                   data={item.item.attributes}
                   listKey={(index) => `TT${index.toString()}`}
                   keyExtractor={(index) => `3 ${index.toString()}`}
-                  renderItem={item2 =>
+                  renderItem={(item2) =>
                     this.singleRowDirection(
-                      `${item2.item.products_options_values +
-                        ' '} :`,
+                      `${item2.item.products_options_values + ' '} :`,
                       item2.item.price_prefix +
                         ' ' +
                         item2.item.options_values_price +
                         ' ' +
                         (
                           <HTML
-                            html={' ' + this.props.navigation.state.params.data.currency}
+                            html={
+                              ' ' +
+                              this.props.navigation.state.params.data.currency
+                            }
                             baseFontStyle={{
                               fontSize: themeStyle.mediumSize - 2,
-                              color: themeStyle.textColor
+                              color: themeStyle.textColor,
                             }}
                           />
-                        )
+                        ),
                     )
                   }
                 />
 
                 {this.singleRowDirection(
                   `${this.props.cartItems2.Config.languageJson.Quantity} :`,
-                  item.item.products_quantity
+                  item.item.products_quantity,
                 )}
                 {this.singleRowDirection(
                   this.props.cartItems2.Config.languageJson.Total,
-                  this.addCurrecny(Number(item.item.final_price).toFixed(2))
+                  this.addCurrecny(Number(item.item.final_price).toFixed(2)),
                 )}
                 <View
                   style={{
                     width: '100%',
                     height: 1,
                     backgroundColor: '#d9d9d9',
-                    marginBottom: 12
+                    marginBottom: 12,
                   }}
                 />
               </View>
@@ -275,10 +279,10 @@ class orderScreen extends PureComponent {
         </View>
         {/* ///////////////////////////////// */}
       </View>
-    )
+    );
   }
 
-  singleRowDirection (text1, text2, t) {
+  singleRowDirection(text1, text2, t) {
     return (
       <View
         style={{
@@ -286,14 +290,14 @@ class orderScreen extends PureComponent {
           padding: 5,
           paddingLeft: 8,
           flexDirection: 'row',
-          flex: 1
+          flex: 1,
         }}>
         <Text
           style={{
             fontSize: themeStyle.mediumSize,
             fontWeight:
               text1 === 'Total' || text1 === 'مجموع' ? 'bold' : 'normal',
-            color: themeStyle.textColor
+            color: themeStyle.textColor,
           }}>
           {text1}{' '}
         </Text>
@@ -303,25 +307,25 @@ class orderScreen extends PureComponent {
             style={{
               flexDirection: 'row',
               alignSelf: 'center',
-              alignItems: 'center'
+              alignItems: 'center',
             }}>
             <TouchableOpacity
               style={{}}
               onPress={() => {
                 Linking.canOpenURL(
                   this.props.cartItems2.Config.trackingUrl +
-                    this.getTrackingId()
+                    this.getTrackingId(),
                 )
-                  .then(supported => {
+                  .then((supported) => {
                     if (!supported) {
                     } else {
                       return Linking.openURL(
                         this.props.cartItems2.Config.trackingUrl +
-                          this.getTrackingId()
-                      )
+                          this.getTrackingId(),
+                      );
                     }
                   })
-                  .catch(err => console.log('An error occurred', err))
+                  .catch((err) => console.log('An error occurred', err));
               }}
               disabled={this.state.addToCartButtonValue}>
               <View
@@ -332,13 +336,13 @@ class orderScreen extends PureComponent {
 
                   backgroundColor: themeStyle.primary,
                   flexDirection: 'row',
-                  padding: 4
+                  padding: 4,
                 }}>
                 <Text
                   style={{
                     color: themeStyle.textColor,
                     fontSize: themeStyle.mediumSize,
-                    paddingTop: 1
+                    paddingTop: 1,
                   }}>
                   Track
                 </Text>
@@ -347,7 +351,7 @@ class orderScreen extends PureComponent {
                   style={{
                     color: 'white',
                     fontSize: themeStyle.mediumSize,
-                    paddingLeft: 5
+                    paddingLeft: 5,
                   }}
                 />
               </View>
@@ -358,97 +362,101 @@ class orderScreen extends PureComponent {
             style={{
               flexDirection: 'row',
               justifyContent: 'center',
-              alignItems: 'center'
+              alignItems: 'center',
             }}>
-            {t !== 'Coupon Code'
-              ? <Text
+            {t !== 'Coupon Code' ? (
+              <Text
                 style={{
                   fontSize: themeStyle.mediumSize,
                   fontWeight:
-                  text1 === 'Total' || text1 === 'مجموع' ? 'bold' : 'normal',
-                  color: themeStyle.textColor
+                    text1 === 'Total' || text1 === 'مجموع' ? 'bold' : 'normal',
+                  color: themeStyle.textColor,
                 }}>
                 {text2}
               </Text>
-              : <View style={{
-                fontSize: themeStyle.mediumSize,
-                fontWeight:
-              text1 === 'Total' || text1 === 'مجموع' ? 'bold' : 'normal',
-                color: themeStyle.textColor,
-                flexWrap: 'wrap'
-              }}>
-                {
-                  text2.map((value) => (
-                    <Text
-                      style={{
-                        fontSize: themeStyle.mediumSize,
-                        fontWeight:
-                        text1 === 'Total' || text1 === 'مجموع' ? 'bold' : 'normal',
-                        color: themeStyle.textColor,
-                        paddingTop: 5
-                      }}>
-                      {value.code}
-                    </Text>
-                  ))
-                }
+            ) : (
+              <View
+                style={{
+                  fontSize: themeStyle.mediumSize,
+                  fontWeight:
+                    text1 === 'Total' || text1 === 'مجموع' ? 'bold' : 'normal',
+                  color: themeStyle.textColor,
+                  flexWrap: 'wrap',
+                }}>
+                {text2.map((value) => (
+                  <Text
+                    style={{
+                      fontSize: themeStyle.mediumSize,
+                      fontWeight:
+                        text1 === 'Total' || text1 === 'مجموع'
+                          ? 'bold'
+                          : 'normal',
+                      color: themeStyle.textColor,
+                      paddingTop: 5,
+                    }}>
+                    {value.code}
+                  </Text>
+                ))}
               </View>
-            }
+            )}
             {`${this.props.cartItems2.Config.languageJson.Quantity} :` !==
-            text1 && t !== 'Shipping Method' && t !== 'Coupon Code' ? (
-                <HTML
-                  html={' ' + this.props.navigation.state.params.data.currency}
-                  baseFontStyle={{
-                    fontSize: themeStyle.mediumSize,
-                    color: themeStyle.textColor,
-                    fontWeight:
-                    text1 === 'Total' || text1 === 'مجموع' ? 'bold' : 'normal'
-                  }}
-                />
-              ) : null}
+              text1 &&
+            t !== 'Shipping Method' &&
+            t !== 'Coupon Code' ? (
+              <HTML
+                html={' ' + this.props.navigation.state.params.data.currency}
+                baseFontStyle={{
+                  fontSize: themeStyle.mediumSize,
+                  color: themeStyle.textColor,
+                  fontWeight:
+                    text1 === 'Total' || text1 === 'مجموع' ? 'bold' : 'normal',
+                }}
+              />
+            ) : null}
           </View>
         )}
       </View>
-    )
+    );
   }
 
-  addCurrecny = v2 => <Text style={{ color: themeStyle.textColor }}>{v2}</Text>
+  addCurrecny = (v2) => <Text style={{color: themeStyle.textColor}}>{v2}</Text>;
 
-  getTrackingId () {
-    let id = ''
+  getTrackingId() {
+    let id = '';
     for (const v of this.props.navigation.state.params.data.meta_data) {
       if (v.key === '_aftership_tracking_number') {
-        id = v.value
+        id = v.value;
       }
     }
-    return id
+    return id;
   }
 
-  getSubtotal () {
-    let total = 0
-    this.props.navigation.state.params.data.data.forEach(element => {
-      total += element.final_price
-    })
-    return total
+  getSubtotal() {
+    let total = 0;
+    this.props.navigation.state.params.data.data.forEach((element) => {
+      total += element.final_price;
+    });
+    return total;
   }
 
-  priceDetailCard (header) {
+  priceDetailCard(header) {
     return (
       <View
         style={{
           backgroundColor: themeStyle.backgroundColor,
           justifyContent: 'space-between',
-          shadowOffset: { width: 1, height: 1 },
+          shadowOffset: {width: 1, height: 1},
           shadowColor: themeStyle.textColor,
           shadowOpacity: 0.5,
           margin: 10,
           marginTop: 10,
           marginBottom: 5,
           elevation: 5,
-          width: '95%'
+          width: '95%',
         }}>
         <View
           style={{
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
           }}>
           <Text
             style={{
@@ -456,177 +464,190 @@ class orderScreen extends PureComponent {
               padding: 10,
               fontWeight: 'bold',
               backgroundColor: '#d3d3d3',
-              color: themeStyle.textContrast
+              color: themeStyle.textContrast,
             }}>
             {header}
           </Text>
 
           {this.singleRowDirection(
             this.props.cartItems2.Config.languageJson2['Sub Total'],
-            this.getSubtotal()
+            this.getSubtotal(),
           )}
           {this.singleRowDirection(
             this.props.cartItems2.Config.languageJson2['Shipping Method'],
             this.props.navigation.state.params.data.shipping_method,
-            'Shipping Method'
+            'Shipping Method',
           )}
           {this.singleRowDirection(
-            this.props.cartItems2.Config.languageJson.Shipping + ' ' +
-            this.props.cartItems2.Config.languageJson.Price,
+            this.props.cartItems2.Config.languageJson.Shipping +
+              ' ' +
+              this.props.cartItems2.Config.languageJson.Price,
             this.addCurrecny(
-              Number(this.props.navigation.state.params.data.shipping_cost).toFixed(2)
-            )
+              Number(
+                this.props.navigation.state.params.data.shipping_cost,
+              ).toFixed(2),
+            ),
           )}
 
-          { this.props.navigation.state.params.data.coupons.length !== 0
-            ? this.singleRowDirection(
-              this.props.cartItems2.Config.languageJson[
-                'Coupon Code'
-              ],
-              this.props.navigation.state.params.data.coupons,
-              'Coupon Code') : null}
           {this.props.navigation.state.params.data.coupons.length !== 0
             ? this.singleRowDirection(
-              this.props.cartItems2.Config.languageJson2.Coupon + ' ' + this.props.cartItems2.Config.languageJson2.Discount,
-            `-${this.props.navigation.state.params.data.coupon_amount}`,
-            'Coupon Discount') : null }
+                this.props.cartItems2.Config.languageJson['Coupon Code'],
+                this.props.navigation.state.params.data.coupons,
+                'Coupon Code',
+              )
+            : null}
+          {this.props.navigation.state.params.data.coupons.length !== 0
+            ? this.singleRowDirection(
+                this.props.cartItems2.Config.languageJson2.Coupon +
+                  ' ' +
+                  this.props.cartItems2.Config.languageJson2.Discount,
+                `-${this.props.navigation.state.params.data.coupon_amount}`,
+                'Coupon Discount',
+              )
+            : null}
 
-          {this.singleRowDirection(this.props.cartItems2.Config.languageJson.Tax,
-            this.props.navigation.state.params.data.total_tax
-
+          {this.singleRowDirection(
+            this.props.cartItems2.Config.languageJson.Tax,
+            this.props.navigation.state.params.data.total_tax,
           )}
           {this.singleRowDirection(
             this.props.cartItems2.Config.languageJson.Total,
             this.addCurrecny(
-              Number(this.props.navigation.state.params.data.order_price).toFixed(2)
-            )
+              Number(
+                this.props.navigation.state.params.data.order_price,
+              ).toFixed(2),
+            ),
           )}
         </View>
         {/* ///////////////////////////////// */}
       </View>
-    )
+    );
   }
 
   cancelOrder = async () => {
     const orderCreateDate = new Date(
-      this.props.navigation.state.params.data.date_created
-    )
-    const orderSeconds = orderCreateDate.getTime() / 1000
-    const timeknow = new Date()
-    const currentTime = timeknow.getTime() / 1000
+      this.props.navigation.state.params.data.date_created,
+    );
+    const orderSeconds = orderCreateDate.getTime() / 1000;
+    const timeknow = new Date();
+    const currentTime = timeknow.getTime() / 1000;
 
-    const timeToCancelOrder = this.props.cartItems2.Config.cancelOrderTime * 3600
-    const timeDiff = currentTime - orderSeconds
-    const result = timeToCancelOrder - timeDiff
+    const timeToCancelOrder =
+      this.props.cartItems2.Config.cancelOrderTime * 3600;
+    const timeDiff = currentTime - orderSeconds;
+    const result = timeToCancelOrder - timeDiff;
 
-    if (result < 0) this.refs.toast.show('Order Cancelation Time Expires!')
+    if (result < 0) this.refs.toast.show('Order Cancelation Time Expires!');
     else {
       const dat = {
-        status: 'cancelled'
-      }
+        status: 'cancelled',
+      };
       await WooComFetch.updateShippingAddress(
         this.props.navigation.state.params.data.id,
-        dat
-      )
-      this.refs.toast.show('Order Cancelled')
+        dat,
+      );
+      this.refs.toast.show('Order Cancelled');
     }
-  }
+  };
 
-  render () {
+  render() {
     return (
-      <View style={{ flex: 1, backgroundColor: themeStyle.backgroundColor }}>
+      <View style={{flex: 1, backgroundColor: themeStyle.backgroundColor}}>
         <Toast
-          ref='toast'
-          style={{ backgroundColor: '#c1c1c1' }}
-          position='bottom'
+          ref="toast"
+          style={{backgroundColor: '#c1c1c1'}}
+          position="bottom"
           positionValue={200}
           fadeOutDuration={7000}
-          textStyle={{ color: themeStyle.textColor, fontSize: themeStyle.mediumSize }}
+          textStyle={{
+            color: themeStyle.textColor,
+            fontSize: themeStyle.mediumSize,
+          }}
         />
         <ScrollView
           showsVerticalScrollIndicator={false}
           style={{
             flex: 1,
             backgroundColor: themeStyle.backgroundColor,
-            marginBottom: 30
+            marginBottom: 30,
           }}>
           {this.singleRow(
             this.props.cartItems2.Config.languageJson['Shipping Address'],
-            `${this.props.navigation.state.params.data.delivery_street_address}, ${this.props.navigation.state.params.data.delivery_city}, ${this.props.navigation.state.params.data.delivery_state} ${this.props.navigation.state.params.data.delivery_postcode}, ${this.props.navigation.state.params.data.delivery_country}`
+            `${this.props.navigation.state.params.data.delivery_street_address}, ${this.props.navigation.state.params.data.delivery_city}, ${this.props.navigation.state.params.data.delivery_state} ${this.props.navigation.state.params.data.delivery_postcode}, ${this.props.navigation.state.params.data.delivery_country}`,
           )}
 
           {this.singleRow(
             this.props.cartItems2.Config.languageJson['Billing Address'],
-            `${this.props.navigation.state.params.data.billing_street_address}, ${this.props.navigation.state.params.data.billing_city}, ${this.props.navigation.state.params.data.billing_state} ${this.props.navigation.state.params.data.billing_postcode}, ${this.props.navigation.state.params.data.billing_country}`
+            `${this.props.navigation.state.params.data.billing_street_address}, ${this.props.navigation.state.params.data.billing_city}, ${this.props.navigation.state.params.data.billing_state} ${this.props.navigation.state.params.data.billing_postcode}, ${this.props.navigation.state.params.data.billing_country}`,
           )}
 
           {this.products(
             this.props.cartItems2.Config.languageJson.Products,
-            this.props.navigation.state.params.data.data
+            this.props.navigation.state.params.data.data,
           )}
 
           {this.priceDetailCard(
-            this.props.cartItems2.Config.languageJson['Price Detail']
+            this.props.cartItems2.Config.languageJson['Price Detail'],
           )}
 
           {this.props.navigation.state.params.data.customer_comments != null
             ? this.singleRow(
-              this.props.cartItems2.Config.languageJson['Order Notes'],
-              this.props.navigation.state.params.data.customer_comments
-            )
+                this.props.cartItems2.Config.languageJson['Order Notes'],
+                this.props.navigation.state.params.data.customer_comments,
+              )
             : null}
           {this.props.navigation.state.params.data.admin_comments !== '' &&
           this.props.navigation.state.params.data.admin_comments != null
             ? this.singleRow(
-              this.props.cartItems2.Config.languageJson2['Admin Notes'],
-              this.props.navigation.state.params.data.admin_comments
-            )
+                this.props.cartItems2.Config.languageJson2['Admin Notes'],
+                this.props.navigation.state.params.data.admin_comments,
+              )
             : null}
 
           {this.singleRow(
             this.props.cartItems2.Config.languageJson['Payment Method'],
 
-            this.props.navigation.state.params.data.payment_method
+            this.props.navigation.state.params.data.payment_method,
           )}
 
           {this.props.navigation.state.params.data.orders_status ===
             'Dispatched' &&
           this.props.navigation.state.params.data.deliveryboy_info.length >
             0 ? (
-              <TouchableOpacity
-                onPress={() => {
-                  this.props.navigation.navigate('TrackLocationScreen', {
-                    data: this.props.navigation.state.params.data
-                  })
-                }}
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.navigate('TrackLocationScreen', {
+                  data: this.props.navigation.state.params.data,
+                });
+              }}
+              style={{
+                width: width * 0.95,
+                borderColor: '#fff',
+                alignItems: 'center',
+                height: 42,
+                backgroundColor: themeStyle.otherBtnsColor,
+                justifyContent: 'center',
+                alignSelf: 'center',
+                marginTop: 8,
+              }}>
+              <Text
                 style={{
-                  width: width * 0.95,
-                  borderColor: '#fff',
-                  alignItems: 'center',
-                  height: 42,
-                  backgroundColor: themeStyle.otherBtnsColor,
-                  justifyContent: 'center',
-                  alignSelf: 'center',
-                  marginTop: 8
+                  color: themeStyle.textColor,
+                  fontSize: themeStyle.mediumSize,
+                  fontWeight: '500',
+                  position: 'absolute',
                 }}>
-                <Text
-                  style={{
-                    color: themeStyle.textColor,
-                    fontSize: themeStyle.mediumSize,
-                    fontWeight: '500',
-                    position: 'absolute'
-                  }}>
-                  {this.props.cartItems2.Config.languageJson2['TRACK ORDER']}
-                </Text>
-              </TouchableOpacity>
-            ) : null}
+                {this.props.cartItems2.Config.languageJson2['TRACK ORDER']}
+              </Text>
+            </TouchableOpacity>
+          ) : null}
         </ScrollView>
       </View>
-    )
+    );
   }
 }
-const mapStateToProps = state => ({
-  cartItems2: state
-})
+const mapStateToProps = (state) => ({
+  cartItems2: state,
+});
 
-export default connect(mapStateToProps, null)(orderScreen)
+export default connect(mapStateToProps, null)(orderScreen);
