@@ -63,9 +63,9 @@ class MyCarousel extends PureComponent {
           source={{
             uri:
               item.image !== undefined
-                ? theme.url + '/' + item.image.toString().startsWith('https')
-                  ? theme.url + '/' + item.image.toString()
-                  : theme.url +
+                ? theme.image_url + '/' + item.image.toString().startsWith('https')
+                  ? theme.image_url + '/' + item.image.toString()
+                  : theme.image_url +
                     '/' +
                     item.image.toString().replace('http', 'https')
                 : ''

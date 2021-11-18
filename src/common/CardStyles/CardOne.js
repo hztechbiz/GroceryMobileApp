@@ -206,7 +206,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                 }}
                 resizeMode={'contain'}
                 source={{
-                  uri: theme.url + '/' + props.objectArray.products_image,
+                  uri: theme.image_url + '/' + props.objectArray.products_image,
                 }}></ImageLoad>
             </View>
             {t.checkProductNew(props) ? (

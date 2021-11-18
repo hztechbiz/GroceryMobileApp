@@ -40,7 +40,7 @@ class Banner extends PureComponent {
               source={{
                 uri:
                   val.news_image !== undefined
-                    ? theme.url + '/' + val.news_image.toString()
+                    ? theme.image_url + '/' + val.news_image.toString()
                     : ''
               }}
             />

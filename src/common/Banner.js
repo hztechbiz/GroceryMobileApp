@@ -83,9 +83,9 @@ class SwiperBanner extends PureComponent {
               source={{
                 uri:
                   val.image !== undefined
-                    ? theme.url + '/' + val.image.toString().startsWith('https')
-                      ? theme.url + '/' + val.image.toString()
-                      : theme.url +
+                    ? theme.image_url + '/' + val.image.toString().startsWith('https')
+                      ? theme.image_url + '/' + val.image.toString()
+                      : theme.image_url +
                         '/' +
                         val.image.toString().replace('http', 'https')
                     : '',

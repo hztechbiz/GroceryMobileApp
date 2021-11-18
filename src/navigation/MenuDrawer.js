@@ -332,7 +332,7 @@ class App extends PureComponent {
                   placeholderStyle={{width: 55, height: 55}}
                   source={{
                     uri:
-                      theme.url + '/' + SyncStorage.get('customerData').avatar,
+                      theme.image_url + '/' + SyncStorage.get('customerData').avatar,
                   }}
                   borderRadius={55 / 2}
                 />

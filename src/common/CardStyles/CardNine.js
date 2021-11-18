@@ -126,7 +126,7 @@ export default CardOne = ({ props, widthPic, t, s, btnWidth }) => (
               borderTopLeftRadius: 20 / 2,
               borderTopRightRadius: 20 / 2
             }}
-            source={{ uri: theme.url + '/' + props.objectArray.products_image }}>
+            source={{ uri: theme.image_url + '/' + props.objectArray.products_image }}>
           </ImageLoad>
           {props.objectArray.flash_price === undefined ? (
             <View

@@ -32,7 +32,7 @@ export default Category1 = props => (
       placeholderStyle={{ width: 0, height: 0 }}
       backgroundColor='transparent'
       color='transparent'
-      source={{ uri: theme.url + '/' + props.item.image }}
+      source={{ uri: theme.image_url + '/' + props.item.image }}
     />
 
     <View

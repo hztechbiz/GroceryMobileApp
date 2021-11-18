@@ -119,7 +119,7 @@ export default CardOne = ({ props, widthPic, t, btnWidth, s }) => (
               borderTopRightRadius: 0
             }}
             source={{
-              uri: theme.url + '/' + props.objectArray.products_image
+              uri: theme.image_url + '/' + props.objectArray.products_image
             }}></ImageLoad>
         </TouchableOpacity>
 

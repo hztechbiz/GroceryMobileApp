@@ -13,6 +13,7 @@ export default {
   /// /////////////////////////////
 
   url: 'https://starmartonline.pk', //your site URL
+  image_url: 'https://starmartonline.pk/public', //your site URL
   consumerKey: 'cdf716221634121829ea4985fc', // Your consumer secret
   consumerSecret: 'ca9ea115163412182933556608', // Your consumer secret
 
@@ -32,7 +33,7 @@ export default {
 
   // Banners props
   autoplay: true,
-  autoplayDelay: 5,
+  autoplayDelay: 3,
   autoplayLoop: true,
   // StatusBarColor: '#374e02',
   StatusBarColor: '#205a8e',

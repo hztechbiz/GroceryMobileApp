@@ -113,7 +113,7 @@ export default CardOne = ({ props, widthPic, t, s, btnWidth }) => (
               backgroundColor: 'rgb(236, 236, 236)',
               borderRadius: 20 / 2
             }}
-            source={{ uri: theme.url + '/' + props.objectArray.products_image }}>
+            source={{ uri: theme.image_url + '/' + props.objectArray.products_image }}>
           </ImageLoad>
           {t.checkProductNew(props) ? (
             <View

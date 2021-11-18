@@ -40,8 +40,8 @@ class Banner extends PureComponent {
           Object.create({
             url:
               val2.image === undefined
-                ? theme.url + '/' + val2
-                : theme.url + '/' + val2.image,
+                ? theme.image_url + '/' + val2
+                : theme.image_url + '/' + val2.image,
             source: require('../images/ProductDetail.png'),
             id: temp,
           }),
@@ -53,8 +53,8 @@ class Banner extends PureComponent {
         Object.create({
           url:
             props.productImage === undefined
-              ? theme.url + '/' + props.productImage
-              : theme.url + '/' + props.productImage,
+              ? theme.image_url + '/' + props.productImage
+              : theme.image_url + '/' + props.productImage,
           source: require('../images/ProductDetail.png'),
           id: 1,
         }),
@@ -72,8 +72,8 @@ class Banner extends PureComponent {
           Object.create({
             url:
               val2.image === undefined
-                ? theme.url + '/' + val2
-                : theme.url + '/' + val2.image,
+                ? theme.image_url + '/' + val2
+                : theme.image_url + '/' + val2.image,
             source: require('../images/ProductDetail.png'),
             id: temp2,
           }),
@@ -85,8 +85,8 @@ class Banner extends PureComponent {
         Object.create({
           url:
             this.props.productImage === undefined
-              ? theme.url + '/' + this.props.productImage
-              : theme.url + '/' + this.props.productImage,
+              ? theme.image_url + '/' + this.props.productImage
+              : theme.image_url + '/' + this.props.productImage,
           source: require('../images/ProductDetail.png'),
           id: 1,
         }),
