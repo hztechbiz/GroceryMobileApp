@@ -84,20 +84,20 @@ class ShippingAddress extends Component {
         this.props.cartItems2.Config.languageJson['Last Name'],
         this.props.cartItems2.Config.languageJson2.Location,
         this.props.cartItems2.Config.languageJson.Address,
-        this.props.cartItems2.Config.languageJson.Country,
-        this.props.cartItems2.Config.languageJson.Zone,
-        this.props.cartItems2.Config.languageJson.City,
-        this.props.cartItems2.Config.languageJson['Post code'],
+        // this.props.cartItems2.Config.languageJson.Country,
+        // this.props.cartItems2.Config.languageJson.Zone,
+        // this.props.cartItems2.Config.languageJson.City,
+        // this.props.cartItems2.Config.languageJson['Post code'],
       ],
 
       placeholderArray2: [
         this.props.cartItems2.Config.languageJson['First Name'],
         this.props.cartItems2.Config.languageJson['Last Name'],
         this.props.cartItems2.Config.languageJson.Address,
-        this.props.cartItems2.Config.languageJson.Country,
-        this.props.cartItems2.Config.languageJson.Zone,
-        this.props.cartItems2.Config.languageJson.City,
-        this.props.cartItems2.Config.languageJson['Post code'],
+        // this.props.cartItems2.Config.languageJson.Country,
+        // this.props.cartItems2.Config.languageJson.Zone,
+        // this.props.cartItems2.Config.languageJson.City,
+        // this.props.cartItems2.Config.languageJson['Post code'],
       ],
       switch2Value: false,
       disableCondition: true,
@@ -549,7 +549,7 @@ class ShippingAddress extends Component {
               this.refresh(name, selectedValue, id, temp),
           })
         }>
-        <View
+        {/* <View
           style={{
             // marginRight: 20,
             // marginLeft: 20,
@@ -583,8 +583,8 @@ class ShippingAddress extends Component {
             shadowRadius: 4.65,
 
             elevation: 5,
-          }}>
-          <Text
+          }}> */}
+        {/* <Text
             style={{
               color:
                 name === 'Country' || name === 'Zone'
@@ -605,8 +605,8 @@ class ShippingAddress extends Component {
               paddingVertical: 15,
             }}>
             {name}
-          </Text>
-          {nav == 'SearchFilterClass' ? (
+          </Text> */}
+        {/* {nav == 'SearchFilterClass' ? (
             <Iconone
               name="globe"
               size={20}
@@ -622,8 +622,8 @@ class ShippingAddress extends Component {
             />
           ) : (
             <></>
-          )}
-        </View>
+          )} */}
+        {/* </View> */}
       </TouchableOpacity>
     );
   }
@@ -646,7 +646,7 @@ class ShippingAddress extends Component {
             },
           })
         }>
-        <View
+        {/* <View
           style={{
             marginRight: 20,
             marginLeft: 20,
@@ -673,8 +673,8 @@ class ShippingAddress extends Component {
             // shadowRadius: 4.65,
 
             elevation: 7,
-          }}>
-          <Text
+          }}> */}
+        {/* <Text
             style={{
               color: name === 'Location' ? '#c0c0c0' : themeStyle.textColor,
               // fontSize: themeStyle.mediumSize,
@@ -685,8 +685,8 @@ class ShippingAddress extends Component {
               fontSize: 18,
             }}>
             {name}
-          </Text>
-          {/* <Icon
+          </Text> */}
+        {/* <Icon
             name={'md-locate'}
             style={{
               color: '#c0c0c0',
@@ -695,13 +695,13 @@ class ShippingAddress extends Component {
               marginBottom: -3,
             }}
           /> */}
-          <Iconone
+        {/* <Iconone
             name="map-marker-alt"
             size={20}
             style={{position: 'absolute', right: 24}}
             color="red"
-          />
-        </View>
+          /> */}
+        {/* </View> */}
       </TouchableOpacity>
     );
   }
@@ -801,40 +801,42 @@ class ShippingAddress extends Component {
   customTextView(placeholderText, index) {
     return placeholderText ===
       this.props.cartItems2.Config.languageJson2.Location ? (
-      <View>
-        {this.getLocationAddress(
-          this.state.shippingData.delivery_location === undefined ||
-            this.state.shippingData.delivery_location === null
-            ? placeholderText
-            : this.state.shippingData.delivery_location,
-        )}
-      </View>
-    ) : placeholderText ===
-      this.props.cartItems2.Config.languageJson.Country ? (
-      <View>
-        {this.searchFilterFun(
-          global.data.countries,
-          this.state.shippingData.country_name === undefined ||
-            this.state.shippingData.country_name === null
-            ? placeholderText
-            : this.state.shippingData.country_name,
-          'shipping',
-          'SearchFilterClass',
-        )}
-      </View>
-    ) : placeholderText === this.props.cartItems2.Config.languageJson.Zone ? (
-      <View>
-        {this.searchFilterFun(
-          global.data.countries,
-          this.state.shippingData.zone_name === undefined ||
-            this.state.shippingData.zone_name === null
-            ? placeholderText
-            : this.state.shippingData.zone_name,
-          'shipping',
-          'SearchFilterZone',
-        )}
-      </View>
+      <></>
+    ) : // <View>
+    //   {this.getLocationAddress(
+    //     this.state.shippingData.delivery_location === undefined ||
+    //       this.state.shippingData.delivery_location === null
+    //       ? placeholderText
+    //       : this.state.shippingData.delivery_location,
+    //   )}
+    // </View>
+    placeholderText === this.props.cartItems2.Config.languageJson.Country ? (
+      <></>
+    ) : // <View>
+    //   {this.searchFilterFun(
+    //     global.data.countries,
+    //     this.state.shippingData.country_name === undefined ||
+    //       this.state.shippingData.country_name === null
+    //       ? placeholderText
+    //       : this.state.shippingData.country_name,
+    //     'shipping',
+    //     'SearchFilterClass',
+    //   )}
+    // </View>
+    placeholderText === this.props.cartItems2.Config.languageJson.Zone ? (
+      <></>
     ) : (
+      // <View>
+      //   {this.searchFilterFun(
+      //     global.data.countries,
+      //     this.state.shippingData.zone_name === undefined ||
+      //       this.state.shippingData.zone_name === null
+      //       ? placeholderText
+      //       : this.state.shippingData.zone_name,
+      //     'shipping',
+      //     'SearchFilterZone',
+      //   )}
+      // </View>
       <TouchableOpacity activeOpacity={1}>
         <View
           style={{
@@ -865,7 +867,7 @@ class ShippingAddress extends Component {
             }}
             style={{
               // marginTop: 20,
-              // backgroundColor: 'yellow',
+              backgroundColor: 'yellow',
               // height: 38,
               // width: wp('90%'),
               borderColor:
@@ -907,15 +909,15 @@ class ShippingAddress extends Component {
                 ? (this.state.shippingData.lastname = text)
                 : index === 3
                 ? (this.state.shippingData.street = text)
-                : index === 4
-                ? (this.state.shippingData.country_name = text)
-                : index === 5
-                ? (this.state.shippingData.zone_name = text)
-                : index === 6
-                ? (this.state.shippingData.city = text)
-                : index === 7
-                ? (this.state.shippingData.postcode = text)
-                : (this.state.shippingData.phonenumber = text);
+                : // : index === 4
+                  // ? (this.state.shippingData.country_name = text)
+                  // : index === 5
+                  // ? (this.state.shippingData.zone_name = text)
+                  // : index === 6
+                  // ? (this.state.shippingData.city = text)
+                  // : index === 7
+                  // ? (this.state.shippingData.postcode = text)
+                  (this.state.shippingData.phonenumber = text);
               this.setState({shippingData: this.state.shippingData});
             }}
             value={
@@ -925,15 +927,16 @@ class ShippingAddress extends Component {
                 ? this.state.shippingData.lastname
                 : index === 3
                 ? this.state.shippingData.street
-                : index === 4
-                ? this.state.shippingData.country_name
-                : index === 5
-                ? this.state.shippingData.zone_name
-                : index === 6
-                ? this.state.shippingData.city
-                : index === 7
-                ? this.state.shippingData.postcode
-                : this.state.shippingData.phonenumber
+                : // : index === 4
+                  // ? this.state.shippingData.country_name
+                  // : index === 5
+                  // ? this.state.shippingData.zone_name
+
+                  // : index === 6
+                  // ? this.state.shippingData.city
+                  // : index === 7
+                  // ? this.state.shippingData.postcode
+                  this.state.shippingData.phonenumber
             }
           />
           {index === 0 ? (
@@ -950,21 +953,23 @@ class ShippingAddress extends Component {
               style={{position: 'absolute', right: 20}}
               color="red"
             />
-          ) : index === 6 ? (
-            <Iconone
-              name="map-marked-alt"
-              size={20}
-              style={{position: 'absolute', right: 20}}
-              color="red"
-            />
-          ) : index === 7 ? (
-            <Iconone
-              name="map-pin"
-              size={20}
-              style={{position: 'absolute', right: 20}}
-              color="red"
-            />
           ) : (
+            // : index === 6 ? (
+            //   <Iconone
+            //     name="map-marked-alt"
+            //     size={20}
+            //     style={{position: 'absolute', right: 20}}
+            //     color="red"
+            //   />
+            // )
+            // : index === 7 ? (
+            //   <Iconone
+            //     name="map-pin"
+            //     size={20}
+            //     style={{position: 'absolute', right: 20}}
+            //     color="red"
+            //   />
+            // )
             <></>
           )}
         </View>
@@ -1219,13 +1224,13 @@ class ShippingAddress extends Component {
     ) {
       temp++;
     }
-    if (
-      this.state.shippingData.delivery_location !== null &&
-      this.state.shippingData.delivery_location !== '' &&
-      this.state.shippingData.delivery_location !== undefined
-    ) {
-      temp++;
-    }
+    // if (
+    //   this.state.shippingData.delivery_location !== null &&
+    //   this.state.shippingData.delivery_location !== '' &&
+    //   this.state.shippingData.delivery_location !== undefined
+    // ) {
+    //   temp++;
+    // }
     if (
       this.state.billingArray.lastname !== null &&
       this.state.billingArray.lastname !== '' &&
@@ -1240,36 +1245,36 @@ class ShippingAddress extends Component {
     ) {
       temp++;
     }
-    if (
-      this.state.billingArray.country_name !== null &&
-      this.state.billingArray.country_name !==
-        this.props.cartItems2.Config.languageJson.Country &&
-      this.state.billingArray.country_name !== undefined
-    ) {
-      temp++;
-    }
-    if (
-      this.state.billingArray.zone_name !== null &&
-      this.state.billingArray.zone_name !==
-        this.props.cartItems2.Config.languageJson.Zone &&
-      this.state.billingArray.zone_name !== undefined
-    ) {
-      temp++;
-    }
-    if (
-      this.state.billingArray.city !== null &&
-      this.state.billingArray.city !== '' &&
-      this.state.billingArray.city !== undefined
-    ) {
-      temp++;
-    }
-    if (
-      this.state.billingArray.postcode !== null &&
-      this.state.billingArray.postcode !== '' &&
-      this.state.billingArray.postcode !== undefined
-    ) {
-      temp++;
-    }
+    // if (
+    //   this.state.billingArray.country_name !== null &&
+    //   this.state.billingArray.country_name !==
+    //     this.props.cartItems2.Config.languageJson.Country &&
+    //   this.state.billingArray.country_name !== undefined
+    // ) {
+    //   temp++;
+    // }
+    // if (
+    //   this.state.billingArray.zone_name !== null &&
+    //   this.state.billingArray.zone_name !==
+    //     this.props.cartItems2.Config.languageJson.Zone &&
+    //   this.state.billingArray.zone_name !== undefined
+    // ) {
+    //   temp++;
+    // }
+    // if (
+    //   this.state.billingArray.city !== null &&
+    //   this.state.billingArray.city !== '' &&
+    //   this.state.billingArray.city !== undefined
+    // ) {
+    //   temp++;
+    // }
+    // if (
+    //   this.state.billingArray.postcode !== null &&
+    //   this.state.billingArray.postcode !== '' &&
+    //   this.state.billingArray.postcode !== undefined
+    // ) {
+    //   temp++;
+    // }
     if (
       this.state.billingArray.phonenumber !== null &&
       this.state.billingArray.phonenumber !== '' &&
@@ -1922,7 +1927,8 @@ class ShippingAddress extends Component {
                     })
                   : this.setAddress();
               }}
-              disabled={!canBeUpdatingBillings}>
+              // disabled={!canBeUpdatingBillings}
+            >
               <View
                 style={{
                   // marginBottom: 20,
@@ -1933,7 +1939,7 @@ class ShippingAddress extends Component {
                   // backgroundColor: themeStyle.otherBtnsColor,
                   // justifyContent: 'center',
 
-                  opacity: !canBeUpdatingBillings ? 0.4 : 0.9,
+                  // opacity: !canBeUpdatingBillings ? 0.4 : 0.9,
                   marginTop: 18,
                   alignItems: 'center',
                   height: 70,
