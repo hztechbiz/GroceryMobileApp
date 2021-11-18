@@ -841,7 +841,7 @@ class ShippingAddress extends Component {
         <View
           style={{
             backgroundColor: '#fff',
-            width: '90%',
+            width: '95%',
             height: 60,
             borderColor: '#fff',
             borderWidth: 1,
@@ -867,7 +867,7 @@ class ShippingAddress extends Component {
             }}
             style={{
               // marginTop: 20,
-              backgroundColor: 'yellow',
+              // backgroundColor: '#fff',
               // height: 38,
               // width: wp('90%'),
               borderColor:
