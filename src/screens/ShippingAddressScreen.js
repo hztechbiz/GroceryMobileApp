@@ -980,34 +980,41 @@ class ShippingAddress extends Component {
   customTextView2(placeholderText, index) {
     return placeholderText ===
       this.props.cartItems2.Config.languageJson.Country ? (
-      <View>
-        {this.searchFilterFun2(
-          global.data.countries,
-          this.state.billingArray.country_name === undefined ||
-            this.state.billingArray.country_name === null
-            ? placeholderText
-            : this.state.billingArray.country_name,
-          '',
-          'SearchFilterClass',
-        )}
-      </View>
-    ) : placeholderText === this.props.cartItems2.Config.languageJson.Zone ? (
-      <View>
-        {this.searchFilterFun2(
-          global.data.countries,
-          this.state.billingArray.zone_name === undefined ||
-            this.state.billingArray.zone_name === null
-            ? placeholderText
-            : this.state.billingArray.zone_name,
-          '',
-          'SearchFilterZone',
-        )}
-      </View>
+      <></>
+    ) : // <View>
+    //   {this.searchFilterFun2(
+    //     global.data.countries,
+    //     this.state.billingArray.country_name === undefined ||
+    //       this.state.billingArray.country_name === null
+    //       ? placeholderText
+    //       : this.state.billingArray.country_name,
+    //     '',
+    //     'SearchFilterClass',
+    //   )}
+    // </View>
+    placeholderText === this.props.cartItems2.Config.languageJson.Zone ? (
+      <></>
     ) : (
+      // <View>
+      //   {this.searchFilterFun2(
+      //     global.data.countries,
+      //     this.state.billingArray.zone_name === undefined ||
+      //       this.state.billingArray.zone_name === null
+      //       ? placeholderText
+      //       : this.state.billingArray.zone_name,
+      //     '',
+      //     'SearchFilterZone',
+      //   )}
+      // </View>
+      // {
+      //   this.state.switch2Value == true ? (<> </> ) : (<> </>)
+      // }
       <TouchableOpacity activeOpacity={1}>
+        {/* {this.state.switch2Value == true ? (<> </>) : (<> </>)} */}
         <View
           style={{
-            backgroundColor: '#fff',
+            // backgroundColor: '#fff',
+            backgroundColor: 'pink',
             width: '95%',
             height: 60,
             borderColor: '#fff',
@@ -1028,79 +1035,83 @@ class ShippingAddress extends Component {
 
             elevation: 5,
           }}>
-          <TextInput
-            ref={(c) => {
-              this.form = c;
-            }}
-            style={{
-              // backgroundColor: 'pink',
-              // marginTop: 20,
-              // height: 38,
-              // width: wp('90%'),
-              borderColor:
-                index === 7
-                  ? this.phoneNumberCheckbillingArray() ||
-                    this.state.billingArray.phonenumber === undefined
-                    ? '#c0c0c0'
-                    : 'red'
-                  : '#c0c0c0',
-              // borderBottomWidth: 1,
-              // marginLeft: 20,
-              // fontSize: themeStyle.mediumSize,
-              // textAlign: I18nManager.isRTL ? 'right' : 'left',
-              // paddingLeft: 6,
-              // paddingRight: 6,
-              // color: themeStyle.textColor,
+          {this.state.switch2Value == true ? (
+            <></>
+          ) : (
+            <TextInput
+              ref={(c) => {
+                this.form = c;
+              }}
+              style={{
+                // backgroundColor: 'pink',
+                // marginTop: 20,
+                // height: 38,
+                // width: wp('90%'),
+                borderColor:
+                  index === 7
+                    ? this.phoneNumberCheckbillingArray() ||
+                      this.state.billingArray.phonenumber === undefined
+                      ? '#c0c0c0'
+                      : 'red'
+                    : '#c0c0c0',
+                // borderBottomWidth: 1,
+                // marginLeft: 20,
+                // fontSize: themeStyle.mediumSize,
+                // textAlign: I18nManager.isRTL ? 'right' : 'left',
+                // paddingLeft: 6,
+                // paddingRight: 6,
+                // color: themeStyle.textColor,
 
-              fontFamily: 'Lato-Regular',
-              fontSize: 18,
-              color: 'black',
-              width: '100%',
-              height: '100%',
-              paddingHorizontal: 20,
-            }}
-            selectionColor="#51688F"
-            keyboardType={
-              index === 7
-                ? Platform.OS === 'ios'
-                  ? 'number-pad'
-                  : 'phone-pad'
-                : 'default'
-            }
-            placeholder={` ${placeholderText}`}
-            placeholderTextColor={'#c0c0c0'}
-            onChangeText={(text) => {
-              index === 0
-                ? (this.state.billingArray.firstname = text)
-                : index === 1
-                ? (this.state.billingArray.lastname = text)
-                : index === 2
-                ? (this.state.billingArray.street = text)
-                : index === 3
-                ? (this.state.billingArray.country_name = text)
-                : index === 4
-                ? (this.state.billingArray.zone_name = text)
-                : index === 5
-                ? (this.state.billingArray.city = text)
-                : (this.state.billingArray.postcode = text);
-              this.setState({billingArray: this.state.billingArray});
-            }}
-            value={
-              index === 0
-                ? this.state.billingArray.firstname
-                : index === 1
-                ? this.state.billingArray.lastname
-                : index === 2
-                ? this.state.billingArray.street
-                : index === 3
-                ? this.state.billingArray.country_name
-                : index === 4
-                ? this.state.billingArray.zone_name
-                : index === 5
-                ? this.state.billingArray.city
-                : this.state.billingArray.postcode
-            }
-          />
+                fontFamily: 'Lato-Regular',
+                fontSize: 18,
+                color: 'black',
+                width: '100%',
+                height: '100%',
+                paddingHorizontal: 20,
+              }}
+              selectionColor="#51688F"
+              keyboardType={
+                index === 7
+                  ? Platform.OS === 'ios'
+                    ? 'number-pad'
+                    : 'phone-pad'
+                  : 'default'
+              }
+              placeholder={` ${placeholderText}`}
+              placeholderTextColor={'#c0c0c0'}
+              onChangeText={(text) => {
+                index === 0
+                  ? (this.state.billingArray.firstname = text)
+                  : index === 1
+                  ? (this.state.billingArray.lastname = text)
+                  : index === 2
+                  ? (this.state.billingArray.street = text)
+                  : index === 3
+                  ? (this.state.billingArray.country_name = text)
+                  : index === 4
+                  ? (this.state.billingArray.zone_name = text)
+                  : index === 5
+                  ? (this.state.billingArray.city = text)
+                  : (this.state.billingArray.postcode = text);
+                this.setState({billingArray: this.state.billingArray});
+              }}
+              value={
+                index === 0
+                  ? this.state.billingArray.firstname
+                  : index === 1
+                  ? this.state.billingArray.lastname
+                  : index === 2
+                  ? this.state.billingArray.street
+                  : index === 3
+                  ? this.state.billingArray.country_name
+                  : index === 4
+                  ? this.state.billingArray.zone_name
+                  : index === 5
+                  ? this.state.billingArray.city
+                  : this.state.billingArray.postcode
+              }
+            />
+          )}
 
           {index === 0 ? (
             <Iconone
@@ -1737,7 +1748,7 @@ class ShippingAddress extends Component {
                 value={this.state.shippingData.phonenumber}
                 placeholderTextColor={'#c0c0c0'}
                 keyboardType="phone-pad"
-                placeholder="Enter Phone Number"
+                placeholder="Enter Phone Number 1"
                 textAlign="left"
               />
 
@@ -1788,17 +1799,22 @@ class ShippingAddress extends Component {
               </Text>
             </View>
 
-            <FlatList
-              data={this.state.placeholderArray2}
-              extraData={this.state}
-              keyExtractor={(item, index) => index.toString()}
-              renderItem={(item) =>
-                this.customTextView2(
-                  this.state.placeholderArray2[item.index],
-                  item.index,
-                )
-              }
-            />
+            {this.state.switch2Value == true ? (
+              <></>
+            ) : (
+              <FlatList
+                data={this.state.placeholderArray2}
+                extraData={this.state}
+                keyExtractor={(item, index) => index.toString()}
+                renderItem={(item) =>
+                  this.customTextView2(
+                    this.state.placeholderArray2[item.index],
+                    item.index,
+                  )
+                }
+              />
+            )}
+
             {!this.phoneNumberCheckbillingArray() &&
             this.state.billingArray.phonenumber !== undefined ? (
               <Text
@@ -1825,100 +1841,104 @@ class ShippingAddress extends Component {
                 {this.state.errorPhoneMessage}
               </Text>
             ) : null}
-
-            <View
-              style={{
-                // flexDirection: 'row',
-                // justifyContent: 'center',
-                // alignItems: 'center',
-
-                backgroundColor: '#fff',
-                width: '90%',
-                height: 60,
-                borderColor: '#fff',
-                borderWidth: 1,
-                borderRadius: 12,
-                flexDirection: 'row',
-                alignItems: 'center',
-                alignSelf: 'center',
-                marginBottom: 12,
-                marginTop: 5,
-                shadowColor: '#000',
-                shadowOffset: {
-                  width: 0,
-                  height: 3,
-                },
-                shadowOpacity: 0.29,
-                shadowRadius: 4.65,
-
-                elevation: 5,
-              }}>
-              <Content>
-                <Picker
-                  style={[
-                    styles.picker,
-                    {
-                      width: WIDTH * 0.3,
-                      height: 54,
-                      backgroundColor: themeStyle.backgroundColor,
-                      marginRight: 0,
-                      marginLeft: Platform.OS === 'android' ? 16 : 13,
-                      marginTop: 1,
-                    },
-                  ]}
-                  textStyle={{
-                    color: themeStyle.textColor,
-                    fontSize: themeStyle.mediumSize,
-                  }}
-                  itemStyle={{fontSize: themeStyle.mediumSize, height: 95}}
-                  selectedValue={this.state.billingCountryCode}
-                  onValueChange={(billingCountryCode) =>
-                    this.setState({billingCountryCode})
-                  }>
-                  {CountryCodePicker.map((cc) => (
-                    <Picker.Item
-                      key={cc[2]}
-                      label={`${cc[0]} +${cc[1]}`}
-                      value={`${cc[2]}`}
-                    />
-                  ))}
-                </Picker>
-              </Content>
-              <TextInput
+            {this.state.switch2Value == true ? (
+              <></>
+            ) : (
+              <View
                 style={{
-                  // fontSize: this.state.textSize3,
-                  // marginRight: Platform.OS === 'android' ? 20 : 17,
-                  // height: 50,
-                  // width: wp('66%'),
-                  // borderBottomWidth: 1,
-                  // textAlign: I18nManager.isRTL ? 'right' : 'left',
-                  // paddingLeft: 6,
-                  // paddingRight: 6,
-                  // color: themeStyle.textColor,
-                  // borderBottomColor: '#c0c0c0',
+                  // flexDirection: 'row',
+                  // justifyContent: 'center',
+                  // alignItems: 'center',
 
-                  fontFamily: 'Lato-Regular',
-                  fontSize: 18,
-                  color: 'black',
-                  width: '100%',
-                  height: '100%',
-                  paddingHorizontal: 20,
-                }}
-                onChangeText={(num) => this.onTextChange2(num)}
-                value={this.state.billingArray.phonenumber}
-                keyboardType="phone-pad"
-                placeholderTextColor={'#c0c0c0'}
-                placeholder="Enter Phone Number"
-                textAlign="left"
-              />
+                  backgroundColor: '#fff',
+                  width: '90%',
+                  height: 60,
+                  borderColor: '#fff',
+                  borderWidth: 1,
+                  borderRadius: 12,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  alignSelf: 'center',
+                  marginBottom: 12,
+                  marginTop: 5,
+                  shadowColor: '#000',
+                  shadowOffset: {
+                    width: 0,
+                    height: 3,
+                  },
+                  shadowOpacity: 0.29,
+                  shadowRadius: 4.65,
 
-              <Iconone
-                name="phone"
-                size={20}
-                style={{position: 'absolute', right: 20}}
-                color="red"
-              />
-            </View>
+                  elevation: 5,
+                }}>
+                <Content>
+                  <Picker
+                    style={[
+                      styles.picker,
+                      {
+                        width: WIDTH * 0.3,
+                        height: 54,
+                        backgroundColor: themeStyle.backgroundColor,
+                        marginRight: 0,
+                        marginLeft: Platform.OS === 'android' ? 16 : 13,
+                        marginTop: 1,
+                      },
+                    ]}
+                    textStyle={{
+                      color: themeStyle.textColor,
+                      fontSize: themeStyle.mediumSize,
+                    }}
+                    itemStyle={{fontSize: themeStyle.mediumSize, height: 95}}
+                    selectedValue={this.state.billingCountryCode}
+                    onValueChange={(billingCountryCode) =>
+                      this.setState({billingCountryCode})
+                    }>
+                    {CountryCodePicker.map((cc) => (
+                      <Picker.Item
+                        key={cc[2]}
+                        label={`${cc[0]} +${cc[1]}`}
+                        value={`${cc[2]}`}
+                      />
+                    ))}
+                  </Picker>
+                </Content>
+                <TextInput
+                  style={{
+                    // fontSize: this.state.textSize3,
+                    // marginRight: Platform.OS === 'android' ? 20 : 17,
+                    // height: 50,
+                    // width: wp('66%'),
+                    // borderBottomWidth: 1,
+                    // textAlign: I18nManager.isRTL ? 'right' : 'left',
+                    // paddingLeft: 6,
+                    // paddingRight: 6,
+                    // color: themeStyle.textColor,
+                    // borderBottomColor: '#c0c0c0',
+
+                    fontFamily: 'Lato-Regular',
+                    fontSize: 18,
+                    color: 'black',
+                    width: '100%',
+                    height: '100%',
+                    paddingHorizontal: 20,
+                  }}
+                  onChangeText={(num) => this.onTextChange2(num)}
+                  value={this.state.billingArray.phonenumber}
+                  keyboardType="phone-pad"
+                  placeholderTextColor={'#c0c0c0'}
+                  placeholder="Enter Phone Number 2"
+                  textAlign="left"
+                />
+
+                <Iconone
+                  name="phone"
+                  size={20}
+                  style={{position: 'absolute', right: 20}}
+                  color="red"
+                />
+              </View>
+            )}
+
             <TouchableOpacity
               onPress={() => {
                 this.props.cartItems2.Config.enablePhoneLogin
