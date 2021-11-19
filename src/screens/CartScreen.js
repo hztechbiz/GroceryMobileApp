@@ -585,7 +585,7 @@ class Cart extends Component {
                       ActivityIndicator={true}
                       placeholderStyle={{width: 0, height: 0}}
                       source={{
-                        uri: themeStyle.url + '/' + item.item.image,
+                        uri: themeStyle.image_url + '/' + item.item.image,
                       }}
                     />
                   </View>

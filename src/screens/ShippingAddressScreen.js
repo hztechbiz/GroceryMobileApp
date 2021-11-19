@@ -488,25 +488,95 @@ class ShippingAddress extends Component {
   // <!-- 2.0 updates -->
   setAddress() {
     const orderDetails = SyncStorage.get('orderDetails');
-    orderDetails.billing_firstname = this.state.billingArray.firstname;
-    orderDetails.billing_lastname = this.state.billingArray.lastname;
-    orderDetails.billing_state = this.state.billingArray.zone_name;
-    orderDetails.billing_location = orderDetails.delivery_location;
-    orderDetails.billing_city = this.state.billingArray.city;
-    orderDetails.billing_postcode = this.state.billingArray.postcode;
-    orderDetails.billing_zone = this.state.billingArray.zone_name;
-    orderDetails.billing_country = this.state.billingArray.country_name;
-    orderDetails.billing_street_address = this.state.billingArray.street;
-    orderDetails.billing_phone = this.state.billingArray.phonenumber;
-    orderDetails.delivery_firstname = this.state.shippingData.firstname;
-    orderDetails.delivery_lastname = this.state.shippingData.lastname;
-    orderDetails.delivery_state = this.state.shippingData.state;
-    orderDetails.delivery_city = this.state.shippingData.city;
-    orderDetails.delivery_postcode = this.state.shippingData.postcode;
-    orderDetails.delivery_zone = this.state.shippingData.zone_name;
-    orderDetails.delivery_country = this.state.shippingData.country_name;
-    orderDetails.delivery_street_address = this.state.shippingData.street;
+    orderDetails.billing_firstname = this.state.billingArray.firstname; //Active_Field
+    orderDetails.billing_lastname = this.state.billingArray.lastname; //Active_Field
+
+    // ==================Billing State==================
+    orderDetails.billing_state =
+      this.state.billingArray.zone_name == null ||
+      this.state.billingArray.zone_name == undefined
+        ? (this.state.billingArray.zone_name = 'State')
+        : (this.state.billingArray.zone_name = 'Billing State nothing');
+
+    // ==================Billing Location==================
+    orderDetails.billing_location =
+      orderDetails.delivery_location == null ||
+      orderDetails.delivery_location == undefined
+        ? (orderDetails.delivery_location = 'Location')
+        : (orderDetails.delivery_location = 'Billing Location nothing');
+
+    // ==================Billing City==================
+    orderDetails.billing_city =
+      this.state.billingArray.city == null ||
+      this.state.billingArray.city == undefined
+        ? (this.state.billingArray.city = 'City')
+        : (this.state.billingArray.city = 'City nothing');
+
+    // ==================Billing Postcode==================
+    orderDetails.billing_postcode =
+      this.state.billingArray.postcode == null ||
+      this.state.billingArray.postcode == undefined
+        ? (this.state.billingArray.postcode = 'Postcode')
+        : (this.state.billingArray.postcode = 'Billing Postcode nothing');
+
+    // ==================Billing Zone Name==================
+    orderDetails.billing_zone =
+      this.state.billingArray.zone_name == null ||
+      this.state.billingArray.zone_name == undefined
+        ? (this.state.billingArray.zone_name = 'Zone')
+        : (this.state.billingArray.zone_name = 'Billing Zone nothing');
+
+    // ==================Billing Country==================
+    orderDetails.billing_country =
+      this.state.billingArray.country_name == null ||
+      this.state.billingArray.country_name == undefined
+        ? (this.state.billingArray.country_name = 'Country')
+        : (this.state.billingArray.country_name = 'Billing Country nothing');
+
+    orderDetails.billing_street_address = this.state.billingArray.street; //Active_Field
+    orderDetails.billing_phone = this.state.billingArray.phonenumber; //Active_Field
+
+    orderDetails.delivery_firstname = this.state.shippingData.firstname; //Active_Field
+    orderDetails.delivery_lastname = this.state.shippingData.lastname; //Active_Field
+
+    // ==================Delivery State==================
+    orderDetails.delivery_state =
+      this.state.shippingData.state == null ||
+      this.state.shippingData.state == undefined
+        ? (this.state.shippingData.state = 'State')
+        : (this.state.shippingData.state = 'Delivery State nothing');
+
+    // ==================Delivery City==================
+    orderDetails.delivery_city =
+      this.state.shippingData.city == null ||
+      this.state.shippingData.city == undefined
+        ? (this.state.shippingData.city = 'City')
+        : (this.state.shippingData.city = 'Delivery City nothing');
+
+    // ==================Delivery Postcode==================
+    orderDetails.delivery_postcode =
+      this.state.shippingData.postcode == null ||
+      this.state.shippingData.postcode == undefined
+        ? (this.state.shippingData.postcode = 'Postcode')
+        : (this.state.shippingData.postcode = 'Delivery Postcode nothing');
+
+    // ==================Delivery Zone==================
+    orderDetails.delivery_zone =
+      this.state.shippingData.zone_name == null ||
+      this.state.shippingData.zone_name == undefined
+        ? (this.state.shippingData.zone_name = 'Zone')
+        : (this.state.shippingData.zone_name = 'Delivery Zone nothing');
+
+    // ==================Delivery Country==================
+    orderDetails.delivery_country =
+      this.state.shippingData.country_name == null ||
+      this.state.shippingData.country_name == undefined
+        ? (this.state.shippingData.country_name = 'Country')
+        : (this.state.shippingData.country_name = 'Delivery Country nothing');
+
+    orderDetails.delivery_street_address = this.state.shippingData.street; //Active_Field
     SyncStorage.set('orderDetails', orderDetails);
+    console.log(orderDetails, 'Hello...................!');
     this.props.navigation.navigate('ShippingMethodScreen');
   }
 
@@ -1013,8 +1083,7 @@ class ShippingAddress extends Component {
         {/* {this.state.switch2Value == true ? (<> </>) : (<> </>)} */}
         <View
           style={{
-            // backgroundColor: '#fff',
-            backgroundColor: 'pink',
+            backgroundColor: '#fff',
             width: '95%',
             height: 60,
             borderColor: '#fff',
