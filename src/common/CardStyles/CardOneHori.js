@@ -10,6 +10,8 @@ import {
 import ImageLoad from '../RnImagePlaceH';
 import {Icon} from 'native-base';
 import Ionicons from 'react-native-vector-icons/FontAwesome';
+import Shopicon from 'react-native-vector-icons/FontAwesome5';
+import Shopicons from 'react-native-vector-icons/MaterialIcons';
 import theme from '../Theme.style';
 const WIDTH = Dimensions.get('window').width;
 export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
@@ -20,7 +22,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
       shadowOffset: {width: 1, height: 1},
       shadowColor: theme.textColor,
       shadowOpacity: 0.3,
-      elevation: 3,
+      // elevation: 7,
       margin: 5,
       marginBottom: 8,
     }}>
@@ -44,7 +46,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
           }}>
           <Icon
             style={{
-              color: 'green',
+              color: '#641ae4',
             }}
             name="checkmark-circle"
             size={40}
@@ -61,10 +63,12 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
           flex: 1,
           flexDirection: 'row',
           width: WIDTH,
-          backgroundColor: theme.backgroundColor,
+          // backgroundColor: theme.backgroundColor,
+          backgroundColor: '#f5fafe',
+          // backgroundColor: 'gray',
           shadowOffset: {width: 1, height: 1},
           shadowColor: theme.textColor,
-          elevation: 2,
+          elevation: 0, //card_elevation
           padding: 5,
           opacity: t.newMethod3(props, t) === 1 ? 0.1 : 1,
         }}>
@@ -78,8 +82,10 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
           <ImageLoad
             key={props.objectArray.id}
             style={{
-              height: 90,
-              width: 90,
+              height: 105,
+              width: 105,
+              borderRadius: 6,
+              elevation: 5,
               backgroundColor: 'rgb(236, 236, 236)',
             }}
             loadingStyle={{size: 'large', color: theme.loadingIndicatorColor}}
@@ -95,12 +101,13 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
             padding: 8,
             paddingLeft: 1,
             paddingBottom: 0,
+            marginLeft: 25,
           }}>
           <View
             style={{
               flexDirection: 'row',
               justifyContent: 'space-between',
-              marginLeft: -5,
+              marginLeft: 0,
             }}>
             <View style={{width: WIDTH * 0.54}}>
               <Text
@@ -114,6 +121,8 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
                   paddingTop: Platform.OS === 'android' ? 1 : 2,
                   paddingBottom: 1,
                   marginBottom: 0,
+                  textTransform: 'capitalize',
+                  fontWeight: 'bold',
                 }}
                 numberOfLines={1}>
                 {props.objectArray.products_name}
@@ -145,7 +154,8 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
               marginTop: 2,
               flexDirection: 'row',
               justifyContent: 'space-between',
-              marginBottom: 14,
+              marginBottom: 0,
+              marginLeft: 5,
             }}>
             <View>
               {props.objectArray.flash_price !== undefined ? (
@@ -240,6 +250,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
               )}
             </View>
           </View>
+
           <View
             style={{
               flex: 1,
@@ -258,7 +269,8 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
             props.inventory == 1 ? (
               <TouchableOpacity
                 style={{
-                  margin: 5,
+                  // margin: 5,
+                  marginLeft: 8,
                   width: btnWidth / 3,
                   marginBottom: 3,
                   marginTop: 0,
@@ -272,32 +284,63 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
                 }}>
                 <View
                   style={{
-                    padding: 5,
-                    margin: 5,
-                    width: btnWidth / 3.5,
-                    backgroundColor: theme.outOfStockBtnColor,
+                    // padding: 5,
+                    // margin: 5,
+                    width: btnWidth / 3.1,
+                    backgroundColor: 'transparent',
+                    borderWidth: 1.7,
+                    borderColor: '#ed1c24',
                     justifyContent: 'center',
                     alignItems: 'center',
                     alignSelf: 'center',
                     marginTop: -14,
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
                     marginBottom: 0,
-                    borderRadius: 5,
+                    borderRadius: 7,
+                    borderTopRightRadius: 20,
+                    borderBottomRightRadius: 20,
                   }}>
                   <Text
                     style={{
-                      color: theme.outOfStockBtnTextColor,
+                      // color: theme.outOfStockBtnTextColor,
+                      color: '#ed1c24',
                       fontSize: theme.mediumSize - 3,
                       fontWeight: '500',
+                      textTransform: 'capitalize',
+                      paddingLeft: 8,
                     }}
                     numberOfLines={1}>
                     {t.props.language['OUT OF STOCK']}
                   </Text>
+                  <View
+                    style={{
+                      height: '100%',
+                      width: '26%',
+                      backgroundColor: '#ed1c24',
+                      borderRadius: 15,
+                      alignSelf: 'flex-end',
+                    }}>
+                    <Shopicons
+                      style={{
+                        alignSelf: 'center',
+                        marginVertical: 6,
+                        padding: 2,
+                        alignItems: 'center',
+                      }}
+                      name="remove-shopping-cart"
+                      type="evilicon"
+                      color="#ffff"
+                      size={11}
+                    />
+                  </View>
                 </View>
               </TouchableOpacity>
             ) : props.objectArray.products_type === 0 && props.addToCart ? (
               <TouchableOpacity
                 style={{
-                  margin: 5,
+                  // margin: 9,
+                  marginLeft: 8,
                   width: btnWidth / 3,
                   marginBottom: 3,
                   marginTop: 0,
@@ -316,25 +359,57 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
                 }}>
                 <View
                   style={{
-                    padding: 5,
-                    margin: 5,
-                    width: btnWidth / 3.5,
-                    backgroundColor: theme.addToCartBtnColor,
+                    // padding: 2,
+                    // paddingVertical: 2,
+                    // margin: 5,
+                    width: btnWidth / 3.1,
+                    // backgroundColor: theme.addToCartBtnColor,
+                    backgroundColor: 'transparent',
+                    borderWidth: 1.7,
+                    borderColor: '#641ae4',
                     justifyContent: 'center',
                     alignItems: 'center',
                     alignSelf: 'center',
                     marginTop: -14,
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
                     marginBottom: 0,
-                    borderRadius: 5,
+                    borderRadius: 7,
+                    borderTopRightRadius: 20,
+                    borderBottomRightRadius: 20,
                   }}>
                   <Text
                     style={{
-                      color: theme.addToCartBtnTextColor,
-                      fontSize: theme.mediumSize - 2,
+                      // color: theme.addToCartBtnTextColor,
+                      color: '#641ae4',
+                      fontSize: theme.mediumSize - 3,
                       fontWeight: '500',
+                      textTransform: 'capitalize',
+                      paddingLeft: 8,
                     }}>
                     {t.props.language['Add to Cart']}
                   </Text>
+                  <View
+                    style={{
+                      height: '100%',
+                      width: '26%',
+                      backgroundColor: '#641ae4',
+                      borderRadius: 15,
+                      alignSelf: 'flex-end',
+                    }}>
+                    <Shopicon
+                      style={{
+                        alignSelf: 'center',
+                        marginVertical: 6,
+                        padding: 3,
+                        alignItems: 'center',
+                      }}
+                      name="shopping-basket"
+                      type="evilicon"
+                      color="#ffff"
+                      size={9}
+                    />
+                  </View>
                 </View>
               </TouchableOpacity>
             ) : t.props.cartButton ? (
