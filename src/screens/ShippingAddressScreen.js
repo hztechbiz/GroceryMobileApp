@@ -435,17 +435,17 @@ class ShippingAddress extends Component {
     let temp = 0;
 
     let temp2 = 0;
-    for (let i = 0; i <= 10; i++) {
+    for (let i = 0; i <= 3; i++) {
       if (this.state.billingArray[i] !== undefined) {
         temp++;
       }
     }
-    for (let i = 0; i <= 8; i++) {
+    for (let i = 0; i <= 3; i++) {
       if (this.state.shippingData[i] !== undefined) {
         temp2++;
       }
     }
-    if (temp === 11 && temp2 === 9) {
+    if (temp === 3 && temp2 === 3) {
       temp = 0;
       this.setState({disableCondition: false, errorMessage: ''});
     } else {
@@ -979,7 +979,8 @@ class ShippingAddress extends Component {
                 ? (this.state.shippingData.lastname = text)
                 : index === 3
                 ? (this.state.shippingData.street = text)
-                : // : index === 4
+                : (this.state.shippingData.phonenumber = text); 
+                  // : index === 4
                   // ? (this.state.shippingData.country_name = text)
                   // : index === 5
                   // ? (this.state.shippingData.zone_name = text)
@@ -987,8 +988,8 @@ class ShippingAddress extends Component {
                   // ? (this.state.shippingData.city = text)
                   // : index === 7
                   // ? (this.state.shippingData.postcode = text)
-                  (this.state.shippingData.phonenumber = text);
-              this.setState({shippingData: this.state.shippingData});
+                  // (this.state.shippingData.phonenumber = text);
+              this.setState({shiSppingData: this.state.shippingData});
             }}
             value={
               index === 0
@@ -997,16 +998,16 @@ class ShippingAddress extends Component {
                 ? this.state.shippingData.lastname
                 : index === 3
                 ? this.state.shippingData.street
-                : // : index === 4
+                : this.state.shippingData.phonenumber
+                  // : index === 4
                   // ? this.state.shippingData.country_name
                   // : index === 5
                   // ? this.state.shippingData.zone_name
-
                   // : index === 6
                   // ? this.state.shippingData.city
                   // : index === 7
                   // ? this.state.shippingData.postcode
-                  this.state.shippingData.phonenumber
+                  // this.state.shippingData.phonenumber
             }
           />
           {index === 0 ? (
@@ -1224,22 +1225,22 @@ class ShippingAddress extends Component {
       this.state.billingArray.firstname = this.state.shippingData.firstname;
       this.state.billingArray.lastname = this.state.shippingData.lastname;
       this.state.billingArray.street = this.state.shippingData.street;
-      this.state.billingArray.country_name =
-        this.state.shippingData.country_name;
-      this.state.billingArray.zone_name = this.state.shippingData.zone_name;
-      this.state.billingArray.city = this.state.shippingData.city;
-      this.state.billingArray.postcode = this.state.shippingData.postcode;
+      // this.state.billingArray.country_name =
+      //   this.state.shippingData.country_name;
+      // this.state.billingArray.zone_name = this.state.shippingData.zone_name;
+      // this.state.billingArray.city = this.state.shippingData.city;
+      // this.state.billingArray.postcode = this.state.shippingData.postcode;
       this.state.billingArray.phonenumber = this.state.shippingData.phonenumber;
     } else {
       this.state.billingArray.firstname = '';
       this.state.billingArray.lastname = '';
       this.state.billingArray.street = '';
-      this.state.billingArray.country_name =
-        this.props.cartItems2.Config.languageJson.Country;
-      this.state.billingArray.zone_name =
-        this.props.cartItems2.Config.languageJson.Zone;
-      this.state.billingArray.city = '';
-      this.state.billingArray.postcode = '';
+      // this.state.billingArray.country_name =
+      //   this.props.cartItems2.Config.languageJson.Country;
+      // this.state.billingArray.zone_name =
+      //   this.props.cartItems2.Config.languageJson.Zone;
+      // this.state.billingArray.city = '';
+      // this.state.billingArray.postcode = '';
       this.state.billingArray.phonenumber = '';
     }
     this.setState({
@@ -1277,7 +1278,7 @@ class ShippingAddress extends Component {
   /// ///////////////////////////////////
   canBeUpdatingBilling() {
     let temp = 0;
-    for (let i = 0; i <= 8; i++) {
+    for (let i = 0; i <= 3; i++) {
       if (
         this.state.billingArray[i] !== undefined &&
         this.state.billingArray[i] !== ''
@@ -1363,7 +1364,7 @@ class ShippingAddress extends Component {
       temp++;
     }
     if (
-      temp === 9 &&
+      temp === 4 &&
       this.phoneNumberCheckbillingArray() &&
       this.phoneNumberCheckshipping()
     ) {
@@ -2016,7 +2017,7 @@ class ShippingAddress extends Component {
                     })
                   : this.setAddress();
               }}
-              // disabled={!canBeUpdatingBillings}
+              disabled={!canBeUpdatingBillings}
             >
               <View
                 style={{
@@ -2028,7 +2029,7 @@ class ShippingAddress extends Component {
                   // backgroundColor: themeStyle.otherBtnsColor,
                   // justifyContent: 'center',
 
-                  // opacity: !canBeUpdatingBillings ? 0.4 : 0.9,
+                  opacity: !canBeUpdatingBillings ? 0.4 : 0.9,
                   marginTop: 18,
                   alignItems: 'center',
                   height: 70,
