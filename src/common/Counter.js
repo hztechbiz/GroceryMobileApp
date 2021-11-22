@@ -127,7 +127,7 @@ export default class Counter extends PureComponent {
             justifyContent: 'center',
             alignItems: 'center',
             alignSelf: 'center',
-            backgroundColor: theme.otherBtnsColor,
+            backgroundColor: '#641ae4',
             // borderRadius: 10 / 2,
             borderRadius: 12,
 
