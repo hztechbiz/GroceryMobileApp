@@ -8,6 +8,7 @@ import {
   I18nManager,
   Dimensions,
   Platform,
+  Image,
 } from 'react-native';
 import {UIActivityIndicator} from 'react-native-indicators';
 import {CardStyleInterpolators} from 'react-navigation-stack';
@@ -536,9 +537,11 @@ class Newest extends PureComponent {
           {/* ///////////////////////////////////////////////////////////////// */}
           <View
             style={{
-              height: 45,
+              height: 150,
               width: WIDTH,
               marginBottom: 3,
+              // marginTop: 5,
+              backgroundColor: '#f5fafe',
             }}>
             <FlatList
               showsHorizontalScrollIndicator={false}
@@ -550,53 +553,60 @@ class Newest extends PureComponent {
                 borderColor: themeStyle.textColor,
 
                 // backgroundColor: themeStyle.backgroundColor,
-                backgroundColor: '#f5fafe',
-                elevation: 5,
+                // backgroundColor: '#f5fafe',
+                // backgroundColor: 'red',
+                // elevation: 5,
                 shadowOffset: {width: 5, height: 6},
                 shadowColor: '#000',
                 shadowOpacity: 0.9,
+                // marginTop: 6,
+                // marginVertical: 100,
+                // marginTop: 10,
+                // justifyContent: 'center',
+                // alignItems: 'center',
               }}
               ListHeaderComponent={
                 this.props.allCategories !== null ? (
-                  <TouchableOpacity
-                    disabled={
-                      this.state.selectedTab === '' ||
-                      this.state.selectedTab === undefined
-                    }
-                    onPress={() =>
-                      this.setState({products: [], tempApply: false}, () => {
-                        this.changeTab('');
-                      })
-                    }
-                    style={{
-                      borderBottomColor:
-                        this.state.selectedTab === '' ||
-                        this.state.selectedTab === undefined
-                          ? '#ed1c24'
-                          : themeStyle.textColor,
-                      borderBottomWidth:
-                        this.state.selectedTab === '' ||
-                        this.state.selectedTab === undefined
-                          ? 2
-                          : 0,
-                    }}>
-                    <Text
-                      style={{
-                        padding: 12,
-                        paddingLeft: 16,
-                        paddingRight: 16,
-                        fontFamily: 'Roboto',
-                        fontSize: 14,
-                        fontWeight: '400',
-                        color:
-                          this.state.selectedTab === '' ||
-                          this.state.selectedTab === undefined
-                            ? '#404040'
-                            : '#939596',
-                      }}>
-                      {this.props.language.All}
-                    </Text>
-                  </TouchableOpacity>
+                  // <TouchableOpacity
+                  //   disabled={
+                  //     this.state.selectedTab === '' ||
+                  //     this.state.selectedTab === undefined
+                  //   }
+                  //   onPress={() =>
+                  //     this.setState({products: [], tempApply: false}, () => {
+                  //       this.changeTab('');
+                  //     })
+                  //   }
+                  //   style={{
+                  //     borderBottomColor:
+                  //       this.state.selectedTab === '' ||
+                  //       this.state.selectedTab === undefined
+                  //         ? '#ed1c24'
+                  //         : themeStyle.textColor,
+                  //     borderBottomWidth:
+                  //       this.state.selectedTab === '' ||
+                  //       this.state.selectedTab === undefined
+                  //         ? 2
+                  //         : 0,
+                  //   }}>
+                  //   <Text
+                  //     style={{
+                  //       padding: 12,
+                  //       paddingLeft: 16,
+                  //       paddingRight: 16,
+                  //       fontFamily: 'Roboto',
+                  //       fontSize: 14,
+                  //       fontWeight: '400',
+                  //       color:
+                  //         this.state.selectedTab === '' ||
+                  //         this.state.selectedTab === undefined
+                  //           ? '#404040'
+                  //           : '#939596',
+                  //     }}>
+                  //     {this.props.language.All}
+                  //   </Text>
+                  // </TouchableOpacity>
+                  <></>
                 ) : null
               }
               keyExtractor={(item, index) => index.toString()}
@@ -606,6 +616,7 @@ class Newest extends PureComponent {
                   onPress={() =>
                     this.setState({products: [], tempApply: false}, () => {
                       this.changeTab(item.item);
+                      console.log(item.item, 'items..........');
                     })
                   }
                   style={{
@@ -615,22 +626,57 @@ class Newest extends PureComponent {
                         : themeStyle.textColor,
                     borderBottomWidth:
                       this.state.selectedTab === item.item.id ? 2 : 0,
+                    // paddingVertical: 10,
                   }}>
-                  <Text
+                  <View
                     style={{
-                      padding: 12,
-                      paddingLeft: 16,
-                      paddingRight: 16,
-                      fontWeight: '400',
-                      fontFamily: 'Roboto',
-                      fontSize: 14,
-                      color:
-                        this.state.selectedTab === item.item.id
-                          ? '#404040'
-                          : '#939596',
+                      // backgroundColor: 'pink',
+                      alignItems: 'center',
+                      paddingVertical: 25,
+                      // backgroundColor: '#f5fafe',
+                      // paddingHorizontal: ,
                     }}>
-                    {item.item.name}
-                  </Text>
+                    <View
+                      style={{
+                        backgroundColor: 'white',
+                        padding: 5,
+                        elevation: 10,
+                        borderRadius: 10,
+                      }}>
+                      <Image
+                        style={{
+                          width: 65,
+                          height: 65,
+                          // alignSelf: 'center',
+                          // borderRadius: 10,
+                        }}
+                        source={{
+                          uri: themeStyle.image_url + '/' + item.item.image,
+                        }}
+                      />
+                    </View>
+                    <Text
+                      style={{
+                        // padding: 12,
+                        // paddingLeft: 16,
+                        // paddingRight: 16,
+                        paddingVertical: 10,
+                        paddingHorizontal: 10,
+
+                        fontWeight: '400',
+                        fontFamily: 'Roboto',
+                        fontSize: 14,
+                        width: 100,
+                        textAlign: 'center',
+                        color:
+                          this.state.selectedTab === item.item.id
+                            ? '#404040'
+                            : '#939596',
+                      }}
+                      numberOfLines={1}>
+                      {item.item.name}
+                    </Text>
+                  </View>
                 </TouchableOpacity>
               )}
             />
@@ -641,7 +687,7 @@ class Newest extends PureComponent {
               alignItems: 'center',
               height: 44,
               // backgroundColor: themeStyle.backgroundColor,
-              // backgroundColor: 'red',
+              // backgroundColor: 'pink',
               backgroundColor: '#f5fafe',
 
               flexDirection: 'row',
@@ -653,7 +699,11 @@ class Newest extends PureComponent {
               // elevation: 15,
               width: '100%',
             }}>
-            <View style={{backgroundColor: '#f5fafe'}}>
+            <View
+              style={{
+                backgroundColor: '#f5fafe',
+                // backgroundColor: 'yellow',
+              }}>
               <View>
                 {Platform.OS === 'android' ? (
                   <View
@@ -741,6 +791,7 @@ class Newest extends PureComponent {
                         name={'angle-down'}
                         style={{
                           color: themeStyle.otherBtnsColor,
+                          // color: 'red',
                           fontSize: 18,
                           paddingTop: 4,
                         }}
@@ -754,6 +805,7 @@ class Newest extends PureComponent {
                       paddingLeft: 3,
                       width: 100,
                       backgroundColor: themeStyle.backgroundColor,
+                      // backgroundColor: 'red',
                     }}
                     onPress={() =>
                       ActionSheet.show(
