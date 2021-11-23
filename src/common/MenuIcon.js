@@ -44,7 +44,8 @@ const MenuIcon = (props) =>
             Platform.OS === 'android' ? styles.iconContainer : null,
           ]}>
           <Image
-            source={require('../images/LeftMenuIcon/drawer.png')}
+            // source={require('../images/LeftMenuIcon/drawer.png')}
+            source={require('../images/drawermenu.png')}
             resizeMode="contain"
             style={{height: 60, width: 50}}
           />
