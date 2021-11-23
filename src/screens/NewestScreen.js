@@ -9,6 +9,7 @@ import {
   Dimensions,
   Platform,
   Image,
+  SafeAreaView,
 } from 'react-native';
 import {UIActivityIndicator} from 'react-native-indicators';
 import {CardStyleInterpolators} from 'react-navigation-stack';
@@ -465,6 +466,7 @@ class Newest extends PureComponent {
           justifyContent: 'space-between',
           padding: 6,
           flexDirection: 'row',
+          backgroundColor: 'red',
         }}>
         <TouchableOpacity
           // style={[(backgroundColor: 'red')]}
@@ -539,7 +541,7 @@ class Newest extends PureComponent {
             style={{
               height: 150,
               width: WIDTH,
-              marginBottom: 3,
+              // marginBottom: 3,
               // marginTop: 5,
               backgroundColor: '#f5fafe',
             }}>
@@ -910,22 +912,23 @@ class Newest extends PureComponent {
               </TouchableOpacity>
             </View>
           </View>
-
-          <View style={{marginBottom: 30}}>
-            <FlatListViewShop
-              dataSource={this.state.products}
-              products={this.props.language.Products}
-              allCategories={this.props.allCategories}
-              props={this.props}
-              state={this.state}
-              onRef={(ref) => (this.child = ref)}
-              page={this.state.page}
-              functionPropNameHere={() => this.getProducts()}
-              sortArray={this.state.sortArray}
-              productView={this.state.productView}
-              applyFilter={this.state.tempApply}
-            />
-          </View>
+          <SafeAreaView>
+            <View>
+              <FlatListViewShop
+                dataSource={this.state.products}
+                products={this.props.language.Products}
+                allCategories={this.props.allCategories}
+                props={this.props}
+                state={this.state}
+                onRef={(ref) => (this.child = ref)}
+                page={this.state.page}
+                functionPropNameHere={() => this.getProducts()}
+                sortArray={this.state.sortArray}
+                productView={this.state.productView}
+                applyFilter={this.state.tempApply}
+              />
+            </View>
+          </SafeAreaView>
           {/* /////////////////products///////////////////////// */}
         </View>
       </View>

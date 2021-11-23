@@ -7,6 +7,7 @@ import {
   Text,
   I18nManager,
   Platform,
+  SafeAreaView,
 } from 'react-native';
 import {UIActivityIndicator} from 'react-native-indicators';
 import CardTem from './CardTemplate';
@@ -227,11 +228,12 @@ class Fetch extends PureComponent {
     return (
       <View
         style={{
-          marginBottom: 50,
+          marginBottom: 200,
           marginTop: 2,
           alignItems: 'center',
           alignSelf: 'center',
           alignContent: 'center',
+          // backgroundColor: 'red',
         }}>
         {this.state.refreshing && this.state.dataSource.length > 9 ? (
           <View style={{height: 20, marginTop: 30, marginBottom: 20}}>
