@@ -537,13 +537,59 @@ class Newest extends PureComponent {
           />
           {/* //////////////DRawer///////// */}
           {/* ///////////////////////////////////////////////////////////////// */}
+
+          <Image
+            style={{
+              // height: '100%',
+              width: '100%',
+              // marginTop: 30,
+              backgroundColor: '#f5fafe',
+            }}
+            resizeMode={'cover'}
+            source={require('../images/img1.png')}
+          />
+
+          <View
+            style={{
+              // backgroundColor: 'pink',
+              padding: 10,
+              flexDirection: 'row',
+              position: 'absolute',
+              top: 40,
+              elevation: 8,
+              // bottom: 30,
+              zIndex: 2,
+            }}>
+            <View
+              style={{
+                backgroundColor: 'white',
+                padding: 10,
+                elevation: 12,
+                borderRadius: 12,
+              }}>
+              <Image
+                style={{
+                  width: 65,
+                  height: 65,
+                  // elevation: 8,
+                  // alignSelf: 'center',
+                  // borderRadius: 10,
+                }}
+                source={require('../images/img2.png')}
+              />
+            </View>
+            <Text>Hello</Text>
+          </View>
+
           <View
             style={{
               height: 150,
               width: WIDTH,
               // marginBottom: 3,
               // marginTop: 5,
+              position: 'relative',
               backgroundColor: '#f5fafe',
+              // backgroundColor: 'pink',
             }}>
             <FlatList
               showsHorizontalScrollIndicator={false}
