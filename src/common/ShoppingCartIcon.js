@@ -37,8 +37,11 @@ const ShoppingCartIcon = (props) =>
         </View>
       </TouchableOpacity>
 
+      {/* <View
+        style={{borderColor: '#3180c6', borderWidth: 0.5, height: 25}}></View> */}
+
       <View
-        style={{borderColor: '#3180c6', borderWidth: 0.5, height: 25}}></View>
+        style={{borderColor: '#7a4acd', borderWidth: 0.5, height: 25}}></View>
 
       <TouchableOpacity
         onPress={() => {

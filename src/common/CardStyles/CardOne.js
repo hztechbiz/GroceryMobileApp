@@ -135,7 +135,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
               <Icon
                 style={{
                   paddingTop: 60,
-                  color: '#205a8e',
+                  color: '#641ae4',
                   fontSize: 30,
                   alignSelf: 'center',
                 }}

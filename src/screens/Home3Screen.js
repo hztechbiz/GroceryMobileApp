@@ -711,7 +711,7 @@ class Newest extends Component {
                           height: 46,
                           marginTop: 0,
                           paddingTop: 12,
-                          backgroundColor: '#e6eff7',
+                          backgroundColor: '#efe9f9',
                           justifyContent: 'center',
                           alignItems: 'center',
                           // marginLeft: -16,
@@ -982,7 +982,7 @@ class Newest extends Component {
                     horizontal
                     style={{
                       borderColor: themeStyle.textColor,
-                      backgroundColor: '#e6eff7',
+                      backgroundColor: '#efe9f9',
                       elevation: 5,
                       shadowOffset: {width: 5, height: 1},
                       shadowColor: '#000',

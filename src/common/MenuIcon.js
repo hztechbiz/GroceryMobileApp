@@ -39,14 +39,16 @@ const MenuIcon = (props) =>
         }>
         <View
           style={[
-            {paddingTop: 5},
+            {paddingTop: 0},
 
             Platform.OS === 'android' ? styles.iconContainer : null,
           ]}>
           <Image
-            source={require('../images/LeftMenuIcon/drawer.png')}
+            // source={require('../images/LeftMenuIcon/drawer.png')}
+            source={require('../images/drawermenu2.png')}
+            // source={require('../images/drawermenu.png')}
             resizeMode="contain"
-            style={{height: 60, width: 50}}
+            style={{height: 60, width: 50,marginLeft: 5}}
           />
           {/* <Icon
             style={{
