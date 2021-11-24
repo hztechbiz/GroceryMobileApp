@@ -739,7 +739,7 @@ class Newest extends PureComponent {
                     style={{
                       borderBottomColor:
                         this.state.selectedTab === item.item.id
-                          ? '#ed1c24'
+                          ? '#641ae4'
                           : themeStyle.textColor,
                       borderBottomWidth:
                         this.state.selectedTab === item.item.id ? 2 : 0,

@@ -704,7 +704,7 @@ class Newest extends Component {
                           justifyContent: 'center',
                           // marginHorizontal: 12,
                         }}
-                        underlineColor={'#ed1c24'}
+                        underlineColor={'#641ae4'}
                         inactiveTextColor="#707070"
                         backgroundColor={themeStyle.backgroundColor}
                         tabBarStyle={{
@@ -1032,7 +1032,7 @@ class Newest extends Component {
                           borderBottomColor:
                             this.state.selectedTab === item.item.id ||
                             this.state.selectedTab === undefined
-                              ? '#ed1c24'
+                              ? themeStyle.primary
                               : themeStyle.textColor,
                           borderBottomWidth:
                             this.state.selectedTab === item.item.id ||
