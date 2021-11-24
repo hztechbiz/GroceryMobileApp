@@ -62,27 +62,27 @@ export default {
   facebook: '#3b5998',
 
   // Button Colors
-  addToCartBtnColor: '#3e5902',
+  addToCartBtnColor: '#641ae4',
   addToCartBtnTextColor: '#fff',
   // addToCartBagBtnColor: '#4E4E4E',
-  addToCartBagBtnColor: '#3e5902',
+  addToCartBagBtnColor: '#641ae4',
 
   outOfStockBtnColor: '#D81800',
   outOfStockBtnTextColor: '#fff',
 
-  detailsBtnColor: '#3e5902',
+  detailsBtnColor: '#641ae4',
   detailsBtnTextColor: '#fff',
   removeBtnColor: '#D81800',
   removeBtnTextColor: '#fff',
   wishHeartBtnColor: '#3e5902',
   // otherBtnsColor: '#3e5902',
-  otherBtnsColor: '#2C79BD',
+  otherBtnsColor: '#641ae4',
 
   otherBtnsText: '#fff',
 
-  saleBackgroundColor: '#3e5902',
+  saleBackgroundColor: '#641ae4',
   saleTextColor: '#fff',
-  featuredBackgroundColor: '#3e5902',
+  featuredBackgroundColor: '#641ae4',
   featuredTextColor: '#fff',
   newBackgroundColor: '#D81800',
   newTextColor: '#fff',

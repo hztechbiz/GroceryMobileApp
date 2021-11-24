@@ -1027,7 +1027,6 @@ class Newest extends PureComponent {
                 />
               </TouchableOpacity>
             </View>
-<<<<<<< HEAD
           </View> */}
 
           <View style={{marginBottom: 30}}>
@@ -1045,26 +1044,6 @@ class Newest extends PureComponent {
               applyFilter={this.state.tempApply}
             />
           </View>
-=======
-          </View>
-          <SafeAreaView>
-            <View>
-              <FlatListViewShop
-                dataSource={this.state.products}
-                products={this.props.language.Products}
-                allCategories={this.props.allCategories}
-                props={this.props}
-                state={this.state}
-                onRef={(ref) => (this.child = ref)}
-                page={this.state.page}
-                functionPropNameHere={() => this.getProducts()}
-                sortArray={this.state.sortArray}
-                productView={this.state.productView}
-                applyFilter={this.state.tempApply}
-              />
-            </View>
-          </SafeAreaView>
->>>>>>> 479fbcef08e55a83dc8faab346a75747a02cf7cf
           {/* /////////////////products///////////////////////// */}
         </View>
       </View>
