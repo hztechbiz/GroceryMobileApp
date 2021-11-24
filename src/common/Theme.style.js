@@ -44,8 +44,8 @@ export default {
   headerTintColor: 'rgb(255, 255, 255)',
   headerIconsColor: 'rgb(255, 255, 255)',
 
-  primaryDark: '#205a8e',
-  primary: '#205a8e',
+  primaryDark: '#3d01a4',
+  primary: '#3d01a4',
   primaryContrast: '#ffffff',
   // backgroundColor: '#F2F2F2',// color for card style 11
   // backgroundColor: '#fdfcfa',

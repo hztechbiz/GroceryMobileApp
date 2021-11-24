@@ -26,6 +26,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import {createSelector} from 'reselect';
 const CANCEL_INDEX = 9;
 const WIDTH = Dimensions.get('window').width;
+const win = Dimensions.get('window');
 class Newest extends PureComponent {
   static navigationOptions = (props) => {
     const headerStyle = props.navigation.getParam('headerTitle');
@@ -72,49 +73,25 @@ class Newest extends PureComponent {
       idArray: [],
       products: [],
       SpinnerTemp: false,
+      tab: '',
       indexTemp: 'newest',
       tempmYarray: [0, 500],
       tempmYarray2: [0, 500],
-      sortArray: [
-        this.props.language.Newest,
-        this.props.language['A - Z'],
-        this.props.language['Z - A'],
-        this.props.language['Price : high - low'],
-        this.props.language['Price : low - high'],
-        this.props.language['Top Seller'],
-        this.props.language['Special Products'],
-        this.props.language['Most Liked'],
-        this.props.language.Cancel,
-      ],
-      selectedTab:
-        this.props.navigation.dangerouslyGetParent() !== undefined
-          ? this.props.navigation.dangerouslyGetParent() !== null &&
-            this.props.navigation.dangerouslyGetParent() !== undefined
-            ? this.props.navigation.dangerouslyGetParent().state.params.id
-            : ''
-          : '',
-      categoryId:
-        this.props.navigation.dangerouslyGetParent() !== undefined
-          ? this.props.navigation.dangerouslyGetParent() !== null &&
-            this.props.navigation.dangerouslyGetParent() !== undefined
-            ? this.props.navigation.dangerouslyGetParent().state.params.id
-            : ''
-          : '',
-      categoryName:
-        this.props.navigation.dangerouslyGetParent() !== undefined
-          ? this.props.navigation.dangerouslyGetParent() !== null &&
-            this.props.navigation.dangerouslyGetParent() !== undefined
-            ? this.props.navigation.dangerouslyGetParent().state.params.name
-            : ''
-          : '',
-      sortOrder:
-        this.props.navigation.dangerouslyGetParent() !== undefined
-          ? this.props.navigation.dangerouslyGetParent() !== null &&
-            this.props.navigation.dangerouslyGetParent() !== undefined
-            ? this.props.navigation.dangerouslyGetParent().state.params
-                .sortOrder
-            : 'newest'
-          : 'newest',
+      // sortArray: [
+      //   this.props.language.Newest,
+      //   this.props.language['A - Z'],
+      //   this.props.language['Z - A'],
+      //   this.props.language['Price : high - low'],
+      //   this.props.language['Price : low - high'],
+      //   this.props.language['Top Seller'],
+      //   this.props.language['Special Products'],
+      //   this.props.language['Most Liked'],
+      //   this.props.language.Cancel,
+      // ],
+      selectedTab: '',
+      categoryId: '',
+      categoryName: '',
+      sortOrder: 'newest',
       page: 0,
       applyFilter: false,
       tempApply: false,
@@ -125,20 +102,13 @@ class Newest extends PureComponent {
       price: {lower: 0, upper: 500},
       priceData: {lower: 0, upper: 500},
       side: 'right',
-      productView: 'grid',
+      productView: 'list',
       on_sale: '',
       featured: '',
       filterOnSale: false,
       filterFeatured: false,
       loadingServerData: true,
-      type:
-        this.props.navigation.dangerouslyGetParent() !== undefined
-          ? this.props.navigation.dangerouslyGetParent() !== null &&
-            this.props.navigation.dangerouslyGetParent() !== undefined
-            ? this.props.navigation.dangerouslyGetParent().state.params
-                .sortOrder
-            : ''
-          : '',
+      type: '',
       listOfFilteredIdsFromCustom: [],
       wrapperCondition: false,
       wrapperConditionDrawer: false,
@@ -153,6 +123,7 @@ class Newest extends PureComponent {
   }
 
   componentDidMount() {
+    console.log(this.state.tab, '=================');
     this.child = '';
     this.props.navigation.setParams({
       minAmount: 0,
@@ -166,44 +137,45 @@ class Newest extends PureComponent {
       applyFilters: () => this.applyFilters(),
     });
 
-    if (this.props.navigation.dangerouslyGetParent() !== undefined) {
-      if (
-        this.props.navigation.dangerouslyGetParent() !== null &&
-        this.props.navigation.dangerouslyGetParent() !== undefined
-      ) {
-        if (
-          this.props.navigation.dangerouslyGetParent().state.params.sortOrder ==
-          'newest'
-        ) {
-          this.state.selected = 'key0';
-        } else if (
-          this.props.navigation.dangerouslyGetParent().state.params.sortOrder ==
-          'special'
-        ) {
-          this.state.selected = 'key6';
-        } else if (
-          this.props.navigation.dangerouslyGetParent().state.params.sortOrder ==
-          'top seller'
-        ) {
-          this.state.selected = 'key5';
-        } else if (
-          this.props.navigation.dangerouslyGetParent().state.params.sortOrder ==
-          'most liked'
-        ) {
-          this.state.selected = 'key7';
-        }
-      }
-    }
-    this.state.indexTemp = this.state.sortOrder =
-      this.props.navigation.dangerouslyGetParent() !== undefined
-        ? this.props.navigation.dangerouslyGetParent() !== null &&
-          this.props.navigation.dangerouslyGetParent() !== undefined
-          ? this.props.navigation.dangerouslyGetParent().state.params.sortOrder
-          : 'newest'
-        : 'newest';
+    // if (this.props.navigation.dangerouslyGetParent() !== undefined) {
+    //   if (
+    //     this.props.navigation.dangerouslyGetParent() !== null &&
+    //     this.props.navigation.dangerouslyGetParent() !== undefined
+    //   ) {
+    //     if (
+    //       this.props.navigation.dangerouslyGetParent().state.params.sortOrder ==
+    //       'newest'
+    //     ) {
+    //       this.state.selected = 'key0';
+    //     } else if (
+    //       this.props.navigation.dangerouslyGetParent().state.params.sortOrder ==
+    //       'special'
+    //     ) {
+    //       this.state.selected = 'key6';
+    //     } else if (
+    //       this.props.navigation.dangerouslyGetParent().state.params.sortOrder ==
+    //       'top seller'
+    //     ) {
+    //       this.state.selected = 'key5';
+    //     } else if (
+    //       this.props.navigation.dangerouslyGetParent().state.params.sortOrder ==
+    //       'most liked'
+    //     ) {
+    //       this.state.selected = 'key7';
+    //     }
+    //   }
+    // }
+    this.state.selected = 'key0';
+    this.state.indexTemp = this.state.sortOrder = 'newest';
+    // this.props.navigation.dangerouslyGetParent() !== undefined
+    //   ? this.props.navigation.dangerouslyGetParent() !== null &&
+    //     this.props.navigation.dangerouslyGetParent() !== undefined
+    //     ? this.props.navigation.dangerouslyGetParent().state.params.sortOrder
+    //     : 'newest'
+    //   : 'newest';
     this.setState({activityIndicatorTemp: false});
     this.props.navigation.setParams({
-      headerTitle: this.props.language.Shop,
+      headerTitle: 'Categories',
     });
     this.getProducts();
     this.getFilters(this.state.categoryId);
@@ -354,13 +326,28 @@ class Newest extends PureComponent {
 
   // changing tab
   changeTab(c) {
+    console.log(c, 'data ================');
     this.state.applyFilter = false;
     this.state.page = 0;
     if (c == '') this.state.selectedTab = c;
     else this.state.selectedTab = c.id;
+    // this.props.navigation.navigate('SubCategory');
     this.getProducts();
     this.getFilters(this.state.selectedTab);
   }
+
+  headerTab = (c) => {
+    console.log(c, 'dsdad');
+    // console.log(this.state.categoryName, 'abc dsdad');
+    if ((this.state.selectedTab = c.id)) {
+      <Text>sadasda jsdj</Text>;
+    }
+    // return (
+    //   <View>
+    //     <Text>{this.state.selectedTab}</Text>
+    //   </View>
+    // );
+  };
 
   onValueChange(value) {
     if (value === 'key0') {
@@ -506,6 +493,11 @@ class Newest extends PureComponent {
   }
 
   render() {
+    // console.log(
+    //   this.props.allCategories[0].categories_name,
+    //   'this.props.navigation --------------------------------',
+    // );
+    const ratio = win.width / 720;
     const BUTTONS = this.state.sortArray;
     return this.state.activityIndicatorTemp ? (
       <View
@@ -533,8 +525,106 @@ class Newest extends PureComponent {
             visible={this.state.SpinnerTemp}
             textStyle={styles.spinnerTextStyle}
           />
+
           {/* //////////////DRawer///////// */}
           {/* ///////////////////////////////////////////////////////////////// */}
+          {this.state.tab == '' ? null : (
+            // <>
+            //   <Text>{this.state?.tab?.name}</Text>
+            // </>
+            <View style={{backgroundColor: '#f5fafe'}}>
+              <View style={{backgroundColor: '#f5fafe'}}>
+                <Image
+                  style={{
+                    // flex: 1,
+                    // width: ,
+                    width: win.width,
+                    height: 180 * ratio,
+
+                    resizeMode: 'contain',
+                  }}
+                  source={require('../images/Categories_header.png')}
+                />
+              </View>
+              <View
+                style={{
+                  marginTop: 30,
+                  marginLeft: 10,
+                  // backgroundColor: 'red',
+                  justifyContent: 'center',
+                }}>
+                <Text
+                  style={{
+                    color: '#404040',
+                    fontSize: 12,
+                    textTransform: 'uppercase',
+                  }}>
+                  Other Categories
+                </Text>
+              </View>
+              <View
+                style={{
+                  // backgroundColor: 'pink',
+                  padding: 10,
+                  flexDirection: 'row',
+                  position: 'absolute',
+                  top: 20,
+                  elevation: 8,
+                  // bottom: 30,
+                  zIndex: 2,
+                }}>
+                <View
+                  style={{
+                    backgroundColor: '#f5fafe',
+                    padding: 5,
+                    elevation: 10,
+                    borderRadius: 10,
+                  }}>
+                  <Image
+                    style={{
+                      width: 65,
+                      height: 65,
+                      // alignSelf: 'center',
+                      // borderRadius: 10,
+                    }}
+                    source={{
+                      uri: themeStyle.image_url + '/' + this.state?.tab?.image,
+                    }}
+                  />
+                </View>
+                {/* <Image
+                    style={{
+                      width: 80,
+                      height: 80,
+                      // elevation: 8,
+                      // alignSelf: 'center',
+                      // borderRadius: 10,
+                    }}
+                    source={require('../images/.png')}
+                  /> */}
+                {/* </View> */}
+                <View style={{paddingLeft: 12, paddingTop: 5}}>
+                  <Text style={{color: '#ffff', fontSize: 12}}>
+                    {this.state?.tab?.name}
+                  </Text>
+                  <Text style={{color: '#ffff', fontSize: 10}}>
+                    {this.state?.tab?.total_products} Items
+                  </Text>
+                </View>
+              </View>
+            </View>
+          )}
+
+          {/* {this.props.allCategories ? (
+            <View>
+              <Text>sdadads</Text>
+            </View>
+          ) : (
+            <View>
+              <Text>sds</Text>
+            </View>
+          )} */}
+
           <View
             style={{
               height: 150,
@@ -543,6 +633,7 @@ class Newest extends PureComponent {
               // marginTop: 5,
               backgroundColor: '#f5fafe',
             }}>
+            {/* {this.headerTab} */}
             <FlatList
               showsHorizontalScrollIndicator={false}
               showsVerticalScrollIndicator={false}
@@ -565,124 +656,147 @@ class Newest extends PureComponent {
                 // justifyContent: 'center',
                 // alignItems: 'center',
               }}
-              ListHeaderComponent={
-                this.props.allCategories !== null ? (
-                  // <TouchableOpacity
-                  //   disabled={
-                  //     this.state.selectedTab === '' ||
-                  //     this.state.selectedTab === undefined
-                  //   }
-                  //   onPress={() =>
-                  //     this.setState({products: [], tempApply: false}, () => {
-                  //       this.changeTab('');
-                  //     })
-                  //   }
-                  //   style={{
-                  //     borderBottomColor:
-                  //       this.state.selectedTab === '' ||
-                  //       this.state.selectedTab === undefined
-                  //         ? '#ed1c24'
-                  //         : themeStyle.textColor,
-                  //     borderBottomWidth:
-                  //       this.state.selectedTab === '' ||
-                  //       this.state.selectedTab === undefined
-                  //         ? 2
-                  //         : 0,
-                  //   }}>
-                  //   <Text
-                  //     style={{
-                  //       padding: 12,
-                  //       paddingLeft: 16,
-                  //       paddingRight: 16,
-                  //       fontFamily: 'Roboto',
-                  //       fontSize: 14,
-                  //       fontWeight: '400',
-                  //       color:
-                  //         this.state.selectedTab === '' ||
-                  //         this.state.selectedTab === undefined
-                  //           ? '#404040'
-                  //           : '#939596',
-                  //     }}>
-                  //     {this.props.language.All}
-                  //   </Text>
-                  // </TouchableOpacity>
-                  <></>
-                ) : null
-              }
+              // ListHeaderComponent={({item}) => (
+              //   console.log(item, 'header item');
+
+              //     // this.headerTab()
+
+              //     <View>
+              //       <Text>{item?.item?.categories_name}</Text>
+              //     </View>
+
+              // )
+              // }}
+              // this.props.allCategories !== null ? (
+              // <TouchableOpacity
+              //   disabled={
+              //     this.state.selectedTab === '' ||
+              //     this.state.selectedTab === undefined
+              //   }
+              //   onPress={() =>
+              //     this.setState({products: [], tempApply: false}, () => {
+              //       this.changeTab('');
+              //     })
+              //   }
+              //   style={{
+              //     borderBottomColor:
+              //       this.state.selectedTab === '' ||
+              //       this.state.selectedTab === undefined
+              //         ? '#ed1c24'
+              //         : themeStyle.textColor,
+              //     borderBottomWidth:
+              //       this.state.selectedTab === '' ||
+              //       this.state.selectedTab === undefined
+              //         ? 2
+              //         : 0,
+              //   }}>
+              //   <Text
+              //     style={{
+              //       padding: 12,
+              //       paddingLeft: 16,
+              //       paddingRight: 16,
+              //       fontFamily: 'Roboto',
+              //       fontSize: 14,
+              //       fontWeight: '400',
+              //       color:
+              //         this.state.selectedTab === '' ||
+              //         this.state.selectedTab === undefined
+              //           ? '#404040'
+              //           : '#939596',
+              //     }}>
+              //     {this.props.language.All}
+              //   </Text>
+              // </TouchableOpacity>
+              // <></>
+              // ) : null
+              // }
               keyExtractor={(item, index) => index.toString()}
               renderItem={(item) => (
-                <TouchableOpacity
-                  disabled={this.state.selectedTab === item.item.id}
-                  onPress={() =>
-                    this.setState({products: [], tempApply: false}, () => {
-                      this.changeTab(item.item);
-                      console.log(item.item, 'items..........');
-                    })
-                  }
-                  style={{
-                    borderBottomColor:
-                      this.state.selectedTab === item.item.id
-                        ? '#ed1c24'
-                        : themeStyle.textColor,
-                    borderBottomWidth:
-                      this.state.selectedTab === item.item.id ? 2 : 0,
-                    // paddingVertical: 10,
-                  }}>
-                  <View
+                <>
+                  {/* <TouchableOpacity>
+                    <Text> {this.state.selectedTab}</Text>
+                  </TouchableOpacity> */}
+                  <TouchableOpacity
+                    disabled={this.state.selectedTab === item.item.id}
+                    onPress={() =>
+                      this.setState(
+                        {
+                          products: [],
+                          tempApply: false,
+                          tab: item.item,
+                          productView: 'grid',
+                        },
+                        () => {
+                          this.changeTab(item.item);
+                          console.log(item.item, 'items..........');
+                        },
+                      )
+                    }
                     style={{
-                      // backgroundColor: 'pink',
-                      alignItems: 'center',
-                      paddingVertical: 25,
-                      // backgroundColor: '#f5fafe',
-                      // paddingHorizontal: ,
+                      borderBottomColor:
+                        this.state.selectedTab === item.item.id
+                          ? '#ed1c24'
+                          : themeStyle.textColor,
+                      borderBottomWidth:
+                        this.state.selectedTab === item.item.id ? 2 : 0,
+                      // paddingVertical: 10,
                     }}>
                     <View
                       style={{
-                        backgroundColor: 'white',
-                        padding: 5,
-                        elevation: 10,
-                        borderRadius: 10,
+                        // backgroundColor: 'pink',
+                        alignItems: 'center',
+                        paddingVertical: 25,
+                        // backgroundColor: '#f5fafe',
+                        // paddingHorizontal: ,
                       }}>
-                      <Image
+                      <View
                         style={{
-                          width: 65,
-                          height: 65,
-                          // alignSelf: 'center',
-                          // borderRadius: 10,
-                        }}
-                        source={{
-                          uri: themeStyle.image_url + '/' + item.item.image,
-                        }}
-                      />
-                    </View>
-                    <Text
-                      style={{
-                        // padding: 12,
-                        // paddingLeft: 16,
-                        // paddingRight: 16,
-                        paddingVertical: 10,
-                        paddingHorizontal: 10,
+                          backgroundColor: 'white',
+                          padding: 5,
+                          elevation: 10,
+                          borderRadius: 10,
+                        }}>
+                        <Image
+                          style={{
+                            width: 65,
+                            height: 65,
+                            // alignSelf: 'center',
+                            // borderRadius: 10,
+                          }}
+                          source={{
+                            uri: themeStyle.image_url + '/' + item.item.image,
+                          }}
+                        />
+                      </View>
+                      <Text
+                        style={{
+                          // padding: 12,
+                          // paddingLeft: 16,
+                          // paddingRight: 16,
+                          paddingVertical: 10,
+                          paddingHorizontal: 10,
 
-                        fontWeight: '400',
-                        fontFamily: 'Roboto',
-                        fontSize: 14,
-                        width: 100,
-                        textAlign: 'center',
-                        color:
-                          this.state.selectedTab === item.item.id
-                            ? '#404040'
-                            : '#939596',
-                      }}
-                      numberOfLines={1}>
-                      {item.item.name}
-                    </Text>
-                  </View>
-                </TouchableOpacity>
+                          fontWeight: '400',
+                          fontFamily: 'Roboto',
+                          fontSize: 14,
+                          width: 100,
+                          textAlign: 'center',
+                          color:
+                            this.state.selectedTab === item.item.id
+                              ? '#404040'
+                              : '#939596',
+                        }}
+                        numberOfLines={1}>
+                        {item.item.name}
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                </>
               )}
             />
           </View>
 
-          <View
+          {/* <View
             style={{
               alignItems: 'center',
               height: 44,
@@ -909,7 +1023,7 @@ class Newest extends PureComponent {
                 />
               </TouchableOpacity>
             </View>
-          </View>
+          </View> */}
 
           <View style={{marginBottom: 30}}>
             <FlatListViewShop
