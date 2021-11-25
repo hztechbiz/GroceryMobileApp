@@ -183,8 +183,10 @@ class Newest extends Component {
         formData,
       );
       if (dat.success == 1) {
+        console.log(this.state.page, 'kdskdskdskm');
         this.state.page = this.state.page + 1;
         for (const value of dat.product_data) {
+          console.log(value, 'data data');
           this.state.products.push(value);
         }
         this.state.noDataFound = false;

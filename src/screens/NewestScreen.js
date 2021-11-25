@@ -25,6 +25,7 @@ import SyncStorage from 'sync-storage';
 import themeStyle from '../common/Theme.style';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {createSelector} from 'reselect';
+import ShoppingCartIcon from '../common/ShoppingCartIcon';
 const CANCEL_INDEX = 9;
 const WIDTH = Dimensions.get('window').width;
 const win = Dimensions.get('window');
@@ -45,20 +46,21 @@ class Newest extends PureComponent {
         fontWeight: Platform.OS === 'android' ? 'bold' : 'normal',
       },
       gesturesDirection: 'inverted',
-      headerLeft: (
-        <Icon
-          onPress={() => props.navigation.pop()}
-          name={!I18nManager.isRTL ? 'arrow-back' : 'arrow-forward'}
-          style={{
-            color: themeStyle.primaryContrast,
-            fontSize: 25,
-            padding: 5,
-            paddingLeft: 16,
-            paddingRight: 16,
-            marginRight: 16,
-          }}
-        />
-      ),
+      headerRight: () => <ShoppingCartIcon navigation={props.navigation} />,
+      // headerLeft: (
+      //   <Icon
+      //     onPress={() => props.navigation.pop()}
+      //     name={!I18nManager.isRTL ? 'arrow-back' : 'arrow-forward'}
+      //     style={{
+      //       color: themeStyle.primaryContrast,
+      //       fontSize: 25,
+      //       padding: 5,
+      //       paddingLeft: 16,
+      //       paddingRight: 16,
+      //       marginRight: 16,
+      //     }}
+      //   />
+      // ),
     };
   };
 

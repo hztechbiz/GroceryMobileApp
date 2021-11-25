@@ -14,6 +14,7 @@ class News extends PureComponent {
       headerTitle: headerStyle,
       cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       headerRight: null,
+      headerLeft: null,
       gestureEnabled: false,
       drawerLockMode: 'locked-closed',
       headerTitleAlign: 'center',
@@ -70,7 +71,7 @@ class News extends PureComponent {
               ]
             }
           </Text>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={{
               backgroundColor: '#2d79be',
               marginTop: 12,
@@ -89,7 +90,7 @@ class News extends PureComponent {
               }}>
               {this.props.isLoading.Config.languageJson['My Orders']}
             </Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate('Home3Screen')}>
             <Text

@@ -474,9 +474,9 @@ class Cart extends Component {
         ) : null}
         <NavigationEvents
           onDidFocus={() => {
-            // this.setState({SpinnerTemp: true}, () => {
-            //   this.getNewCartInfo();
-            // });
+            this.setState({SpinnerTemp: true}, () => {
+              this.getNewCartInfo();
+            });
             this.totalPrice();
           }}
         />

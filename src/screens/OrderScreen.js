@@ -379,6 +379,7 @@ class orderScreen extends Component {
       dat,
       // console.log(dat, 'Testing.............!')
     );
+    console.log(data.success, 'data.success-');
     if (data.success == 1) {
       this.props.cartItems2.cartItems.cartProductArray = [];
       this.props.cartItems2.cartItems.couponArray = [];
@@ -394,6 +395,7 @@ class orderScreen extends Component {
         ],
       });
       this.props.navigation.dispatch(resetAction);
+      this.props.removeItemToCart([], 0);
       this.setState({SpinnerTemp: false}, () =>
         this.props.navigation.navigate('ThankUScreen'),
       );
@@ -1081,8 +1083,9 @@ class orderScreen extends Component {
                       // paddingLeft: 25,
                       paddingHorizontal: 20,
                     }}>
-                    {this.state.orderDetail.delivery_street_address 
-                    // +
+                    {
+                      this.state.orderDetail.delivery_street_address
+                      // +
                       // ', ' +
                       // this.state.orderDetail.delivery_city +
                       // ', ' +
@@ -1091,7 +1094,7 @@ class orderScreen extends Component {
                       // this.state.orderDetail.delivery_postcode +
                       // ', ' +
                       // this.state.orderDetail.delivery_country
-                      }
+                    }
                   </Text>
                 </View>
               </View>
@@ -1143,17 +1146,18 @@ class orderScreen extends Component {
                       fontSize: themeStyle.mediumSize,
                       color: themeStyle.textColor,
                     }}>
-                    {this.state.orderDetail.billing_street_address 
-                    // +
-                    //   ', ' +
-                    //   this.state.orderDetail.billing_city +
-                    //   ', ' +
-                    //   this.state.orderDetail.billing_state +
-                    //   ', ' +
-                    //   this.state.orderDetail.billing_postcode +
-                    //   ', ' +
-                    //   this.state.orderDetail.billing_country
-                      }
+                    {
+                      this.state.orderDetail.billing_street_address
+                      // +
+                      //   ', ' +
+                      //   this.state.orderDetail.billing_city +
+                      //   ', ' +
+                      //   this.state.orderDetail.billing_state +
+                      //   ', ' +
+                      //   this.state.orderDetail.billing_postcode +
+                      //   ', ' +
+                      //   this.state.orderDetail.billing_country
+                    }
                   </Text>
                 </View>
               </View>
@@ -1279,7 +1283,8 @@ class orderScreen extends Component {
                               ActivityIndicator={true}
                               placeholderStyle={{width: 0, height: 0}}
                               source={{
-                                uri: themeStyle.image_url + '/' + item.item.image,
+                                uri:
+                                  themeStyle.image_url + '/' + item.item.image,
                               }}
                             />
                             <View
@@ -2146,6 +2151,14 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  removeItemToCart: (productObject, productQuantity) =>
+    dispatch({
+      type: 'REMOVE_TO_CARTS_QUANTITY',
+      product: productObject,
+      cartProductQuantity: productQuantity,
+      variation: null,
+      metaData: null,
+    }),
   productDeleteIdFun: (value, msg, check) => {
     dispatch({
       type: 'OUT_OF_STOCK_PRODUCT',

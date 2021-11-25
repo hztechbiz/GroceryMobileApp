@@ -1,11 +1,11 @@
-import React from 'react'
-import { Dimensions, I18nManager } from 'react-native'
-import { createDrawerNavigator } from 'react-navigation-drawer'
-import { createStackNavigator } from 'react-navigation-stack'
-import NewestScreen from '../../screens/NewestScreen'
-import ForgotPasswordScreen from '../../navigation/FilterDrawer'
+import React from 'react';
+import {Dimensions, I18nManager} from 'react-native';
+import {createDrawerNavigator} from 'react-navigation-drawer';
+import {createStackNavigator} from 'react-navigation-stack';
+import NewestScreen from '../../screens/NewestScreen';
+import ForgotPasswordScreen from '../../navigation/FilterDrawer';
 /// ////////////////////////////////////////////////// Home Stack Start
-const WIDTH = Dimensions.get('window').width
+const WIDTH = Dimensions.get('window').width;
 const DrawerConfigs = {
   drawerLockMode: 'locked-closed',
   mode: 'modal',
@@ -15,8 +15,8 @@ const DrawerConfigs = {
   headerMode: 'none',
   headerShown: false,
   drawerPosition: I18nManager.isRTL ? 'left' : 'right',
-  contentComponent: props => <ForgotPasswordScreen {...props} />
-}
+  contentComponent: (props) => <ForgotPasswordScreen {...props} />,
+};
 
 const StackNavigator = createStackNavigator({
   NewestScreen: {
@@ -25,13 +25,13 @@ const StackNavigator = createStackNavigator({
       gestureEnabled: false,
       disableGestures: true,
       swipeEnabled: false,
-      mode: 'modal'
-    })
-  }
-})
-StackNavigator.navigationOptions = ({ navigation }) => ({
-  swipeEnabled: false
-})
+      mode: 'modal',
+    }),
+  },
+});
+StackNavigator.navigationOptions = ({navigation}) => ({
+  swipeEnabled: false,
+});
 const HomeStackNavigator = createDrawerNavigator(
   {
     StackNavigator: {
@@ -40,13 +40,13 @@ const HomeStackNavigator = createDrawerNavigator(
         gestureEnabled: false,
         disableGestures: true,
         swipeEnabled: false,
-        mode: 'modal'
-      })
-    }
+        mode: 'modal',
+      }),
+    },
   },
-  DrawerConfigs
-)
+  DrawerConfigs,
+);
 HomeStackNavigator.navigationOptions = () => ({
-  headerShown: false
-})
-export default HomeStackNavigator
+  headerShown: false,
+});
+export default HomeStackNavigator;
