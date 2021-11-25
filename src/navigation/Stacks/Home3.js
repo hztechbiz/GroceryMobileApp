@@ -37,17 +37,16 @@ import SubCategory from '../../screens/SubCategory';
 import TermAndServiceScreen from '../../screens/TermAndServiceScreen';
 import ThankUScreen from '../../screens/ThankUScreen';
 import DemoScreen from '../../screens/DemoScreen';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-const Tab = createBottomTabNavigator();
+// const Tab = createBottomTabNavigator();
 
-function MyTabs() {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeStackNavigator} />
-    </Tab.Navigator>
-  );
-}
+// function MyTabs() {
+//   return (
+//     <Tab.Navigator>
+//       <Tab.Screen name="Home" component={HomeStackNavigator} />
+//     </Tab.Navigator>
+//   );
+// }
 /// ////////////////////////////////////////////////// Home Stack Start
 const HomeStackNavigator = createStackNavigator({
   Home3Screen: {

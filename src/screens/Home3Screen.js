@@ -77,6 +77,7 @@ class Newest extends Component {
       tempBox: [],
       loading: false,
       activityIndicatorTemp: true,
+      complete: '',
       temp: 1,
       SpinnerTemp: false,
       noDataFound: !(
@@ -183,15 +184,18 @@ class Newest extends Component {
         formData,
       );
       if (dat.success == 1) {
-        console.log(this.state.page, 'kdskdskdskm');
         this.state.page = this.state.page + 1;
+        console.log(this.state.page, 'did mon=unbt');
         for (const value of dat.product_data) {
-          console.log(value, 'data data');
+          // console.log(value, 'data data');
           this.state.products.push(value);
         }
         this.state.noDataFound = false;
       } else {
-        this.state.noDataFound = true;
+        console.log(this.state.page, 'else ===============');
+
+        this.state.noDataFound = false;
+        this.setState({complete: 'Completed'});
       }
       this.setState({refreshing: false});
     }
@@ -288,10 +292,11 @@ class Newest extends Component {
   );
 
   handleLoadMore() {
+    console.log('hello');
     if (this.state.products.length % 10 === 0) {
       this.setState(
         {
-          refreshing: true,
+          refreshing: false,
           fabB: this.state.products.length > 9,
         },
         () => {
@@ -314,7 +319,7 @@ class Newest extends Component {
         alignSelf: 'center',
         alignContent: 'center',
       }}>
-      {this.state.refreshing ? (
+      {this.state.refreshing && !this.state.complete ? (
         <View
           style={{
             height: 10,
