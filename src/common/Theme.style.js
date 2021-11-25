@@ -99,7 +99,7 @@ export default {
   singleRowCardWidth: cardWidth,
   twoRowCardWIdth: 0.465,
   // loadingIndicatorColor: '#3e5902',
-  loadingIndicatorColor: '#205a8e',
+  loadingIndicatorColor: '#641ae4',
   ipAdress: cIp,
   deviceId: cDid,
 };

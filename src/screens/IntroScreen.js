@@ -300,7 +300,7 @@ class Screen extends PureComponent {
     } else {
       return (
         <>
-          <UIActivityIndicator size={27} color={'#205a8e'} />
+          <UIActivityIndicator size={27} color={'#641ae4'} />
         </>
       );
     }

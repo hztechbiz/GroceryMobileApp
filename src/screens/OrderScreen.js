@@ -1003,9 +1003,9 @@ class orderScreen extends Component {
                       alignItems: 'center',
                       alignSelf: 'center',
                       height: 55,
-                      width: 250,
+                      width: 280,
                       marginVertical: 25,
-                      backgroundColor: '#2d79be',
+                      backgroundColor: themeStyle.primary,
                       borderRadius: 5,
                       flex: 1,
                       justifyContent: 'center',
@@ -1013,7 +1013,8 @@ class orderScreen extends Component {
                     <Text
                       style={{
                         color: '#FFF',
-                        fontSize: themeStyle.mediumSize,
+                        // fontSize: themeStyle.mediumSize,
+                        fontSize: 17,
                         fontWeight: '500',
                       }}>
                       {this.props.cartItems2.Config.languageJson.Continue}
@@ -1816,7 +1817,7 @@ class orderScreen extends Component {
                       style={{
                         textAlign: 'center',
                         fontSize: 15,
-                        color: themeStyle.otherBtnsColor,
+                        color: '#000',
                         // textDecorationLine: 'underline',
                         fontWeight: 'bold',
                       }}>
