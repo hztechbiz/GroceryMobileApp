@@ -72,7 +72,8 @@ class News extends PureComponent {
           </Text>
           <TouchableOpacity
             style={{
-              backgroundColor: '#2d79be',
+              backgroundColor: themeStyle.primary,
+              // backgroundColor: '#2d79be',
               marginTop: 12,
               paddingVertical: 18,
               justifyContent: 'center',

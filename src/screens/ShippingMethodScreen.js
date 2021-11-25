@@ -229,7 +229,7 @@ class ShippingMethod extends Component {
               alignSelf: 'center',
               height: 60,
               width: wp('80%'),
-              backgroundColor: '#2d79be',
+              backgroundColor: themeStyle.primary,
               justifyContent: 'center',
               opacity: this.state.buttonEnable ? 0.4 : 0.9,
               marginBottom: 30,
