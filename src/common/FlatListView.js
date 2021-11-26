@@ -199,7 +199,9 @@ class FlatListView extends Component {
           flexDirection: 'row',
           flexGrow: 1,
           // marginRight: 10,
-          marginHorizontal: 10,
+          paddingHorizontal: 20,
+          // marginHorizontal: 30,
+          // marginRight: 30,
         }}
         data={
           this.state.objectArray.length === 0

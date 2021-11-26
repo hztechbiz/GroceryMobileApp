@@ -59,34 +59,39 @@ class App extends PureComponent {
           id: 3,
           name: 'SHOP',
           iconName: 'cart',
-          jsonName: this.props.isLoading.Config.languageJson.Shop,
+          // jsonName: this.props.isLoading.Config.languageJson.Shop,
+          jsonName: 'Shop',
           imageName: require('../images/LeftMenuIcon/shop.png'),
           imageShow: !this.props.isLoading.Config.defaultIcons,
           subCategory: [
             {
               id: 7,
-              jsonName: this.props.isLoading.Config.languageJson.Newest,
+              // jsonName: this.props.isLoading.Config.languageJson.Newest,
+              jsonName: 'Newest',
+
               name: 'NEWEST',
               iconName: 'open',
               imageName: require('../images/LeftMenuIcon/minus.png'),
             },
-            {
-              id: 8,
-              jsonName: this.props.isLoading.Config.languageJson.Deals,
-              name: 'DEALS',
-              iconName: 'shirt',
-              imageName: require('../images/LeftMenuIcon/minus.png'),
-            }, // open arrow-dropup-circle
+            // {
+            //   id: 8,
+            //   jsonName: this.props.isLoading.Config.languageJson.Deals,
+            //   name: 'DEALS',
+            //   iconName: 'shirt',
+            //   imageName: require('../images/LeftMenuIcon/minus.png'),
+            // }, // open arrow-dropup-circle
             {
               id: 9,
-              jsonName: this.props.isLoading.Config.languageJson['Top Seller'],
+              // jsonName: this.props.isLoading.Config.languageJson['Top Seller'],
+              jsonName: 'Top Seller',
               name: 'TOPSELLER',
               iconName: 'star',
               imageName: require('../images/LeftMenuIcon/minus.png'),
             }, // open arrow-dropup-circle
             {
               id: 10,
-              jsonName: this.props.isLoading.Config.languageJson['Most Liked'],
+              // jsonName: this.props.isLoading.Config.languageJson['Most Liked'],
+              jsonName: 'Most Liked',
               name: 'MOSTLIKED',
               iconName: 'star',
               imageName: require('../images/LeftMenuIcon/minus.png'),

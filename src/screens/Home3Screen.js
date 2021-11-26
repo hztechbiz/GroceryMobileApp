@@ -127,6 +127,7 @@ class Newest extends Component {
   };
 
   componentDidMount() {
+    //  console.log(this.props.cartItems2.sharedData.flashSaleProducts, 'flash saleeeeeeeeeeee')
     setTimeout(() => {
       this.setState({activityIndicatorTemp: false});
     }, 1000);
@@ -580,7 +581,7 @@ class Newest extends Component {
                       this.props.cartItems2.Config.card_style === 15
                         ? '#f5fafe'
                         : '#f5fafe',
-                    marginHorizontal: 20,
+                    marginHorizontal: 25,
                     // marginLeft: 10,
                   }}>
                   {/* <Icon
@@ -594,7 +595,7 @@ class Newest extends Component {
                       paddingBottom: 4,
                     }}
                   /> */}
-                  <Image
+                  {/* <Image
                     source={require('./../images/magic-wand.png')}
                     style={{
                       height: 15,
@@ -602,7 +603,7 @@ class Newest extends Component {
                       resizeMode: 'contain',
                       marginTop: 10,
                     }}
-                  />
+                  /> */}
 
                   <Text
                     style={{
@@ -706,9 +707,10 @@ class Newest extends Component {
                     renderTabBar={() => (
                       <TabBar
                         style={{
-                          alignItems: 'center',
+                          alignItems: 'flex-start',
                           flexDirection: 'column',
                           justifyContent: 'center',
+
                           // marginHorizontal: 12,
                         }}
                         underlineColor={'#641ae4'}
@@ -720,7 +722,8 @@ class Newest extends Component {
                           paddingTop: 12,
                           backgroundColor: '#efe9f9',
                           justifyContent: 'center',
-                          alignItems: 'center',
+
+                          // alignItems: '',
                           // marginLeft: -16,
                           width: '100%',
                           borderRadius: 10,
@@ -798,7 +801,7 @@ class Newest extends Component {
                       )}
                     </ScrollView>
                     {/* Deals Viewed */}
-                    <ScrollView
+                    {/* <ScrollView
                       tabLabel={{
                         label: this.props.cartItems2.Config.languageJson.Deals,
                       }}
@@ -853,7 +856,7 @@ class Newest extends Component {
                           </View>
                         </View>
                       )}
-                    </ScrollView>
+                    </ScrollView> */}
                     {/* Featured Viewed */}
                     <ScrollView
                       tabLabel={{

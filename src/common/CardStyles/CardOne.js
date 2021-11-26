@@ -20,11 +20,14 @@ import {NavigationEvents} from 'react-navigation';
 export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
   let [incdecquantity, setIncdecquantity] = useState(1);
   // 1st View
+  // console.log(props.objectArray.discount_price, 'sd,lasddlslsd');
   return (
     <View
       style={{
         // backgroundColor: theme.backgroundColor,
         width: widthPic,
+        // elevation: 4,
+        // backgroundColor: 'red',
         // width: '100%',
         // shadowOffset: {width: 1, height: 1},
         // shadowColor: theme.textColor,
@@ -45,6 +48,8 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
           // YELLOW-
           // backgroundColor: theme.backgroundColor,
           // backgroundColor: 'yellow',
+          // elevation: 4,
+
           width: widthPic,
           // backgroundColor: 'green',
           // padding: 5,
@@ -182,7 +187,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                 // alignItems: 'center',
                 alignItems: 'center',
                 alignSelf: 'center',
-                // elevation: 2,
+                // elevation: 4,
                 width: 135,
                 // padding: 5,
                 borderRadius: 10,
@@ -241,32 +246,41 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
               />
             ) : null}
 
-            {props.objectArray.discount_price != null ? (
+            {props.objectArray.discount_price != null ||
+            props.objectArray.flash_price != null ? (
               <View
                 style={{
-                  backgroundColor: theme.otherBtnsColor,
-                  zIndex: 1,
+                  // backgroundColor: theme.saleBackgroundColor,
+                  borderWidth: 0.5,
+                  borderColor: theme.saleBackgroundColor,
+                  backgroundColor: '#fff',
+                  elevation: 4,
                   textAlign: 'center',
                   padding: 3,
                   paddingBottom: 1,
                   paddingTop: 1,
-                  right: 10,
-                  top: 10,
-                  // alignItems: 'center',
-                  // justifyContent: 'center',
+                  right: 5,
+                  top: 5,
+                  alignItems: 'center',
+                  justifyContent: 'center',
                   position: 'absolute',
-                  fontWeight: '400',
-                  borderRadius: 2,
+
+                  // fontWeight: '400',
+                  borderRadius: 6,
+                  height: 25,
+                  width: 37,
+                  // borderTopLeftRadius: 20 / 2,
+                  flexDirection: 'row',
                 }}>
-                <Text
-                  style={{
-                    color: theme.otherBtnsText,
-                    padding: 1,
-                    zIndex: 2,
-                    fontSize: 11,
-                  }}>
-                  {t.pDiscount(props) + ' ' + t.props.language.OFF}
+                <Text style={{color: theme.saleBackgroundColor, fontSize: 10}}>
+                  Sale
                 </Text>
+                {/* <Text style={{color: '#fff', fontSize: 11}}>
+                  {t.pDiscount(props)}
+                </Text>
+                <Text style={{color: '#fff', fontSize: 11}}>
+                  {t.props.language.OFF}
+                </Text> */}
               </View>
             ) : null}
             {props.objectArray.featured ? (
@@ -340,6 +354,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                     color: '#404040',
                     textTransform: 'capitalize',
                     textAlign: 'center',
+
                     //paddingTop: Platform.OS === 'android' ? 1 : 2,
                     // paddingBottom: 1,
                     // marginBottom: 0,
@@ -567,12 +582,13 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                     marginTop: 0,
                     marginBottom: 0,
                     // backgroundColor: theme.removeBtnColor,
-                    backgroundColor: 'yellow',
+                    backgroundColor: 'red',
                   }}>
                   <Text
                     style={{
                       color: theme.removeBtnTextColor,
                       // color: 'black',
+                      // textAlign: 'center',
                       fontSize: theme.mediumSize + 1,
                       fontWeight: '500',
                       // padding: 10,
@@ -811,7 +827,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
 
           <NavigationEvents
             onDidFocus={() => {
-              console.log(incdecquantity, 'onDidFocus');
+              // console.log(incdecquantity, 'onDidFocus');
               setIncdecquantity(1);
             }}
           />

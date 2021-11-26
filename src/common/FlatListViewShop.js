@@ -228,7 +228,7 @@ class Fetch extends PureComponent {
     return (
       <View
         style={{
-          marginBottom: 400,
+          marginBottom: 300,
           marginTop: 2,
           alignItems: 'center',
           alignSelf: 'center',

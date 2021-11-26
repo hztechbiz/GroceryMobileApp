@@ -617,13 +617,13 @@ class CreateAccount extends Component {
                   'NewsScreen',
                 )
               : null} */}
-            {this.props.isLoading.Config.introPage
+            {/* {this.props.isLoading.Config.introPage
               ? this.categoryFun(
                   this.props.isLoading.Config.languageJson.Intro,
                   'reorder',
                   'IntroScreen',
                 )
-              : null}
+              : null} */}
 
             <View height={7} />
           </View>
