@@ -267,13 +267,14 @@ class Login extends PureComponent {
             />
           </View> */}
           <View style={{marginBottom: -30}}>
-            <Image
+            <ImageLoad
               source={require('./../images/logo.png')}
               style={{
-                height: 130,
-                width: 270,
+                height: 200,
+                width: 200,
                 resizeMode: 'contain',
-                marginVertical: 75,
+                marginVertical: 65,
+                // backgroundColor: 'red',
                 // marginTop: 5,
               }}
             />
@@ -481,7 +482,7 @@ class Login extends PureComponent {
             ) : null}
 
             {/* <View style={{flexDirection: 'row', width: '100%', marginTop: 15}}> */}
-              {/* <TouchableOpacity
+            {/* <TouchableOpacity
                 style={{
                   backgroundColor: '#174791',
                   // backgroundColor: '#ed1b24',
@@ -505,7 +506,7 @@ class Login extends PureComponent {
                   }}>
                   Login With
                 </Text> */}
-                {/* <TextInput
+            {/* <TextInput
                   style={{
                     fontFamily: 'Lato-Regular',
                     fontSize: 18,
@@ -521,7 +522,7 @@ class Login extends PureComponent {
                   // onChangeText={(text) => setCompany(text)}
                 /> */}
 
-                {/* <Icon
+            {/* <Icon
                   name="facebook-f"
                   size={20}
                   style={{position: 'absolute', right: 16}}
@@ -529,7 +530,7 @@ class Login extends PureComponent {
                 />
               </TouchableOpacity> */}
 
-              {/* <TouchableOpacity
+            {/* <TouchableOpacity
                 style={{
                   backgroundColor: '#ed1b24',
                   width: '40%',
@@ -552,7 +553,7 @@ class Login extends PureComponent {
                   }}>
                   Login With
                 </Text> */}
-                {/* <TextInput
+            {/* <TextInput
                   style={{
                     fontFamily: 'Lato-Regular',
                     fontSize: 18,
@@ -568,7 +569,7 @@ class Login extends PureComponent {
                   // onChangeText={(text) => setCompany(text)}
                 /> */}
 
-                {/* <Icon
+            {/* <Icon
                   name="google"
                   size={20}
                   style={{position: 'absolute', right: 14}}
@@ -576,8 +577,6 @@ class Login extends PureComponent {
                 />
               </TouchableOpacity> */}
             {/* </View> */}
-            
-
 
             {this.props.isLoading.Config.enablePhoneLogin ? (
               <TouchableOpacity

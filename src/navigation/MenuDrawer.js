@@ -52,54 +52,54 @@ class App extends PureComponent {
       UIManager.setLayoutAnimationEnabledExperimental(true);
     }
     let array = [];
-    array = [
-      {
-        expanded: false,
-        categoryName: {
-          id: 3,
-          name: 'SHOP',
-          iconName: 'cart',
-          // jsonName: this.props.isLoading.Config.languageJson.Shop,
-          jsonName: 'Shop',
-          imageName: require('../images/LeftMenuIcon/shop.png'),
-          imageShow: !this.props.isLoading.Config.defaultIcons,
-          subCategory: [
-            {
-              id: 7,
-              // jsonName: this.props.isLoading.Config.languageJson.Newest,
-              jsonName: 'Newest',
+    // array = [
+    //   {
+    //     expanded: false,
+    //     categoryName: {
+    //       id: 3,
+    //       name: 'SHOP',
+    //       iconName: 'cart',
+    //       // jsonName: this.props.isLoading.Config.languageJson.Shop,
+    //       jsonName: 'Shop',
+    //       imageName: require('../images/LeftMenuIcon/shop.png'),
+    //       imageShow: !this.props.isLoading.Config.defaultIcons,
+    //       subCategory: [
+    //         {
+    //           id: 7,
+    //           // jsonName: this.props.isLoading.Config.languageJson.Newest,
+    //           jsonName: 'Newest',
 
-              name: 'NEWEST',
-              iconName: 'open',
-              imageName: require('../images/LeftMenuIcon/minus.png'),
-            },
-            // {
-            //   id: 8,
-            //   jsonName: this.props.isLoading.Config.languageJson.Deals,
-            //   name: 'DEALS',
-            //   iconName: 'shirt',
-            //   imageName: require('../images/LeftMenuIcon/minus.png'),
-            // }, // open arrow-dropup-circle
-            {
-              id: 9,
-              // jsonName: this.props.isLoading.Config.languageJson['Top Seller'],
-              jsonName: 'Top Seller',
-              name: 'TOPSELLER',
-              iconName: 'star',
-              imageName: require('../images/LeftMenuIcon/minus.png'),
-            }, // open arrow-dropup-circle
-            {
-              id: 10,
-              // jsonName: this.props.isLoading.Config.languageJson['Most Liked'],
-              jsonName: 'Most Liked',
-              name: 'MOSTLIKED',
-              iconName: 'star',
-              imageName: require('../images/LeftMenuIcon/minus.png'),
-            },
-          ],
-        },
-      },
-    ];
+    //           name: 'NEWEST',
+    //           iconName: 'open',
+    //           imageName: require('../images/LeftMenuIcon/minus.png'),
+    //         },
+    //         // {
+    //         //   id: 8,
+    //         //   jsonName: this.props.isLoading.Config.languageJson.Deals,
+    //         //   name: 'DEALS',
+    //         //   iconName: 'shirt',
+    //         //   imageName: require('../images/LeftMenuIcon/minus.png'),
+    //         // }, // open arrow-dropup-circle
+    //         {
+    //           id: 9,
+    //           // jsonName: this.props.isLoading.Config.languageJson['Top Seller'],
+    //           jsonName: 'Top Seller',
+    //           name: 'TOPSELLER',
+    //           iconName: 'star',
+    //           imageName: require('../images/LeftMenuIcon/minus.png'),
+    //         }, // open arrow-dropup-circle
+    //         {
+    //           id: 10,
+    //           // jsonName: this.props.isLoading.Config.languageJson['Most Liked'],
+    //           jsonName: 'Most Liked',
+    //           name: 'MOSTLIKED',
+    //           iconName: 'star',
+    //           imageName: require('../images/LeftMenuIcon/minus.png'),
+    //         },
+    //       ],
+    //     },
+    //   },
+    // ];
     this.setState({AccordionData: [...array]});
     this.getOrientation();
     Dimensions.addEventListener('change', this.getOrientation);
@@ -442,7 +442,7 @@ class App extends PureComponent {
                   />
                 ))}
                 {/* ////////////////////////////////////////// */}
-                {this.props.isLoading.Config.wishListPage
+                {/* {this.props.isLoading.Config.wishListPage
                   ? this.categoryFun(
                       'MY FAVORITES',
                       'heart',
@@ -450,7 +450,7 @@ class App extends PureComponent {
                       require('../images/LeftMenuIcon/heart.png'),
                       this.props.isLoading.Config.languageJson['My Wish List'],
                     )
-                  : null}
+                  : null} */}
                 {this.props.isLoading.Config.editProfilePage &&
                 SyncStorage.get('customerData') !== '' &&
                 !SyncStorage.get('gustLogin')

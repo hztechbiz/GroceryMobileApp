@@ -105,7 +105,7 @@ class Newest extends PureComponent {
       price: {lower: 0, upper: 500},
       priceData: {lower: 0, upper: 500},
       side: 'right',
-      productView: 'list',
+      productView: 'grid',
       on_sale: '',
       featured: '',
       filterOnSale: false,
@@ -730,7 +730,7 @@ class Newest extends PureComponent {
                           products: [],
                           tempApply: false,
                           tab: item.item,
-                          productView: 'grid',
+                          productView: 'list',
                         },
                         () => {
                           this.changeTab(item.item);

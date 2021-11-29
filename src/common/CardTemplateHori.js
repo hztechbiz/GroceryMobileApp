@@ -345,7 +345,7 @@ class CardTemplate extends PureComponent {
                 </View>
               ) : null}
 
-              {t.checkWishList(props, t) === 1 ? (
+              {/* {t.checkWishList(props, t) === 1 ? (
                 props.removeButton ? (
                   <Icon
                     disabled
@@ -371,7 +371,7 @@ class CardTemplate extends PureComponent {
                   name="heart"
                   onPress={() => t.addWishlist(props, t)}
                 />
-              )}
+              )} */}
             </View>
           </View>
         </View>

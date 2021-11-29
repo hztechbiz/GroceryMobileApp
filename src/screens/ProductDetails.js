@@ -369,6 +369,7 @@ class ProductDetail extends PureComponent {
     data.liked_products_id =
       this.props.navigation.state.params.objectArray.products_id;
     const data2 = await postHttp(getUrl() + '/api/' + 'likeproduct', data);
+    console.log(data2.success, 'heloo ========');
     if (data2.success == 1) {
       this.props.navigation.state.params.objectArray.isLiked = '1';
       setTimeout(() => {
@@ -776,7 +777,7 @@ class ProductDetail extends PureComponent {
                     ) : null}
                   </View>
 
-                  {this.props.navigation.state.params.objectArray
+                  {/* {this.props.navigation.state.params.objectArray
                     .flash_price === undefined ? (
                     <TouchableOpacity
                       style={{
@@ -835,7 +836,7 @@ class ProductDetail extends PureComponent {
                         />
                       )}
                     </TouchableOpacity>
-                  ) : null}
+                  ) : null} */}
 
                   {/* <TouchableOpacity
                     onPress={this.onShare}

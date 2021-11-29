@@ -128,6 +128,7 @@ class Newest extends Component {
 
   componentDidMount() {
     //  console.log(this.props.cartItems2.sharedData.flashSaleProducts, 'flash saleeeeeeeeeeee')
+    console.log(this.props.cartItems2.sharedData.tab1, '---------------');
     setTimeout(() => {
       this.setState({activityIndicatorTemp: false});
     }, 1000);
@@ -671,7 +672,7 @@ class Newest extends Component {
                     </View>
                   </View>
                 )}
-                <View style={{marginHorizontal: 9}}>
+                {/* <View style={{marginHorizontal: 9}}>
                   <ScrollableTabView
                     style={{
                       height:
@@ -800,8 +801,8 @@ class Newest extends Component {
                         </View>
                       )}
                     </ScrollView>
-                    {/* Deals Viewed */}
-                    {/* <ScrollView
+                  
+                    <ScrollView
                       tabLabel={{
                         label: this.props.cartItems2.Config.languageJson.Deals,
                       }}
@@ -856,8 +857,8 @@ class Newest extends Component {
                           </View>
                         </View>
                       )}
-                    </ScrollView> */}
-                    {/* Featured Viewed */}
+                    </ScrollView>
+                
                     <ScrollView
                       tabLabel={{
                         label:
@@ -918,7 +919,7 @@ class Newest extends Component {
                       )}
                     </ScrollView>
                   </ScrollableTabView>
-                </View>
+                </View> */}
 
                 {/* Recently Viewed */}
 
