@@ -139,10 +139,11 @@ class App extends PureComponent {
           }>
           <View
             style={{
-              width: WIDTH * 0.4,
+              width: WIDTH * 0.8,
               flexDirection: 'row',
               alignItems: 'center',
               justifyContent: 'flex-start',
+              // backgroundColor: 'red',
             }}>
             {!this.props.isLoading.Config.defaultIcons ? (
               <ImageLoad

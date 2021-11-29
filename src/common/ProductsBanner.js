@@ -211,7 +211,7 @@ class Banner extends PureComponent {
                       // paddingHorizontal: 10,
 
                       // backgroundColor: 'yellow',
-                      // backgroundColor: '#fff',
+                      backgroundColor: 'white',
                       // borderRadius: 20,
                       // marginLeft: 2,
                       // marginHorizontal: 7,

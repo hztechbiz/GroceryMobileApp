@@ -190,8 +190,8 @@ class FlatListView extends Component {
             this.props.card_style === 15
               ? // ? themeStyle.backgroundColor
                 // : themeStyle.backgroundColor,
-                'red'
-              : 'red',
+                '#f5fafe'
+              : '#f5fafe',
           justifyContent: 'flex-start',
           alignSelf: 'flex-start',
           alignItems: 'flex-start',
@@ -230,6 +230,7 @@ class FlatListView extends Component {
                 justifyContent: 'center',
                 margin: 12,
                 alignItems: 'center',
+                // backgroundColor: 'red',
               }}
               onPress={() =>
                 this.props.navigation.navigate('NewestScreen', {
