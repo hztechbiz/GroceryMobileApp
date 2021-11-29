@@ -117,6 +117,7 @@ class Banner extends PureComponent {
           flex: 1,
           justifyContent: 'center',
           height: 200,
+          // backgroundColor: 'red',
         }}>
         <UIActivityIndicator size={27} color={theme.loadingIndicatorColor} />
       </View>
@@ -141,7 +142,7 @@ class Banner extends PureComponent {
                       fontSize: theme.mediumSize,
                       left: 0,
                       top: 10,
-                      backgroundColor: 'red',
+                      // backgroundColor: 'red',
                       padding: 4,
                       paddingLeft: 6,
                       paddingRight: 6,
@@ -198,15 +199,22 @@ class Banner extends PureComponent {
                   </Modal>
                   <View
                     style={{
-                      height: height * 0.47,
+                      // height: height * 0.47,
                       // width:
-                      width: width * 0.89,
-                      backgroundColor: '#fff',
+                      // width: width * 0.89,
+                      // backgroundColor: 'red',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      elevation: 3,
+                      // alignContent: 'center',
+                      // elevation: 5,
+                      padding: 6,
+                      // paddingHorizontal: 10,
+
+                      // backgroundColor: 'yellow',
                       // backgroundColor: '#fff',
-                      // borderRadius: 10,
+                      // borderRadius: 20,
+                      // marginLeft: 2,
+                      // marginHorizontal: 7,
                     }}>
                     {/* <View
                       style={{
@@ -220,35 +228,40 @@ class Banner extends PureComponent {
                         // paddingBottom: 100,
                         // paddingRight: 30,
                       }}> */}
-                    <ImageLoad
-                      resizeMode={'contain'}
-                      key={key}
-                      style={{
-                        // width: width,
+                    <View>
+                      <ImageLoad
+                        resizeMode={'contain'}
+                        key={key}
+                        style={{
+                          // width: width,
 
-                        // height:
-                        //   Platform.OS === 'ios'
-                        //     ? theme.singleRowCardWidth + 100
-                        //     : theme.singleRowCardWidth + 100,
-                        height: height * 0.47,
-                        // width:
-                        // alignSelf: 'center',
-                        width: width * 0.89,
-                        backgroundColor: '#fff',
-                        // alignItems: 'center',
-                        // justifyContent: 'center',
-                        elevation: 5,
-                        borderRadius: 15,
-                      }}
-                      loadingStyle={{
-                        size: 'large',
-                        color: theme.loadingIndicatorColor,
-                      }}
-                      placeholder={false}
-                      ActivityIndicator={true}
-                      placeholderStyle={{width: 0, height: 0}}
-                      source={{uri: val.url}}
-                    />
+                          // height:
+                          //   Platform.OS === 'ios'
+                          //     ? theme.singleRowCardWidth + 100
+                          //     : theme.singleRowCardWidth + 100,
+                          height: height * 0.47,
+                          // width:
+                          // alignSelf: 'center',
+                          width: width * 0.88,
+
+                          backgroundColor: 'white',
+                          // backgroundColor: 'green',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          elevation: 5,
+
+                          borderRadius: 15,
+                        }}
+                        loadingStyle={{
+                          size: 'large',
+                          color: theme.loadingIndicatorColor,
+                        }}
+                        placeholder={false}
+                        ActivityIndicator={true}
+                        placeholderStyle={{width: 0, height: 0}}
+                        source={{uri: val.url}}
+                      />
+                    </View>
                   </View>
                   {/* </View> */}
                 </View>
