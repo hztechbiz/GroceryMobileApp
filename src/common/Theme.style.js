@@ -74,7 +74,7 @@ export default {
   detailsBtnTextColor: '#fff',
   removeBtnColor: '#D81800',
   removeBtnTextColor: '#fff',
-  wishHeartBtnColor: '#3e5902',
+  wishHeartBtnColor: '#641ae4',
   // otherBtnsColor: '#3e5902',
   otherBtnsColor: '#641ae4',
 

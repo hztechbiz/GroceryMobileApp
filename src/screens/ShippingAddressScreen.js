@@ -979,16 +979,16 @@ class ShippingAddress extends Component {
                 ? (this.state.shippingData.lastname = text)
                 : index === 3
                 ? (this.state.shippingData.street = text)
-                : (this.state.shippingData.phonenumber = text); 
-                  // : index === 4
-                  // ? (this.state.shippingData.country_name = text)
-                  // : index === 5
-                  // ? (this.state.shippingData.zone_name = text)
-                  // : index === 6
-                  // ? (this.state.shippingData.city = text)
-                  // : index === 7
-                  // ? (this.state.shippingData.postcode = text)
-                  // (this.state.shippingData.phonenumber = text);
+                : (this.state.shippingData.phonenumber = text);
+              // : index === 4
+              // ? (this.state.shippingData.country_name = text)
+              // : index === 5
+              // ? (this.state.shippingData.zone_name = text)
+              // : index === 6
+              // ? (this.state.shippingData.city = text)
+              // : index === 7
+              // ? (this.state.shippingData.postcode = text)
+              // (this.state.shippingData.phonenumber = text);
               this.setState({shiSppingData: this.state.shippingData});
             }}
             value={
@@ -999,15 +999,15 @@ class ShippingAddress extends Component {
                 : index === 3
                 ? this.state.shippingData.street
                 : this.state.shippingData.phonenumber
-                  // : index === 4
-                  // ? this.state.shippingData.country_name
-                  // : index === 5
-                  // ? this.state.shippingData.zone_name
-                  // : index === 6
-                  // ? this.state.shippingData.city
-                  // : index === 7
-                  // ? this.state.shippingData.postcode
-                  // this.state.shippingData.phonenumber
+              // : index === 4
+              // ? this.state.shippingData.country_name
+              // : index === 5
+              // ? this.state.shippingData.zone_name
+              // : index === 6
+              // ? this.state.shippingData.city
+              // : index === 7
+              // ? this.state.shippingData.postcode
+              // this.state.shippingData.phonenumber
             }
           />
           {index === 0 ? (
@@ -1818,7 +1818,7 @@ class ShippingAddress extends Component {
                 value={this.state.shippingData.phonenumber}
                 placeholderTextColor={'#c0c0c0'}
                 keyboardType="phone-pad"
-                placeholder="Enter Phone Number 1"
+                placeholder="Enter Phone Number"
                 textAlign="left"
               />
 
@@ -1996,7 +1996,7 @@ class ShippingAddress extends Component {
                   value={this.state.billingArray.phonenumber}
                   keyboardType="phone-pad"
                   placeholderTextColor={'#c0c0c0'}
-                  placeholder="Enter Phone Number 2"
+                  placeholder="Enter Phone Number"
                   textAlign="left"
                 />
 
@@ -2017,8 +2017,7 @@ class ShippingAddress extends Component {
                     })
                   : this.setAddress();
               }}
-              disabled={!canBeUpdatingBillings}
-            >
+              disabled={!canBeUpdatingBillings}>
               <View
                 style={{
                   // marginBottom: 20,

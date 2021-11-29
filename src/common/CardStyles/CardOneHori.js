@@ -200,7 +200,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
                 </View>
               ) : null}
             </View>
-            <View>
+            {/* <View>
               {t.checkWishList(props, t) === 1 ? (
                 props.removeButton ? (
                   <Icon
@@ -248,7 +248,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => (
                   }}
                 />
               )}
-            </View>
+            </View> */}
           </View>
 
           <View

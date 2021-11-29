@@ -190,16 +190,18 @@ class FlatListView extends Component {
             this.props.card_style === 15
               ? // ? themeStyle.backgroundColor
                 // : themeStyle.backgroundColor,
-                '#f5fafe'
-              : '#f5fafe',
+                'red'
+              : 'red',
           justifyContent: 'flex-start',
           alignSelf: 'flex-start',
           alignItems: 'flex-start',
           alignContent: 'flex-start',
           flexDirection: 'row',
           flexGrow: 1,
-          // marginRight: 10,
-          marginHorizontal: 10,
+          // marginRight: 5,
+          paddingHorizontal: 10,
+          // marginHorizontal: 30,
+          // marginRight: 30,
         }}
         data={
           this.state.objectArray.length === 0

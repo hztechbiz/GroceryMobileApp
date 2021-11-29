@@ -71,7 +71,7 @@ class News extends PureComponent {
               ]
             }
           </Text>
-          {/* <TouchableOpacity
+          <TouchableOpacity
             style={{
               backgroundColor: themeStyle.primary,
               // backgroundColor: '#2d79be',
@@ -91,7 +91,7 @@ class News extends PureComponent {
               }}>
               {this.props.isLoading.Config.languageJson['My Orders']}
             </Text>
-          </TouchableOpacity> */}
+          </TouchableOpacity>
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate('Home3Screen')}>
             <Text
