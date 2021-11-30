@@ -46,7 +46,7 @@ const ShoppingCartIcon = (props) =>
       <TouchableOpacity
         onPress={() => {
           console.log('---------------');
-          props.navigation.navigate('CartScreen');
+          props.navigation.navigate('Cart');
         }}>
         <View
           style={{

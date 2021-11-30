@@ -34,6 +34,8 @@ class Cart extends Component {
     const headerStyle = navigation.getParam('headerTitle');
     return {
       headerTitle: headerStyle,
+      gestureEnabled: false,
+      drawerLockMode: 'locked-closed',
       headerRight: () => <ShoppingCartIcon navigation={navigation} />,
       headerForceInset: {top: 'never', vertical: 'never'},
       headerTintColor: themeStyle.headerTintColor,

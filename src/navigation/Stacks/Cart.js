@@ -1,137 +1,137 @@
-import React from 'react'
-import { createStackNavigator } from 'react-navigation-stack'
-import CartScreen from '../../screens/CartScreen'
-import ProductDetails from '../../screens/ProductDetails'
-import LoginScreen from '../../screens/LoginScreen'
-import ThankUScreen from '../../screens/ThankUScreen'
-import NewestScreen from '../../navigation/Stacks/Newest'
-import ShippingMethodScreen from '../../screens/ShippingMethodScreen'
-import MapScreen from '../../screens/MapScreen'
-import ShippingAddressScreen from '../../screens/ShippingAddressScreen'
-import MyOrdersScreen from '../../screens/MyOrdersScreen'
-import OrderDetail from '../../screens/OrderDetail'
-import SearchFilterClass from '../../common/SearchFilterClass'
-import SearchFilterZone from '../../common/SearchFilterZone'
-import OrderScreen from '../../screens/OrderScreen'
-import RatingAndReviewScreen from '../../screens/RatingAndReviewScreen'
-import CreateAccountScreen from '../../screens/CreateAccountScreen'
-import ForgotPasswordScreen from '../../screens/ForgotPasswordScreen'
-import MenuIcon from '../../common/MenuIcon'
+import React from 'react';
+import {createStackNavigator} from 'react-navigation-stack';
+import CartScreen from '../../screens/CartScreen';
+import ProductDetails from '../../screens/ProductDetails';
+import LoginScreen from '../../screens/LoginScreen';
+import ThankUScreen from '../../screens/ThankUScreen';
+import NewestScreen from '../../navigation/Stacks/Newest';
+import ShippingMethodScreen from '../../screens/ShippingMethodScreen';
+import MapScreen from '../../screens/MapScreen';
+import ShippingAddressScreen from '../../screens/ShippingAddressScreen';
+import MyOrdersScreen from '../../screens/MyOrdersScreen';
+import OrderDetail from '../../screens/OrderDetail';
+import SearchFilterClass from '../../common/SearchFilterClass';
+import SearchFilterZone from '../../common/SearchFilterZone';
+import OrderScreen from '../../screens/OrderScreen';
+import RatingAndReviewScreen from '../../screens/RatingAndReviewScreen';
+import CreateAccountScreen from '../../screens/CreateAccountScreen';
+import ForgotPasswordScreen from '../../screens/ForgotPasswordScreen';
+import MenuIcon from '../../common/MenuIcon';
 /// ////////////////////////////////////////////////// Home Stack Start
 const HomeStackNavigator = createStackNavigator({
   CartScreen: {
     screen: CartScreen,
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: ({navigation}) => ({
       gestureEnabled: true,
-      headerLeft: () => <MenuIcon navigation={navigation} />
-    })
+      headerLeft: () => <MenuIcon navigation={navigation} />,
+    }),
   },
   SearchFilterClass: {
     screen: SearchFilterClass,
     navigationOptions: () => ({
       gestureEnabled: false,
-      headerRight: null
-    })
+      headerRight: null,
+    }),
   },
   MapScreen: {
     screen: MapScreen,
     navigationOptions: () => ({
       gestureEnabled: false,
-      headerRight: null
-    })
+      headerRight: null,
+    }),
   },
   SearchFilterZone: {
     screen: SearchFilterZone,
     navigationOptions: () => ({
       gestureEnabled: false,
-      headerRight: null
-    })
+      headerRight: null,
+    }),
   },
   ForgotPasswordScreen: {
     screen: ForgotPasswordScreen,
     navigationOptions: () => ({
-      gestureEnabled: false
-    })
+      gestureEnabled: false,
+    }),
   },
   CreateAccountScreen: {
     screen: CreateAccountScreen,
     navigationOptions: () => ({
-      gestureEnabled: false
-    })
+      gestureEnabled: false,
+    }),
   },
   ProductDetails: {
     screen: ProductDetails,
     navigationOptions: () => ({
-      gestureEnabled: false
-    })
+      gestureEnabled: false,
+    }),
   },
   NewestScreen: {
     screen: NewestScreen,
     navigationOptions: () => ({
-      gestureEnabled: false
-    })
+      gestureEnabled: false,
+    }),
   },
   RatingAndReviewScreen: {
     screen: RatingAndReviewScreen,
     navigationOptions: () => ({
-      gestureEnabled: false
-    })
+      gestureEnabled: false,
+    }),
   },
   MyOrdersScreen: {
     screen: MyOrdersScreen,
     navigationOptions: () => ({
-      gestureEnabled: false
-    })
+      gestureEnabled: false,
+    }),
   },
   OrderDetail: {
     screen: OrderDetail,
     navigationOptions: () => ({
-      gestureEnabled: false
-    })
+      gestureEnabled: false,
+    }),
   },
   LoginScreen: {
     screen: LoginScreen,
     navigationOptions: () => ({
-      gestureEnabled: false
-    })
+      gestureEnabled: false,
+    }),
   },
   ThankUScreen: {
     screen: ThankUScreen,
     navigationOptions: () => ({
       gestureEnabled: false,
-      headerRight: null
-    })
+      headerRight: null,
+    }),
   },
   ShippingAddressScreen: {
     screen: ShippingAddressScreen,
     navigationOptions: () => ({
       gestureEnabled: false,
-      headerRight: null
-    })
+      headerRight: null,
+    }),
   },
   ShippingMethodScreen: {
     screen: ShippingMethodScreen,
     navigationOptions: () => ({
       gestureEnabled: false,
-      headerRight: null
-    })
+      headerRight: null,
+    }),
   },
   OrderScreen: {
     screen: OrderScreen,
     navigationOptions: () => ({
       gestureEnabled: false,
-      headerRight: null
-    })
-  }
-})
-HomeStackNavigator.navigationOptions = ({ navigation }) => {
-  let drawerLockMode = 'unlocked'
-  if (navigation.state.index > 0) {
-    drawerLockMode = 'locked-closed'
-  }
+      headerRight: null,
+    }),
+  },
+});
+HomeStackNavigator.navigationOptions = ({navigation}) => {
+  let drawerLockMode = 'unlocked';
+  // if (navigation.state.index > 0) {
+  //   drawerLockMode = 'locked-closed';
+  // }
 
   return {
-    drawerLockMode
-  }
-}
-export default HomeStackNavigator
+    drawerLockMode,
+  };
+};
+export default HomeStackNavigator;

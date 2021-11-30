@@ -93,7 +93,10 @@ class News extends PureComponent {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('Home3Screen')}>
+            onPress={() => {
+              this.props.navigation.pop(1);
+              this.props.navigation.navigate('Home3Screen');
+            }}>
             <Text
               style={{
                 marginTop: -2,
