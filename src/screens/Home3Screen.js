@@ -128,7 +128,7 @@ class Newest extends Component {
 
   componentDidMount() {
     //  console.log(this.props.cartItems2.sharedData.flashSaleProducts, 'flash saleeeeeeeeeeee')
-    // console.log(this.props.cartItems2.sharedData.tab1, '---------------');
+
     setTimeout(() => {
       this.setState({activityIndicatorTemp: false});
     }, 1000);
@@ -1053,9 +1053,10 @@ class Newest extends Component {
                               ? 2
                               : 0,
                         }}
-                        onPress={
-                          (() => this.changeTab(item.item),
-                          console.log(item.item, '======'))
+                        onPress={() =>
+                          this.props.navigation.navigate('NewestScreen', {
+                            parent: item.item.id,
+                          })
                         }>
                         <View
                           style={{

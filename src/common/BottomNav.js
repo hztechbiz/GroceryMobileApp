@@ -91,7 +91,10 @@ class ShoppingCartIcon extends PureComponent {
             alignItems: 'center',
           }}
           onPress={() => {
-            this.props.navigation.navigate('Cart');
+            this.props.activeScreen == 'newestscreen'
+              ? this.props.navigation.navigate('CartScreen')
+              : this.props.navigation.navigate('Cart');
+            // this.props.navigation.pop(1);
           }}>
           <ShoppingCartIcon3
             tintColor={this.props.active === 3 ? theme.primaryDark : '#707070'}

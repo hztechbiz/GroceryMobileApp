@@ -26,6 +26,7 @@ import themeStyle from '../common/Theme.style';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {createSelector} from 'reselect';
 import ShoppingCartIcon from '../common/ShoppingCartIcon';
+import BottomNav from '../common/BottomNav';
 const CANCEL_INDEX = 9;
 const WIDTH = Dimensions.get('window').width;
 const win = Dimensions.get('window');
@@ -63,9 +64,10 @@ class Newest extends PureComponent {
       // ),
     };
   };
-
   constructor(props) {
     super(props);
+    console.log(this.props.allCategories[0].category_id, '---------------');
+
     this.state = {
       queryAttributes: '',
       attributes: [],
@@ -127,6 +129,7 @@ class Newest extends PureComponent {
 
   componentDidMount() {
     console.log(this.state.tab, '=================');
+
     this.child = '';
     this.props.navigation.setParams({
       minAmount: 0,
@@ -529,7 +532,12 @@ class Newest extends PureComponent {
             visible={this.state.SpinnerTemp}
             textStyle={styles.spinnerTextStyle}
           />
-
+          {SyncStorage.get('bottom') ? (
+            <BottomNav
+              active={2}
+              home={'Home3Screen'}
+              activeScreen={'newestscreen'}></BottomNav>
+          ) : null}
           {/* //////////////DRawer///////// */}
           {/* ///////////////////////////////////////////////////////////////// */}
           {this.state.tab == '' ? null : (
