@@ -187,14 +187,14 @@ class Newest extends Component {
       );
       if (dat.success == 1) {
         this.state.page = this.state.page + 1;
-        console.log(this.state.page, 'did mon=unbt');
+        // console.log(this.state.page, 'did mon=unbt');
         for (const value of dat.product_data) {
           // console.log(value, 'data data');
           this.state.products.push(value);
         }
         this.state.noDataFound = false;
       } else {
-        console.log(this.state.page, 'else ===============');
+        // console.log(this.state.page, 'else ===============');
 
         this.state.noDataFound = false;
         this.setState({complete: 'Completed'});
@@ -215,7 +215,7 @@ class Newest extends Component {
       this.state.selectedTab = c.id;
     }
     this.setState({products: [], tempBox: [], fabB: false}, () => {
-      this.getProducts();
+      // this.getProducts();
     });
   }
 
@@ -234,7 +234,7 @@ class Newest extends Component {
       </View>
     ) : (
       <View>
-        <Loader
+        {/* <Loader
           secondaryColor="rgba(208, 205, 205, 1)"
           primaryColor="rgba(218, 215, 215, 1)"
           animationDuration={this.state.timeValue}
@@ -285,7 +285,7 @@ class Newest extends Component {
             recent={this.state.recent}
             width={WIDTH * themeStyle.twoRowCardWIdth}
           />
-        </Loader>
+        </Loader> */}
       </View>
     );
 
@@ -371,7 +371,7 @@ class Newest extends Component {
       this.state.loading = false;
       this.state.timeValue = 400;
       if (this.state.products.length % 10 === 0) {
-        this.state.refreshing = true;
+        this.state.refreshing = false;
       } else {
         this.state.refreshing = false;
       }
@@ -978,7 +978,7 @@ class Newest extends Component {
                 ) : null}
               </View>
               {this.props.cartItems2.cartItems.allCategories !== undefined ? (
-                <View style={{height: 50, width: WIDTH}}>
+                <View style={{paddingVertical: 20, width: WIDTH}}>
                   <FlatList
                     showsHorizontalScrollIndicator={false}
                     showsVerticalScrollIndicator={false}
@@ -999,41 +999,43 @@ class Newest extends Component {
                       shadowColor: '#000',
                       shadowOpacity: 0.8,
                       marginTop: 5,
+                      // paddingVertical: 30,
                       // paddingTop: 3,
                     }}
                     ListHeaderComponent={
                       this.props.cartItems2.cartItems.allCategories !== null ? (
-                        <TouchableOpacity
-                          style={{
-                            borderBottomColor:
-                              this.state.selectedTab === '' ||
-                              this.state.selectedTab === 0 ||
-                              this.state.selectedTab === undefined
-                                ? themeStyle.primary
-                                : themeStyle.textColor,
-                            borderBottomWidth:
-                              this.state.selectedTab === '' ||
-                              this.state.selectedTab === 0 ||
-                              this.state.selectedTab === undefined
-                                ? 2
-                                : 0,
-                          }}
-                          onPress={() => this.changeTab(0)}>
-                          <Text
-                            style={{
-                              fontSize: themeStyle.mediumSize,
-                              textDecorationLine:
-                                this.state.selectedTab === '' ? 'none' : 'none',
-                              padding: 10,
-                              height: 43,
-                              color:
-                                this.state.selectedTab === ''
-                                  ? themeStyle.primaryDark
-                                  : '#707070',
-                            }}>
-                            {this.props.cartItems2.Config.languageJson.All}
-                          </Text>
-                        </TouchableOpacity>
+                        // <TouchableOpacity
+                        //   style={{
+                        //     borderBottomColor:
+                        //       this.state.selectedTab === '' ||
+                        //       this.state.selectedTab === 0 ||
+                        //       this.state.selectedTab === undefined
+                        //         ? themeStyle.primary
+                        //         : themeStyle.textColor,
+                        //     borderBottomWidth:
+                        //       this.state.selectedTab === '' ||
+                        //       this.state.selectedTab === 0 ||
+                        //       this.state.selectedTab === undefined
+                        //         ? 2
+                        //         : 0,
+                        //   }}
+                        //   onPress={() => this.changeTab(0)}>
+                        //   <Text
+                        //     style={{
+                        //       fontSize: themeStyle.mediumSize,
+                        //       textDecorationLine:
+                        //         this.state.selectedTab === '' ? 'none' : 'none',
+                        //       padding: 10,
+                        //       height: 43,
+                        //       color:
+                        //         this.state.selectedTab === ''
+                        //           ? themeStyle.primaryDark
+                        //           : '#707070',
+                        //     }}>
+                        //     {this.props.cartItems2.Config.languageJson.All}
+                        //   </Text>
+                        // </TouchableOpacity>
+                        <></>
                       ) : null
                     }
                     keyExtractor={(item, index) => index.toString()}
@@ -1051,22 +1053,60 @@ class Newest extends Component {
                               ? 2
                               : 0,
                         }}
-                        onPress={() => this.changeTab(item.item)}>
-                        <Text
+                        onPress={
+                          (() => this.changeTab(item.item),
+                          console.log(item.item, '======'))
+                        }>
+                        <View
                           style={{
-                            fontSize: themeStyle.mediumSize,
-                            textDecorationLine:
-                              this.state.selectedTab === item.item.id
-                                ? 'none'
-                                : 'none',
-                            padding: 10,
-                            color:
-                              this.state.selectedTab === item.item.id
-                                ? '#404040'
-                                : '#707070',
+                            // backgroundColor: 'pink',
+                            alignItems: 'center',
+                            paddingVertical: 15,
+                            // backgroundColor: '#f5fafe',
+                            // paddingHorizontal: ,
                           }}>
-                          {item.item.name}
-                        </Text>
+                          <View
+                            style={{
+                              backgroundColor: 'white',
+                              padding: 5,
+                              elevation: 10,
+                              borderRadius: 10,
+                            }}>
+                            <Image
+                              style={{
+                                width: 65,
+                                height: 65,
+                                // alignSelf: 'center',
+                                // borderRadius: 10,
+                              }}
+                              source={{
+                                uri:
+                                  themeStyle.image_url + '/' + item.item.image,
+                              }}
+                            />
+                          </View>
+                          <Text
+                            style={{
+                              // padding: 12,
+                              // paddingLeft: 16,
+                              // paddingRight: 16,
+                              paddingVertical: 5,
+                              paddingHorizontal: 10,
+
+                              fontWeight: '400',
+                              fontFamily: 'Roboto',
+                              fontSize: 14,
+                              width: 100,
+                              textAlign: 'center',
+                              color:
+                                this.state.selectedTab === item.item.id
+                                  ? '#404040'
+                                  : '#939596',
+                            }}
+                            numberOfLines={1}>
+                            {item.item.name}
+                          </Text>
+                        </View>
                       </TouchableOpacity>
                     )}
                   />

@@ -21,7 +21,7 @@ export default {
     '525656277362-uhimqv63papb0lghvaj5qrsnh8iqa8ss.apps.googleusercontent.com', // webClientId For Google SignIn
   /// //// navigation
   homeTitle: 'Star Mart Store',
-  bottomNavigation: false,
+  bottomNavigation: true,
   // please reset app cache after changing these five values
   defaultCurrencySymbol: 'RS',
   defaultCurrencyCode: 'PKR',
