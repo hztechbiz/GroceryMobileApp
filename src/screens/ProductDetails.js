@@ -54,6 +54,10 @@ class ProductDetail extends PureComponent {
 
   constructor(props) {
     super(props);
+    // console.log(
+    //   this.props.navigation.state.params.select,
+    //   'array data .......',
+    // );
     this.state = {
       tick: [],
       attributes: [],
@@ -620,7 +624,12 @@ class ProductDetail extends PureComponent {
             });
           }
         }}
-        disabled={this.state.addToCartButtonValue}>
+        disabled={
+          !this.props.navigation.state.params.select ||
+          this.state.addToCartButtonValue
+        }
+        // disabled={this.state.addToCartButtonValue}
+      >
         <View
           style={{
             borderColor: '#fff',

@@ -19,6 +19,7 @@ import {NavigationEvents} from 'react-navigation';
 
 export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
   let [incdecquantity, setIncdecquantity] = useState(1);
+  let [selected, setSelected] = useState(false);
   // 1st View
   // console.log(props.objectArray.discount_price, 'sd,lasddlslsd');
   return (
@@ -149,6 +150,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                 onPress={() =>
                   props.navigation.push('ProductDetails', {
                     objectArray: props.objectArray, //
+                    select: selected,
                   })
                 }
               />
@@ -174,6 +176,8 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
             onPress={() =>
               props.navigation.push('ProductDetails', {
                 objectArray: props.objectArray, //
+                select: t.newMethod3(props, t) === 1 ? false : true,
+                // select: true,
               })
             }>
             {/* Image View */}
@@ -368,6 +372,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                 onPress={() =>
                   props.navigation.push('ProductDetails', {
                     objectArray: props.objectArray, //
+                    select: true,
                   })
                 }
                 style={{
@@ -750,6 +755,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                     if (t.newMethod3(props, t) !== 1) {
                       props.navigation.push('ProductDetails', {
                         objectArray: props.objectArray, //
+                        select: true,
                       });
                     }
                     // })

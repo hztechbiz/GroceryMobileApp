@@ -128,7 +128,7 @@ class Newest extends Component {
 
   componentDidMount() {
     //  console.log(this.props.cartItems2.sharedData.flashSaleProducts, 'flash saleeeeeeeeeeee')
-    console.log(this.props.cartItems2.sharedData.tab1, '---------------');
+    // console.log(this.props.cartItems2.sharedData.tab1, '---------------');
     setTimeout(() => {
       this.setState({activityIndicatorTemp: false});
     }, 1000);
