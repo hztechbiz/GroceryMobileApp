@@ -124,7 +124,7 @@ class App extends PureComponent {
     console.log(item, 'test');
     const string = item;
     const newString = string.replace(/\s+/g, ''); // "thiscontainsspaces"
-    this.props.navigation.navigate(newString);
+    this.props.navigation.navigate(newString, {id: null});
   };
 
   categoryFun(text, iconName, tempNo, imageTemp, globalText) {

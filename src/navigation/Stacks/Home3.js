@@ -54,6 +54,7 @@ const HomeStackNavigator = createStackNavigator({
     navigationOptions: ({navigation}) => ({
       gestureEnabled: false,
       headerLeft: () => <MenuIcon navigation={navigation} />,
+      drawerLockMode: 'locked-closed',
     }),
   },
   DemoScreen: {
@@ -299,10 +300,10 @@ const HomeStackNavigator = createStackNavigator({
   },
 });
 HomeStackNavigator.navigationOptions = ({navigation}) => {
-  let drawerLockMode = 'unlocked';
-  if (navigation.state.index > 0) {
-    drawerLockMode = 'locked-closed';
-  }
+  let drawerLockMode = 'locked-closed';
+  // if (navigation.state.index) {
+  // drawerLockMode = 'locked-closed';
+  // }
 
   return {
     drawerLockMode,

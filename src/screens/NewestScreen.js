@@ -15,8 +15,8 @@ import {UIActivityIndicator} from 'react-native-indicators';
 import {CardStyleInterpolators} from 'react-navigation-stack';
 import {withNavigation} from 'react-navigation';
 import {ActionSheet, Picker, Icon} from 'native-base';
-import Font_Awesome from 'react-native-vector-icons/FontAwesome';
-import Font_Awesome_2 from 'react-native-vector-icons/FontAwesome5';
+// import Font_Awesome from 'react-native-vector-icons/FontAwesome';
+// import Font_Awesome_2 from 'react-native-vector-icons/FontAwesome5';
 
 import {connect} from 'react-redux';
 import WooComFetch, {getUrl} from '../common/WooComFetch';
@@ -137,7 +137,10 @@ class Newest extends PureComponent {
       price: {lower: 0, upper: 500},
       priceData: {lower: 0, upper: 500},
       side: 'right',
-      productView: 'grid',
+      productView: this.props.navigation.dangerouslyGetParent().state.params
+        .allItem
+        ? 'list'
+        : 'grid',
       on_sale: '',
       featured: '',
       filterOnSale: false,

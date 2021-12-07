@@ -57,7 +57,7 @@ class Screen extends PureComponent {
       return (
         <View style={{flex: 1, backgroundColor: themeStyle.backgroundColor}}>
           <StatusBar
-            backgroundColor={themeStyle.StatusBarColor}
+            backgroundColor="#3d01a4"
             barStyle="light-content"
             hidden
             borderBottomWidth={0}

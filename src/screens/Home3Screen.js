@@ -37,7 +37,7 @@ class Newest extends Component {
     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
     // headerTitle: themeStyle.homeTitle,
     headerRight: () => <ShoppingCartIcon navigation={navigation} />,
-    headerTitleAlign: 'left',
+    headerTitleAlign: 'center',
     headerTintColor: themeStyle.headerTintColor,
     headerStyle: {
       backgroundColor: themeStyle.primary,
@@ -583,7 +583,7 @@ class Newest extends Component {
                       this.props.cartItems2.Config.card_style === 15
                         ? '#f5fafe'
                         : '#f5fafe',
-                    marginHorizontal: 25,
+                    marginHorizontal: 15,
                     // marginLeft: 10,
                   }}>
                   {/* <Icon
@@ -979,8 +979,16 @@ class Newest extends Component {
                 ) : null}
               </View>
               {this.props.cartItems2.cartItems.allCategories !== undefined ? (
-                <View style={{paddingVertical: 20, width: WIDTH}}>
-                  <Text style={{paddingHorizontal: 15}}>Categories</Text>
+                <View style={{width: WIDTH}}>
+                  <Text
+                    style={{
+                      paddingHorizontal: 15,
+                      color: themeStyle.productTextColor,
+                      fontSize: themeStyle.smallSize + 1,
+                      fontWeight: '400',
+                    }}>
+                    Categories
+                  </Text>
                   <FlatList
                     showsHorizontalScrollIndicator={false}
                     showsVerticalScrollIndicator={false}
@@ -1003,6 +1011,10 @@ class Newest extends Component {
                       marginTop: 5,
                       // paddingVertical: 30,
                       // paddingTop: 3,
+                    }}
+                    contentContainerStyle={{
+                      paddingRight: 5,
+                      paddingLeft: 5,
                     }}
                     ListHeaderComponent={
                       this.props.cartItems2.cartItems.allCategories !== null ? (
@@ -1078,8 +1090,8 @@ class Newest extends Component {
                             }}>
                             <ImageLoad
                               style={{
-                                width: 65,
-                                height: 65,
+                                width: 75,
+                                height: 75,
                                 // alignSelf: 'center',
                                 // borderRadius: 10,
                               }}
@@ -1095,17 +1107,20 @@ class Newest extends Component {
                               // paddingLeft: 16,
                               // paddingRight: 16,
                               paddingVertical: 5,
-                              paddingHorizontal: 10,
+                              // paddingHorizontal: 10,
+                              // fontWeight: 'bold',
+                              color: '#404040',
+                              textTransform: 'capitalize',
 
-                              fontWeight: '400',
+                              // fontWeight: '400',
                               fontFamily: 'Roboto',
                               fontSize: 14,
                               width: 100,
                               textAlign: 'center',
-                              color:
-                                this.state.selectedTab === item.item.id
-                                  ? '#404040'
-                                  : '#939596',
+                              // color:
+                              //   this.state.selectedTab === item.item.id
+                              //     ? '#404040'
+                              //     : '#939596',
                             }}
                             numberOfLines={1}>
                             {item.item.name}

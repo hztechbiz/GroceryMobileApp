@@ -26,6 +26,7 @@ const StackNavigator = createStackNavigator({
       disableGestures: true,
       swipeEnabled: false,
       mode: 'modal',
+      drawerLockMode: 'locked-closed',
     }),
   },
 });
@@ -41,6 +42,7 @@ const HomeStackNavigator = createDrawerNavigator(
         disableGestures: true,
         swipeEnabled: false,
         mode: 'modal',
+        drawerLockMode: 'locked-closed',
       }),
     },
   },
@@ -48,5 +50,6 @@ const HomeStackNavigator = createDrawerNavigator(
 );
 HomeStackNavigator.navigationOptions = () => ({
   headerShown: false,
+  drawerLockMode: 'locked-closed',
 });
 export default HomeStackNavigator;

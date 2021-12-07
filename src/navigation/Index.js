@@ -50,6 +50,7 @@ const DrawerConfigs = {
   drawerWidth: WIDTH * 0.78,
   headerMode: 'none',
   drawerPosition: I18nManager.isRTL ? 'right' : 'left',
+  drawerLockMode: 'locked-closed',
   contentComponent: ({navigation}) => <MenuDrawer navigation={navigation} />,
 };
 const AppDrawer = createDrawerNavigator(
@@ -98,6 +99,7 @@ const AppDrawer = createDrawerNavigator(
     Language,
     RewardPoints,
   },
+
   DrawerConfigs,
 );
 export default createAppContainer(
