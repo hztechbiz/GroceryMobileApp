@@ -1058,6 +1058,7 @@ class Newest extends Component {
                         onPress={() =>
                           this.props.navigation.navigate('NewestScreen', {
                             id: item.item.id,
+                            allItem: item.item,
                           })
                         }>
                         <View

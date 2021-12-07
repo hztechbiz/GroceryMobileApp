@@ -78,14 +78,16 @@ class Newest extends PureComponent {
       idArray: [],
       products: [],
       SpinnerTemp: false,
-      tab:
-        // this.props.navigation.dangerouslyGetParent() !== undefined
-        //   ? this.props.navigation.dangerouslyGetParent() !== null &&
-        //     this.props.navigation.dangerouslyGetParent() !== undefined
-        //     ? this.props.navigation.dangerouslyGetParent().state.params.id
-        //     : ''
-        //   :
-        '',
+      tab: this.props.navigation.dangerouslyGetParent().state.params.allItem
+        ? this.props.navigation.dangerouslyGetParent().state.params.allItem
+        : '',
+      // this.props.navigation.dangerouslyGetParent() !== undefined
+      //   ? this.props.navigation.dangerouslyGetParent() !== null &&
+      //     this.props.navigation.dangerouslyGetParent() !== undefined
+      //     ? this.props.navigation.dangerouslyGetParent().state.params.id
+      //     : ''
+      //   :
+      // '',
       indexTemp: 'newest',
       tempmYarray: [0, 500],
       tempmYarray2: [0, 500],
@@ -158,7 +160,7 @@ class Newest extends PureComponent {
   componentDidMount() {
     console.log(this.state?.tab, '==');
     console.log(
-      this.props?.navigation?.dangerouslyGetParent()?.state?.params,
+      this.props?.navigation?.dangerouslyGetParent()?.state?.params.allItem,
       '---------------',
     );
 
@@ -572,7 +574,92 @@ class Newest extends PureComponent {
           ) : null}
           {/* //////////////DRawer///////// */}
           {/* ///////////////////////////////////////////////////////////////// */}
-          {this.state.tab == '' ? null : (
+          {this.state.tab == '' ||
+          this.props.navigation.dangerouslyGetParent().state.params.id ==
+            '' ? null : this.props.navigation.dangerouslyGetParent().state
+              .params.id ? (
+            <View style={{backgroundColor: '#f5fafe'}}>
+              <View style={{backgroundColor: '#f5fafe'}}>
+                <ImageLoad
+                  style={{
+                    // flex: 1,
+                    // width: ,
+                    width: win.width,
+                    height: 180 * ratio,
+
+                    resizeMode: 'contain',
+                  }}
+                  source={require('../images/Categories_header.png')}
+                />
+              </View>
+              <View
+                style={{
+                  marginTop: 30,
+                  marginLeft: 10,
+                  // backgroundColor: 'red',
+                  justifyContent: 'center',
+                }}>
+                <Text
+                  style={{
+                    color: '#404040',
+                    fontSize: 12,
+                    textTransform: 'uppercase',
+                  }}>
+                  Other Categories
+                </Text>
+              </View>
+              <View
+                style={{
+                  // backgroundColor: 'pink',
+                  padding: 10,
+                  flexDirection: 'row',
+                  position: 'absolute',
+                  top: 20,
+                  elevation: 8,
+                  // bottom: 30,
+                  zIndex: 2,
+                }}>
+                <View
+                  style={{
+                    backgroundColor: '#f5fafe',
+                    padding: 5,
+                    elevation: 10,
+                    borderRadius: 10,
+                  }}>
+                  <ImageLoad
+                    style={{
+                      width: 65,
+                      height: 65,
+                      // alignSelf: 'center',
+                      // borderRadius: 10,
+                    }}
+                    source={{
+                      uri: themeStyle.image_url + '/' + this.state?.tab?.image,
+                    }}
+                  />
+                </View>
+                {/* <Image
+                    style={{
+                      width: 80,
+                      height: 80,
+                      // elevation: 8,
+                      // alignSelf: 'center',
+                      // borderRadius: 10,
+                    }}
+                    source={require('../images/.png')}
+                  /> */}
+                {/* </View> */}
+                <View style={{paddingLeft: 12, paddingTop: 5}}>
+                  <Text style={{color: '#ffff', fontSize: 12}}>
+                    {this.state?.tab?.name}
+                  </Text>
+                  <Text style={{color: '#ffff', fontSize: 10}}>
+                    {this.state?.tab?.total_products} Items
+                  </Text>
+                </View>
+              </View>
+            </View>
+          ) : (
             // <>
             //   <Text>{this.state?.tab?.name}</Text>
             // </>
@@ -769,7 +856,10 @@ class Newest extends PureComponent {
                         {
                           products: [],
                           tempApply: false,
-                          tab: item.item,
+                          tab: item.item
+                            ? item.item
+                            : this.props.navigation.dangerouslyGetParent().state
+                                .params.allItem,
                           productView: 'list',
                         },
                         () => {
