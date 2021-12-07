@@ -610,7 +610,11 @@ class ProductDetail extends PureComponent {
       }}>
       <TouchableOpacity
         style={{
-          opacity: !this.state.addToCartButtonValue ? null : 0.6,
+          opacity:
+            !this.props.navigation.state.params.select ||
+            this.state.addToCartButtonValue
+              ? 0.6
+              : null,
         }}
         onPress={() => {
           if (press !== 'outOfStock') {
