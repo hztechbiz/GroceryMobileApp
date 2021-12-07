@@ -1,32 +1,32 @@
-import React from 'react'
-import { createStackNavigator } from 'react-navigation-stack'
-import MyAccountScreen from '../../screens/MyAccountScreen'
-import MenuIcon from '../../common/MenuIcon'
-import NewestScreen from '../../navigation/Stacks/Newest'
+import React from 'react';
+import {createStackNavigator} from 'react-navigation-stack';
+import MyAccountScreen from '../../screens/MyAccountScreen';
+import MenuIcon from '../../common/MenuIcon';
+import NewestScreen from '../../navigation/Stacks/Newest';
 /// ////////////////////////////////////////////////// Home Stack Start
 const HomeStackNavigator = createStackNavigator({
   MyAccountScreen: {
     screen: MyAccountScreen,
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: ({navigation}) => ({
       gestureEnabled: true,
-      headerLeft: () => <MenuIcon navigation={navigation} />
-    })
+      headerLeft: () => <MenuIcon navigation={navigation} />,
+    }),
   },
   NewestScreen: {
     screen: NewestScreen,
     navigationOptions: () => ({
-      gestureEnabled: false
-    })
-  }
-})
-HomeStackNavigator.navigationOptions = ({ navigation }) => {
-  let drawerLockMode = 'unlocked'
+      gestureEnabled: false,
+    }),
+  },
+});
+HomeStackNavigator.navigationOptions = ({navigation}) => {
+  let drawerLockMode = 'locked-closed';
   if (navigation.state.index > 0) {
-    drawerLockMode = 'locked-closed'
+    drawerLockMode = 'locked-closed';
   }
 
   return {
-    drawerLockMode
-  }
-}
-export default HomeStackNavigator
+    drawerLockMode,
+  };
+};
+export default HomeStackNavigator;

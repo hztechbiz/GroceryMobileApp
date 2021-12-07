@@ -1,46 +1,46 @@
-import React from 'react'
-import { createStackNavigator } from 'react-navigation-stack'
-import LanguageScreen from '../../screens/LanguageScreen'
-import Home2Screen from '../../screens/Home2Screen'
-import Home3Screen from '../../screens/Home3Screen'
-import MenuIcon from '../../common/MenuIcon'
-import NewestScreen from '../../navigation/Stacks/Newest'
+import React from 'react';
+import {createStackNavigator} from 'react-navigation-stack';
+import LanguageScreen from '../../screens/LanguageScreen';
+import Home2Screen from '../../screens/Home2Screen';
+import Home3Screen from '../../screens/Home3Screen';
+import MenuIcon from '../../common/MenuIcon';
+import NewestScreen from '../../navigation/Stacks/Newest';
 /// ////////////////////////////////////////////////// Home Stack Start
 const HomeStackNavigator = createStackNavigator({
   Home: {
     screen: LanguageScreen,
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: ({navigation}) => ({
       gestureEnabled: true,
-      headerLeft: () => <MenuIcon navigation={navigation} />
-    })
+      headerLeft: () => <MenuIcon navigation={navigation} />,
+    }),
   },
   Home2: {
     screen: Home2Screen,
     navigationOptions: () => ({
-      gestureEnabled: false
-    })
+      gestureEnabled: false,
+    }),
   },
   NewestScreen: {
     screen: NewestScreen,
     navigationOptions: () => ({
-      gestureEnabled: false
-    })
+      gestureEnabled: false,
+    }),
   },
   Home3: {
     screen: Home3Screen,
     navigationOptions: () => ({
-      gestureEnabled: false
-    })
-  }
-})
-HomeStackNavigator.navigationOptions = ({ navigation }) => {
-  let drawerLockMode = 'unlocked'
+      gestureEnabled: false,
+    }),
+  },
+});
+HomeStackNavigator.navigationOptions = ({navigation}) => {
+  let drawerLockMode = 'locked-closed';
   if (navigation.state.index > 0) {
-    drawerLockMode = 'locked-closed'
+    drawerLockMode = 'locked-closed';
   }
 
   return {
-    drawerLockMode
-  }
-}
-export default HomeStackNavigator
+    drawerLockMode,
+  };
+};
+export default HomeStackNavigator;

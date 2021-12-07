@@ -23,7 +23,7 @@ const HomeStackNavigator = createStackNavigator({
   },
 });
 HomeStackNavigator.navigationOptions = ({navigation}) => {
-  let drawerLockMode = 'unlocked';
+  let drawerLockMode = 'locked-closed';
   if (navigation.state.index > 0) {
     drawerLockMode = 'locked-closed';
   }

@@ -1,68 +1,68 @@
-import React from 'react'
-import { createStackNavigator } from 'react-navigation-stack'
-import SearchScreen from '../../screens/SearchScreen'
-import NewestScreen from '../../navigation/Stacks/Newest'
-import LoginScreen from '../../screens/LoginScreen'
-import ProductDetails from '../../screens/ProductDetails'
-import RatingAndReviewScreen from '../../screens/RatingAndReviewScreen'
-import CreateAccountScreen from '../../screens/CreateAccountScreen'
-import ForgotPasswordScreen from '../../screens/ForgotPasswordScreen'
-import MenuIcon from '../../common/MenuIcon'
+import React from 'react';
+import {createStackNavigator} from 'react-navigation-stack';
+import SearchScreen from '../../screens/SearchScreen';
+import NewestScreen from '../../navigation/Stacks/Newest';
+import LoginScreen from '../../screens/LoginScreen';
+import ProductDetails from '../../screens/ProductDetails';
+import RatingAndReviewScreen from '../../screens/RatingAndReviewScreen';
+import CreateAccountScreen from '../../screens/CreateAccountScreen';
+import ForgotPasswordScreen from '../../screens/ForgotPasswordScreen';
+import MenuIcon from '../../common/MenuIcon';
 /// ////////////////////////////////////////////////// Home Stack Start
 const HomeStackNavigator = createStackNavigator({
   SearchScreen: {
     screen: SearchScreen,
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: ({navigation}) => ({
       gestureEnabled: true,
-      headerLeft: () => <MenuIcon navigation={navigation} />
-    })
+      headerLeft: () => <MenuIcon navigation={navigation} />,
+    }),
   },
   ForgotPasswordScreen: {
     screen: ForgotPasswordScreen,
     navigationOptions: () => ({
-      gestureEnabled: false
-    })
+      gestureEnabled: false,
+    }),
   },
   LoginScreen: {
     screen: LoginScreen,
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: ({navigation}) => ({
       gestureEnabled: true,
-      headerLeft: () => <MenuIcon navigation={navigation} />
-    })
+      headerLeft: () => <MenuIcon navigation={navigation} />,
+    }),
   },
   CreateAccountScreen: {
     screen: CreateAccountScreen,
     navigationOptions: () => ({
-      gestureEnabled: false
-    })
+      gestureEnabled: false,
+    }),
   },
   NewestScreen: {
     screen: NewestScreen,
     navigationOptions: () => ({
-      gestureEnabled: false
-    })
+      gestureEnabled: false,
+    }),
   },
   RatingAndReviewScreen: {
     screen: RatingAndReviewScreen,
     navigationOptions: () => ({
-      gestureEnabled: false
-    })
+      gestureEnabled: false,
+    }),
   },
   ProductDetails: {
     screen: ProductDetails,
     navigationOptions: () => ({
-      gestureEnabled: false
-    })
-  }
-})
-HomeStackNavigator.navigationOptions = ({ navigation }) => {
-  let drawerLockMode = 'unlocked'
+      gestureEnabled: false,
+    }),
+  },
+});
+HomeStackNavigator.navigationOptions = ({navigation}) => {
+  let drawerLockMode = 'locked-closed';
   if (navigation.state.index > 0) {
-    drawerLockMode = 'locked-closed'
+    drawerLockMode = 'locked-closed';
   }
 
   return {
-    drawerLockMode
-  }
-}
-export default HomeStackNavigator
+    drawerLockMode,
+  };
+};
+export default HomeStackNavigator;
