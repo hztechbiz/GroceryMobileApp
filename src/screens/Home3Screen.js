@@ -35,9 +35,11 @@ class Newest extends Component {
   static navigationOptions = ({navigation}) => ({
     // headerLeft: () => <MenuIcon navigation={navigation} />,
     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+    headerRight: null,
+    headerLeft: null,
     // headerTitle: themeStyle.homeTitle,
-    headerRight: () => <ShoppingCartIcon navigation={navigation} />,
-    headerTitleAlign: 'center',
+    // headerRight: () => <ShoppingCartIcon navigation={navigation} />,
+    // headerTitleAlign: 'center',
     headerTintColor: themeStyle.headerTintColor,
     headerStyle: {
       backgroundColor: themeStyle.primary,

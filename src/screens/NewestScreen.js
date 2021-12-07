@@ -163,7 +163,7 @@ class Newest extends PureComponent {
   componentDidMount() {
     console.log(this.state?.tab, '==');
     console.log(
-      this.props?.navigation?.dangerouslyGetParent()?.state?.params.allItem,
+      this.props?.navigation?.dangerouslyGetParent()?.state?.params,
       '---------------',
     );
 
@@ -548,13 +548,10 @@ class Newest extends PureComponent {
         style={{
           flex: 1,
           justifyContent: 'center',
-
-          backgroundColor: themeStyle.backgroundColor,
+          // alignItems: 'center',
+          // marginVertical: 150,
         }}>
-        <UIActivityIndicator
-          size={27}
-          color={themeStyle.loadingIndicatorColor}
-        />
+        <UIActivityIndicator size={27} color={'red'} />
       </View>
     ) : (
       <View style={styles.container}>

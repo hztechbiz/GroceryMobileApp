@@ -53,7 +53,7 @@ const HomeStackNavigator = createStackNavigator({
     screen: Home3Screen,
     navigationOptions: ({navigation}) => ({
       gestureEnabled: false,
-      headerLeft: () => <MenuIcon navigation={navigation} />,
+      // headerLeft: () => <MenuIcon navigation={navigation} />,
       drawerLockMode: 'locked-closed',
     }),
   },

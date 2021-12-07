@@ -294,6 +294,7 @@ class Fetch extends PureComponent {
           alignContent: 'center',
           alignSelf: 'center',
           alignItems: 'center',
+          marginBottom: 300,
         }}>
         <UIActivityIndicator
           style={{paddingLeft: Dimensions.get('window').width * 0.46}}

@@ -17,12 +17,12 @@ import MenuIcon from '../common/MenuIcon';
 import {Platform} from 'react-native';
 class Home extends PureComponent {
   static navigationOptions = ({navigation}) => ({
-    headerLeft: () => <MenuIcon navigation={navigation} />,
+    // headerLeft: () => <MenuIcon navigation={navigation} />,
     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
     headerTitle: theme.homeTitle,
 
-    headerRight: () => <ShoppingCartIcon navigation={navigation} />,
-    headerTitleAlign: 'left',
+    // headerRight: () => <ShoppingCartIcon navigation={navigation} />,
+    headerTitleAlign: 'center',
     headerTintColor: theme.headerTintColor,
     headerStyle: {
       backgroundColor: theme.primary,
