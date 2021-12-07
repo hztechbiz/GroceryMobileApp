@@ -29,12 +29,13 @@ import BottomNav from '../common/BottomNav';
 import themeStyle from '../common/Theme.style';
 import ShoppingCartIcon from '../common/ShoppingCartIcon';
 import MenuIcon from '../common/MenuIcon';
+import ImageLoad from '../common/RnImagePlaceH';
 const WIDTH = Dimensions.get('window').width;
 class Newest extends Component {
   static navigationOptions = ({navigation}) => ({
-    headerLeft: () => <MenuIcon navigation={navigation} />,
+    // headerLeft: () => <MenuIcon navigation={navigation} />,
     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-    headerTitle: themeStyle.homeTitle,
+    // headerTitle: themeStyle.homeTitle,
     headerRight: () => <ShoppingCartIcon navigation={navigation} />,
     headerTitleAlign: 'left',
     headerTintColor: themeStyle.headerTintColor,
@@ -979,6 +980,7 @@ class Newest extends Component {
               </View>
               {this.props.cartItems2.cartItems.allCategories !== undefined ? (
                 <View style={{paddingVertical: 20, width: WIDTH}}>
+                  <Text style={{paddingHorizontal: 15}}>Categories</Text>
                   <FlatList
                     showsHorizontalScrollIndicator={false}
                     showsVerticalScrollIndicator={false}
@@ -993,8 +995,8 @@ class Newest extends Component {
                     horizontal
                     style={{
                       borderColor: themeStyle.textColor,
-                      backgroundColor: '#efe9f9',
-                      elevation: 5,
+                      // backgroundColor: '#efe9f9',
+                      // elevation: 5,
                       shadowOffset: {width: 5, height: 1},
                       shadowColor: '#000',
                       shadowOpacity: 0.8,
@@ -1055,14 +1057,14 @@ class Newest extends Component {
                         }}
                         onPress={() =>
                           this.props.navigation.navigate('NewestScreen', {
-                            parent: item.item.id,
+                            id: item.item.id,
                           })
                         }>
                         <View
                           style={{
                             // backgroundColor: 'pink',
                             alignItems: 'center',
-                            paddingVertical: 15,
+                            paddingVertical: 5,
                             // backgroundColor: '#f5fafe',
                             // paddingHorizontal: ,
                           }}>
@@ -1073,7 +1075,7 @@ class Newest extends Component {
                               elevation: 10,
                               borderRadius: 10,
                             }}>
-                            <Image
+                            <ImageLoad
                               style={{
                                 width: 65,
                                 height: 65,

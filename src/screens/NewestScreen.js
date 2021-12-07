@@ -27,6 +27,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import {createSelector} from 'reselect';
 import ShoppingCartIcon from '../common/ShoppingCartIcon';
 import BottomNav from '../common/BottomNav';
+import ImageLoad from '../common/RnImagePlaceH';
 const CANCEL_INDEX = 9;
 const WIDTH = Dimensions.get('window').width;
 const win = Dimensions.get('window');
@@ -66,7 +67,6 @@ class Newest extends PureComponent {
   };
   constructor(props) {
     super(props);
-    console.log(this.props.allCategories[0].category_id, '---------------');
 
     this.state = {
       queryAttributes: '',
@@ -78,7 +78,14 @@ class Newest extends PureComponent {
       idArray: [],
       products: [],
       SpinnerTemp: false,
-      tab: '',
+      tab:
+        // this.props.navigation.dangerouslyGetParent() !== undefined
+        //   ? this.props.navigation.dangerouslyGetParent() !== null &&
+        //     this.props.navigation.dangerouslyGetParent() !== undefined
+        //     ? this.props.navigation.dangerouslyGetParent().state.params.id
+        //     : ''
+        //   :
+        '',
       indexTemp: 'newest',
       tempmYarray: [0, 500],
       tempmYarray2: [0, 500],
@@ -93,9 +100,30 @@ class Newest extends PureComponent {
       //   this.props.language['Most Liked'],
       //   this.props.language.Cancel,
       // ],
-      selectedTab: '',
-      categoryId: '',
-      categoryName: '',
+      // selectedTab: '',
+      // categoryId: '',
+      // categoryName: '',
+      selectedTab:
+        this.props.navigation.dangerouslyGetParent() !== undefined
+          ? this.props.navigation.dangerouslyGetParent() !== null &&
+            this.props.navigation.dangerouslyGetParent() !== undefined
+            ? this.props.navigation.dangerouslyGetParent().state.params.id
+            : ''
+          : '',
+      categoryId:
+        this.props.navigation.dangerouslyGetParent() !== undefined
+          ? this.props.navigation.dangerouslyGetParent() !== null &&
+            this.props.navigation.dangerouslyGetParent() !== undefined
+            ? this.props.navigation.dangerouslyGetParent().state.params.id
+            : ''
+          : '',
+      categoryName:
+        this.props.navigation.dangerouslyGetParent() !== undefined
+          ? this.props.navigation.dangerouslyGetParent() !== null &&
+            this.props.navigation.dangerouslyGetParent() !== undefined
+            ? this.props.navigation.dangerouslyGetParent().state.params.name
+            : ''
+          : '',
       sortOrder: 'newest',
       page: 0,
       applyFilter: false,
@@ -128,7 +156,11 @@ class Newest extends PureComponent {
   }
 
   componentDidMount() {
-    console.log(this.state.tab, '=================');
+    console.log(this.state?.tab, '==');
+    console.log(
+      this.props?.navigation?.dangerouslyGetParent()?.state?.params,
+      '---------------',
+    );
 
     this.child = '';
     this.props.navigation.setParams({
@@ -546,7 +578,7 @@ class Newest extends PureComponent {
             // </>
             <View style={{backgroundColor: '#f5fafe'}}>
               <View style={{backgroundColor: '#f5fafe'}}>
-                <Image
+                <ImageLoad
                   style={{
                     // flex: 1,
                     // width: ,
@@ -592,7 +624,7 @@ class Newest extends PureComponent {
                     elevation: 10,
                     borderRadius: 10,
                   }}>
-                  <Image
+                  <ImageLoad
                     style={{
                       width: 65,
                       height: 65,
@@ -770,7 +802,7 @@ class Newest extends PureComponent {
                           elevation: 10,
                           borderRadius: 10,
                         }}>
-                        <Image
+                        <ImageLoad
                           style={{
                             width: 65,
                             height: 65,
