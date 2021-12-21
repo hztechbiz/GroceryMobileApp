@@ -721,7 +721,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                         minimumValue={1}
                         initialValue={1}
                         onIncrement={() => {
-                          console.log(incdecquantity);
+                          // console.log(incdecquantity);
                           setIncdecquantity(incdecquantity + 1);
                           //t.qunatityPlus(props, t, 1);
                         }}

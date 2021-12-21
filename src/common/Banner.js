@@ -83,7 +83,9 @@ class SwiperBanner extends PureComponent {
               source={{
                 uri:
                   val.image !== undefined
-                    ? theme.image_url + '/' + val.image.toString().startsWith('https')
+                    ? theme.image_url +
+                      '/' +
+                      val.image.toString().startsWith('https')
                       ? theme.image_url + '/' + val.image.toString()
                       : theme.image_url +
                         '/' +
@@ -112,7 +114,7 @@ class SwiperBanner extends PureComponent {
   }
 
   render() {
-    console.log('banner =============');
+    // console.log('banner =============');
     let {loading} = this.state;
     if (this.props.banners !== undefined) {
       if (this.props.banners.length > 0) {

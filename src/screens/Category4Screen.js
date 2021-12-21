@@ -62,6 +62,7 @@ class Category4 extends PureComponent {
           flex: 1,
           paddingBottom: SyncStorage.get('bottom') ? 50 : 0,
           backgroundColor: themeStyle.backgroundColor,
+          // backgroundColor: 'red',
         }}>
         {SyncStorage.get('bottom') ? (
           <BottomNav
@@ -125,7 +126,7 @@ class Category4 extends PureComponent {
             products={this.props.cartItems2.Config.languageJson.Products}
             allCategories={this.props.cartItems2.cartItems.allCategories}
             props={this.props}
-            noOfCol={2}
+            noOfCol={3}
             categoryPage={4}
           />
         )}

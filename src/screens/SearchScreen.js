@@ -50,6 +50,7 @@ class SearchScreen extends Component {
       arrayholder: [],
       arrayholderHeader: [],
       spinnerTemp: false,
+      selected: false,
     };
   }
 
@@ -71,10 +72,11 @@ class SearchScreen extends Component {
   }
 
   openSubCategories = (parent, name, item) => {
-    console.log(parent, 'sdaasdsad');
+    // console.log(parent, 'sdaasdsad');
     this.props.navigation.navigate('NewestScreen', {
       id: parent.id,
       allItem: parent,
+      // select: selected,
       //   // allItem: item,
       sortOrder: 'newest',
     });
@@ -141,6 +143,7 @@ class SearchScreen extends Component {
       index={index}
       cardStyle={101}
       addToCart={false}
+      selected={true}
       width={WIDTH}
     />
   );

@@ -1,90 +1,180 @@
+// import React from 'react';
+// import {View, TouchableOpacity, Text, Dimensions} from 'react-native';
+// import ImageLoad from './RnImagePlaceH';
+// import theme from './Theme.style';
+// const WIDTH = Dimensions.get('window').width;
+// const Width2 = WIDTH * 0.42;
+// export default Category1 = (props) => (
+//   <TouchableOpacity
+//     style={{
+//       justifyContent: 'center',
+//       alignItems: 'center',
+//       // backgroundColor: 'red',
+//       // backgroundColor: '#fff',
+//       // margin: 5,
+//       marginHorizontal: 5,
+//       // marginVertical: 1,
+//       height: 120,
+//       width: Width2,
+//       // opacity: 15,
+//       // padding: 16,
+
+//       // borderColor: 'gray',
+//       // borderWidth: 0.2,
+//       shadowOffset: {width: 1, height: 1},
+//       shadowColor: theme.textColor,
+//       shadowOpacity: 0.2,
+//       // elevation: 4,
+//       borderRadius: 10,
+//     }}
+//     onPress={() => props.openSubCategories(props.item, props.item.name)}>
+//     <View
+//       style={{
+//         // position: 'absolute',
+//         // color: 'black',
+//         // top: 0,
+//         backgroundColor: 'rgba(0, 0, 0, 1)',
+//         borderRadius: 12,
+//         // flex: 1,
+//       }}>
+//       <ImageLoad
+//         key={props.id}
+//         style={{
+//           height: 110,
+//           width: Width2,
+//           overflow: 'hidden',
+//           borderRadius: 12,
+//           opacity: 0.5,
+//         }}
+//         // resizeMethod="contain"
+//         loadingStyle={{size: 'large', color: theme.loadingIndicatorColor}}
+//         placeholder={false}
+//         ActivityIndicator={true}
+//         placeholderStyle={{width: 0, height: 0}}
+//         backgroundColor="transparent"
+//         color="transparent"
+//         source={{uri: theme.image_url + '/' + props.item.image}}
+//       />
+//     </View>
+
+//     <View
+//       style={{
+//         position: 'absolute',
+//         top: 40,
+//         // paddingTop: 15,
+//         // justifyContent: 'center',
+//         // alignItems: 'center',
+//         // backfaceVisibility: 'hidden',
+//         // backgroundColor: theme.backgroundColor,
+//         // alignContent: 'center',
+//       }}>
+//       <Text
+//         style={{
+//           fontWeight: 'bold',
+//           // color: theme.textColor,
+//           color: '#fff',
+//           fontSize: theme.mediumSize,
+//           textAlign: 'center',
+//         }}>
+//         {props.item.name}
+//       </Text>
+//       <Text
+//         style={{
+//           // color: theme.textColor,
+//           color: '#fff',
+//           fontSize: theme.smallSize,
+//           textAlign: 'center',
+//         }}>{`${props.item.total_products} ${props.products}`}</Text>
+//     </View>
+//   </TouchableOpacity>
+// );
+
 import React from 'react';
 import {View, TouchableOpacity, Text, Dimensions} from 'react-native';
 import ImageLoad from './RnImagePlaceH';
 import theme from './Theme.style';
 const WIDTH = Dimensions.get('window').width;
-const Width2 = WIDTH * 0.42;
 export default Category1 = (props) => (
   <TouchableOpacity
-    style={{
-      justifyContent: 'center',
-      alignItems: 'center',
-      // backgroundColor: 'red',
-      // backgroundColor: '#fff',
-      // margin: 5,
-      marginHorizontal: 5,
-      // marginVertical: 1,
-      height: 120,
-      width: Width2,
-      // opacity: 15,
-      // padding: 16,
+    style={
+      props.noShadow
+        ? [
+            {
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: theme.backgroundColor,
+              // backgroundColor:'red',
 
-      // borderColor: 'gray',
-      // borderWidth: 0.2,
-      shadowOffset: {width: 1, height: 1},
-      shadowColor: theme.textColor,
-      shadowOpacity: 0.2,
-      // elevation: 4,
-      borderRadius: 10,
-    }}
+              width: WIDTH * 0.46,
+              padding: 10,
+              margin: 6,
+              marginTop: 12,
+              marginBottom: 2,
+              borderRadius: 1,
+            },
+            {
+              width: !props.sizeChange ? WIDTH * 0.46 : WIDTH * 0.29,
+              padding: !props.sizeChange ? 6 : 0,
+            },
+          ]
+        : {
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: theme.backgroundColor,
+            // backgroundColor: 'red',
+            width: WIDTH * 0.28,
+            padding: 1,
+            // borderColor: 'gray',
+            // borderWidth: 0.2,
+            shadowOffset: {width: 1, height: 1},
+            shadowColor: theme.textColor,
+            shadowOpacity: 0.2,
+            margin: 5,
+            elevation: 3,
+            borderRadius: 10,
+          }
+    }
     onPress={() => props.openSubCategories(props.item, props.item.name)}>
-    <View
+    <ImageLoad
+      key={props.id}
       style={{
-        // position: 'absolute',
-        // color: 'black',
-        // top: 0,
-        backgroundColor: 'rgba(0, 0, 0, 1)',
-        borderRadius: 12,
-        // flex: 1,
-      }}>
-      <ImageLoad
-        key={props.id}
-        style={{
-          height: 110,
-          width: Width2,
-          overflow: 'hidden',
-          borderRadius: 12,
-          opacity: 0.5,
-        }}
-        // resizeMethod="contain"
-        loadingStyle={{size: 'large', color: theme.loadingIndicatorColor}}
-        placeholder={false}
-        ActivityIndicator={true}
-        placeholderStyle={{width: 0, height: 0}}
-        backgroundColor="transparent"
-        color="transparent"
-        source={{uri: theme.image_url + '/' + props.item.image}}
-      />
-    </View>
+        height: !props.sizeChange ? 80 : 70,
+        width: !props.sizeChange ? 80 : 70,
+        borderRadius: !props.sizeChange ? 80 / 2 : 70 / 2,
+        overflow: 'hidden',
+      }}
+      loadingStyle={{size: 'large', color: theme.loadingIndicatorColor}}
+      placeholder={false}
+      ActivityIndicator={true}
+      placeholderStyle={{width: 0, height: 0}}
+      backgroundColor="transparent"
+      color="transparent"
+      source={{uri: theme.image_url + '/' + props.item.image}}
+    />
 
     <View
       style={{
-        position: 'absolute',
-        top: 40,
-        // paddingTop: 15,
-        // justifyContent: 'center',
-        // alignItems: 'center',
-        // backfaceVisibility: 'hidden',
-        // backgroundColor: theme.backgroundColor,
-        // alignContent: 'center',
+        paddingTop: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backfaceVisibility: 'hidden',
+        backgroundColor: theme.backgroundColor,
+        alignContent: 'center',
       }}>
       <Text
         style={{
           fontWeight: 'bold',
-          // color: theme.textColor,
-          color: '#fff',
-          fontSize: theme.mediumSize,
+          color: theme.textColor,
+          fontSize: !props.sizeChange ? theme.mediumSize : theme.smallSize,
           textAlign: 'center',
         }}>
         {props.item.name}
       </Text>
-      <Text
+      {/* <Text
         style={{
-          // color: theme.textColor,
-          color: '#fff',
-          fontSize: theme.smallSize,
-          textAlign: 'center',
-        }}>{`${props.item.total_products} ${props.products}`}</Text>
+          color: theme.textColor,
+          fontSize: !props.sizeChange ? theme.smallSize : theme.smallSize - 2,
+        }}>{`${props.item.total_products} ${props.products}`}</Text> */}
     </View>
   </TouchableOpacity>
 );

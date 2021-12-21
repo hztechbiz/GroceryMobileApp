@@ -29,6 +29,7 @@ import {CountryCodePicker, CountryCodeKey} from './CountryCodes';
 import {Picker, Content, Icon} from 'native-base';
 import {AsYouType, parsePhoneNumberFromString} from 'libphonenumber-js';
 import Iconone from 'react-native-vector-icons/FontAwesome5';
+// import {Icon, Select} from 'native-base';
 const WIDTH = Dimensions.get('window').width;
 class ShippingAddress extends Component {
   /// ////////////////////////////////////////////////////
@@ -123,6 +124,7 @@ class ShippingAddress extends Component {
       itemVal3: '',
       text3: '',
       textSize3: 15,
+      selected: 'Malir',
     };
   }
   /// ////////////////////////////////////////
@@ -553,6 +555,13 @@ class ShippingAddress extends Component {
         ? (this.state.shippingData.city = 'City')
         : (this.state.shippingData.city = 'Delivery City nothing');
 
+    orderDetails.delivery_city_area = this.state.selected;
+
+    // orderDetails.delivery_city_area =
+    //   this.state.shippingData.area == null ||
+    //   this.state.shippingData.area == undefined
+    //     ? (this.state.shippingData.area = 'Area')
+    //     : (this.state.shippingData.city = 'Delivery Area nothing');
     // ==================Delivery Postcode==================
     orderDetails.delivery_postcode =
       this.state.shippingData.postcode == null ||
@@ -576,6 +585,7 @@ class ShippingAddress extends Component {
 
     orderDetails.delivery_street_address = this.state.shippingData.street; //Active_Field
     SyncStorage.set('orderDetails', orderDetails);
+
     console.log(orderDetails, 'Hello...................!');
     this.props.navigation.navigate('ShippingMethodScreen');
   }
@@ -604,97 +614,119 @@ class ShippingAddress extends Component {
     return name;
   }
 
+  onValueChange(value) {
+    console.log(value);
+    this.setState({
+      selected: value,
+    });
+  }
+
   /// ///////////////////////////////////////
   searchFilterFun(text, name, selection, nav) {
-    console.log(nav, 'on nav');
+    // console.log(nav, 'on nav');
     return (
-      <TouchableOpacity
-        onPress={() =>
-          this.props.navigation.navigate(nav, {
-            data: text,
-            id: this.state.shippingData.entry_country_id,
-            page: 'shipping',
-            onSelectionBase: selection,
-            onGoBack: (name, selectedValue, id, temp) =>
-              this.refresh(name, selectedValue, id, temp),
-          })
-        }>
-        {/* <View
-          style={{
-            // marginRight: 20,
-            // marginLeft: 20,
-            // marginTop: 20,
-            // paddingTop: 10,
-            // paddingBottom: 10,
-            // paddingLeft: 4,
-            // width: wp('90%'),
-            // borderRadius: 1,
-            // borderBottomWidth: 1,
-            // borderColor: '#c0c0c0',
-            // backgroundColor: 'pink',
+      <></>
+      // <View
+      //   style={{
+      //     // marginRight: 20,
+      //     // marginLeft: 20,
+      //     // marginTop: 20,
+      //     // paddingTop: 10,
+      //     // paddingBottom: 10,
+      //     // paddingLeft: 4,
+      //     // width: wp('90%'),
+      //     // borderRadius: 1,
+      //     // borderBottomWidth: 1,
+      //     // borderColor: '#c0c0c0',
+      //     // backgroundColor: 'pink',
 
-            backgroundColor: '#fff',
-            width: '90%',
-            height: 60,
-            borderColor: '#fff',
-            borderWidth: 1,
-            borderRadius: 12,
-            flexDirection: 'row',
-            alignItems: 'center',
-            alignSelf: 'center',
-            marginBottom: 12,
-            marginTop: 5,
-            // shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 3,
-            },
-            shadowOpacity: 0.29,
-            shadowRadius: 4.65,
+      //     backgroundColor: '#fff',
+      //     width: '95%',
+      //     height: 60,
+      //     borderColor: '#fff',
+      //     borderWidth: 1,
+      //     borderRadius: 12,
+      //     flexDirection: 'row',
+      //     alignItems: 'center',
+      //     alignSelf: 'center',
+      //     marginBottom: 12,
+      //     marginTop: 5,
+      //     // shadowColor: '#000',
+      //     shadowOffset: {
+      //       width: 0,
+      //       height: 3,
+      //     },
+      //     shadowOpacity: 0.29,
+      //     shadowRadius: 4.65,
 
-            elevation: 5,
-          }}> */}
-        {/* <Text
-            style={{
-              color:
-                name === 'Country' || name === 'Zone'
-                  ? '#c0c0c0'
-                  : themeStyle.textColor,
-              // fontSize: themeStyle.mediumSize,
-              // paddingRight: 6,
-              // writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr',
-              // textAlign: 'justify',
-              // marginLeft: 5,
+      //     elevation: 5,
+      //   }}>
+      //   <Picker
+      //     note
+      //     mode="dropdown"
+      //     style={{width: 120}}
+      //     selectedValue={this.state.selected}
+      //     onValueChange={this.onValueChange.bind(this)}>
+      //     <Picker.Item label="Malir" value="Malir" />
+      //     <Picker.Item label="Malir Cantt" value="Malir Cantt" />
+      //     <Picker.Item label="Shah Faisal Colony" value="Shah Faisal Colony" />
+      //     <Picker.Item label="Credit Card" value="Credit Card" />
+      //     <Picker.Item label="Net Banking" value="Net Banking" />
+      //   </Picker>
+      // </View>
+      // <TouchableOpacity
+      //   onPress={() =>
+      //     this.props.navigation.navigate(nav, {
+      //       data: text,
+      //       id: this.state.shippingData.entry_country_id,
+      //       page: 'shipping',
+      //       onSelectionBase: selection,
+      //       onGoBack: (name, selectedValue, id, temp) =>
+      //         this.refresh(name, selectedValue, id, temp),
+      //     })
+      //   }>
+      //
+      //     <Text
+      //       style={{
+      //         color:
+      //           name === 'Country' || name === 'Zone'
+      //             ? '#c0c0c0'
+      //             : themeStyle.textColor,
+      //         // fontSize: themeStyle.mediumSize,
+      //         // paddingRight: 6,
+      //         // writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr',
+      //         // textAlign: 'justify',
+      //         // marginLeft: 5,
 
-              fontFamily: 'Lato-Regular',
-              fontSize: 18,
-              // color: 'black',
-              width: '100%',
-              height: '100%',
-              paddingHorizontal: 20,
-              paddingVertical: 15,
-            }}>
-            {name}
-          </Text> */}
-        {/* {nav == 'SearchFilterClass' ? (
-            <Iconone
-              name="globe"
-              size={20}
-              style={{position: 'absolute', right: 20}}
-              color="red"
-            />
-          ) : nav == 'SearchFilterZone' ? (
-            <Iconone
-              name="map"
-              size={20}
-              style={{position: 'absolute', right: 20}}
-              color="red"
-            />
-          ) : (
-            <></>
-          )} */}
-        {/* </View> */}
-      </TouchableOpacity>
+      //         fontFamily: 'Lato-Regular',
+      //         fontSize: 18,
+      //         // color: 'black',
+      //         width: '100%',
+      //         height: '100%',
+      //         paddingHorizontal: 20,
+      //         paddingVertical: 15,
+      //       }}>
+      //       {name}
+      //     </Text>
+      //     {nav == 'SearchFilterClass' ? (
+      //       <Iconone
+      //         name="globe"
+      //         size={20}
+      //         style={{position: 'absolute', right: 20}}
+      //         color="red"
+      //       />
+      //     ) : nav == 'SearchFilterZone' ? (
+      //       <Iconone
+      //         name="map"
+      //         size={20}
+      //         style={{position: 'absolute', right: 20}}
+      //         color="red"
+      //       />
+      //     ) : (
+      //       <></>
+      //     )}
+      //   </View>
+      // </TouchableOpacity>
     );
   }
 
@@ -704,37 +736,50 @@ class ShippingAddress extends Component {
         onPress={() =>
           this.props.navigation.navigate('MapScreen', {
             onGoBackFun: (cord) => {
+              console.log(cord, 'cord =====');
               const orderDetails = SyncStorage.get('orderDetails');
               orderDetails.latitude = cord.latitude;
               orderDetails.longitude = cord.longitude;
               orderDetails.delivery_location =
                 cord.latitude + ', ' + cord.longitude;
               SyncStorage.set('orderDetails', orderDetails);
-              this.state.shippingData.delivery_location =
-                cord.latitude + ', ' + cord.longitude;
+              this.state.shippingData.delivery_location = cord;
+              // cord.latitude + ', ' + cord.longitude;
               this.setState({});
             },
           })
-        }>
+        }
+        style={{
+          width: '98%',
+          borderRadius: 10,
+          elevation: 4,
+          alignSelf: 'center',
+          // height: 60,
+          padding: 15,
+          backgroundColor: '#fff',
+        }}>
         {/* <View
           style={{
-            marginRight: 20,
-            marginLeft: 20,
-            marginTop: 5,
-            marginBottom: 12,
-            paddingTop: 10,
-            paddingBottom: 10,
-            paddingLeft: 4,
-            height: 60,
-            width: wp('90%'),
-            // borderRadius: 1,
-            // borderBottomWidth: 1,
-            // borderColor: '#c0c0c0',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
+            // marginRight: 20,
+            // marginLeft: 20,
+            // marginTop: 5,
+            // marginBottom: 12,
             backgroundColor: '#fff',
-            borderRadius: 12,
+            // paddingTop: 10,
+            // paddingBottom: 10,
+            paddingVertical: 15,
+            // paddingLeft: 4,
+            // height: 60,
+            width: wp('85%'),
+            borderRadius: 10,
+            // borderBottomWidth: 1,
+            borderColor: '#c0c0c0',
+            // justifyContent:'center'
+            // flexDirection: 'row',
+            // justifyContent: 'space-between',
+            // alignItems: 'center',
+            // backgroundColor: '#fff',
+            // borderRadius: 12,
             // shadowOffset: {
             //   width: 0,
             //   height: 3,
@@ -742,20 +787,21 @@ class ShippingAddress extends Component {
             // shadowOpacity: 0.29,
             // shadowRadius: 4.65,
 
-            elevation: 7,
+            elevation: 4,
           }}> */}
-        {/* <Text
-            style={{
-              color: name === 'Location' ? '#c0c0c0' : themeStyle.textColor,
-              // fontSize: themeStyle.mediumSize,
-              // paddingRight: 6,
-              // writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr',
-              textAlign: 'justify',
-              marginHorizontal: 20,
-              fontSize: 18,
-            }}>
-            {name}
-          </Text> */}
+        <Text
+          style={{
+            color: name === 'Location' ? '#c0c0c0' : themeStyle.textColor,
+            // fontSize: themeStyle.mediumSize,
+            // paddingRight: 6,
+            // writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr',
+            textAlign: 'justify',
+            marginHorizontal: 20,
+            fontSize: 18,
+          }}
+          numberOfLines={1}>
+          {name}
+        </Text>
         {/* <Icon
             name={'md-locate'}
             style={{
@@ -765,12 +811,12 @@ class ShippingAddress extends Component {
               marginBottom: -3,
             }}
           /> */}
-        {/* <Iconone
-            name="map-marker-alt"
-            size={20}
-            style={{position: 'absolute', right: 24}}
-            color="red"
-          /> */}
+        <Iconone
+          name="map-marker-alt"
+          size={20}
+          style={{position: 'absolute', right: 5, top: 15}}
+          color="red"
+        />
         {/* </View> */}
       </TouchableOpacity>
     );
@@ -822,7 +868,7 @@ class ShippingAddress extends Component {
             shadowOpacity: 0.29,
             shadowRadius: 4.65,
 
-            elevation: 5,
+            elevation: 4,
           }}>
           <Text
             style={{
@@ -871,7 +917,15 @@ class ShippingAddress extends Component {
   customTextView(placeholderText, index) {
     return placeholderText ===
       this.props.cartItems2.Config.languageJson2.Location ? (
-      <></>
+      // <></>
+      <View style={{marginBottom: 10}}>
+        {this.getLocationAddress(
+          this.state.shippingData.delivery_location === undefined ||
+            this.state.shippingData.delivery_location === null
+            ? placeholderText
+            : this.state.shippingData.delivery_location,
+        )}
+      </View>
     ) : // <View>
     //   {this.getLocationAddress(
     //     this.state.shippingData.delivery_location === undefined ||
@@ -881,19 +935,19 @@ class ShippingAddress extends Component {
     //   )}
     // </View>
     placeholderText === this.props.cartItems2.Config.languageJson.Country ? (
-      <></>
-    ) : // <View>
-    //   {this.searchFilterFun(
-    //     global.data.countries,
-    //     this.state.shippingData.country_name === undefined ||
-    //       this.state.shippingData.country_name === null
-    //       ? placeholderText
-    //       : this.state.shippingData.country_name,
-    //     'shipping',
-    //     'SearchFilterClass',
-    //   )}
-    // </View>
-    placeholderText === this.props.cartItems2.Config.languageJson.Zone ? (
+      // <></>
+      <View>
+        {this.searchFilterFun(
+          global.data.countries,
+          this.state.shippingData.country_name === undefined ||
+            this.state.shippingData.country_name === null
+            ? placeholderText
+            : this.state.shippingData.country_name,
+          'shipping',
+          'SearchFilterClass',
+        )}
+      </View>
+    ) : placeholderText === this.props.cartItems2.Config.languageJson.Zone ? (
       <></>
     ) : (
       // <View>
@@ -911,7 +965,8 @@ class ShippingAddress extends Component {
         <View
           style={{
             backgroundColor: '#fff',
-            width: '95%',
+            width: '98%',
+
             height: 60,
             borderColor: '#fff',
             borderWidth: 1,
@@ -919,8 +974,11 @@ class ShippingAddress extends Component {
             flexDirection: 'row',
             alignItems: 'center',
             alignSelf: 'center',
+            // marginBottom: 12,
+            // marginTop: 5,
             marginBottom: 12,
             marginTop: 5,
+            // marginVertical: 10,
             shadowColor: '#000',
             shadowOffset: {
               width: 0,
@@ -929,7 +987,7 @@ class ShippingAddress extends Component {
             shadowOpacity: 0.29,
             shadowRadius: 4.65,
 
-            elevation: 5,
+            elevation: 4,
           }}>
           <TextInput
             ref={(c) => {
@@ -958,9 +1016,11 @@ class ShippingAddress extends Component {
               fontFamily: 'Lato-Regular',
               fontSize: 18,
               color: 'black',
-              width: '100%',
-              height: '100%',
+              width: '90%',
+              // height: '100%',
               paddingHorizontal: 20,
+              // paddingRight: 15,
+              backgroundColor: '#fff',
             }}
             keyboardType={
               index === 8
@@ -989,7 +1049,7 @@ class ShippingAddress extends Component {
               // : index === 7
               // ? (this.state.shippingData.postcode = text)
               // (this.state.shippingData.phonenumber = text);
-              this.setState({shiSppingData: this.state.shippingData});
+              this.setState({shippingData: this.state.shippingData});
             }}
             value={
               index === 0
@@ -1014,14 +1074,14 @@ class ShippingAddress extends Component {
             <Iconone
               name="user-alt"
               size={20}
-              style={{position: 'absolute', right: 20}}
+              style={{position: 'absolute', right: 5}}
               color="red"
             />
           ) : index === 3 ? (
             <Iconone
               name="map-signs"
               size={20}
-              style={{position: 'absolute', right: 20}}
+              style={{position: 'absolute', right: 5}}
               color="red"
             />
           ) : (
@@ -1085,7 +1145,7 @@ class ShippingAddress extends Component {
         <View
           style={{
             backgroundColor: '#fff',
-            width: '95%',
+            width: '98%',
             height: 60,
             borderColor: '#fff',
             borderWidth: 1,
@@ -1103,7 +1163,7 @@ class ShippingAddress extends Component {
             shadowOpacity: 0.29,
             shadowRadius: 4.65,
 
-            elevation: 5,
+            elevation: 4,
           }}>
           {this.state.switch2Value == true ? (
             <></>
@@ -1135,8 +1195,9 @@ class ShippingAddress extends Component {
                 fontFamily: 'Lato-Regular',
                 fontSize: 18,
                 color: 'black',
-                width: '100%',
+                width: '90%',
                 height: '100%',
+                // backgroundColor: 'yellow',
                 paddingHorizontal: 20,
               }}
               selectionColor="#51688F"
@@ -1187,28 +1248,28 @@ class ShippingAddress extends Component {
             <Iconone
               name="user-alt"
               size={20}
-              style={{position: 'absolute', right: 20}}
+              style={{position: 'absolute', right: 5}}
               color="red"
             />
           ) : index === 2 ? (
             <Iconone
               name="map-signs"
               size={20}
-              style={{position: 'absolute', right: 20}}
+              style={{position: 'absolute', right: 5}}
               color="red"
             />
           ) : index === 5 ? (
             <Iconone
               name="map-marked-alt"
               size={20}
-              style={{position: 'absolute', right: 20}}
+              style={{position: 'absolute', right: 5}}
               color="red"
             />
           ) : index === 6 ? (
             <Iconone
               name="map-pin"
               size={20}
-              style={{position: 'absolute', right: 20}}
+              style={{position: 'absolute', right: 5}}
               color="red"
             />
           ) : (
@@ -1305,13 +1366,13 @@ class ShippingAddress extends Component {
     ) {
       temp++;
     }
-    // if (
-    //   this.state.shippingData.delivery_location !== null &&
-    //   this.state.shippingData.delivery_location !== '' &&
-    //   this.state.shippingData.delivery_location !== undefined
-    // ) {
-    //   temp++;
-    // }
+    if (
+      this.state.shippingData.delivery_location !== null &&
+      this.state.shippingData.delivery_location !== '' &&
+      this.state.shippingData.delivery_location !== undefined
+    ) {
+      temp++;
+    }
     if (
       this.state.billingArray.lastname !== null &&
       this.state.billingArray.lastname !== '' &&
@@ -1690,6 +1751,7 @@ class ShippingAddress extends Component {
               alignItems: 'center',
               // backgroundColor: 'red',
               marginVertical: 25,
+              // marginHorizontal: ,
             }}>
             {/* SHIPPING ADDRESS HEADER */}
             {/* <Text
@@ -1756,7 +1818,7 @@ class ShippingAddress extends Component {
                 shadowOpacity: 0.29,
                 shadowRadius: 4.65,
 
-                elevation: 5,
+                elevation: 4,
               }}>
               <Content>
                 <Picker
@@ -1810,9 +1872,10 @@ class ShippingAddress extends Component {
                   fontFamily: 'Lato-Regular',
                   fontSize: 18,
                   color: 'black',
-                  width: '100%',
+                  width: '98%',
                   height: '100%',
                   paddingHorizontal: 20,
+                  // backgroundColor: 'red',
                 }}
                 onChangeText={(num) => this.onTextChange(num)}
                 value={this.state.shippingData.phonenumber}
@@ -1825,7 +1888,7 @@ class ShippingAddress extends Component {
               <Iconone
                 name="phone"
                 size={20}
-                style={{position: 'absolute', right: 20}}
+                style={{position: 'absolute', right: 5}}
                 color="red"
               />
             </View>
@@ -1939,7 +2002,7 @@ class ShippingAddress extends Component {
                   shadowOpacity: 0.29,
                   shadowRadius: 4.65,
 
-                  elevation: 5,
+                  elevation: 4,
                 }}>
                 <Content>
                   <Picker
@@ -1988,7 +2051,7 @@ class ShippingAddress extends Component {
                     fontFamily: 'Lato-Regular',
                     fontSize: 18,
                     color: 'black',
-                    width: '100%',
+                    width: '98%',
                     height: '100%',
                     paddingHorizontal: 20,
                   }}
@@ -2003,7 +2066,7 @@ class ShippingAddress extends Component {
                 <Iconone
                   name="phone"
                   size={20}
-                  style={{position: 'absolute', right: 20}}
+                  style={{position: 'absolute', right: 5}}
                   color="red"
                 />
               </View>

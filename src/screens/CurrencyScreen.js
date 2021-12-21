@@ -56,10 +56,10 @@ class currencyScreen extends PureComponent {
       {},
     );
     for (const val of responseJson.data.data) {
-      console.log(val.id, 'id');
-      console.log(val.code, 'code');
+      // console.log(val.id, 'id');
+      // console.log(val.code, 'code');
       if (val.code === SyncStorage.get('currencyCode')) {
-        console.log('here');
+        // console.log('here');
         this.state.tick[val.id] = true;
       }
     }
@@ -69,7 +69,7 @@ class currencyScreen extends PureComponent {
 
   /// //////////////////////////////////////////
   updateCurrency(item) {
-    console.log(item.item, 'item');
+    // console.log(item.item, 'item');
     if (this.state.currentCurrencySymbol !== item.code) {
       SyncStorage.set('currencyObject', item);
       if (item.symbol_left !== '') {

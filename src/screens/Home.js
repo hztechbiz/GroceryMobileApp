@@ -12,8 +12,8 @@ import Home10Screen from './Home10Screen';
 import {connect} from 'react-redux';
 import theme from '../common/Theme.style';
 import {CardStyleInterpolators} from 'react-navigation-stack';
-import ShoppingCartIcon from '../common/ShoppingCartIcon';
-import MenuIcon from '../common/MenuIcon';
+// import ShoppingCartIcon from '../common/ShoppingCartIcon';
+// import MenuIcon from '../common/MenuIcon';
 import {Platform} from 'react-native';
 class Home extends PureComponent {
   static navigationOptions = ({navigation}) => ({
