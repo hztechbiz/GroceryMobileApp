@@ -17,7 +17,8 @@ import Toast from 'react-native-easy-toast';
 import Spinner from 'react-native-loading-spinner-overlay';
 import ShoppingCartIcon from '../common/ShoppingCartIcon';
 import Geocoder from 'react-native-geocoding';
-Geocoder.init('AIzaSyBFTYrV_eh5nard2ZCmi3Fkhd9IkuNGWPY');
+import {GOOGLE_MAP_KEY} from '../../constant';
+Geocoder.init(GOOGLE_MAP_KEY);
 const {width} = Dimensions.get('window');
 var areas = ['Malir', 'Shah Faisal Colony', 'P.E.C.H.S.', 'Saudabad'];
 class RewardPoints extends Component {
