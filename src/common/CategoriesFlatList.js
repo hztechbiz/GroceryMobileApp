@@ -45,6 +45,7 @@ export default class FlatListView extends PureComponent {
         id: parent.id,
         name,
         sortOrder: 'newest',
+        allItem: parent,
       });
     } else {
       this.props.props.navigation.navigate('SubCategory', {
@@ -68,6 +69,8 @@ export default class FlatListView extends PureComponent {
         id: parent.id,
         name,
         sortOrder: 'newest',
+        // id: item.item.id,
+        allItem: parent,
       });
     } else {
       this.props.props.navigation.navigate('SubCategory', {
@@ -133,9 +136,13 @@ export default class FlatListView extends PureComponent {
         style={
           this.props.noOfCol === 3
             ? {
-                backgroundColor: theme.backgroundColor,
+                // backgroundColor: theme.backgroundColor,
+                backgroundColor: '#f5fafe',
+
                 paddingBottom: this.props.viewButton ? 0 : 10,
-                marginTop: 10,
+                marginVertical: 10,
+
+                // marginTop: 10,
                 // padding: 10,
                 // alignItems: 'center',
               }
@@ -162,6 +169,7 @@ export default class FlatListView extends PureComponent {
                 alignItems: 'center',
                 flexDirection: 'column',
                 marginBottom: 10,
+                // backgroundColor: 'red',
               }}>
               <TouchableOpacity
                 style={{paddingTop: 15}}

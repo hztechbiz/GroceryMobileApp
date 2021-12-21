@@ -206,7 +206,9 @@ class ShippingMethod extends Component {
                         style={{
                           borderRadius: 15,
                           marginBottom: 20,
+                          // borderColor: '#fff',
                           borderColor: '#404040',
+                          // backgroundColor: '#3d01a4',
                         }}
                         onPress={() => this.setMethod(v, item.index)}
                         checked={this.state.tick[item.index]}
@@ -229,6 +231,7 @@ class ShippingMethod extends Component {
               alignSelf: 'center',
               height: 60,
               width: wp('80%'),
+              // backgroundColor: themeStyle.otherBtnsColor,
               backgroundColor: themeStyle.primary,
               justifyContent: 'center',
               opacity: this.state.buttonEnable ? 0.4 : 0.9,

@@ -161,11 +161,11 @@ class Newest extends PureComponent {
   }
 
   componentDidMount() {
-    console.log(this.state?.tab, '==');
-    console.log(
-      this.props?.navigation?.dangerouslyGetParent()?.state?.params,
-      '---------------',
-    );
+    // console.log(this.state?.tab, '==');
+    // console.log(
+    //   this.props?.navigation?.dangerouslyGetParent()?.state.params,
+    //   '---------------',
+    // );
 
     this.child = '';
     this.props.navigation.setParams({
@@ -369,7 +369,7 @@ class Newest extends PureComponent {
 
   // changing tab
   changeTab(c) {
-    console.log(c, 'data ================');
+    // console.log(c, 'data ================');
     this.state.applyFilter = false;
     this.state.page = 0;
     if (c == '') this.state.selectedTab = c;
@@ -380,7 +380,7 @@ class Newest extends PureComponent {
   }
 
   headerTab = (c) => {
-    console.log(c, 'dsdad');
+    // console.log(c, 'dsdad');
     // console.log(this.state.categoryName, 'abc dsdad');
     if ((this.state.selectedTab = c.id)) {
       <Text>sadasda jsdj</Text>;
@@ -864,7 +864,7 @@ class Newest extends PureComponent {
                         },
                         () => {
                           this.changeTab(item.item);
-                          console.log(item.item, 'items..........');
+                          // console.log(item.item, 'items..........');
                         },
                       )
                     }

@@ -125,7 +125,7 @@ class Category1 extends PureComponent {
             products={this.props.cartItems2.Config.languageJson.Products}
             allCategories={this.props.cartItems2.cartItems.allCategories}
             props={this.props}
-            noOfCol={2}
+            noOfCol={3}
             categoryPage={1}
           />
         )}

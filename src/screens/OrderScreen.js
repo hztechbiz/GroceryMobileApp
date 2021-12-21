@@ -1005,7 +1005,7 @@ class orderScreen extends Component {
                       height: 55,
                       width: 280,
                       marginVertical: 25,
-                      backgroundColor: themeStyle.primary,
+                      backgroundColor: themeStyle.otherBtnsColor,
                       borderRadius: 5,
                       flex: 1,
                       justifyContent: 'center',
@@ -1085,7 +1085,8 @@ class orderScreen extends Component {
                       paddingHorizontal: 20,
                     }}>
                     {
-                      this.state.orderDetail.delivery_street_address
+                      this.state.orderDetail.delivery_street_address +
+                        this.state.orderDetail.delivery_city_area
                       // +
                       // ', ' +
                       // this.state.orderDetail.delivery_city +

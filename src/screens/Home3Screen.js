@@ -297,7 +297,7 @@ class Newest extends Component {
   );
 
   handleLoadMore() {
-    console.log('hello');
+    // console.log('hello');
     if (this.state.products.length % 10 === 0) {
       this.setState(
         {

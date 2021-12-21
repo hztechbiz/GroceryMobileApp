@@ -68,10 +68,13 @@ class ShoppingCartIcon extends PureComponent {
         </TouchableOpacity>
         <TouchableOpacity
           style={{justifyContent: 'center', alignItems: 'center'}}
+          // onPress={() => {
+          //   this.props.navigation.navigate('NewestScreen', {
+          //     id: null,
+          //   });
+          // }
           onPress={() => {
-            this.props.navigation.navigate('NewestScreen', {
-              id: null,
-            });
+            this.props.navigation.navigate('Categories');
           }}>
           <BottomIconImage
             color={this.props.active === 2 ? theme.primaryDark : '#707070'}
