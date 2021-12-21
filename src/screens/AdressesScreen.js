@@ -61,13 +61,13 @@ class ShippingAddress extends PureComponent {
       placeholderArray: [
         this.props.isLoading.Config.languageJson['First Name'],
         this.props.isLoading.Config.languageJson['Last Name'],
-        this.props.isLoading.Config.languageJson.Compnay,
+        // this.props.isLoading.Config.languageJson.Compnay,
         `${this.props.isLoading.Config.languageJson.Address} 1`,
         `${this.props.isLoading.Config.languageJson.Address} 2`,
-        this.props.isLoading.Config.languageJson.Country,
-        this.props.isLoading.Config.languageJson.Zone,
-        this.props.isLoading.Config.languageJson.City,
-        this.props.isLoading.Config.languageJson['Post code'],
+        // this.props.isLoading.Config.languageJson.Country,
+        // this.props.isLoading.Config.languageJson.Zone,
+        // this.props.isLoading.Config.languageJson.City,
+        // this.props.isLoading.Config.languageJson['Post code'],
       ],
 
       otherArray: [{value: 'other', name: 'other'}],
@@ -331,13 +331,16 @@ class ShippingAddress extends PureComponent {
                           color: themeStyle.textColor,
                         }}
                         numberOfLines={1}>
-                        {item.item.street +
-                          ', ' +
-                          item.item.city +
-                          ' ' +
-                          item.item.postcode +
-                          ', ' +
-                          item.item.country_name}
+                        {
+                          item.item.street
+                          // +
+                          // ', ' +
+                          // item.item.city +
+                          // ' ' +
+                          // item.item.postcode +
+                          // ', ' +
+                          // item.item.country_name
+                        }
                       </Text>
                     </Body>
                     <CheckBox
