@@ -65,6 +65,7 @@ class ShippingAddress extends Component {
     this.props.navigation.setParams({
       headerTitle: this.props.cartItems2.Config.languageJson.Address,
     });
+    console.log(this.state.placeholderArray, 'data');
   }
 
   /// //////////////////////////////////////////////////////////
@@ -102,6 +103,7 @@ class ShippingAddress extends Component {
       ],
       switch2Value: false,
       disableCondition: true,
+      userdata: false,
       currentLabel: '',
       currency: '',
       otherArray: [{value: 'other', name: 'other'}],
@@ -159,6 +161,8 @@ class ShippingAddress extends Component {
       orderDetails.delivery_country = tempObject.country_name;
       orderDetails.delivery_country_id = tempObject.countries_id;
       orderDetails.delivery_street_address = tempObject.street;
+      orderDetails.customers_street_address_two = tempObject.streetaddresstwo;
+
       if (tempObject.zone_code == null) {
         orderDetails.delivery_zone = 'other';
         orderDetails.delivery_state = 'other';
@@ -414,6 +418,7 @@ class ShippingAddress extends Component {
       shippingData: this.state.shippingData,
       placeholderArray: this.state.placeholderArray,
     });
+    console.log(shippingData, 'dataaaaaaaaaaaaa');
   };
 
   refresh2 = (name, selectedValue, id, temp) => {
@@ -584,6 +589,8 @@ class ShippingAddress extends Component {
         : (this.state.shippingData.country_name = 'Delivery Country nothing');
 
     orderDetails.delivery_street_address = this.state.shippingData.street; //Active_Field
+    orderDetails.customers_street_address_two =
+      this.state.shippingData.streetaddresstwo;
     SyncStorage.set('orderDetails', orderDetails);
 
     console.log(orderDetails, 'Hello...................!');
@@ -733,33 +740,36 @@ class ShippingAddress extends Component {
 
   getLocationAddress(name) {
     return (
-      <TouchableOpacity
-        onPress={() =>
-          this.props.navigation.navigate('MapScreen', {
-            onGoBackFun: (cord) => {
-              console.log(cord, 'cord =====');
-              const orderDetails = SyncStorage.get('orderDetails');
-              orderDetails.latitude = cord.latitude;
-              orderDetails.longitude = cord.longitude;
-              orderDetails.delivery_location =
-                cord.latitude + ', ' + cord.longitude;
-              SyncStorage.set('orderDetails', orderDetails);
-              this.state.shippingData.delivery_location = cord;
-              // cord.latitude + ', ' + cord.longitude;
-              this.setState({});
-            },
-          })
-        }
-        style={{
-          width: '98%',
-          borderRadius: 10,
-          elevation: 4,
-          alignSelf: 'center',
-          // height: 60,
-          padding: 15,
-          backgroundColor: '#fff',
-        }}>
-        {/* <View
+      <View>
+        <TouchableOpacity
+          onPress={() =>
+            this.props.navigation.navigate('MapScreen', {
+              onGoBackFun: (cord) => {
+                console.log(cord, 'cord =====');
+                const orderDetails = SyncStorage.get('orderDetails');
+                orderDetails.latitude = cord.latitude;
+                orderDetails.longitude = cord.longitude;
+                orderDetails.delivery_location =
+                  cord.latitude + ', ' + cord.longitude;
+                SyncStorage.set('orderDetails', orderDetails);
+                this.state.shippingData.delivery_location = cord;
+                // cord.latitude + ', ' + cord.longitude;
+                this.setState({});
+              },
+            })
+          }
+          style={{
+            width: '96%',
+            borderRadius: 10,
+            elevation: 4,
+            alignSelf: 'center',
+            // height: 60,
+            padding: 18,
+            // backgroundColor: '#fff',
+            backgroundColor: 'pink',
+            marginBottom: 20,
+          }}>
+          {/* <View
           style={{
             // marginRight: 20,
             // marginLeft: 20,
@@ -790,20 +800,24 @@ class ShippingAddress extends Component {
 
             elevation: 4,
           }}> */}
-        <Text
-          style={{
-            color: name === 'Location' ? '#c0c0c0' : themeStyle.textColor,
-            // fontSize: themeStyle.mediumSize,
-            // paddingRight: 6,
-            // writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr',
-            textAlign: 'justify',
-            marginHorizontal: 20,
-            fontSize: 18,
-          }}
-          numberOfLines={1}>
-          {name}
-        </Text>
-        {/* <Icon
+
+          <Text
+            style={{
+              color: name === 'Location' ? '#c0c0c0' : themeStyle.textColor,
+              // fontSize: themeStyle.mediumSize,
+              // paddingRight: 6,
+              // writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr',
+              textAlign: 'justify',
+              // marginHorizontal: 15,
+              backgroundColor: 'orange',
+              marginRight: 5,
+
+              fontSize: 18,
+            }}
+            numberOfLines={1}>
+            {name}
+          </Text>
+          {/* <Icon
             name={'md-locate'}
             style={{
               color: '#c0c0c0',
@@ -812,14 +826,134 @@ class ShippingAddress extends Component {
               marginBottom: -3,
             }}
           /> */}
-        <Iconone
-          name="map-marker-alt"
-          size={20}
-          style={{position: 'absolute', right: 5, top: 15}}
-          color="red"
-        />
-        {/* </View> */}
-      </TouchableOpacity>
+          <Iconone
+            name="map-marker-alt"
+            size={25}
+            style={{position: 'absolute', right: 5, top: 15}}
+            color="red"
+          />
+          {/* </View> */}
+        </TouchableOpacity>
+
+        <View
+          style={{
+            // flexDirection: 'row',
+            // justifyContent: 'center',
+            // alignItems: 'center',
+            // backgroundColor: 'yellow',
+
+            // backgroundColor: '#fff',
+            backgroundColor: 'green',
+            width: '97%',
+            height: 60,
+            borderColor: '#fff',
+            borderWidth: 1,
+            borderRadius: 12,
+            flexDirection: 'row',
+            alignItems: 'center',
+            alignSelf: 'center',
+            // marginBottom: 15,
+            // marginTop: 5,
+
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 3,
+            },
+            shadowOpacity: 0.29,
+            shadowRadius: 4.65,
+
+            elevation: 4,
+          }}>
+          <Content>
+            <Picker
+              style={[
+                styles.picker,
+                {
+                  width: WIDTH * 0.3,
+                  height: 54,
+                  backgroundColor: themeStyle.backgroundColor,
+                  // backgroundColor: 'yellow',
+                  marginRight: 0,
+                  marginLeft: Platform.OS === 'android' ? 16 : 13,
+                  marginTop: 1,
+                },
+              ]}
+              textStyle={{
+                color: themeStyle.textColor,
+                fontSize: themeStyle.mediumSize,
+              }}
+              itemStyle={{
+                fontSize: themeStyle.mediumSize,
+                height: 95,
+                color: themeStyle.textColor,
+              }}
+              selectedValue={this.state.shippingCountryCode}
+              onValueChange={(shippingCountryCode) =>
+                this.setState({shippingCountryCode})
+              }>
+              {CountryCodePicker.map((cc) => (
+                <Picker.Item
+                  key={cc[2]}
+                  label={`${cc[0]} +${cc[1]}`}
+                  value={`${cc[2]}`}
+                />
+              ))}
+            </Picker>
+          </Content>
+          <TextInput
+            style={{
+              // marginRight: Platform.OS === 'android' ? 20 : 17,
+              // fontSize: this.state.textSize,
+              // height: 50,
+              // width: wp('66%'),
+              // borderBottomWidth: 1,
+              // textAlign: I18nManager.isRTL ? 'right' : 'left',
+              // paddingLeft: 6,
+              // paddingRight: 6,
+              // color: themeStyle.textColor,
+              // borderBottomColor: '#c0c0c0',
+
+              fontFamily: 'Lato-Regular',
+              fontSize: 18,
+              color: 'black',
+              width: '98%',
+              height: '100%',
+              paddingHorizontal: 20,
+              // backgroundColor: 'red',
+            }}
+            onChangeText={(num) => this.onTextChange(num)}
+            value={this.state.shippingData.phonenumber}
+            placeholderTextColor={'#c0c0c0'}
+            keyboardType="phone-pad"
+            placeholder="Enter Phone Number"
+            textAlign="left"
+          />
+
+          <Iconone
+            name="phone"
+            size={20}
+            style={{position: 'absolute', right: 5}}
+            color="red"
+          />
+        </View>
+        {!this.phoneNumberCheckshipping() &&
+        this.state.shippingData.phonenumber !== undefined ? (
+          <Text
+            style={{
+              marginTop: 5,
+              color: 'red',
+              fontSize: themeStyle.mediumSize,
+              alignSelf: 'center',
+            }}>
+            {
+              this.props.cartItems2.Config.languageJson2[
+                'The phone number is not valid'
+              ]
+            }
+          </Text>
+        ) : null}
+      </View>
     );
   }
 
@@ -851,6 +985,7 @@ class ShippingAddress extends Component {
             // borderColor: '#c0c0c0',
             // backgroundColor: 'green',
             backgroundColor: '#fff',
+            // backgroundColor: 'pink',
             width: '95%',
             height: 60,
             borderColor: '#fff',
@@ -919,7 +1054,8 @@ class ShippingAddress extends Component {
     return placeholderText ===
       this.props.cartItems2.Config.languageJson2.Location ? (
       // <></>
-      <View style={{marginBottom: 10}}>
+      <View
+        style={{marginBottom: 10, marginTop: 10, backgroundColor: 'yellow'}}>
         {this.getLocationAddress(
           this.state.shippingData.delivery_location === undefined ||
             this.state.shippingData.delivery_location === null
@@ -1034,6 +1170,7 @@ class ShippingAddress extends Component {
             placeholder={` ${placeholderText}`}
             placeholderTextColor={'#c0c0c0'}
             onChangeText={(text) => {
+              // console.log(this.state.shippingData.firstname, 'firstname');
               index === 0
                 ? (this.state.shippingData.firstname = text)
                 : index === 1
@@ -1050,7 +1187,14 @@ class ShippingAddress extends Component {
               // : index === 7
               // ? (this.state.shippingData.postcode = text)
               // (this.state.shippingData.phonenumber = text);
-              this.setState({shippingData: this.state.shippingData});
+              this.setState({
+                shippingData: this.state.shippingData,
+                userdata: !this.state.userdata,
+              });
+              // console.log(
+              //   this.state?.shippingData?.street?.length,
+              //   'Dataaaaaaaaaaaaaaaa',
+              // );
             }}
             value={
               index === 0
@@ -1360,12 +1504,16 @@ class ShippingAddress extends Component {
 
   canBeUpdatingShipping() {
     let temp = 0;
+
     if (
-      this.state.billingArray.firstname !== null &&
-      this.state.billingArray.firstname !== '' &&
-      this.state.billingArray.firstname !== undefined
+      this.state.shippingData.firstname !== null &&
+      this.state.shippingData.firstname !== '' &&
+      this.state.shippingData.firstname !== undefined
     ) {
       temp++;
+      this.state.billingArray.firstname = 'xyz';
+      this.state.billingArray.lastname = 'xyz';
+      this.state.billingArray.street = 'xyz';
     }
     if (
       this.state.shippingData.delivery_location !== null &&
@@ -1375,16 +1523,16 @@ class ShippingAddress extends Component {
       temp++;
     }
     if (
-      this.state.billingArray.lastname !== null &&
-      this.state.billingArray.lastname !== '' &&
-      this.state.billingArray.lastname !== undefined
+      this.state.shippingData.lastname !== null &&
+      this.state.shippingData.lastname !== '' &&
+      this.state.shippingData.lastname !== undefined
     ) {
       temp++;
     }
     if (
-      this.state.billingArray.street !== null &&
-      this.state.billingArray.street !== '' &&
-      this.state.billingArray.street !== undefined
+      this.state.shippingData.street !== null &&
+      this.state.shippingData.street !== '' &&
+      this.state.shippingData.street !== undefined
     ) {
       temp++;
     }
@@ -1419,15 +1567,16 @@ class ShippingAddress extends Component {
     //   temp++;
     // }
     if (
-      this.state.billingArray.phonenumber !== null &&
-      this.state.billingArray.phonenumber !== '' &&
-      this.state.billingArray.phonenumber !== undefined
+      this.state.shippingData.phonenumber !== null &&
+      this.state.shippingData.phonenumber !== '' &&
+      this.state.shippingData.phonenumber !== undefined
     ) {
       temp++;
+      this.state.billingArray.phonenumber = this.state.shippingData.phonenumber;
     }
     if (
-      temp === 4 &&
-      this.phoneNumberCheckbillingArray() &&
+      temp === 5 &&
+      // this.phoneNumberCheckbillingArray() &&
       this.phoneNumberCheckshipping()
     ) {
       temp = 0;
@@ -1763,7 +1912,6 @@ class ShippingAddress extends Component {
               }}>
               {this.props.cartItems2.Config.languageJson['Shipping Address']}
             </Text> */}
-
             <FlatList
               data={this.state.placeholderArray}
               extraData={this.state}
@@ -1775,7 +1923,7 @@ class ShippingAddress extends Component {
                 )
               }
             />
-            {!this.phoneNumberCheckshipping() &&
+            {/* {!this.phoneNumberCheckshipping() &&
             this.state.shippingData.phonenumber !== undefined ? (
               <Text
                 style={{
@@ -1790,18 +1938,18 @@ class ShippingAddress extends Component {
                   ]
                 }
               </Text>
-            ) : null}
-
-            <View
+            ) : null} */}
+            {/* Phone number field */}
+            {/* <View
               style={{
                 // flexDirection: 'row',
                 // justifyContent: 'center',
                 // alignItems: 'center',
                 // backgroundColor: 'yellow',
 
-                backgroundColor: '#fff',
-                // backgroundColor: 'green',
-                width: '90%',
+                // backgroundColor: '#fff',
+                backgroundColor: 'green',
+                width: '92%',
                 height: 60,
                 borderColor: '#fff',
                 borderWidth: 1,
@@ -1892,7 +2040,134 @@ class ShippingAddress extends Component {
                 style={{position: 'absolute', right: 5}}
                 color="red"
               />
+
+            </View> */}
+
+            <View
+              style={{
+                backgroundColor: '#fff',
+                // backgroundColor: 'pink',
+                width: '100%',
+                height: 60,
+                borderColor: '#fff',
+                borderWidth: 1,
+                borderRadius: 12,
+                flexDirection: 'row',
+                alignItems: 'center',
+                alignSelf: 'center',
+                // marginBottom: 15,
+                marginTop: 10,
+                shadowColor: '#000',
+                shadowOffset: {
+                  width: 0,
+                  height: 3,
+                },
+                shadowOpacity: 0.29,
+                shadowRadius: 4.65,
+
+                elevation: 5,
+              }}>
+              <TextInput
+                style={{
+                  // marginTop: 20,
+                  // height: 38,
+                  // width: WIDTH * 0.9,
+                  // borderColor: this.EmailNumberCheck()
+                  //   ? '#c1c1c1'
+                  //   : themeStyle.removeBtnColor,
+                  // borderBottomWidth: 1,
+
+                  // textAlign: I18nManager.isRTL ? 'right' : 'left',
+                  // paddingLeft: 6,
+                  // paddingRight: 6,
+                  // fontSize: themeStyle.mediumSize + 2,
+                  // color: themeStyle.textColor,
+
+                  fontFamily: 'Lato-Regular',
+                  fontSize: 18,
+                  color: 'black',
+                  width: '92%',
+                  height: '100%',
+                  paddingHorizontal: 20,
+                }}
+                placeholderTextColor={'#c1c1c1'}
+                selectionColor={themeStyle.primaryDark}
+                placeholder="Enter Address"
+                onChangeText={(text) => {
+                  this.state.shippingData.streetaddresstwo = text;
+                }}
+                value={this.state.shippingData.streetaddresstwo}
+                // placeholder={this.props.isLoading.Config.languageJson.Email}
+                // onChangeText={(userName) =>
+                //   this.setState({userName, errorMessage: ''})
+                // }
+                // value={this.state.userName}
+              />
+
+              <Iconone
+                name="map-signs"
+                size={20}
+                style={{position: 'absolute', right: 5}}
+                color="red"
+              />
             </View>
+
+            {/* Button */}
+            {this.state?.shippingData?.firstname?.length > 0 &&
+            this.state?.shippingData?.lastname?.length > 0 &&
+            this.state?.shippingData?.street?.length > 0 &&
+            this.phoneNumberCheckshipping() &&
+            this.state.shippingData.delivery_location !== undefined &&
+            this.state.shippingData.delivery_location !== null &&
+            this.canBeUpdatingShipping() ? (
+              // this.state.switch2Value == true
+              <TouchableOpacity
+                onPress={() => {
+                  this.props.cartItems2.Config.enablePhoneLogin
+                    ? this.setState({spinnerTemp: true}, () => {
+                        this.signInWithPhone();
+                      })
+                    : this.setAddress();
+                }}
+                // disabled={this.canBeUpdatingShipping()}
+                // disabled={!canBeUpdatingBillings}
+              >
+                <View
+                  style={{
+                    // marginBottom: 20,
+                    // marginTop: 22,
+                    // alignItems: 'center',
+                    // height: 38,
+                    // width: wp('100%'),
+                    // backgroundColor: themeStyle.otherBtnsColor,
+                    // justifyContent: 'center',
+
+                    // opacity: !canBeUpdatingBillings ? 0.4 : 0.9,
+                    opacity: 0.9,
+                    marginTop: 18,
+                    alignItems: 'center',
+                    height: 70,
+                    borderRadius: 12,
+                    // width: wp('80%'),
+                    width: WIDTH * 0.8,
+                    backgroundColor: themeStyle.otherBtnsColor,
+                    justifyContent: 'center',
+                    marginBottom: 30,
+                  }}>
+                  <Text
+                    style={{
+                      textAlign: 'center',
+                      color: themeStyle.otherBtnsText,
+                      fontSize: 25,
+                      fontWeight: '500',
+                    }}>
+                    {this.props.cartItems2.Config.languageJson.Next}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            ) : (
+              <Text>not Fiiled</Text>
+            )}
 
             <Text
               style={{
@@ -1904,8 +2179,8 @@ class ShippingAddress extends Component {
               }}>
               {this.props.cartItems2.Config.languageJson['Billing Address']}
             </Text>
-
-            <View
+            {/* Toggle Switch */}
+            {/* <View
               style={{
                 flexDirection: 'row',
                 // backgroundColor: 'transparent',
@@ -1931,9 +2206,8 @@ class ShippingAddress extends Component {
                   ]
                 }
               </Text>
-            </View>
-
-            {this.state.switch2Value == true ? (
+            </View> */}
+            {/* {this.state.switch2Value == true ? (
               <></>
             ) : (
               <FlatList
@@ -1947,8 +2221,7 @@ class ShippingAddress extends Component {
                   )
                 }
               />
-            )}
-
+            )} */}
             {!this.phoneNumberCheckbillingArray() &&
             this.state.billingArray.phonenumber !== undefined ? (
               <Text
@@ -1975,105 +2248,105 @@ class ShippingAddress extends Component {
                 {this.state.errorPhoneMessage}
               </Text>
             ) : null}
-            {this.state.switch2Value == true ? (
-              <></>
-            ) : (
-              <View
-                style={{
-                  // flexDirection: 'row',
-                  // justifyContent: 'center',
-                  // alignItems: 'center',
+            {
+              this.state.switch2Value == true ? <></> : null
+              // <View
+              //   style={{
+              //     // flexDirection: 'row',
+              //     // justifyContent: 'center',
+              //     // alignItems: 'center',
 
-                  backgroundColor: '#fff',
-                  width: '90%',
-                  height: 60,
-                  borderColor: '#fff',
-                  borderWidth: 1,
-                  borderRadius: 12,
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  alignSelf: 'center',
-                  marginBottom: 12,
-                  marginTop: 5,
-                  shadowColor: '#000',
-                  shadowOffset: {
-                    width: 0,
-                    height: 3,
-                  },
-                  shadowOpacity: 0.29,
-                  shadowRadius: 4.65,
+              //     // backgroundColor: '#fff',
+              //     backgroundColor: 'pink',
+              //     width: '90%',
+              //     height: 60,
+              //     borderColor: '#fff',
+              //     borderWidth: 1,
+              //     borderRadius: 12,
+              //     flexDirection: 'row',
+              //     alignItems: 'center',
+              //     alignSelf: 'center',
+              //     marginBottom: 12,
+              //     marginTop: 5,
+              //     shadowColor: '#000',
+              //     shadowOffset: {
+              //       width: 0,
+              //       height: 3,
+              //     },
+              //     shadowOpacity: 0.29,
+              //     shadowRadius: 4.65,
 
-                  elevation: 4,
-                }}>
-                <Content>
-                  <Picker
-                    style={[
-                      styles.picker,
-                      {
-                        width: WIDTH * 0.3,
-                        height: 54,
-                        backgroundColor: themeStyle.backgroundColor,
-                        marginRight: 0,
-                        marginLeft: Platform.OS === 'android' ? 16 : 13,
-                        marginTop: 1,
-                      },
-                    ]}
-                    textStyle={{
-                      color: themeStyle.textColor,
-                      fontSize: themeStyle.mediumSize,
-                    }}
-                    itemStyle={{fontSize: themeStyle.mediumSize, height: 95}}
-                    selectedValue={this.state.billingCountryCode}
-                    onValueChange={(billingCountryCode) =>
-                      this.setState({billingCountryCode})
-                    }>
-                    {CountryCodePicker.map((cc) => (
-                      <Picker.Item
-                        key={cc[2]}
-                        label={`${cc[0]} +${cc[1]}`}
-                        value={`${cc[2]}`}
-                      />
-                    ))}
-                  </Picker>
-                </Content>
-                <TextInput
-                  style={{
-                    // fontSize: this.state.textSize3,
-                    // marginRight: Platform.OS === 'android' ? 20 : 17,
-                    // height: 50,
-                    // width: wp('66%'),
-                    // borderBottomWidth: 1,
-                    // textAlign: I18nManager.isRTL ? 'right' : 'left',
-                    // paddingLeft: 6,
-                    // paddingRight: 6,
-                    // color: themeStyle.textColor,
-                    // borderBottomColor: '#c0c0c0',
+              //     elevation: 4,
+              //   }}>
+              //   <Content>
+              //     <Picker
+              //       style={[
+              //         styles.picker,
+              //         {
+              //           width: WIDTH * 0.3,
+              //           height: 54,
+              //           backgroundColor: themeStyle.backgroundColor,
+              //           marginRight: 0,
+              //           marginLeft: Platform.OS === 'android' ? 16 : 13,
+              //           marginTop: 1,
+              //         },
+              //       ]}
+              //       textStyle={{
+              //         color: themeStyle.textColor,
+              //         fontSize: themeStyle.mediumSize,
+              //       }}
+              //       itemStyle={{fontSize: themeStyle.mediumSize, height: 95}}
+              //       selectedValue={this.state.billingCountryCode}
+              //       onValueChange={(billingCountryCode) =>
+              //         this.setState({billingCountryCode})
+              //       }>
+              //       {CountryCodePicker.map((cc) => (
+              //         <Picker.Item
+              //           key={cc[2]}
+              //           label={`${cc[0]} +${cc[1]}`}
+              //           value={`${cc[2]}`}
+              //         />
+              //       ))}
+              //     </Picker>
+              //   </Content>
+              //   <TextInput
+              //     style={{
+              //       // fontSize: this.state.textSize3,
+              //       // marginRight: Platform.OS === 'android' ? 20 : 17,
+              //       // height: 50,
+              //       // width: wp('66%'),
+              //       // borderBottomWidth: 1,
+              //       // textAlign: I18nManager.isRTL ? 'right' : 'left',
+              //       // paddingLeft: 6,
+              //       // paddingRight: 6,
+              //       // color: themeStyle.textColor,
+              //       // borderBottomColor: '#c0c0c0',
 
-                    fontFamily: 'Lato-Regular',
-                    fontSize: 18,
-                    color: 'black',
-                    width: '98%',
-                    height: '100%',
-                    paddingHorizontal: 20,
-                  }}
-                  onChangeText={(num) => this.onTextChange2(num)}
-                  value={this.state.billingArray.phonenumber}
-                  keyboardType="phone-pad"
-                  placeholderTextColor={'#c0c0c0'}
-                  placeholder="Enter Phone Number"
-                  textAlign="left"
-                />
+              //       fontFamily: 'Lato-Regular',
+              //       fontSize: 18,
+              //       color: 'black',
+              //       width: '98%',
+              //       height: '100%',
+              //       paddingHorizontal: 20,
+              //     }}
+              //     onChangeText={(num) => this.onTextChange2(num)}
+              //     value={this.state.billingArray.phonenumber}
+              //     keyboardType="phone-pad"
+              //     placeholderTextColor={'#c0c0c0'}
+              //     placeholder="Enter Phone Number"
+              //     textAlign="left"
+              //   />
 
-                <Iconone
-                  name="phone"
-                  size={20}
-                  style={{position: 'absolute', right: 5}}
-                  color="red"
-                />
-              </View>
-            )}
-
-            <TouchableOpacity
+              //   <Iconone
+              //     name="phone"
+              //     size={20}
+              //     style={{position: 'absolute', right: 5}}
+              //     color="red"
+              //   />
+              // </View>
+            }
+            {/* Next Button */}
+            {/* <TouchableOpacity
               onPress={() => {
                 this.props.cartItems2.Config.enablePhoneLogin
                   ? this.setState({spinnerTemp: true}, () => {
@@ -2113,7 +2386,7 @@ class ShippingAddress extends Component {
                   {this.props.cartItems2.Config.languageJson.Next}
                 </Text>
               </View>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
         </View>
       </ScrollView>
