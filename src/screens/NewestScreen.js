@@ -649,11 +649,11 @@ class Newest extends PureComponent {
                     source={require('../images/.png')}
                   /> */}
                 {/* </View> */}
-                <View style={{paddingLeft: 12, paddingTop: 5}}>
-                  <Text style={{color: '#ffff', fontSize: 12}}>
+                <View style={{paddingLeft: 12, paddingTop: 2}}>
+                  <Text style={{color: '#ffff', fontSize: 17, fontWeight: 'bold'}}>
                     {this.state?.tab?.name}
                   </Text>
-                  <Text style={{color: '#ffff', fontSize: 10}}>
+                  <Text style={{color: '#ffff', fontSize: 12}}>
                     {this.state?.tab?.total_products} Items
                   </Text>
                 </View>
