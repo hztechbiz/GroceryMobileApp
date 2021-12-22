@@ -151,6 +151,7 @@ class Login extends PureComponent {
   /// /////////////////////////////////////
   getUserData = (data, type, t) => {
     try {
+      console.log('user data', data);
       const customerData = data;
       customerData.customers_telephone =
         data.phone === undefined || data.phone == null ? '' : data.phone;
@@ -668,6 +669,13 @@ class Login extends PureComponent {
                   }}>
                   Register
                 </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={() =>
+                  this.props.navigation.navigate('ForgotPasswordScreen')
+                }>
+                <Text>Forgot password</Text>
               </TouchableOpacity>
             </View>
             {/* </Text> */}

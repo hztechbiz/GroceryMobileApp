@@ -8,7 +8,7 @@ const cardWidth = WIDTH * 0.3991;
 // cardWidth= WIDTH * 0.42
 const cIp = '192.168.1.' + Math.floor(Math.random() * 99) + 1; // default
 const cDid = uuid.v4();
-
+console.log(cDid, ' =====================');
 export default {
   /// /////////////////////////////
 

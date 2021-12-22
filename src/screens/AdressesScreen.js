@@ -46,6 +46,7 @@ class ShippingAddress extends PureComponent {
     this.props.navigation.setParams({
       headerTitle: this.props.isLoading.Config.languageJson2.Address,
     });
+
     this.getAllAddress();
   }
 
@@ -80,6 +81,7 @@ class ShippingAddress extends PureComponent {
       getUrl() + '/api/' + 'getalladdress',
       dat,
     );
+    console.log(data, '===========');
     if (data.success == 1) {
       this.setState({
         allShippingAddress: data.data.data,
@@ -349,7 +351,7 @@ class ShippingAddress extends PureComponent {
                           this.defaultAddress(item.item.address_id),
                         )
                       }
-                      checked={item.item.default_address === 1}
+                      checked={item.item.default_address === 0}
                     />
                   </TouchableOpacity>
                 </ListItem>

@@ -69,6 +69,7 @@ class ShippingMethod extends Component {
       dat,
     );
     const orderDetails = SyncStorage.get('orderDetails');
+    console.log(orderDetails, 'shipp method');
     if (data.data.success == 1) {
       var m = data.data.data.shippingMethods;
       this.state.shippingMethod = Object.keys(m).map(function (key) {

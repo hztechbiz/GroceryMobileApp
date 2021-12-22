@@ -130,8 +130,6 @@ class Newest extends Component {
   };
 
   componentDidMount() {
-    //  console.log(this.props.cartItems2.sharedData.flashSaleProducts, 'flash saleeeeeeeeeeee')
-
     setTimeout(() => {
       this.setState({activityIndicatorTemp: false});
     }, 1000);

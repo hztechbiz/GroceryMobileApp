@@ -12,6 +12,7 @@ export const getHeaders = () => {
   //     1,
   //   'nonce',
   // );
+
   return {
     headers: {
       'consumer-key': md5.hex_md5(theme.consumerKey).toString(),
@@ -32,6 +33,7 @@ export const getHeaders = () => {
 export const postHttp = async (url, body) => {
   try {
     const res = await axios.post(url, body, getHeaders());
+    console.log(getHeaders(), 'res=========');
     return res.data;
   } catch (err) {
     return err;

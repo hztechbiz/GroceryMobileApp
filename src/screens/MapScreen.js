@@ -20,7 +20,7 @@ import Geocoder from 'react-native-geocoding';
 import {GOOGLE_MAP_KEY} from '../../constant';
 Geocoder.init(GOOGLE_MAP_KEY);
 const {width} = Dimensions.get('window');
-var areas = ['Malir', 'Shah Faisal Colony', 'P.E.C.H.S.', 'Saudabad'];
+var areas = ['Shah Faisal Colony'];
 class RewardPoints extends Component {
   static navigationOptions = ({navigation}) => {
     const headerStyle = navigation.getParam('headerTitle');
@@ -245,10 +245,11 @@ class RewardPoints extends Component {
                   //   json.results[0].address_components[1].long_name;
                   console.log(
                     'after drag short',
-                    json.results[0].address_components,
+                    json.results[0].address_components[3],
                     'after drag long',
-                    json.results[0].address_components[1].long_name,
+                    json.results[0].address_components[1],
                   );
+                  console.log();
                   // var ar = areas.includes
                   // cons
                   // if (
@@ -339,7 +340,7 @@ class RewardPoints extends Component {
             // }
           }}
           // disabled={Geocoder.from(
-          //   this.state.x.latitude,
+          //   this.state.x.latitude,o
           //   this.state.x.longitude,
           // ).then((json) => {
           //   // console.log(json);

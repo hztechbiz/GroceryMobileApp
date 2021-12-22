@@ -56,6 +56,7 @@ class orderScreen extends Component {
   };
 
   componentDidMount() {
+    console.log(SyncStorage.get('customerData').email, ' firest name');
     this.calculateTotal();
     this.initializePaymentMethods();
     this.props.navigation.setParams({
@@ -294,6 +295,94 @@ class orderScreen extends Component {
     this.setTokenFun(token.tokenId);
   };
 
+  saveAddress = (type) => {
+    const orderDetail = SyncStorage.get('orderDetails');
+    // this.state.shippingData.customers_id =
+    //   SyncStorage.get('customerData').customers_id;
+    const dat = this.state.shippingData;
+    // dat.is_default = 0;
+    const formData = new FormData();
+    formData.append(
+      'entry_firstname',
+      SyncStorage.get('orderDetails').delivery_firstname,
+    );
+    formData.append(
+      'entry_lastname',
+      SyncStorage.get('orderDetails').delivery_lastname,
+    );
+    formData.append(
+      'entry_street_address',
+      this.state.orderDetail.delivery_street_address,
+      // this.state.shippingData.entry_street_address,
+    );
+    formData.append(
+      'entry_country_name',
+      null,
+      // this.state.shippingData.entry_country_name,
+    );
+    formData.append(
+      'entry_zone',
+      null,
+      // this.state.shippingData.entry_zone
+    );
+    formData.append(
+      'entry_postcode',
+      null,
+      // this.state.shippingData.entry_postcode
+    );
+    formData.append(
+      'entry_country_id',
+      // this.state.shippingData.entry_country_id,
+      null,
+    );
+    formData.append(
+      'entry_address_id',
+      // this.state.shippingData.entry_address_id,
+      null,
+    );
+    formData.append(
+      'entry_city',
+      null,
+      // this.state.shippingData.entry_city
+    );
+    formData.append(
+      'entry_zone_id',
+      null,
+      // this.state.shippingData.entry_zone_id
+    );
+    formData.append(
+      'entry_state',
+      null,
+      // this.state.shippingData.entry_state
+    );
+    formData.append(
+      'suburb',
+      // this.state.shippingData.suburb
+      null,
+    );
+    formData.append(
+      'address_id',
+      null,
+      // this.state.shippingData.address_id
+    );
+    formData.append(
+      'customers_id',
+      (orderDetail.customers_id =
+        SyncStorage.get('customerData').customers_id === undefined
+          ? 1
+          : SyncStorage.get('customerData').customers_id),
+      // this.state.shippingData.customers_id
+    );
+    formData.append('is_default', 0);
+    const data2 = WooComFetch.postHttp(
+      getUrl() + '/api/' + 'addshippingaddress',
+      formData,
+    );
+    console.log(data2, 'response ===');
+    console.log(formData, 'form data response ===');
+    this.setState({spinnerTemp: false});
+  };
+
   addOrder = async () => {
     if (SyncStorage.get('orderDetails').payment_method === 'stripe') {
       await this.handleCustomPayPress(this.state.params);
@@ -301,7 +390,8 @@ class orderScreen extends Component {
     const orderDetail = SyncStorage.get('orderDetails');
     orderDetail.customers_id =
       SyncStorage.get('customerData').customers_id === undefined
-        ? 1
+        ? // ? 1
+          9
         : SyncStorage.get('customerData').customers_id;
     orderDetail.customers_name =
       SyncStorage.get('orderDetails').delivery_firstname +
@@ -381,6 +471,11 @@ class orderScreen extends Component {
     );
     console.log(data.success, 'data.success-');
     if (data.success == 1) {
+      if (SyncStorage.get('customerData').customers_id !== undefined) {
+        console.log('here');
+        this.saveAddress('addshippingaddress');
+      }
+
       this.props.cartItems2.cartItems.cartProductArray = [];
       this.props.cartItems2.cartItems.couponArray = [];
       this.props.cartItems2.cartItems.cartquantity = 0;
@@ -407,6 +502,10 @@ class orderScreen extends Component {
     }
 
     if (data.success == 0) {
+      if (SyncStorage.get('customerData').customers_id !== undefined) {
+        console.log('here');
+        this.saveAddress('addshippingaddress');
+      }
       this.setState({SpinnerTemp: false}, () => {
         this.props.productDeleteIdFun(
           data.data.products_id,
@@ -839,14 +938,15 @@ class orderScreen extends Component {
             </View>
           </TouchableOpacity>
         </ModalWrapper>
-        <ModalWrapper
+        {/* <ModalWrapper
           style={{
             width: 280,
             paddingLeft: 24,
             paddingRight: 24,
             backgroundColor: themeStyle.backgroundColor,
           }}
-          visible={this.state.wrapperCondition2}>
+          visible={this.state.wrapperCondition2}> */}
+        {/* <View>
           <Text
             style={{
               padding: 10,
@@ -873,7 +973,7 @@ class orderScreen extends Component {
                 paddingLeft: 1,
                 flexDirection: 'column',
                 paddingRight: 2,
-                // backgroundColor:'red'
+                backgroundColor: 'yellow',
               }}>
               <FlatList
                 data={this.state.paymentMethods}
@@ -900,11 +1000,12 @@ class orderScreen extends Component {
             style={{
               width: '100%',
               height: 1,
-              backgroundColor: '#d9d9d9',
+              // backgroundColor: '#d9d9d9',
+              backgroundColor: 'red',
             }}
           />
           <TouchableOpacity
-            style={{padding: 10}}
+            style={{padding: 10, backgroundColor: 'green'}}
             onPress={() => this.setState({wrapperCondition2: false})}>
             <View
               style={{
@@ -925,7 +1026,8 @@ class orderScreen extends Component {
               </Text>
             </View>
           </TouchableOpacity>
-        </ModalWrapper>
+        </View> */}
+        {/* </ModalWrapper> */}
         <FlatList
           data={['asd']}
           horizontal={false}
@@ -1724,7 +1826,8 @@ class orderScreen extends Component {
                       shadowOffset: {width: 1, height: 0},
                       shadowColor: 'themeStyle.textColor',
                       shadowOpacity: 0.5,
-                      // elevation: 8,
+
+                      elevation: 8,
                       // backgroundColor: 'red',
                     }}
                     selectionColor="#51688F"
@@ -1748,6 +1851,7 @@ class orderScreen extends Component {
                       zIndex: 2,
                       right: 25,
                       top: 30,
+                      elevation: 9,
                     }}
                     onPress={() => this.getCoupon(this.state.couponText)}>
                     <View
@@ -2095,6 +2199,20 @@ class orderScreen extends Component {
                 </View>
               </View>
 
+              <View style={{marginHorizontal: 25}}>
+                <Text
+                  style={{
+                    // padding: 10,
+
+                    fontSize: themeStyle.largeSize,
+                    fontWeight: 'bold',
+                    paddingTop: 20,
+                    color: themeStyle.textColor,
+                  }}>
+                  {this.props.cartItems2.Config.languageJson.Payment}
+                </Text>
+              </View>
+
               {this.state.paymentShowCondition ? (
                 <View style={{flex: 1, justifyContent: 'center'}}>
                   <UIActivityIndicator
@@ -2103,38 +2221,110 @@ class orderScreen extends Component {
                   />
                 </View>
               ) : (
-                <TouchableOpacity
-                  onPress={() => this.setState({wrapperCondition2: true})}
-                  style={{
-                    backgroundColor: themeStyle.backgroundColor,
-                    justifyContent: 'space-between',
-                    shadowOffset: {width: 1, height: 1},
-                    shadowColor: themeStyle.textColor,
-                    shadowOpacity: 0.5,
-                    flex: 1,
-                    // marginBottom: 15,
-                  }}>
-                  <View
+                <View>
+                  {/* <View
                     style={{
-                      justifyContent: 'space-between',
-                      flex: 1,
-                      backgroundColor: '#f5fafe',
-                      paddingVertical: 7,
-                      paddingHorizontal: 25,
-                    }}>
+                      width: '100%',
+                      height: 1,
+                      backgroundColor: '#d9d9d9',
+                      marginBottom: 12,
+                    }}
+                  /> */}
+
+                  <View>
                     <View
                       style={{
-                        justifyContent: 'space-between',
-                        flex: 1,
+                        paddingLeft: 20,
+                        flexDirection: 'column',
+                        paddingRight: 2,
+                        // backgroundColor: 'yellow',
+                        marginBottom: 35,
                       }}>
-                      {this.singaleRow(
-                        this.props.cartItems2.Config.languageJson.Payment,
-                        Number(this.state.tax).toFixed(2),
-                        true,
-                      )}
+                      <FlatList
+                        data={this.state.paymentMethods}
+                        horizontal={false}
+                        showsVerticalScrollIndicator={false}
+                        extraData={this.state}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={(item) =>
+                          item.item.active == 1
+                            ? this.singaleRow3(
+                                item.item.name,
+                                this.state.discount,
+                                true,
+                                true,
+                                item.index,
+                                item.item.method,
+                              )
+                            : null
+                        }
+                      />
                     </View>
                   </View>
-                </TouchableOpacity>
+                  <View
+                    style={{
+                      width: '100%',
+                      height: 1,
+                      // backgroundColor: '#d9d9d9',
+                      // backgroundColor: 'red',
+                    }}
+                  />
+                  {/* <TouchableOpacity
+                    style={{padding: 10, backgroundColor: 'green'}}
+                    onPress={() => this.setState({wrapperCondition2: false})}>
+                    <View
+                      style={{
+                        alignItems: 'flex-start',
+                        padding: 10,
+                        backgroundColor: 'transparent',
+                        justifyContent: 'center',
+                        paddingLeft: 12,
+                        paddingBottom: 5,
+                      }}>
+                      <Text
+                        style={{
+                          textAlign: 'center',
+                          fontSize: themeStyle.mediumSize,
+                          color: themeStyle.textColor,
+                        }}>
+                        {this.props.cartItems2.Config.languageJson.Close}
+                      </Text>
+                    </View>
+                  </TouchableOpacity> */}
+                </View>
+
+                // <TouchableOpacity
+                //   onPress={() => this.setState({wrapperCondition2: true})}
+                //   style={{
+                //     backgroundColor: themeStyle.backgroundColor,
+                //     justifyContent: 'space-between',
+                //     shadowOffset: {width: 1, height: 1},
+                //     shadowColor: themeStyle.textColor,
+                //     shadowOpacity: 0.5,
+                //     flex: 1,
+                //     // marginBottom: 15,
+                //   }}>
+                //   <View
+                //     style={{
+                //       justifyContent: 'space-between',
+                //       flex: 1,
+                //       backgroundColor: '#f5fafe',
+                //       paddingVertical: 7,
+                //       paddingHorizontal: 25,
+                //     }}>
+                //     <View
+                //       style={{
+                //         justifyContent: 'space-between',
+                //         flex: 1,
+                //       }}>
+                //       {this.singaleRow(
+                //         this.props.cartItems2.Config.languageJson.Payment,
+                //         Number(this.state.tax).toFixed(2),
+                //         true,
+                //       )}
+                //     </View>
+                //   </View>
+                // </TouchableOpacity>
               )}
               {this.state.paymentText === 'Stripe' ? (
                 <CardTextFieldScreen
