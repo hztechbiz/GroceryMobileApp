@@ -594,7 +594,7 @@ class ShippingAddress extends Component {
     SyncStorage.set('orderDetails', orderDetails);
 
     console.log(orderDetails, 'Hello...................!');
-    // this.props.navigation.navigate('ShippingMethodScreen');
+    this.props.navigation.navigate('ShippingMethodScreen');
   }
 
   /// ///////////////////////////////////////
