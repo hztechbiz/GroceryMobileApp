@@ -33,7 +33,7 @@ export const getHeaders = () => {
 export const postHttp = async (url, body) => {
   try {
     const res = await axios.post(url, body, getHeaders());
-    console.log(getHeaders(), 'res=========');
+    // console.log(getHeaders(), 'res=========');
     return res.data;
   } catch (err) {
     return err;

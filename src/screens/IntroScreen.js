@@ -13,7 +13,7 @@ import {Icon} from 'native-base';
 import SyncStorage from 'sync-storage';
 import Swiper from '../common/Swiper';
 import themeStyle from '../common/Theme.style';
-import {getUrl, getHttp} from '../common/WooComFetch';
+import {getUrl, getHttp, postHttp} from '../common/WooComFetch';
 import {connect} from 'react-redux';
 import {UIActivityIndicator} from 'react-native-indicators';
 const WIDTH = Dimensions.get('window').width;
@@ -37,11 +37,35 @@ class Screen extends PureComponent {
       // yourRef.current.scrollToEnd();
 
       this.myFunc();
+
       this.setState({
         renderapp: false,
       });
+      this.registerDevice();
     }, 1000);
   }
+
+  registerDevice = (data) => {
+    // console.log(data, 'ksksadmsakddmskm');
+    // const customerData = data;
+    const formData = new FormData();
+    formData.append('device_id', SyncStorage.get('registerDevice'));
+    formData.append('device_type', 'Android');
+    // formData.append('customers_id', 27);
+
+    const regData = postHttp(getUrl() + '/api/' + 'registerdevices', formData);
+    console.log(regData, formData, 'all data=================');
+    // formData.append('processor', null);
+    // formData.append('device_os', this.state.password);
+    // formData.append('location', this.state.password);
+    // formData.append('device_model', this.state.password);
+    // formData.append(
+    //   'customers_id',
+    //   (customerData.customers_id =
+    //     data.id === undefined || data.id == null ? '' : data.id),
+    // );
+    // formData.append('manufacturer', this.state.password);
+  };
 
   myFunc = () => {
     if (SyncStorage.get('showIntroPage') === undefined) {

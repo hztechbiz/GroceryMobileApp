@@ -2,6 +2,9 @@
 #
 .DS_Store
 
+# constant
+constant/
+
 # Xcode
 #
 build/
@@ -34,6 +37,7 @@ local.properties
 node_modules/
 npm-debug.log
 yarn-error.log
+constant.js
 
 # BUCK
 buck-out/

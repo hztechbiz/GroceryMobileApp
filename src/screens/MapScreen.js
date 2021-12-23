@@ -17,9 +17,9 @@ import Toast from 'react-native-easy-toast';
 import Spinner from 'react-native-loading-spinner-overlay';
 import ShoppingCartIcon from '../common/ShoppingCartIcon';
 import Geocoder from 'react-native-geocoding';
-Geocoder.init('AIzaSyBFTYrV_eh5nard2ZCmi3Fkhd9IkuNGWPY');
+
 const {width} = Dimensions.get('window');
-var areas = ['Shah Faisal Colony'];
+var areas = ['P.E.C.H.S.', 'Shah Faisal Colony'];
 class RewardPoints extends Component {
   static navigationOptions = ({navigation}) => {
     const headerStyle = navigation.getParam('headerTitle');

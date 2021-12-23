@@ -181,7 +181,8 @@ class App extends Component {
   }
 
   onIds(device) {
-    console.log('Device info: ', device);
+    console.log('Device info: ', device.userId);
+    SyncStorage.set('registerDevice', device.userId);
   }
 
   render() {

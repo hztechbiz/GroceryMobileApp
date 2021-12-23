@@ -20,11 +20,11 @@ import {
   GoogleSigninButton,
   statusCodes,
 } from '@react-native-community/google-signin';
-import SyncStorage from 'sync-storage';
 import Spinner from 'react-native-loading-spinner-overlay';
 import FBLoginButton from '../common/FBLoginButton';
 import themeStyle from '../common/Theme.style';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import SyncStorage from 'sync-storage';
 const WIDTH = Dimensions.get('window').width;
 class Login extends PureComponent {
   /// /////////////////////////////////////////////////////////
@@ -50,6 +50,10 @@ class Login extends PureComponent {
 
   /// /////////////////////////////////////////////////////////
   componentDidMount() {
+    // console.log(
+
+    //   '==sdadasdsa==================',
+    // );
     this.props.navigation.setParams({
       headerTitle: this.props.isLoading.Config.languageJson.Login,
     });
@@ -76,6 +80,30 @@ class Login extends PureComponent {
     };
   }
 
+  registerDevice = (data) => {
+    // console.log(data, 'ksksadmsakddmskm');
+    // console.log(id, '====================----------------');
+    // const customerData = data;
+    // console.log(data, '==========================');
+    const formData = new FormData();
+    formData.append('device_id', SyncStorage.get('registerDevice'));
+    formData.append('device_type', 'Android');
+    // formData.append('customers_id', data.data[0].id);
+
+    const regData = postHttp(getUrl() + '/api/' + 'registerdevices', formData);
+    // console.log(regData, formData, 'all data=================');
+    // formData.append('processor', null);
+    // formData.append('device_os', this.state.password);
+    // formData.append('location', this.state.password);
+    // formData.append('device_model', this.state.password);
+    // formData.append(
+    //   'customers_id',
+    //   (customerData.customers_id =
+    //     data.id === undefined || data.id == null ? '' : data.id),
+    // );
+    // formData.append('manufacturer', this.state.password);
+  };
+
   login = async (t) => {
     t.setState({SpinnerTemp: true});
     const formData = new FormData();
@@ -84,7 +112,10 @@ class Login extends PureComponent {
 
     const data = await postHttp(getUrl() + '/api/' + 'processlogin', formData);
     if (data.success == 1) {
+      this.registerDevice();
       t.getUserData(data.data[0], 'simple', t);
+
+      // console.log(data.data[0].id, '--------------');
     }
     if (data.success == 0) {
       t.setState({
