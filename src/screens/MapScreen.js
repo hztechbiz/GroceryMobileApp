@@ -17,6 +17,8 @@ import Toast from 'react-native-easy-toast';
 import Spinner from 'react-native-loading-spinner-overlay';
 import ShoppingCartIcon from '../common/ShoppingCartIcon';
 import Geocoder from 'react-native-geocoding';
+import {GOOGLE_MAP_KEY} from '../../constant/constant';
+Geocoder.init(GOOGLE_MAP_KEY);
 
 const {width} = Dimensions.get('window');
 var areas = ['P.E.C.H.S.', 'Shah Faisal Colony'];
