@@ -351,7 +351,7 @@ class ShippingAddress extends PureComponent {
                           this.defaultAddress(item.item.address_id),
                         )
                       }
-                      checked={item.item.default_address === 0}
+                      checked={item.item.default_address === 1}
                     />
                   </TouchableOpacity>
                 </ListItem>

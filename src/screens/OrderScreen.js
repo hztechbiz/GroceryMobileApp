@@ -1221,8 +1221,8 @@ class orderScreen extends Component {
                       paddingHorizontal: 20,
                     }}>
                     {
-                      this.state.orderDetail.delivery_street_address +
-                        this.state.orderDetail.delivery_city_area
+                      this.state.orderDetail.delivery_street_address + ' '
+                        // this.state.orderDetail.delivery_city_area
                       // +
                       // ', ' +
                       // this.state.orderDetail.delivery_city +
@@ -1641,7 +1641,7 @@ class orderScreen extends Component {
                     </Text>
                   </View>
                 </View>
-                <View
+                {/* <View
                   style={{
                     justifyContent: 'space-between',
                     padding: 15,
@@ -1678,7 +1678,7 @@ class orderScreen extends Component {
                       {Number(this.state.orderDetail.total_tax).toFixed(2)}
                     </Text>
                   </View>
-                </View>
+                </View> */}
                 <View
                   style={{
                     justifyContent: 'space-between',
@@ -1997,7 +1997,7 @@ class orderScreen extends Component {
                   </TouchableOpacity>
                 </View>
 
-                <TouchableOpacity
+                {/* <TouchableOpacity
                   style={{paddingTop: 5}}
                   onPress={() => this.setState({wrapperCondition: true})}>
                   <View
@@ -2025,7 +2025,7 @@ class orderScreen extends Component {
                       }
                     </Text>
                   </View>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
               </View>
 
               {this.state.couponArray.length > 0 ? (
@@ -2291,11 +2291,11 @@ class orderScreen extends Component {
                 </View>
               </View>
 
-              <View style={{marginHorizontal: 25}}>
+              <View style={{backgroundColor:'#f5fafe'}}>
                 <Text
                   style={{
                     // padding: 10,
-
+                    marginLeft:25,
                     fontSize: themeStyle.largeSize,
                     fontWeight: 'bold',
                     paddingTop: 20,
@@ -2306,14 +2306,14 @@ class orderScreen extends Component {
               </View>
 
               {this.state.paymentShowCondition ? (
-                <View style={{flex: 1, justifyContent: 'center'}}>
+                <View style={{flex: 1, justifyContent: 'center', backgroundColor:'#f5fafe'}}>
                   <UIActivityIndicator
                     size={27}
                     color={themeStyle.loadingIndicatorColor}
                   />
                 </View>
               ) : (
-                <View>
+                <View style={{backgroundColor:'#f5fafe'}}>
                   {/* <View
                     style={{
                       width: '100%',
@@ -2323,13 +2323,13 @@ class orderScreen extends Component {
                     }}
                   /> */}
 
-                  <View>
+                  <View style={{backgroundColor:'#f5fafe'}}>
                     <View
                       style={{
                         paddingLeft: 20,
                         flexDirection: 'column',
                         paddingRight: 2,
-                        // backgroundColor: 'yellow',
+                        backgroundColor: '#f5fafe',
                         marginBottom: 35,
                       }}>
                       <FlatList
@@ -2357,7 +2357,8 @@ class orderScreen extends Component {
                     style={{
                       width: '100%',
                       height: 1,
-                      // backgroundColor: '#d9d9d9',
+                      
+                      backgroundColor: '#f5fafe',
                       // backgroundColor: 'red',
                     }}
                   />

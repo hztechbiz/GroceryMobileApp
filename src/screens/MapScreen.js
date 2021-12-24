@@ -18,10 +18,11 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import ShoppingCartIcon from '../common/ShoppingCartIcon';
 import Geocoder from 'react-native-geocoding';
 import {GOOGLE_MAP_KEY} from '../../constant/constant';
+import WooComFetch, { getUrl } from '../common/WooComFetch';
 Geocoder.init(GOOGLE_MAP_KEY);
 
 const {width} = Dimensions.get('window');
-var areas = ['P.E.C.H.S.', 'Shah Faisal Colony'];
+var areas = ['Shah Faisal Colony'];
 class RewardPoints extends Component {
   static navigationOptions = ({navigation}) => {
     const headerStyle = navigation.getParam('headerTitle');
@@ -41,6 +42,8 @@ class RewardPoints extends Component {
       gestureEnabled: true,
     };
   };
+
+
 
   async componentDidMount() {
     console.log('Hello');
@@ -85,6 +88,8 @@ class RewardPoints extends Component {
   }
 
   requestLocationPermission = async () => {
+    this.getArea()
+    // console.log(map_area, 'all map area')
     try {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
@@ -98,6 +103,7 @@ class RewardPoints extends Component {
       );
 
       console.log(areas, 'kadskdmsksad');
+      console.log(this.state.map_area, 'kadskdmsksad');
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
         Geolocation.getCurrentPosition(
           (info) => {
@@ -195,7 +201,23 @@ class RewardPoints extends Component {
         longitudeDelta: 0.009,
       },
       SpinnerTemp: true,
+      map_area: []
     };
+  }
+  getArea = async()=>{
+    const data = await WooComFetch.postHttp(
+      getUrl() + '/api/' + 'getarea',
+    );
+    console.log(data.success)
+    if(data.success ==1){
+      console.log(data.data.data, 'data ============')
+      this.setState({map_area:data.data.data })
+    }
+    if(data.success === 0){
+      this.refs.toast.show(
+        'Something Went Wrong',
+      );
+  }
   }
 
   render() {
@@ -221,6 +243,7 @@ class RewardPoints extends Component {
             coordinate={this.state.x}
             title={this.props.isLoading.Config.languageJson2.Address}
             onDragEnd={(e) => {
+              console.log(this.state.map_area)
               const newCoords = {};
               // if (newCoords.latitude <= 24.9 && newCoords.latitude >= 24.8) {
               //   Alert.alert('avail');
@@ -246,11 +269,26 @@ class RewardPoints extends Component {
                   //   json.results[0].address_components[1].long_name;
                   console.log(
                     'after drag short',
-                    json.results[0].address_components[3],
-                    'after drag long',
-                    json.results[0].address_components[1],
+                    json.results[0].address_components,
+                   
                   );
-                  console.log();
+                  console.log(
+                    'after drag short 2',
+                    json.results[0].address_components[2],
+                   
+                  );
+
+                  console.log(
+                    'after drag short 3',
+                    json.results[0].address_components[3],
+                   
+                  );
+                  console.log(
+                    'after drag short 4',
+                    json.results[0].address_components,
+                   
+                  );
+                  // console.log();
                   // var ar = areas.includes
                   // cons
                   // if (
@@ -304,23 +342,32 @@ class RewardPoints extends Component {
                   json.results[0].address_components[1].short_name;
                 var addressComponentTwo =
                   json.results[0].address_components[1].long_name;
+                  var addressComponentThree = json.results[0].address_components[3].long_name
+                  var addressComponentFour = json.results[0].address_components[3].short_name
+
                 console.log(
                   'after drag',
                   json.results[0].address_components[1].short_name,
                 );
+                console.log(
+                  'after drag',
+                  json.results[0].address_components
+                );
                 // var ar = areas.includes
-                // cons
+                
                 if (
-                  areas.includes(addressComponent) ||
-                  areas.includes(addressComponentTwo)
+                //  this.state.map_area.includes(addressComponent) ||
+                //  this.state.map_area.includes(addressComponentTwo) || addressComponentThree || addressComponentFour
+                areas.includes(addressComponent) ||
+                areas.includes(addressComponentTwo) || addressComponentThree || addressComponentFour
                 ) {
                   this.props.navigation.state.params.onGoBackFun(
-                    json?.results[0]?.address_components[1]?.long_name,
+                    json?.results[0]?.address_components[3]?.long_name,
                   );
                   this.props.navigation.pop();
                 } else {
                   this.refs.toast.show(
-                    'Not available on selected area.Delivery Only available on Shah faisal town.We are coming to your area very soon.',
+                    'Not available on selected area. Delivery Only available on Shah Faisal Colony.We are coming to your area very soon.',
                   );
                 }
               },
