@@ -1302,7 +1302,7 @@ class orderScreen extends Component {
                 </View>
               </View> */}
 
-              <View
+              {/* <View
                 style={{
                   backgroundColor: '#f5fafe',
                   justifyContent: 'space-between',
@@ -1350,7 +1350,7 @@ class orderScreen extends Component {
                     {this.state.orderDetail.shipping_method}
                   </Text>
                 </View>
-              </View>
+              </View> */}
 
               <View
                 style={{
