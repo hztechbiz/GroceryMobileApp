@@ -18,7 +18,7 @@ import {CardStyleInterpolators} from 'react-navigation-stack';
 import Dialog, {DialogContent} from 'react-native-popup-dialog';
 import auth from '@react-native-firebase/auth';
 import themeStyle from '../common/Theme.style';
-import {getUrl, postHttp} from '../common/WooComFetch';
+import WooComFetch, {getUrl, postHttp} from '../common/WooComFetch';
 import * as global from '../common/LocationData';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import {connect} from 'react-redux';
@@ -58,6 +58,7 @@ class ShippingAddress extends Component {
   componentDidMount() {
     this.shippingInput = ['', '', '', '', '', '', '', '', ''];
     this.billingInput = ['', '', '', '', '', '', '', '', '', '', ''];
+    this.getData();
     if (SyncStorage.get('gustLogin') === false) {
       this.getUserAddress();
     }
@@ -72,6 +73,8 @@ class ShippingAddress extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      shippingMethod: [],
+      dat: {},
       myAccountData: {},
       password: '',
       errorMessage: '',
@@ -130,6 +133,99 @@ class ShippingAddress extends Component {
     };
   }
   /// ////////////////////////////////////////
+
+  getData = async () => {
+    const dat = {};
+    dat.tax_zone_id = SyncStorage.get('orderDetails').tax_zone_id;
+    dat.state = SyncStorage.get('orderDetails').delivery_state;
+    dat.city = SyncStorage.get('orderDetails').delivery_city;
+    dat.country_id = SyncStorage.get('orderDetails').delivery_country_id;
+    dat.postcode = SyncStorage.get('orderDetails').delivery_postcode;
+    dat.zone = SyncStorage.get('orderDetails').delivery_zone;
+    dat.street_address =
+      SyncStorage.get('orderDetails').delivery_street_address;
+    dat.products_weight = this.calculateWeight();
+    dat.products_weight_unit = 'g';
+    dat.products = this.getProducts();
+    dat.language_id =
+      SyncStorage.get('langId') === undefined ? 1 : SyncStorage.get('langId');
+    dat.currency_code = this.props.cartItems2.Config.productsArguments.currency;
+    const data = await WooComFetch.postHttp(
+      getUrl() + '/api/' + 'getrate',
+      dat,
+    );
+    const orderDetails = SyncStorage.get('orderDetails');
+    console.log(orderDetails, 'shipp method');
+    if (data.data.success == 1) {
+      var m = data.data.data.shippingMethods;
+      console.log(m, 'success');
+      this.state.shippingMethod = Object.keys(m).map(function (key) {
+        return m[key];
+      });
+      console.log(m.flateRate, 'this.state.shippingMethod');
+
+      orderDetails.shipping_cost =
+        this.state.shippingMethod[0].services[0].rate;
+      orderDetails.shipping_method =
+        this.state.shippingMethod[0].services[0].name +
+        '(' +
+        this.state.shippingMethod[0].services[0].shipping_method +
+        ')';
+      SyncStorage.set('orderDetails', orderDetails);
+      console.log(SyncStorage.get('orderDetails'));
+      console.log(
+        this.state.shippingMethod[0].services[0].name +
+          '(' +
+          this.state.shippingMethod[0].services[0].shipping_method +
+          ')',
+      );
+
+      // orderDetails.total_tax = data.data.data.tax;
+      // SyncStorage.set('orderDetails', orderDetails);
+    }
+    this.setState({
+      spinnerTemp: false,
+      shippingMethod: this.state.shippingMethod,
+    });
+  };
+
+  getProducts() {
+    const temp = [];
+    SyncStorage.get('cartProducts').forEach((element) => {
+      temp.push({
+        customers_basket_quantity: element.customers_basket_quantity,
+        final_price: element.final_price,
+        price: element.price,
+        products_id: element.products_id,
+        total: element.total,
+        unit: element.unit,
+        weight: element.weight,
+      });
+    });
+    return temp;
+  }
+  calculateWeight = function () {
+    var pWeight = 0;
+    var totalWeight = 0;
+    for (const value of SyncStorage.get('cartProducts')) {
+      pWeight = parseFloat(value.weight);
+      if (value.unit == 'kg') {
+        pWeight = parseFloat(value.weight) * 1000;
+      }
+      totalWeight = totalWeight + pWeight * value.customers_basket_quantity;
+    }
+    return totalWeight;
+  };
+
+  setMethod(data, index) {
+    const orderDetails = SyncStorage.get('orderDetails');
+    orderDetails.shipping_cost = data.rate;
+    // orderDetails.shipping_cost = 200;
+
+    orderDetails.shipping_method = data.name + '(' + data.shipping_method + ')';
+    SyncStorage.set('orderDetails', orderDetails);
+    console.log(SyncStorage.get('orderDetails', '==========--------'));
+  }
 
   getUserAddress = async () => {
     const orderDetails = SyncStorage.get('orderDetails');
@@ -594,8 +690,10 @@ class ShippingAddress extends Component {
     SyncStorage.set('orderDetails', orderDetails);
 
     console.log(orderDetails, 'Hello...................!');
-    this.props.navigation.navigate('ShippingMethodScreen');
-    // this.props.navigation.push('OrderScreen');
+    // this.props.navigation.navigate('ShippingMethodScreen');
+    this.props.navigation.push('OrderScreen', {
+      // delivery_charges: this.state.shippingMethod,
+    });
   }
 
   /// ///////////////////////////////////////
@@ -765,8 +863,8 @@ class ShippingAddress extends Component {
             alignSelf: 'center',
             // height: 60,
             padding: 18,
-            // backgroundColor: '#fff',
-            backgroundColor: 'pink',
+            backgroundColor: '#fff',
+            // backgroundColor: 'pink',
             marginBottom: 20,
           }}>
           {/* <View
@@ -809,7 +907,7 @@ class ShippingAddress extends Component {
               // writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr',
               textAlign: 'justify',
               // marginHorizontal: 15,
-              backgroundColor: 'orange',
+              // backgroundColor: 'orange',
               marginRight: 5,
 
               fontSize: 18,
@@ -842,8 +940,8 @@ class ShippingAddress extends Component {
             // alignItems: 'center',
             // backgroundColor: 'yellow',
 
-            // backgroundColor: '#fff',
-            backgroundColor: 'green',
+            backgroundColor: '#fff',
+            // backgroundColor: 'green',
             width: '97%',
             height: 60,
             borderColor: '#fff',
@@ -1054,8 +1152,7 @@ class ShippingAddress extends Component {
     return placeholderText ===
       this.props.cartItems2.Config.languageJson2.Location ? (
       // <></>
-      <View
-        style={{marginBottom: 10, marginTop: 10, backgroundColor: 'yellow'}}>
+      <View style={{marginBottom: 10, marginTop: 10}}>
         {this.getLocationAddress(
           this.state.shippingData.delivery_location === undefined ||
             this.state.shippingData.delivery_location === null
@@ -2165,11 +2262,9 @@ class ShippingAddress extends Component {
                   </Text>
                 </View>
               </TouchableOpacity>
-            ) : (
-              <Text>not Fiiled</Text>
-            )}
+            ) : null}
 
-            <Text
+            {/* <Text
               style={{
                 fontSize: themeStyle.largeSize + 1,
                 color: themeStyle.textColor,
@@ -2178,7 +2273,7 @@ class ShippingAddress extends Component {
                 // backgroundColor: 'orange',
               }}>
               {this.props.cartItems2.Config.languageJson['Billing Address']}
-            </Text>
+            </Text> */}
             {/* Toggle Switch */}
             {/* <View
               style={{

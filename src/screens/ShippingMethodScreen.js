@@ -72,6 +72,7 @@ class ShippingMethod extends Component {
     console.log(orderDetails, 'shipp method');
     if (data.data.success == 1) {
       var m = data.data.data.shippingMethods;
+      console.log(m, '========');
       this.state.shippingMethod = Object.keys(m).map(function (key) {
         return m[key];
       });
@@ -117,6 +118,7 @@ class ShippingMethod extends Component {
 
   // //= ================================================================================================================================
   setMethod(data, index) {
+    console.log(index, '[[[[[');
     const orderDetails = SyncStorage.get('orderDetails');
     orderDetails.shipping_cost = data.rate;
     orderDetails.shipping_method = data.name + '(' + data.shipping_method + ')';
