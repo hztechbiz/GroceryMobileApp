@@ -669,10 +669,11 @@ class Login extends PureComponent {
               }}> */}
             <View
               style={{
-                alignItems: 'center',
+                // alignItems: 'center',
                 flexDirection: 'row',
-                justifyContent: 'center',
+                // justifyContent: 'center',
                 marginVertical: 10,
+                // backgroundColor: 'red',
               }}>
               <Text
                 style={{
@@ -703,14 +704,24 @@ class Login extends PureComponent {
                   Register
                 </Text>
               </TouchableOpacity>
-
+            </View>
+            <View>
               <TouchableOpacity
                 onPress={() =>
                   this.props.navigation.navigate('ForgotPasswordScreen')
                 }>
-                <Text>Forgot password</Text>
+                <Text
+                  style={{
+                    fontWeight: 'bold',
+                    color: 'black',
+                    fontSize: 16,
+                    textDecorationLine: 'underline',
+                  }}>
+                  Forgot password{' '}
+                </Text>
               </TouchableOpacity>
             </View>
+
             {/* </Text> */}
 
             {this.props.isLoading.Config.fbButton === 1 ? (
