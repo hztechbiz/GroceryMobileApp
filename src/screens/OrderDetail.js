@@ -75,6 +75,7 @@ class orderScreen extends PureComponent {
       <View
         style={{
           backgroundColor: themeStyle.backgroundColor,
+          // backgroundColor: 'yellow',
           justifyContent: 'space-between',
           shadowOffset: {width: 1, height: 1},
           shadowColor: themeStyle.textColor,
@@ -473,11 +474,11 @@ class orderScreen extends PureComponent {
             this.props.cartItems2.Config.languageJson2['Sub Total'],
             this.getSubtotal(),
           )}
-          {this.singleRowDirection(
+          {/* {this.singleRowDirection(
             this.props.cartItems2.Config.languageJson2['Shipping Method'],
             this.props.navigation.state.params.data.shipping_method,
             'Shipping Method',
-          )}
+          )} */}
           {this.singleRowDirection(
             this.props.cartItems2.Config.languageJson.Shipping +
               ' ' +
@@ -506,10 +507,10 @@ class orderScreen extends PureComponent {
               )
             : null}
 
-          {this.singleRowDirection(
+          {/* {this.singleRowDirection(
             this.props.cartItems2.Config.languageJson.Tax,
             this.props.navigation.state.params.data.total_tax,
-          )}
+          )} */}
           {this.singleRowDirection(
             this.props.cartItems2.Config.languageJson.Total,
             this.addCurrecny(
@@ -569,17 +570,23 @@ class orderScreen extends PureComponent {
           style={{
             flex: 1,
             backgroundColor: themeStyle.backgroundColor,
+            // backgroundColor: 'pink',
             marginBottom: 30,
           }}>
           {this.singleRow(
             this.props.cartItems2.Config.languageJson['Shipping Address'],
-            `${this.props.navigation.state.params.data.delivery_street_address}, ${this.props.navigation.state.params.data.delivery_city}, ${this.props.navigation.state.params.data.delivery_state} ${this.props.navigation.state.params.data.delivery_postcode}, ${this.props.navigation.state.params.data.delivery_country}`,
+            `${this.props.navigation.state.params.data.delivery_street_address}`,
+            // ${this.props.navigation.state.params.data.delivery_city},
+            // ${this.props.navigation.state.params.data.delivery_state}
+            //  ${this.props.navigation.state.params.data.delivery_postcode},
+            //  ${this.props.navigation.state.params.data.delivery_country}
+            //  `,
           )}
 
-          {this.singleRow(
+          {/* {this.singleRow(
             this.props.cartItems2.Config.languageJson['Billing Address'],
             `${this.props.navigation.state.params.data.billing_street_address}, ${this.props.navigation.state.params.data.billing_city}, ${this.props.navigation.state.params.data.billing_state} ${this.props.navigation.state.params.data.billing_postcode}, ${this.props.navigation.state.params.data.billing_country}`,
-          )}
+          )} */}
 
           {this.products(
             this.props.cartItems2.Config.languageJson.Products,
