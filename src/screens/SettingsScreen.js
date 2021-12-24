@@ -57,6 +57,8 @@ class CreateAccount extends Component {
   /// /////////////////////////////////////////////////////////
 
   componentDidMount() {
+    // console.log(SyncStorage.get('customerDataId'), 'lsadlsadlsadlsdlsd');
+    // SyncStorage.get('customerDataId');
     this.props.navigation.setParams({
       headerTitle: this.props.isLoading.Config.languageJson.Settings,
     });
@@ -230,6 +232,7 @@ class CreateAccount extends Component {
     this.setState({spinnerTemp: true});
     /// ///////////////////////////////
     SyncStorage.set('customerData', '');
+    SyncStorage.set('customerDataId', '');
     SyncStorage.set('gustLogin', false);
 
     this.props.isLoading.cartItems.wishListProducts = [];

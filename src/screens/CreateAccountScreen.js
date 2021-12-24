@@ -64,6 +64,32 @@ class CreateAccount extends PureComponent {
     };
   }
 
+  registerDevice = (data) => {
+    // console.log(data, 'ksksadmsakddmskm');
+    // console.log(SyncStorage.get('customerDataId'));
+
+    // console.log(id, '====================----------------');
+    // const customerData = data;
+    // console.log(data, '==========================');
+    const formData = new FormData();
+    formData.append('device_id', SyncStorage.get('registerDevice'));
+    formData.append('device_type', 'Android');
+    formData.append('customers_id', SyncStorage.get('customerDataId'));
+
+    const regData = postHttp(getUrl() + '/api/' + 'registerdevices', formData);
+    // console.log(regData, formData, 'all data=================');
+    // formData.append('processor', null);
+    // formData.append('device_os', this.state.password);
+    // formData.append('location', this.state.password);
+    // formData.append('device_model', this.state.password);
+    // formData.append(
+    //   'customers_id',
+    //   (customerData.customers_id =
+    //     data.id === undefined || data.id == null ? '' : data.id),
+    // );
+    // formData.append('manufacturer', this.state.password);
+  };
+
   /// ////////////////////////
   getUserData = (data, t) => {
     const customerData = data;
@@ -77,6 +103,8 @@ class CreateAccount extends PureComponent {
     customerData.image_id = data.image_id;
     customerData.customers_dob = data.dob;
     SyncStorage.set('customerData', customerData);
+    SyncStorage.set('customerDataId', customerData.customers_id);
+
     if (SyncStorage.get('drawerLogin')) {
       SyncStorage.set('drawerLogin', false);
       t.props.navigation.navigate('SETTINGS');
@@ -120,7 +148,10 @@ class CreateAccount extends PureComponent {
         {
           spinnerTemp: false,
         },
-        () => this.getUserData(data.data[0], t),
+        () => {
+          this.getUserData(data.data[0], t);
+          this.registerDevice();
+        },
       );
     }
     if (data.success === '0') {
@@ -688,7 +719,7 @@ class CreateAccount extends PureComponent {
                   }}>
                   Register With
                 </Text> */}
-                {/* <TextInput
+            {/* <TextInput
                   style={{
                     fontFamily: 'Lato-Regular',
                     fontSize: 18,
@@ -704,7 +735,7 @@ class CreateAccount extends PureComponent {
                   // onChangeText={(text) => setCompany(text)}
                 /> */}
 
-                {/* <Icon
+            {/* <Icon
                   name="facebook-f"
                   size={20}
                   style={{position: 'absolute', right: 12}}
@@ -712,7 +743,7 @@ class CreateAccount extends PureComponent {
                 />
               </TouchableOpacity> */}
 
-              {/* <TouchableOpacity
+            {/* <TouchableOpacity
                 style={{
                   backgroundColor: '#ed1b24',
                   width: '40%',
@@ -735,7 +766,7 @@ class CreateAccount extends PureComponent {
                   }}>
                   Register With
                 </Text> */}
-                {/* <TextInput
+            {/* <TextInput
                   style={{
                     fontFamily: 'Lato-Regular',
                     fontSize: 18,
@@ -751,7 +782,7 @@ class CreateAccount extends PureComponent {
                   // onChangeText={(text) => setCompany(text)}
                 /> */}
 
-                {/* <Icon
+            {/* <Icon
                   name="google"
                   size={20}
                   style={{position: 'absolute', right: 10}}

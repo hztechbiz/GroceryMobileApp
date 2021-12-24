@@ -17,6 +17,7 @@ import {
 } from 'react-native';
 import theme from './src/common/Theme.style';
 import OneSignal from 'react-native-onesignal';
+import {ONE_SIGNAL_APP_ID} from './constant/constant';
 
 const Height = Dimensions.get('window').height;
 const MyStatusBar = ({backgroundColor, ...props}) => (
@@ -43,7 +44,7 @@ class App extends Component {
       }
     });
 
-    OneSignal.init('548328bb-af0c-4981-a779-584477886288');
+    OneSignal.init(ONE_SIGNAL_APP_ID);
 
     OneSignal.addEventListener('received', this.onReceived);
     OneSignal.addEventListener('opened', this.onOpened);
@@ -121,6 +122,7 @@ class App extends Component {
     this.props.getMostLikedData(this.props, this);
     this.props.getProductData(this.props, this);
     this.props.aboutUsPageGetIds(this.props);
+    // this.registerDevice();
     this.setState({isLoading: false});
   }
 
@@ -168,6 +170,29 @@ class App extends Component {
       SplashScreen.hide();
     }
   }
+
+  // registerDevice = (data) => {
+  //   // console.log(data, 'ksksadmsakddmskm');
+  //   // const customerData = data;
+  //   console.log(SyncStorage.get('registerDevice'), '-------------');
+  //   const formData = new FormData();
+  //   formData.append('device_id', SyncStorage.get('registerDevice'));
+  //   formData.append('device_type', 'Android');
+  //   // formData.append('customers_id', 27);
+
+  //   const regData = postHttp(getUrl() + '/api/' + 'registerdevices', formData);
+  //   console.log(regData.success, 'all data=================');
+  //   // formData.append('processor', null);
+  //   // formData.append('device_os', this.state.password);
+  //   // formData.append('location', this.state.password);
+  //   // formData.append('device_model', this.state.password);
+  //   // formData.append(
+  //   //   'customers_id',
+  //   //   (customerData.customers_id =
+  //   //     data.id === undefined || data.id == null ? '' : data.id),
+  //   // );
+  //   // formData.append('manufacturer', this.state.password);
+  // };
 
   onReceived(notification) {
     console.log('Notification received: ', notification);

@@ -85,10 +85,11 @@ class Login extends PureComponent {
     // console.log(id, '====================----------------');
     // const customerData = data;
     // console.log(data, '==========================');
+    console.log(SyncStorage.get('customerDataId'));
     const formData = new FormData();
     formData.append('device_id', SyncStorage.get('registerDevice'));
     formData.append('device_type', 'Android');
-    // formData.append('customers_id', data.data[0].id);
+    formData.append('customers_id', SyncStorage.get('customerDataId'));
 
     const regData = postHttp(getUrl() + '/api/' + 'registerdevices', formData);
     // console.log(regData, formData, 'all data=================');
@@ -210,6 +211,7 @@ class Login extends PureComponent {
       customerData.customers_dob =
         data.dob === undefined || data.dob == null ? '' : data.dob;
       SyncStorage.set('customerData', customerData);
+      SyncStorage.set('customerDataId', customerData.id);
       this.setState({spinnerTemp: true});
       this.props.getAllCategories(this.props);
       this.props.getBannersData();

@@ -35,7 +35,7 @@ const paytmConfig = {
   INDUSTRY_TYPE_ID: 'Retail',
   CALLBACK_URL: 'https://securegw.paytm.in/theia/paytmCallback?ORDER_ID=',
 };
-
+// const {route} = this.props;
 class orderScreen extends Component {
   static navigationOptions = ({navigation}) => {
     const headerStyle = navigation.getParam('headerTitle');
@@ -56,7 +56,9 @@ class orderScreen extends Component {
   };
 
   componentDidMount() {
-    console.log(SyncStorage.get('customerData').email, ' firest name');
+    // console.log(SyncStorage.get('customerData').email, ' firest name');
+    // console.log(route.params, '==============');
+    console.log(this.state.totalAmountWithDisocunt, 'sdsdassad');
     this.calculateTotal();
     this.initializePaymentMethods();
     this.props.navigation.setParams({
@@ -208,17 +210,26 @@ class orderScreen extends Component {
   };
 
   calculateTotal = function () {
+    const {navigation} = this.props;
     let a = 0;
     for (const value of this.state.products) {
       var subtotal = parseFloat(value.total);
+      // console.log(subtotal, 'subtotal=========');
       a = a + subtotal;
+      // console.log(a, '===========');
     }
 
     const b = parseFloat(this.state.orderDetail.total_tax.toString());
     const c = parseFloat(this.state.orderDetail.shipping_cost.toString());
+    // const d = parseFloat(navigation.state.params.delivery_charges.toString());
+    console.log(c);
     this.state.totalAmountWithDisocunt = parseFloat(
-      (parseFloat(a.toString()) + b + c).toString(),
+      (a.toString() + b + c).toString(),
+
+      // console.log(a, b, c, '========='),
+      // console.log(parseFloat(a + b + c), 'total============='),
     );
+    // this.state.totalAmountWithDisocunt = parseFloat(a + b + c);
     this.calculateDiscount();
   };
   /// ////////////////////////////////////
@@ -467,9 +478,9 @@ class orderScreen extends Component {
     const data = await WooComFetch.postHttp(
       getUrl() + '/api/' + 'addtoorder',
       dat,
-      // console.log(dat, 'Testing.............!')
+      console.log(dat, 'Testing.............!'),
     );
-    console.log(data.success, 'data.success-');
+    console.log(data, 'data.success-');
     if (data.success == 1) {
       if (SyncStorage.get('customerData').customers_id !== undefined) {
         console.log('here');
@@ -502,8 +513,9 @@ class orderScreen extends Component {
     }
 
     if (data.success == 0) {
+      console.log('here');
+
       if (SyncStorage.get('customerData').customers_id !== undefined) {
-        console.log('here');
         this.saveAddress('addshippingaddress');
       }
       this.setState({SpinnerTemp: false}, () => {
@@ -851,6 +863,8 @@ class orderScreen extends Component {
   };
 
   render() {
+    const {navigation} = this.props;
+    // console.log(navigation.state.params.delivery_charges, 'params ========');
     return (
       <View style={{flex: 1, backgroundColor: themeStyle.backgroundColor}}>
         <Spinner
@@ -1203,9 +1217,10 @@ class orderScreen extends Component {
                 </View>
               </View>
 
-              <View
+              {/* <View
                 style={{
-                  backgroundColor: '#f5fafe',
+                  // backgroundColor: '#f5fafe',
+                  backgroundColor: 'pink',
                   justifyContent: 'space-between',
                   shadowOffset: {width: 1, height: 1},
                   shadowColor: themeStyle.textColor,
@@ -1219,6 +1234,7 @@ class orderScreen extends Component {
                 <View
                   style={{
                     justifyContent: 'space-between',
+                    backgroundColor: 'red',
 
                     flex: 1,
                   }}>
@@ -1264,7 +1280,7 @@ class orderScreen extends Component {
                     }
                   </Text>
                 </View>
-              </View>
+              </View> */}
 
               <View
                 style={{
@@ -1350,190 +1366,195 @@ class orderScreen extends Component {
                     extraData={this.state}
                     listKey={'products'}
                     keyExtractor={(item, index) => index.toString()}
-                    renderItem={(item) => (
-                      <View
-                        style={{
-                          backgroundColor: '#f5fafe',
-                        }}>
+                    renderItem={(item) => {
+                      console.log('item', item);
+                      return (
                         <View
                           style={{
-                            backgroundColor: '#FFFF',
-                            marginHorizontal: 18,
-                            paddingHorizontal: 10,
-                            paddingVertical: 10,
-                            marginTop: 8,
-                            marginBottom: 20,
-                            borderRadius: 9,
-                            shadowOffset: {width: 1, height: 0},
-                            shadowColor: themeStyle.textColor,
-                            shadowOpacity: 0.5,
-                            elevation: 8,
+                            backgroundColor: '#f5fafe',
                           }}>
                           <View
                             style={{
-                              justifyContent: 'space-between',
-                              padding: 0,
-                              paddingLeft: 3,
-                              flexDirection: 'row',
+                              backgroundColor: '#FFFF',
+                              marginHorizontal: 18,
+                              paddingHorizontal: 10,
+                              paddingVertical: 10,
+                              marginTop: 8,
+                              marginBottom: 20,
+                              borderRadius: 9,
+                              shadowOffset: {width: 1, height: 0},
+                              shadowColor: themeStyle.textColor,
+                              shadowOpacity: 0.5,
+                              elevation: 8,
                             }}>
-                            <ImageLoad
-                              key={item.item.id}
-                              style={{height: 90, width: 90}}
-                              loadingStyle={{
-                                size: 'large',
-                                color: themeStyle.loadingIndicatorColor,
-                              }}
-                              placeholder={false}
-                              ActivityIndicator={true}
-                              placeholderStyle={{width: 0, height: 0}}
-                              source={{
-                                uri:
-                                  themeStyle.image_url + '/' + item.item.image,
-                              }}
-                            />
                             <View
                               style={{
+                                justifyContent: 'space-between',
                                 padding: 0,
-                                paddingLeft: 7,
-                                flexDirection: 'column',
-                                flex: 1,
-                                justifyContent: 'center',
+                                paddingLeft: 3,
+                                flexDirection: 'row',
                               }}>
-                              <Text
-                                style={{
-                                  color: themeStyle.textColor,
-                                  paddingLeft: 8,
-                                  fontSize: 12,
-                                  fontWeight: 'bold',
-                                }}>
-                                {item.item.products_name}
-                              </Text>
+                              <ImageLoad
+                                key={item.item.id}
+                                style={{height: 90, width: 90}}
+                                loadingStyle={{
+                                  size: 'large',
+                                  color: themeStyle.loadingIndicatorColor,
+                                }}
+                                placeholder={false}
+                                ActivityIndicator={true}
+                                placeholderStyle={{width: 0, height: 0}}
+                                source={{
+                                  uri:
+                                    themeStyle.image_url +
+                                    '/' +
+                                    item.item.image,
+                                }}
+                              />
                               <View
                                 style={{
-                                  width: '100%',
-                                  padding: 3,
-                                  paddingLeft: 8,
-                                  flexDirection: 'row',
-                                }}>
-                                <Text
-                                  style={{
-                                    fontSize: 12,
-                                    fontWeight: 'normal',
-                                    color: themeStyle.textColor,
-                                    paddingRight: 3,
-                                  }}>
-                                  {
-                                    this.props.cartItems2.Config.languageJson
-                                      .Price
-                                  }{' '}
-                                  :
-                                </Text>
-
-                                <HTML
-                                  html={SyncStorage.get('currency')}
-                                  baseFontStyle={{
-                                    fontSize: 12,
-                                    color: 'red',
-                                  }}
-                                />
-
-                                <Text
-                                  style={{
-                                    paddingTop: 0,
-                                    color: 'red',
-                                    fontSize: 12,
-                                  }}>
-                                  {Number(item.item.price).toFixed(2)}
-                                </Text>
-                              </View>
-                              <View
-                                style={{
-                                  justifyContent: 'space-between',
                                   padding: 0,
-                                  paddingLeft: 8,
-                                  flexDirection: 'row',
-                                  marginTop: 0,
+                                  paddingLeft: 7,
+                                  flexDirection: 'column',
+                                  flex: 1,
+                                  justifyContent: 'center',
                                 }}>
-                                <View style={{flexDirection: 'row'}}>
+                                <Text
+                                  style={{
+                                    color: themeStyle.textColor,
+                                    paddingLeft: 8,
+                                    fontSize: 12,
+                                    fontWeight: 'bold',
+                                  }}>
+                                  {item.item.products_name}
+                                </Text>
+                                <View
+                                  style={{
+                                    width: '100%',
+                                    padding: 3,
+                                    paddingLeft: 8,
+                                    flexDirection: 'row',
+                                  }}>
                                   <Text
                                     style={{
                                       fontSize: 12,
                                       fontWeight: 'normal',
                                       color: themeStyle.textColor,
+                                      paddingRight: 3,
                                     }}>
                                     {
                                       this.props.cartItems2.Config.languageJson
-                                        .Quantity
+                                        .Price
                                     }{' '}
                                     :
                                   </Text>
-                                  <Text
-                                    style={{
-                                      paddingLeft: 3,
-                                      color: '#000',
-                                      fontSize: 12,
-                                    }}>
-                                    {item.item.customers_basket_quantity}
-                                  </Text>
-                                </View>
-                              </View>
-                            </View>
-                            <View
-                              style={{
-                                justifyContent: 'space-between',
-                                alignItems: 'flex-end',
-                                flexDirection: 'row',
-                                height: '87%',
-                              }}>
-                              <View style={{paddingRight: 5}}>
-                                <View>
-                                  <Text
-                                    style={{
-                                      fontSize: 11,
-                                      fontWeight: 'bold',
-                                      color: themeStyle.textColor,
-                                      alignSelf: 'flex-end',
-                                    }}>
-                                    {
-                                      this.props.cartItems2.Config.languageJson
-                                        .Total
-                                    }{' '}
-                                  </Text>
-                                </View>
-                                <View style={{flexDirection: 'row'}}>
+
                                   <HTML
                                     html={SyncStorage.get('currency')}
                                     baseFontStyle={{
                                       fontSize: 12,
-                                      color: themeStyle.textColor,
+                                      color: 'red',
                                     }}
                                   />
+
                                   <Text
                                     style={{
+                                      paddingTop: 0,
+                                      color: 'red',
                                       fontSize: 12,
-                                      fontWeight: '400',
-                                      color: themeStyle.textColor,
                                     }}>
-                                    {`${Number(item.item.total).toFixed(2)}`}
+                                    {Number(item.item.price).toFixed(2)}
                                   </Text>
+                                </View>
+                                <View
+                                  style={{
+                                    justifyContent: 'space-between',
+                                    padding: 0,
+                                    paddingLeft: 8,
+                                    flexDirection: 'row',
+                                    marginTop: 0,
+                                  }}>
+                                  <View style={{flexDirection: 'row'}}>
+                                    <Text
+                                      style={{
+                                        fontSize: 12,
+                                        fontWeight: 'normal',
+                                        color: themeStyle.textColor,
+                                      }}>
+                                      {
+                                        this.props.cartItems2.Config
+                                          .languageJson.Quantity
+                                      }{' '}
+                                      :
+                                    </Text>
+                                    <Text
+                                      style={{
+                                        paddingLeft: 3,
+                                        color: '#000',
+                                        fontSize: 12,
+                                      }}>
+                                      {item.item.customers_basket_quantity}
+                                    </Text>
+                                  </View>
+                                </View>
+                              </View>
+                              <View
+                                style={{
+                                  justifyContent: 'space-between',
+                                  alignItems: 'flex-end',
+                                  flexDirection: 'row',
+                                  height: '87%',
+                                }}>
+                                <View style={{paddingRight: 5}}>
+                                  <View>
+                                    <Text
+                                      style={{
+                                        fontSize: 11,
+                                        fontWeight: 'bold',
+                                        color: themeStyle.textColor,
+                                        alignSelf: 'flex-end',
+                                      }}>
+                                      {
+                                        this.props.cartItems2.Config
+                                          .languageJson.Total
+                                      }{' '}
+                                    </Text>
+                                  </View>
+                                  <View style={{flexDirection: 'row'}}>
+                                    <HTML
+                                      html={SyncStorage.get('currency')}
+                                      baseFontStyle={{
+                                        fontSize: 12,
+                                        color: themeStyle.textColor,
+                                      }}
+                                    />
+                                    <Text
+                                      style={{
+                                        fontSize: 12,
+                                        fontWeight: '400',
+                                        color: themeStyle.textColor,
+                                      }}>
+                                      {`${Number(item.item.total).toFixed(2)}`}
+                                    </Text>
+                                  </View>
                                 </View>
                               </View>
                             </View>
-                          </View>
 
-                          <View
-                            style={{
-                              padding: 3,
-                              paddingLeft: 8,
-                              flexDirection: 'row',
-                              justifyContent: 'flex-end',
-                              flex: 1,
-                              alignItems: 'flex-end',
-                            }}
-                          />
+                            <View
+                              style={{
+                                padding: 3,
+                                paddingLeft: 8,
+                                flexDirection: 'row',
+                                justifyContent: 'flex-end',
+                                flex: 1,
+                                alignItems: 'flex-end',
+                              }}
+                            />
+                          </View>
                         </View>
-                      </View>
-                    )}
+                      );
+                    }}
                   />
                 </View>
               </View>
@@ -1673,6 +1694,7 @@ class orderScreen extends Component {
                         color: themeStyle.textColor,
                       }}>
                       {Number(this.state.orderDetail.shipping_cost).toFixed(2)}
+                      {/* {navigation.state.params.delivery_charges} */}
                     </Text>
                   </View>
                 </View>
