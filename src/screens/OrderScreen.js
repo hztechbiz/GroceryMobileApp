@@ -69,6 +69,7 @@ class orderScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      flat_discount: 0,
       customerNotes: '',
       discount: 0,
       productsTotal: 0,
@@ -210,21 +211,40 @@ class orderScreen extends Component {
   };
 
   calculateTotal = function () {
-    const {navigation} = this.props;
+    // const {navigation} = this.props;
     let a = 0;
+    var discounter_value = 0;
+    let dis = parseFloat(this.state.orderDetail.discount_cost)
+    let dis_per = parseFloat(this.state.orderDetail.discount_cost_per)
+    
+    console.log(dis, 'dis')
     for (const value of this.state.products) {
       var subtotal = parseFloat(value.total);
-      // console.log(subtotal, 'subtotal=========');
+      console.log(subtotal, 'subtotal=========');
+      console.log(a, 'first aaaaaaaaaaaaaaaaaaa');
       a = a + subtotal;
-      // console.log(a, '===========');
     }
 
-    const b = parseFloat(this.state.orderDetail.total_tax.toString());
+    if(a >= dis){
+      var per = dis_per
+      var ver = a *(per /100)
+      this.setState({flat_discount:ver})
+      console.log(ver, 'verrrrrrrr')
+       discounter_value = a -ver
+       a= discounter_value
+      //  parseFloat(discounter_value);
+       console.log(discounter_value, "=========toottoto");
+    console.log(parseFloat(dis), 'parseFloat(dis');
+    }
+    // console.log(a, 'aaaaaaaaaaaaaaaaaaa');
+
+    const b = parseFloat(this.state.orderDetail.total_tax);
     const c = parseFloat(this.state.orderDetail.shipping_cost.toString());
     // const d = parseFloat(navigation.state.params.delivery_charges.toString());
-    console.log(c);
+    console.log(c, 'ccccccccccccccccccc');
+    console.log(a, b , c)
     this.state.totalAmountWithDisocunt = parseFloat(
-      (a.toString() + b + c).toString(),
+      (a +  c ).toString(),
 
       // console.log(a, b, c, '========='),
       // console.log(parseFloat(a + b + c), 'total============='),
@@ -389,8 +409,8 @@ class orderScreen extends Component {
       getUrl() + '/api/' + 'addshippingaddress',
       formData,
     );
-    console.log(data2, 'response ===');
-    console.log(formData, 'form data response ===');
+    // console.log(data2, 'response ===');
+    // console.log(formData, 'form data response ===');
     this.setState({spinnerTemp: false});
   };
 
@@ -480,7 +500,7 @@ class orderScreen extends Component {
       dat,
       console.log(dat, 'Testing.............!'),
     );
-    console.log(data, 'data.success-');
+    // console.log(data, 'data.success-');
     if (data.success == 1) {
       if (SyncStorage.get('customerData').customers_id !== undefined) {
         console.log('here');
@@ -1367,7 +1387,7 @@ class orderScreen extends Component {
                     listKey={'products'}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={(item) => {
-                      console.log('item', item);
+                      // console.log('item', item);
                       return (
                         <View
                           style={{
@@ -1739,6 +1759,56 @@ class orderScreen extends Component {
                     </View>
                   </View>
                 ) : null}
+
+                {this.state.totalAmountWithDisocunt >= this.state.orderDetail.discount_cost ? 
+                (
+
+<View
+                  style={{
+                    justifyContent: 'space-between',
+                    padding: 15,
+                    paddingTop: 1,
+                    flexDirection: 'row',
+                    flex: 1,
+                  }}>
+                  <Text
+                    style={{
+                      color: themeStyle.textColor,
+                      fontWeight: 'bold',
+                      fontSize: themeStyle.mediumSize,
+                    }}>
+                    {/* {this.props.cartItems2.Config.languageJson.Total} */}
+                    Flat Discount
+                  </Text>
+                  <View
+                    style={{
+                      flex: 1,
+                      flexDirection: 'row',
+                      justifyContent: 'flex-end',
+                    }}>
+                    <HTML
+                      html={SyncStorage.get('currency')}
+                      baseFontStyle={{
+                        fontSize: themeStyle.mediumSize,
+                        color: themeStyle.textColor,
+                        fontWeight: 'bold',
+                      }}
+                    />
+                    <Text
+                      style={{
+                        fontSize: themeStyle.mediumSize,
+                        fontWeight: 'bold',
+                        color: themeStyle.textColor,
+                      }}>
+                      {/* {Number(this.state.totalAmountWithDisocunt).toFixed(2)} */}
+                      {this.state.flat_discount}
+                    </Text>
+                  </View>
+                </View>
+
+                ) :(null)
+
+                    }
 
                 <View
                   style={{

@@ -66,7 +66,7 @@ class ShippingAddress extends Component {
     this.props.navigation.setParams({
       headerTitle: this.props.cartItems2.Config.languageJson.Address,
     });
-    console.log(this.state.placeholderArray, 'data');
+    // console.log(this.state.placeholderArray, 'data');
   }
 
   /// //////////////////////////////////////////////////////////
@@ -155,15 +155,19 @@ class ShippingAddress extends Component {
       dat,
     );
     const orderDetails = SyncStorage.get('orderDetails');
-    console.log(orderDetails, 'shipp method');
+    // console.log(orderDetails, 'shipp method');
     if (data.data.success == 1) {
+      // console.log(dat.products,' ======================       ')
       var m = data.data.data.shippingMethods;
-      console.log(m, 'success');
+      // console.log(m, 'success');
       this.state.shippingMethod = Object.keys(m).map(function (key) {
         return m[key];
       });
       console.log(m.flateRate, 'this.state.shippingMethod');
-
+      orderDetails.discount_cost =
+      this.state.shippingMethod[0].services[0].discount;
+      orderDetails.discount_cost_per =
+      this.state.shippingMethod[0].services[0].dicount_per;
       orderDetails.shipping_cost =
         this.state.shippingMethod[0].services[0].rate;
       orderDetails.shipping_method =
@@ -173,12 +177,12 @@ class ShippingAddress extends Component {
         ')';
       SyncStorage.set('orderDetails', orderDetails);
       console.log(SyncStorage.get('orderDetails'));
-      console.log(
-        this.state.shippingMethod[0].services[0].name +
-          '(' +
-          this.state.shippingMethod[0].services[0].shipping_method +
-          ')',
-      );
+      // console.log(
+      //   this.state.shippingMethod[0].services[0].name +
+      //     '(' +
+      //     this.state.shippingMethod[0].services[0].shipping_method +
+      //     ')',
+      // );
 
       // orderDetails.total_tax = data.data.data.tax;
       // SyncStorage.set('orderDetails', orderDetails);
@@ -224,7 +228,7 @@ class ShippingAddress extends Component {
 
     orderDetails.shipping_method = data.name + '(' + data.shipping_method + ')';
     SyncStorage.set('orderDetails', orderDetails);
-    console.log(SyncStorage.get('orderDetails', '==========--------'));
+    // console.log(SyncStorage.get('orderDetails', '==========--------'));
   }
 
   getUserAddress = async () => {
@@ -514,7 +518,7 @@ class ShippingAddress extends Component {
       shippingData: this.state.shippingData,
       placeholderArray: this.state.placeholderArray,
     });
-    console.log(shippingData, 'dataaaaaaaaaaaaa');
+    // console.log(shippingData, 'dataaaaaaaaaaaaa');
   };
 
   refresh2 = (name, selectedValue, id, temp) => {
@@ -689,7 +693,7 @@ class ShippingAddress extends Component {
       this.state.shippingData.streetaddresstwo;
     SyncStorage.set('orderDetails', orderDetails);
 
-    console.log(orderDetails, 'Hello...................!');
+    // console.log(orderDetails, 'Hello...................!');
     // this.props.navigation.navigate('ShippingMethodScreen');
     this.props.navigation.push('OrderScreen', {
       // delivery_charges: this.state.shippingMethod,
@@ -721,7 +725,7 @@ class ShippingAddress extends Component {
   }
 
   onValueChange(value) {
-    console.log(value);
+    // console.log(value);
     this.setState({
       selected: value,
     });
@@ -843,7 +847,7 @@ class ShippingAddress extends Component {
           onPress={() =>
             this.props.navigation.navigate('MapScreen', {
               onGoBackFun: (cord) => {
-                console.log(cord, 'cord =====');
+                // console.log(cord, 'cord =====');
                 const orderDetails = SyncStorage.get('orderDetails');
                 orderDetails.latitude = cord.latitude;
                 orderDetails.longitude = cord.longitude;
