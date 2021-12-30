@@ -58,7 +58,9 @@ class ShippingAddress extends Component {
   componentDidMount() {
     this.shippingInput = ['', '', '', '', '', '', '', '', ''];
     this.billingInput = ['', '', '', '', '', '', '', '', '', '', ''];
+    // console.log(this.state.shippingData, 'component')
     this.getData();
+    // console.log(this.state.shippingData)
     if (SyncStorage.get('gustLogin') === false) {
       this.getUserAddress();
     }
@@ -157,13 +159,13 @@ class ShippingAddress extends Component {
     const orderDetails = SyncStorage.get('orderDetails');
     // console.log(orderDetails, 'shipp method');
     if (data.data.success == 1) {
-      // console.log(dat.products,' ======================       ')
+
       var m = data.data.data.shippingMethods;
       // console.log(m, 'success');
       this.state.shippingMethod = Object.keys(m).map(function (key) {
         return m[key];
       });
-      console.log(m.flateRate, 'this.state.shippingMethod');
+      // console.log(m.flateRate, 'this.state.shippingMethod');
       orderDetails.discount_cost =
       this.state.shippingMethod[0].services[0].discount;
       orderDetails.discount_cost_per =
@@ -176,7 +178,7 @@ class ShippingAddress extends Component {
         this.state.shippingMethod[0].services[0].shipping_method +
         ')';
       SyncStorage.set('orderDetails', orderDetails);
-      console.log(SyncStorage.get('orderDetails'));
+      // console.log(SyncStorage.get('orderDetails'));
       // console.log(
       //   this.state.shippingMethod[0].services[0].name +
       //     '(' +
@@ -241,8 +243,18 @@ class ShippingAddress extends Component {
     const data = await postHttp(getUrl() + '/api/' + 'getalladdress', formData);
     if (data.success === '1') {
       var allShippingAddress = data.data;
+
+      this.state.shippingData.delivery_location =allShippingAddress[0].company;
+
+      this.state.shippingData.phonenumber =allShippingAddress[0].suburb;
+      this.setState({shippingData: this.state.shippingData});
+
+      console.log(this.state.shippingData.delivery_location, allShippingAddress[0].suburb, '============')
+
+
       let tempObject = {};
       for (const value of allShippingAddress) {
+        // console.log(value, '=====')
         if (value.default_address === 1) {
           tempObject = value;
         } else if (allShippingAddress.length > 1) {
@@ -262,6 +274,11 @@ class ShippingAddress extends Component {
       orderDetails.delivery_country_id = tempObject.countries_id;
       orderDetails.delivery_street_address = tempObject.street;
       orderDetails.customers_street_address_two = tempObject.streetaddresstwo;
+      orderDetails.phonenumber = tempObject.phonenumber
+      orderDetails.delivery_location = tempObject.delivery_location
+
+
+      // orderDetails.phonenumber = this.state.shippingData.phonenumber
 
       if (tempObject.zone_code == null) {
         orderDetails.delivery_zone = 'other';
@@ -597,7 +614,7 @@ class ShippingAddress extends Component {
     const orderDetails = SyncStorage.get('orderDetails');
     orderDetails.billing_firstname = this.state.billingArray.firstname; //Active_Field
     orderDetails.billing_lastname = this.state.billingArray.lastname; //Active_Field
-
+  
     // ==================Billing State==================
     orderDetails.billing_state =
       this.state.billingArray.zone_name == null ||
@@ -645,7 +662,8 @@ class ShippingAddress extends Component {
 
     orderDetails.delivery_firstname = this.state.shippingData.firstname; //Active_Field
     orderDetails.delivery_lastname = this.state.shippingData.lastname; //Active_Field
-
+    orderDetails.entry_latitude= this.state.entry_latitude
+    orderDetails.entry_longitude= this.state.entry_longitude
     // ==================Delivery State==================
     orderDetails.delivery_state =
       this.state.shippingData.state == null ||
@@ -691,11 +709,16 @@ class ShippingAddress extends Component {
     orderDetails.delivery_street_address = this.state.shippingData.street; //Active_Field
     orderDetails.customers_street_address_two =
       this.state.shippingData.streetaddresstwo;
+    
+      // orderDetails.entry_latitude =
+      // this.state.shippingData.;
+      // console.log(orderDetails, 'lasddsddsadsasd')
     SyncStorage.set('orderDetails', orderDetails);
 
     // console.log(orderDetails, 'Hello...................!');
     // this.props.navigation.navigate('ShippingMethodScreen');
     this.props.navigation.push('OrderScreen', {
+     lat: SyncStorage.get('orderDetails').entry_latitude == null ? 'update' :'add'
       // delivery_charges: this.state.shippingMethod,
     });
   }
@@ -841,20 +864,25 @@ class ShippingAddress extends Component {
   }
 
   getLocationAddress(name) {
+    // console.log(name, 'name')
     return (
       <View>
         <TouchableOpacity
           onPress={() =>
             this.props.navigation.navigate('MapScreen', {
-              onGoBackFun: (cord) => {
-                // console.log(cord, 'cord =====');
+              onGoBackFun: (cord, loc) => {
+          
+              //  console.log(cord.latitude, 'cord')
                 const orderDetails = SyncStorage.get('orderDetails');
+                
                 orderDetails.latitude = cord.latitude;
                 orderDetails.longitude = cord.longitude;
-                orderDetails.delivery_location =
-                  cord.latitude + ', ' + cord.longitude;
+                // orderDetails.delivery_location =
+                //   cord.latitude + ', ' + cord.longitude;
+                orderDetails.current_location = loc
                 SyncStorage.set('orderDetails', orderDetails);
-                this.state.shippingData.delivery_location = cord;
+               
+                this.state.shippingData.delivery_location =loc
                 // cord.latitude + ', ' + cord.longitude;
                 this.setState({});
               },
@@ -1153,6 +1181,7 @@ class ShippingAddress extends Component {
 
   /// ////////////////////////////////////////
   customTextView(placeholderText, index) {
+    console.log(this.state.shippingData, 'customTextView--------------');
     return placeholderText ===
       this.props.cartItems2.Config.languageJson2.Location ? (
       // <></>
@@ -1160,7 +1189,7 @@ class ShippingAddress extends Component {
         {this.getLocationAddress(
           this.state.shippingData.delivery_location === undefined ||
             this.state.shippingData.delivery_location === null
-            ? placeholderText
+            ?  this.state.shippingData.company ? this.state.shippingData.company : placeholderText 
             : this.state.shippingData.delivery_location,
         )}
       </View>
@@ -1604,6 +1633,8 @@ class ShippingAddress extends Component {
   }
 
   canBeUpdatingShipping() {
+    console.log(this.state.shippingData.delivery_location, '=======dsadsad=====')
+
     let temp = 0;
 
     if (
@@ -1615,6 +1646,8 @@ class ShippingAddress extends Component {
       this.state.billingArray.firstname = 'xyz';
       this.state.billingArray.lastname = 'xyz';
       this.state.billingArray.street = 'xyz';
+      // console.log(this.state.shippingData, '===================================')
+      // this.state.shippingData.delivery_location=this.state.shippingData.company
     }
     if (
       this.state.shippingData.delivery_location !== null &&
@@ -2144,7 +2177,7 @@ class ShippingAddress extends Component {
 
             </View> */}
 
-            <View
+            {/* <View
               style={{
                 backgroundColor: '#fff',
                 // backgroundColor: 'pink',
@@ -2170,19 +2203,7 @@ class ShippingAddress extends Component {
               }}>
               <TextInput
                 style={{
-                  // marginTop: 20,
-                  // height: 38,
-                  // width: WIDTH * 0.9,
-                  // borderColor: this.EmailNumberCheck()
-                  //   ? '#c1c1c1'
-                  //   : themeStyle.removeBtnColor,
-                  // borderBottomWidth: 1,
-
-                  // textAlign: I18nManager.isRTL ? 'right' : 'left',
-                  // paddingLeft: 6,
-                  // paddingRight: 6,
-                  // fontSize: themeStyle.mediumSize + 2,
-                  // color: themeStyle.textColor,
+             
 
                   fontFamily: 'Lato-Regular',
                   fontSize: 18,
@@ -2193,16 +2214,12 @@ class ShippingAddress extends Component {
                 }}
                 placeholderTextColor={'#c1c1c1'}
                 selectionColor={themeStyle.primaryDark}
-                placeholder="Enter Address"
+                placeholder="Enter Address 2"
                 onChangeText={(text) => {
                   this.state.shippingData.streetaddresstwo = text;
                 }}
                 value={this.state.shippingData.streetaddresstwo}
-                // placeholder={this.props.isLoading.Config.languageJson.Email}
-                // onChangeText={(userName) =>
-                //   this.setState({userName, errorMessage: ''})
-                // }
-                // value={this.state.userName}
+             
               />
 
               <Iconone
@@ -2211,7 +2228,7 @@ class ShippingAddress extends Component {
                 style={{position: 'absolute', right: 5}}
                 color="red"
               />
-            </View>
+            </View> */}
 
             {/* Button */}
             {this.state?.shippingData?.firstname?.length > 0 &&
@@ -2321,7 +2338,7 @@ class ShippingAddress extends Component {
                 }
               />
             )} */}
-            {!this.phoneNumberCheckbillingArray() &&
+            {/* {!this.phoneNumberCheckbillingArray() &&
             this.state.billingArray.phonenumber !== undefined ? (
               <Text
                 style={{
@@ -2336,7 +2353,7 @@ class ShippingAddress extends Component {
                   ]
                 }
               </Text>
-            ) : null}
+            ) : null} */}
             {this.state.errorEmailMessage !== '' ? (
               <Text style={{padding: 10, paddingBottom: 0, color: 'red'}}>
                 {this.state.errorEmailMessage}

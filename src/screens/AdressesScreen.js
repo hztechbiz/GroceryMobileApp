@@ -81,8 +81,8 @@ class ShippingAddress extends PureComponent {
       getUrl() + '/api/' + 'getalladdress',
       dat,
     );
-    console.log(data, '===========');
     if (data.success == 1) {
+      console.log(data.data.data, 'data')
       this.setState({
         allShippingAddress: data.data.data,
         isLoading: false,

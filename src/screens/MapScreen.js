@@ -22,7 +22,7 @@ import WooComFetch, { getUrl } from '../common/WooComFetch';
 Geocoder.init(GOOGLE_MAP_KEY);
 
 const {width} = Dimensions.get('window');
-var areas = ['Shah Faisal Colony'];
+var areas = ['Shah Faisal Colony', 'Shamsi Society', 'Gulfishan Society', 'Housing society', 'Gulshan e Ghazali', 'Millat Town','Shah Faisal Town', 'Al Haider Society', 'Gulshan e Rafi','Shah Faisal Colony 2'];
 class RewardPoints extends Component {
   static navigationOptions = ({navigation}) => {
     const headerStyle = navigation.getParam('headerTitle');
@@ -46,7 +46,7 @@ class RewardPoints extends Component {
 
 
   async componentDidMount() {
-    console.log('Hello');
+    // console.log('Hello');
     this.props.navigation.setParams({
       headerTitle: this.props.isLoading.Config.languageJson2['Map Screen'],
     });
@@ -102,8 +102,8 @@ class RewardPoints extends Component {
         },
       );
 
-      console.log(areas, 'kadskdmsksad');
-      console.log(this.state.map_area, 'kadskdmsksad');
+      // console.log(areas, 'kadskdmsksad');
+      // console.log(this.state.map_area, 'kadskdmsksad');
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
         Geolocation.getCurrentPosition(
           (info) => {
@@ -130,6 +130,7 @@ class RewardPoints extends Component {
                   json.results[0].address_components[1].long_name;
                 var addressComponentTwo =
                   json.results[0].address_components[1].long_name;
+                  console.log(json.results[0].formatted_address)
                 // var ar = areas.includes
                 // cons
                 // if (
@@ -142,7 +143,7 @@ class RewardPoints extends Component {
                 // }
                 // var addressComponent = json.results[0].formatted_address;
 
-                console.log(addressComponent);
+                // console.log(addressComponent);
               })
               .catch((error) => console.warn(error));
             // console.log(newCoords.latitude, 'current latitude');
@@ -208,9 +209,9 @@ class RewardPoints extends Component {
     const data = await WooComFetch.postHttp(
       getUrl() + '/api/' + 'getarea',
     );
-    console.log(data.success)
+    // console.log(data.success)
     if(data.success ==1){
-      console.log(data.data.data, 'data ============')
+      // console.log(data.data.data, 'data ============')
       this.setState({map_area:data.data.data })
     }
     if(data.success === 0){
@@ -243,7 +244,7 @@ class RewardPoints extends Component {
             coordinate={this.state.x}
             title={this.props.isLoading.Config.languageJson2.Address}
             onDragEnd={(e) => {
-              console.log(this.state.map_area)
+              // console.log(this.state.map_area)
               const newCoords = {};
               // if (newCoords.latitude <= 24.9 && newCoords.latitude >= 24.8) {
               //   Alert.alert('avail');
@@ -262,19 +263,26 @@ class RewardPoints extends Component {
 
               Geocoder.from(newCoords.latitude, newCoords.longitude).then(
                 (json) => {
+                  console.log(json.results[0].formatted_address)
                   // console.log(json);
                   // var addressComponent =
                   //   json.results[0].address_components[1].short_name;
                   // var addressComponentTwo =
                   //   json.results[0].address_components[1].long_name;
-                  console.log(
-                    'after drag short',
-                    json.results[0].address_components,
+                  // console.log(
+                  //   'after drag short',
+                  //   json.results[0].address_components,
                    
-                  );
+                  // );
+                  // console.log(
+                  //   'after drag short 2',
+                  //   json.results[0].address_components[2],
+                   
+                  // );
+
                   console.log(
-                    'after drag short 2',
-                    json.results[0].address_components[2],
+                    'after drag short 3',
+                    json.results[0].address_components,
                    
                   );
 
@@ -283,11 +291,11 @@ class RewardPoints extends Component {
                     json.results[0].address_components[3],
                    
                   );
-                  console.log(
-                    'after drag short 4',
-                    json.results[0].address_components,
+                  // console.log(
+                  //   'after drag short 4',
+                  //   json.results[0].address_components,
                    
-                  );
+                  // );
                   // console.log();
                   // var ar = areas.includes
                   // cons
@@ -337,32 +345,44 @@ class RewardPoints extends Component {
           onPress={() => {
             Geocoder.from(this.state.x.latitude, this.state.x.longitude).then(
               (json) => {
-                // console.log(json);
+                // console.log(json.results[0].formatted_address, 'asldlslsa sdad');
                 var addressComponent =
                   json.results[0].address_components[1].short_name;
                 var addressComponentTwo =
                   json.results[0].address_components[1].long_name;
                   var addressComponentThree = json.results[0].address_components[3].long_name
                   var addressComponentFour = json.results[0].address_components[3].short_name
+                  var addressComponentFive = json.results[0].address_components[2].long_name
+                  var addressComponentSix = json.results[0].address_components[2].short_name
 
                 console.log(
                   'after drag',
-                  json.results[0].address_components[1].short_name,
+                  json.results[0].address_components[3],
                 );
-                console.log(
-                  'after drag',
-                  json.results[0].address_components
-                );
+                // console.log(
+                //   'after drag',
+                //   json.results[0].address_components
+                // );
                 // var ar = areas.includes
                 
                 if (
                 //  this.state.map_area.includes(addressComponent) ||
                 //  this.state.map_area.includes(addressComponentTwo) || addressComponentThree || addressComponentFour
                 areas.includes(addressComponent) ||
-                areas.includes(addressComponentTwo) || addressComponentThree || addressComponentFour
+                areas.includes(addressComponentTwo) ||
+                areas.includes(addressComponentThree) ||
+                areas.includes(addressComponentFour) ||
+                areas.includes(addressComponentFive) ||
+                areas.includes(addressComponentSix)
                 ) {
                   this.props.navigation.state.params.onGoBackFun(
-                    json?.results[0]?.address_components[3]?.long_name,
+                    // console.log(json?.results[0]?.address_components?.formatted_address, '==========------------======'),
+                    // json?.results[0]?.address_components?.formatted_address,
+                    
+                    
+                    this.state.x,
+                    json.results[0]?.formatted_address,
+
                   );
                   this.props.navigation.pop();
                 } else {

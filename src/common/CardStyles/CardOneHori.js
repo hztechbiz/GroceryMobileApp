@@ -13,8 +13,10 @@ import Ionicons from 'react-native-vector-icons/FontAwesome';
 import Shopicon from 'react-native-vector-icons/FontAwesome5';
 import Shopicons from 'react-native-vector-icons/MaterialIcons';
 import theme from '../Theme.style';
+import Counter from '../Counter';
 const WIDTH = Dimensions.get('window').width;
 export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
+  let [incdecquantity, setIncdecquantity] = useState(1);
   // let [selected, setSelected] = useState(false);
   return (
     <View
@@ -101,10 +103,11 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
 
           <View
             style={{
-              flex: 2,
-              padding: 8,
+              // flex: 2,
+              // backgroundColor:'green',
+              // padding: 8,
               paddingLeft: 1,
-              paddingBottom: 0,
+              // paddingBottom: 0,
               marginLeft: 25,
             }}>
             <View
@@ -357,10 +360,37 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                     elevation: 3,
                   }}
                   onPress={() => {
+
+
+
                     if (t.newMethod3(props, t) !== 1) {
-                      t.newMethod6(props, t);
+                      t.newMethod6(props, t,incdecquantity);
                     }
                   }}>
+
+<View
+                      style={{
+                        // justifyContent:''
+                        // alignItems: 'center',
+                        // margintop:50,
+                        // backgroundColor: 'red',
+                      }}>
+                      <Counter
+                        width={32}
+                        height={1}
+                        minimumValue={1}
+                        initialValue={1}
+                        onIncrement={() => {
+                          // console.log(incdecquantity);
+                          setIncdecquantity(incdecquantity + 1);
+                          //t.qunatityPlus(props, t, 1);
+                        }}
+                        onDecrement={() => {
+                          setIncdecquantity(incdecquantity - 1);
+                          //t.qunatityMinus(props, t, 1);
+                        }}
+                      />
+                    </View>
                   <View
                     style={{
                       // padding: 2,
@@ -374,10 +404,12 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                       justifyContent: 'center',
                       alignItems: 'center',
                       alignSelf: 'center',
-                      marginTop: -14,
+                      // marginTop: -14,
+                      marginVertical:3,
+                   
                       flexDirection: 'row',
                       justifyContent: 'space-between',
-                      marginBottom: 0,
+                      // marginBottom: 0,
                       borderRadius: 7,
                       borderTopRightRadius: 20,
                       borderBottomRightRadius: 20,
@@ -393,6 +425,8 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                       }}>
                       {t.props.language['Add to Cart']}
                     </Text>
+
+                   
                     <View
                       style={{
                         height: '100%',
@@ -400,6 +434,7 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                         backgroundColor: '#641ae4',
                         borderRadius: 15,
                         alignSelf: 'flex-end',
+                        // marginBottom:20
                       }}>
                       <Shopicon
                         style={{
@@ -414,7 +449,10 @@ export default CardOne = ({props, widthPic, t, s, btnWidth}) => {
                         size={9}
                       />
                     </View>
+                  
                   </View>
+
+                 
                 </TouchableOpacity>
               ) : t.props.cartButton ? (
                 props.objectArray.products_type === 1 ||

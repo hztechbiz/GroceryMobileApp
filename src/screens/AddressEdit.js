@@ -82,6 +82,7 @@ class ShippingAddress extends Component {
         this.props.isLoading.Config.languageJson['First Name'],
         this.props.isLoading.Config.languageJson['Last Name'],
         this.props.isLoading.Config.languageJson.Address,
+        // this.props.isLoading.Config.languageJson2.Location,
         // this.props.isLoading.Config.languageJson.Country,
         // this.props.isLoading.Config.languageJson.Zone,
         // this.props.isLoading.Config.languageJson.City,
@@ -301,6 +302,10 @@ class ShippingAddress extends Component {
     formData.append('suburb', this.state.shippingData.suburb);
     formData.append('address_id', this.state.shippingData.address_id);
     formData.append('customers_id', this.state.shippingData.customers_id);
+    // formData.append('address_id', this.state.shippingData.address_id);
+    // formData.append('entry_latitude', this.state.shippingData.entry_latitude);
+    // formData.append('entry_longitude', this.state.shippingData.entry_longitude);
+
     formData.append('is_default', 0);
     await WooComFetch.postHttp(getUrl() + '/api/' + type, formData);
     this.setState({spinnerTemp: false});

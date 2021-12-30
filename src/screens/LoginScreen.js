@@ -324,7 +324,8 @@ class Login extends PureComponent {
             <View
               style={{
                 backgroundColor: '#fff',
-                width: '92%',
+                // width: '92%',
+                width: WIDTH/1.2,
                 height: 60,
                 borderColor: '#fff',
                 borderWidth: 1,
@@ -406,7 +407,8 @@ class Login extends PureComponent {
             <View
               style={{
                 backgroundColor: '#fff',
-                width: '92%',
+                // width: '92%',
+                width: WIDTH/1.2,
                 height: 60,
                 borderColor: '#fff',
                 borderWidth: 1,

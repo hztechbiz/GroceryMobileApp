@@ -28,6 +28,7 @@ import FIcon from 'react-native-vector-icons/FontAwesome5';
 import RazorpayCheckout from 'react-native-razorpay';
 import CardTextFieldScreen from '../PaymentMethods/Stripe/scenes/CardTextFieldScreen';
 import {StackActions, NavigationActions} from 'react-navigation';
+import OrderDetail from './OrderDetail';
 const paytmConfig = {
   MID: 'rxazcv89315285244163',
   WEBSITE: 'WEBSTAGING',
@@ -37,6 +38,7 @@ const paytmConfig = {
 };
 // const {route} = this.props;
 class orderScreen extends Component {
+  
   static navigationOptions = ({navigation}) => {
     const headerStyle = navigation.getParam('headerTitle');
     return {
@@ -56,9 +58,14 @@ class orderScreen extends Component {
   };
 
   componentDidMount() {
+    console.log(this.props.navigation.state.params, '123920000000000')
     // console.log(SyncStorage.get('customerData').email, ' firest name');
     // console.log(route.params, '==============');
-    console.log(this.state.totalAmountWithDisocunt, 'sdsdassad');
+    console.log(SyncStorage.get('orderDetails'), '============')
+    console.log(SyncStorage.get('orderDetails').current_location, 'current_location')
+    console.log(SyncStorage.get('orderDetails').billing_phone, 'phone number')
+    // SyncStorage.get('orderDetails').longitude
+    this.checkAddress()
     this.calculateTotal();
     this.initializePaymentMethods();
     this.props.navigation.setParams({
@@ -70,6 +77,7 @@ class orderScreen extends Component {
     super(props);
     this.state = {
       flat_discount: 0,
+      check_status:0,
       customerNotes: '',
       discount: 0,
       productsTotal: 0,
@@ -217,11 +225,8 @@ class orderScreen extends Component {
     let dis = parseFloat(this.state.orderDetail.discount_cost)
     let dis_per = parseFloat(this.state.orderDetail.discount_cost_per)
     
-    console.log(dis, 'dis')
     for (const value of this.state.products) {
       var subtotal = parseFloat(value.total);
-      console.log(subtotal, 'subtotal=========');
-      console.log(a, 'first aaaaaaaaaaaaaaaaaaa');
       a = a + subtotal;
     }
 
@@ -229,20 +234,15 @@ class orderScreen extends Component {
       var per = dis_per
       var ver = a *(per /100)
       this.setState({flat_discount:ver})
-      console.log(ver, 'verrrrrrrr')
        discounter_value = a -ver
        a= discounter_value
       //  parseFloat(discounter_value);
-       console.log(discounter_value, "=========toottoto");
-    console.log(parseFloat(dis), 'parseFloat(dis');
     }
     // console.log(a, 'aaaaaaaaaaaaaaaaaaa');
 
     const b = parseFloat(this.state.orderDetail.total_tax);
     const c = parseFloat(this.state.orderDetail.shipping_cost.toString());
     // const d = parseFloat(navigation.state.params.delivery_charges.toString());
-    console.log(c, 'ccccccccccccccccccc');
-    console.log(a, b , c)
     this.state.totalAmountWithDisocunt = parseFloat(
       (a +  c ).toString(),
 
@@ -257,12 +257,19 @@ class orderScreen extends Component {
   calculateDiscount = () => {
     var subTotal = 0;
     var total = 0;
+    console.log(this.state.discount, 'discount 1')
+
     for (const value of this.state.products) {
+      console.log(value, '==========')
       subTotal += parseFloat(value.subtotal);
       total += value.total;
     }
+    console.log(subTotal, 'sub')
+    console.log(total, 'to')
+
     this.state.productsTotal = subTotal;
     this.state.discount = subTotal - total;
+    console.log(this.state.discount, 'discount 2')
     this.setState({
       discount: this.state.discount,
       productsTotal: this.state.productsTotal,
@@ -326,6 +333,38 @@ class orderScreen extends Component {
     this.setTokenFun(token.tokenId);
   };
 
+  checkAddress = async()=>{
+    const orderDetail = SyncStorage.get('orderDetails');
+    var dat = {customers_id: SyncStorage.get('customerData').customers_id};
+    // const formData = new FormData();
+    // formData.append(
+    //   'customers_id',
+    //   (orderDetail.customers_id =
+    //     SyncStorage.get('customerData').customers_id === undefined
+    //       ? 1
+    //       : SyncStorage.get('customerData').customers_id),
+    //   // this.state.shippingData.customers_id
+    // );
+    // const data = WooComFetch.postHttp(
+    //   getUrl() + '/api/' + 'existaddress',
+    //   formData,
+    // );
+    const data = await WooComFetch.postHttp(
+      getUrl() + '/api/' + 'existaddress',
+      dat,
+    );
+    this.setState({check_status: data.success})
+    // if(data.success === 0 ){
+    //   this.setState({check_status: data.success})
+    //   // this.saveAddress('addshippingaddress')
+    // }
+    // if(data.success === 1 ){
+    //   this.setState({check_status: data.success})
+    //   // this.saveAddress('addshippingaddress')
+    // }
+    // console.log(data, 'dsjda')
+  }
+
   saveAddress = (type) => {
     const orderDetail = SyncStorage.get('orderDetails');
     // this.state.shippingData.customers_id =
@@ -381,21 +420,37 @@ class orderScreen extends Component {
       null,
       // this.state.shippingData.entry_zone_id
     );
+    // formData.append(
+    //   'entry_state',
+    //   SyncStorage.get('orderDetails').current_location
+    //   // null,
+    //   // this.state.shippingData.entry_state
+    // );
     formData.append(
-      'entry_state',
-      null,
+      'entry_company',
+      SyncStorage.get('orderDetails').current_location
+      // null,
       // this.state.shippingData.entry_state
     );
     formData.append(
-      'suburb',
+      'entry_suburb',
       // this.state.shippingData.suburb
-      null,
+      SyncStorage.get('orderDetails').billing_phone
+    //  '03333333333333'
     );
-    formData.append(
-      'address_id',
-      null,
-      // this.state.shippingData.address_id
-    );
+    formData.append('entry_latitude',SyncStorage.get('orderDetails').latitude);
+    formData.append('entry_longitude',SyncStorage.get('orderDetails').longitude);
+
+    // formData.append(
+    //   'entry_longitude',
+    //   null,
+    //   // this.state.shippingData.address_id
+    // );
+    // formData.append(
+    //   'entry_latitude',
+    //   null,
+    //   // this.state.shippingData.address_id
+    // );
     formData.append(
       'customers_id',
       (orderDetail.customers_id =
@@ -404,7 +459,7 @@ class orderScreen extends Component {
           : SyncStorage.get('customerData').customers_id),
       // this.state.shippingData.customers_id
     );
-    formData.append('is_default', 0);
+    formData.append('is_default', 1);
     const data2 = WooComFetch.postHttp(
       getUrl() + '/api/' + 'addshippingaddress',
       formData,
@@ -473,6 +528,8 @@ class orderScreen extends Component {
       SyncStorage.get('orderDetails').delivery_state === undefined
         ? '0'
         : SyncStorage.get('orderDetails').delivery_state;
+        orderDetail.customer_latitude = SyncStorage.get('orderDetails').latitude;
+        orderDetail.customer_longitude = SyncStorage.get('orderDetails').longitude;
     orderDetail.customers_address_format_id = '1';
     orderDetail.delivery_address_format_id = '1';
     orderDetail.products = this.state.products;
@@ -491,21 +548,28 @@ class orderScreen extends Component {
       SyncStorage.get('langId') === undefined ? 1 : SyncStorage.get('langId');
     orderDetail.currency_code =
       this.props.cartItems2.Config.productsArguments.currency;
+      // orderDetail.order_information =this.state.customerNotes
     if (orderDetail.delivery_state === undefined) {
       orderDetail.delivery_state = 'other';
     }
     var dat = orderDetail;
+    // console.log(dat, 'order detail dat')
     const data = await WooComFetch.postHttp(
       getUrl() + '/api/' + 'addtoorder',
       dat,
-      console.log(dat, 'Testing.............!'),
     );
-    // console.log(data, 'data.success-');
+    console.log(data, 'data.success-');
+    console.log(dat, '==========')
     if (data.success == 1) {
-      if (SyncStorage.get('customerData').customers_id !== undefined) {
-        console.log('here');
+      // console.log(this.state.check_status, 'status check')
+      // console.log(SyncStorage.get('customerData').customers_id, 'here=========')
+      if (SyncStorage.get('customerData').customers_id !== undefined && this.state.check_status == 0) {
+        // this.checkAddress()
         this.saveAddress('addshippingaddress');
       }
+      // else{
+      //   this.saveAddress('updateshippingaddress')
+      // }
 
       this.props.cartItems2.cartItems.cartProductArray = [];
       this.props.cartItems2.cartItems.couponArray = [];
@@ -533,10 +597,10 @@ class orderScreen extends Component {
     }
 
     if (data.success == 0) {
-      console.log('here');
 
       if (SyncStorage.get('customerData').customers_id !== undefined) {
-        this.saveAddress('addshippingaddress');
+        this.checkAddress()
+        // this.saveAddress('addshippingaddress');
       }
       this.setState({SpinnerTemp: false}, () => {
         this.props.productDeleteIdFun(
@@ -800,6 +864,7 @@ class orderScreen extends Component {
     var dat = {code: code};
     const data = await postHttp(getUrl() + '/api/' + 'getcoupon', dat);
     if (data.success == 1) {
+      console.log(data, 'coupon data')
       const coupon = data.data[0];
       this.applyCouponCart(coupon);
     }

@@ -8,6 +8,7 @@ import {
   I18nManager,
   ScrollView,
   Image,
+  Dimensions
 } from 'react-native';
 import {CardStyleInterpolators} from 'react-navigation-stack';
 import {getUrl, postHttp} from '../common/WooComFetch';
@@ -17,7 +18,7 @@ import SyncStorage from 'sync-storage';
 import Spinner from 'react-native-loading-spinner-overlay';
 import themeStyle from '../common/Theme.style';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-
+const WIDTH = Dimensions.get('window').width;
 class CreateAccount extends PureComponent {
   /// /////////////////////////////////////////////////////////
   static navigationOptions = ({navigation}) => {
@@ -234,7 +235,8 @@ class CreateAccount extends PureComponent {
             <View
               style={{
                 backgroundColor: '#fff',
-                width: '92%',
+                // width: '92%',
+                width: WIDTH/1.2,
                 height: 60,
                 borderColor: '#fff',
                 borderWidth: 1,
@@ -300,7 +302,8 @@ class CreateAccount extends PureComponent {
             <View
               style={{
                 backgroundColor: '#fff',
-                width: '92%',
+                // width: '92%',
+                width: WIDTH/1.2,
                 height: 60,
                 borderColor: '#fff',
                 borderWidth: 1,
@@ -358,7 +361,7 @@ class CreateAccount extends PureComponent {
             <View
               style={{
                 backgroundColor: '#fff',
-                width: '92%',
+                width: WIDTH/1.2,
                 height: 60,
                 borderColor: '#fff',
                 borderWidth: 1,
@@ -395,11 +398,11 @@ class CreateAccount extends PureComponent {
                   // backgroundColor: '#fff',
                   // borderRadius: 15,
                   // borderWidth: 1,
-
+                  // backgroundColor:'yellow',
                   fontFamily: 'Lato-Regular',
                   fontSize: 18,
                   color: 'black',
-                  width: '88%',
+                  width: '80%',
                   height: '100%',
                   paddingHorizontal: 20,
                 }}
@@ -442,7 +445,8 @@ class CreateAccount extends PureComponent {
             <View
               style={{
                 backgroundColor: '#fff',
-                width: '92%',
+                // width: '92%',
+                width: WIDTH/1.2,
                 height: 60,
                 borderColor: '#fff',
                 borderWidth: 1,
@@ -524,7 +528,8 @@ class CreateAccount extends PureComponent {
             <View
               style={{
                 backgroundColor: '#fff',
-                width: '92%',
+                // width: '92%',
+                width: WIDTH/1.2,
                 height: 60,
                 borderColor: '#fff',
                 borderWidth: 1,
